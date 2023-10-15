@@ -30,7 +30,7 @@ export async function POST(req) {
             data: {
               email: email, // Guardar el correo electrónico del usuario proporcionado por Clerk
               firstname: firstname || "",
-              lastname: lastname || "",
+              lastname: lastname !== null ? lastname : "",
               fullname: fullname,
               image: image || "",
             },
@@ -69,7 +69,7 @@ export async function GET(req) {
         select: {
           id: true,
           firstname: true,
-          lastname: true,
+          lastname: user => user.lastname || "",
           fullname: true,
           email: true,
           role: true,
