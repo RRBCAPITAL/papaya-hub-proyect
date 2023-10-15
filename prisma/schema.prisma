@@ -18,7 +18,7 @@ model user {
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  image     String
+  image     String?
   anuncios   anuncios[]
   role      Role     @default(USER)
   estado    Estado  @default(INACTIVE_COMMERCIAL)

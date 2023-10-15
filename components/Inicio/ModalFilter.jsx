@@ -226,9 +226,9 @@ toast.error('No se encontraron chicas.', {
            </filtrosprincipales>
             
            <div className="flex flex-col gap-2">
-              <div className=" p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center ">
+              <div className="p-4 rounded-[10px] flex gap-4 text-sm items-center justify-center ">
                 {preferenciasPrincipales.map((i) => (
-                  <div key={i} className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div key={i} className="flex gap-1 text-xs sm:text-sm">
                     <input
                       type="checkbox"
                       name="atencion"

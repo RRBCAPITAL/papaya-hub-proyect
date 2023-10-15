@@ -29,10 +29,10 @@ export async function POST(req) {
         const newUser = await prisma?.user?.create({
             data: {
               email: email, // Guardar el correo electrónico del usuario proporcionado por Clerk
-              firstname: firstname,
-              lastname: lastname,
+              firstname: firstname || "",
+              lastname: lastname || "",
               fullname: fullname,
-              image: image,
+              image: image || "",
             },
           });
 
