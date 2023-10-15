@@ -12,7 +12,7 @@ export async function POST(req) {
     console.log(email);
 
     // Buscar si existe un usuario con el mismo correo electrónico en la base de datos
-    const duplicateUser = await prisma.user.findFirst({
+    const duplicateUser = await prisma?.user?.findFirst({
         where: {
         email: email,
         },

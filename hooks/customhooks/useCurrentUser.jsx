@@ -15,7 +15,7 @@ const useCurrentUser = () => {
     
     // Realiza la solicitud axios dentro de useEffect
     axios
-      .get('api/user')
+      .get('/api/user')
       .then((response) => {
         // Actualiza el estado con los datos de la respuesta
         setUsersDb(response.data);
@@ -26,7 +26,7 @@ const useCurrentUser = () => {
   // Lógica para obtener el usuario actual
   useEffect(() => {
     if (usersDb && currentEmailUser) {
-      const foundUser = usersDb?.find(u => u?.email === currentEmailUser);
+      const foundUser = usersDb && usersDb?.length > 0 && usersDb?.find(u => u?.email === currentEmailUser);
       setCurrentUser(foundUser || null);
     }
   }, [usersDb, currentEmailUser]);
