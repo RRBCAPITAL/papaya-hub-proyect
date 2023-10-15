@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*::after, *::before {
+  box-sizing: border-box;
+  font-family: 'Nunito';
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar {
+  background-color: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #ffb265;
+}
+
+/* Handle hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(253, 255, 187);
+}
+/* Add these styles to force the vertical scrollbar */
+body {
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-y: scroll;
+}

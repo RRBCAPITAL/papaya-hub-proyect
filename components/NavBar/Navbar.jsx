@@ -1,0 +1,277 @@
+"use client"
+
+import Link from "next/link"
+import { useState } from "react";
+import { FiMenu } from "react-icons/fi";
+import { MdOutlineClose } from "react-icons/md";
+import { FaUserCheck } from 'react-icons/fa'
+import { BiSolidDownload } from "react-icons/bi";
+import { UserButton, useUser } from "@clerk/nextjs";
+import Image from "next/image";
+import style from './NavBar.module.css'
+import { useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { MdNightlight } from 'react-icons/md'
+import { MdOutlineLightMode } from 'react-icons/md'
+import LoadingNavBar from "./LoadingNavBar";
+import axios from "axios";
+
+import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
+
+import { Button, ButtonGroup, Stack } from '@chakra-ui/react'
+import ModalConfirmPay from "@/app/formulario-de-inscripcion/ModalConfirmPay";
+import ModalConfirmLogin from "@/modales/ModalConfirmLogin/ModalConfirmLogin";
+
+const Navbar = () => {
+
+    const pathname = usePathname()
+    const [ show, setShow ] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const { user, currentUser} = useCurrentUser()
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [showActive, setShowActive] = useState(false)
+
+    console.log(currentUser);
+    
+    const openModal = () => {
+        setModalIsOpen(true);
+      };
+      
+      const closeModal = () => {
+        setModalIsOpen(false);
+      };
+
+    const handleModal = () => {
+        setShowActive(true)
+        openModal()
+    }
+
+  const handleLinkClick = () => {
+    
+    // e.preventDefault();
+    setLoading(true);
+
+    setTimeout(() => {
+        setLoading(false)
+    }, 300)
+  };
+
+  if (typeof window !== 'undefined'){
+    // Recuperar el estado del tema desde el almacenamiento local si está disponible
+    const initialTheme = localStorage?.getItem('theme') || (
+        window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        );
+  
+  var [theme, setTheme] = useState(initialTheme);
+
+  // Cambiar el tema
+  var handleChangeTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    // Guardar el nuevo tema en el almacenamiento local
+    localStorage?.setItem('theme', newTheme);
+    handleNavbarPhone()
+  };
+  
+
+  // Aplicar la clase 'dark' al cuerpo del documento según el estado del tema
+  useEffect(() => {
+    const bodyElement = document.querySelector('body');
+    if (theme === 'dark') {
+      bodyElement.classList.add('dark');
+    } else {
+      bodyElement.classList.remove('dark');
+    }
+  }, [theme]);
+}
+
+const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
+
+  const handleClick = () => {
+    // Inicia la carga
+    setIsLoadingAnuncio(true);
+
+    // Simula alguna operación asincrónica, como una solicitud HTTP
+    setTimeout(() => {
+      // Finaliza la carga después de un tiempo de simulación
+      setIsLoadingAnuncio(false);
+    }, 2000); // Simulación de 2 segundos
+  };
+
+    const handleNavbarPhone = () => setShow(!show)
+
+    return (
+    <>
+    <header className="z-50 w-screen fixed text-white bg-[#000000] dark:shadow-custom1 dark:bg-white py-0 px-[2rem]">
+        <div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between">
+            
+            <menu className="flex gap-10">
+            <div className="text-[1.5rem] font-bold">
+            <Link href={'/'} onClick={handleNavbarPhone} className="text-white font-extrabold dark:text-slate-800">
+                    <img src="/assets/logoph.jpg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
+            </Link>
+            </div>
+            <div className="hidden lg:block dark:text-[#5a5a5a]">
+                <ul className="my-auto flex gap-[2rem] h-full font-bold text-[16px]">
+                <Link
+                    href={'/'}
+                    className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}
+                >Chicas</Link>
+                <Link
+                    href={'/reportar'}
+                    className={`my-auto ${pathname === ('/reportar') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}>
+                Reportar</Link>
+                
+                {
+
+                }
+                </ul>
+            </div>
+            </menu>
+
+            <div className="hidden lg:block">
+                <div className="flex gap-[0.8rem]">
+                
+               <Link 
+      href={'/dashboard-de-usuario'} 
+      className={`${pathname === '/dashboard-de-usuario' && "bg-back-red-l"} flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+    >
+      <h3 className="my-auto text-t-red">Mis anuncios</h3>
+      <FaUserCheck className="my-auto text-t-red"/>       
+    </Link>
+
+                { user?.isSignedIn &&
+                   currentUser && (currentUser?.role === 'ADMIN' || currentUser?.role === 'SUPER_ADMIN') && 
+                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                           <h3 className="my-auto text-[#794cff]">Dashboard</h3>
+                        <FaUserCheck className="my-auto text-[#794cff]"/>  
+                        
+                    </Link>
+                }
+
+               {!user?.isSignedIn ? 
+                <Link href={'/sign-in'} className="text-[#fff] dark:text-black py-[0.5rem] px-[0.5rem] border-none outline-none
+                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
+                Iniciar Sesión
+                </Link>
+                : <div className="text-[#fff] dark:text-black mt-[1px] border-4 border-bor-red outline-none
+                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
+                <UserButton afterSignOutUrl="/sign-in"/>
+
+                </div>
+                }
+
+        <Link
+                href={'/crear-anuncio'}
+                className={`bg-back-red flex gap-[4px] text-black py-[0.5rem] px-[1rem] border-none outline-none
+                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                
+                >
+            <Button 
+            variant="outline"
+            isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
+            loadingText="Cargando"
+            onClick={handleClick} // Llama a la función cuando se hace clic
+            >
+                Crear anuncio
+            </Button>
+        </Link>
+
+            { theme === "dark" ?
+            <button onClick={handleChangeTheme} className=" rounded-full px-[10px] transition-all duration-300 ease-in-out">
+                 <MdNightlight className="text-black w-6 h-6 transition-all duration-300 ease-in-out"/> 
+            </button>
+            :
+            <button onClick={handleChangeTheme} className=" rounded-full px-[10px] transition-all duration-300 ease-in-out">
+                 <MdOutlineLightMode className="w-6 h-6 transition-all duration-300 ease-in-out"/>
+            </button>  
+            }
+                </div>
+            </div>
+            <div className=" lg:hidden"
+            onClick={handleNavbarPhone}
+            >
+                <div className="text-[#fff] dark:text-black text-[1.5rem] cursor-pointer flex-none">
+                    { show ? <MdOutlineClose /> : <FiMenu />}
+                </div>
+            </div>
+        </div>
+        
+        {
+            show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen bg-[#131313] dark:bg-white dark:text-t-dark backdrop:blur-[15px]
+            overflow-hidden transition-nicetransition">
+                <div className="flex flex-col justify-between gap-6 my-2">
+                    <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
+                  <div className="flex gap-2 text-white dark:text-black" onClick={handleNavbarPhone} >{user?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
+                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
+                        <Link href={'/reportar'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Reportar</Link>
+                    </ul>
+    
+                    <div className="flex flex-col justify-center items-center text-2xl mx-6 p-4 rounded-xl gap-[8px]">
+
+                    <Link href={'/dashboard-de-usuario'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard-de-usuario') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                        
+                        <h3 className="my-auto text-xl text-[#5d36e8]">Mis anuncios</h3>
+                        <FaUserCheck className="my-[4px] h-6 w-6 text-[#5d36e8]"/>       
+                        
+                    </Link>
+
+                    { user?.isSignedIn &&
+                    (currentUser?.role === 'ADMIN' || currentUser?.role === 'SUPER_ADMIN') && 
+                    <Link href={'/dashboard'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                    
+                        <h3 className="my-auto text-xl text-[#5d36e8]">Dashboard</h3>
+                        <FaUserCheck className="my-[4px] h-6 w-6 text-[#5d36e8]"/>       
+                        
+                    </Link>
+                    }
+
+                    <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                        
+                        <h3 className="my-auto text-xl">Crear anuncio</h3>
+                        <FaUserCheck className="my-[4px] h-6 w-6"/>       
+                        
+                    </Link>
+
+                {!user.isSignedIn &&
+                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] flex justify-center mt-2 bg-back-light text-white dark:text-black py-[1rem] px-[1rem] border-none outline-none
+                rounded-[10px] font-bold mx-2 cursor-pointer">
+                Iniciar Sesión
+                </Link>
+                }
+                {/* <button className="dark:text-black" onClick={handleChangeTheme}>Cambiar</button> */}
+                { theme === "dark" ?
+            <div className="flex gap-2 mt-2 text-white dark:text-black">
+                <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
+            <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">    
+                 <MdNightlight className="text-t-dark w-6 h-6 transition-all duration-300 ease"/> 
+            </button>    
+            </div>
+            :
+            <div className="flex gap-2 mt-2  text-white dark:text-black">
+                <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
+            <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">
+                 <MdOutlineLightMode className="w-6 h-6 transition-all duration-300 ease"/>
+            </button>  
+            </div>
+            }
+                    </div>
+                </div>
+                    </div> : ""
+        }
+
+    </header>
+
+        <ModalConfirmLogin showActive={showActive} modalIsOpen={modalIsOpen} onClose={closeModal}/>
+    </>
+  )
+}
+
+export default Navbar;

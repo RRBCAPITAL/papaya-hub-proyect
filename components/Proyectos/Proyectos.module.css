@@ -1,0 +1,49 @@
+
+.articleMember {
+    @apply overflow-hidden rounded-[15px] flex flex-col items-center relative bg-[#4d1794] p-[1.2rem] border-[1px] border-transparent
+    hover:border-2 hover:border-[#6410d3];
+    transition: background-color 0.5s ease;
+    box-sizing: border-box;
+}
+
+.articleMember:hover {
+    background: transparent;
+}
+
+.containImg {
+    @apply saturate-0 lg:w-full rounded-[15px] bg-blue-500 h-[170px] w-[170px] overflow-hidden
+}
+
+.containImg img {
+
+    @apply object-cover object-top w-full h-full;
+}
+
+.articleMember:hover
+.containImg
+{
+    filter: saturate(100%);
+}
+
+.teamSocials {
+
+    @apply absolute top-[50%] flex flex-col p-[1rem] gap-6 translate-y-[-50%]
+    shadow-custom1 rounded-t-[1rem] rounded-l-[1rem] bg-[#6410d3]
+    right-[-100%] hover:right-0 rounded-r-none;
+    transition: right 0.2s ease;
+    
+}
+
+.articleMember:hover
+.teamSocials {
+    right: 0;
+}
+
+.Link {
+    transition: transform 0.3s ease;
+}
+
+.Link:hover {
+    transform: scale(1.5);
+}
+
