@@ -275,7 +275,7 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
           modalEditOpen && <ModalEdit idAnuncio={idAnuncio} userId={currentUser && currentUser?.id} nivel={nivel} setModalEditOpen={setModalEditOpen} setIsEdited={setIsEdited} anuncios={anuncios} setAnuncios={setAnuncios} filteredAnuncios={filteredAnuncios}/>
           }
           {
-          modalDeleteOpen && <ModalDelete idAnuncio={idAnuncio} setModalDeleteOpen={setModalDeleteOpen} setIsDeleted={setIsDeleted}/>
+          modalDeleteOpen && <ModalDelete idAnuncio={idAnuncio} setModalDeleteOpen={setModalDeleteOpen} setIsDeleted={setIsDeleted} currentUserOk={currentUserOk}/>
           }
         </div>
 

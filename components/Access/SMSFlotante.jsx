@@ -1,9 +1,28 @@
-import React from 'react'
+"use client"
+
+import { useState } from "react"
+import ModalSms from "./ModalSms"
 
 const SMSFlotante = () => {
+
+  const [modalSmsOpen, setModalSmsOpen] = useState(false)
+
+  console.log(modalSmsOpen);
+
+  const closeModal = () => {
+
+    setModalSmsOpen(false)
+  }
+  
+  
   return (
-    <div className="bottom-4 right-4 fixed  hover:bottom-5 hover:right-5 transition-all ease-in-out duration-300">
-      <div className="sticky bg-[#632fff] shadow-normal hover:scale-105 transition-all ease-in-out duration-300 hover:bg-[#22193e] rounded-full w-fit cursor-pointer z-50">
+    <>
+    <div
+    onMouseEnter={() => setModalSmsOpen(true)} // Muestra el modal al hacer hover
+    onMouseLeave={() => setModalSmsOpen(false)} // Oculta el modal al quitar el hover
+
+    className="z-50 bottom-4 right-4 fixed transition-all ease-in-out duration-300">
+      <div className={` bg-[#632fff] shadow-normal transition-all ease-in-out duration-300 hover:bg-[#22193e] rounded-full w-fit cursor-pointer z-50`}>
         {/* <a
           href={`https://api.whatsapp.com/send?phone=+51924169968&text=Hola%2C%20estoy%20interesad@%20en%20unirme%20a%20un%20equipo%20de%20desarrollo.`}
           target="_blank"
@@ -20,11 +39,15 @@ const SMSFlotante = () => {
         
         
         <img src="/assets/sms.png" alt="" className="scale-[0.6]"/>
-        <h1 className="my-auto hidden sm:block hover:block text-sm">Ayúdanos a mejorar!</h1>
+        <button  className="my-auto hidden sm:block hover:block text-sm">Ayúdanos a mejorar!</button>
         </div>
       </div>
+      {modalSmsOpen && <ModalSms setModalSmsOpen={setModalSmsOpen} closeModal={closeModal}/>}
       </div>
+
+      
+    </>
   )
 }
 
-export default SMSFlotante
+export default SMSFlotante;

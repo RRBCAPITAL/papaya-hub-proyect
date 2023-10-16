@@ -93,10 +93,12 @@ const Access = ({ children }) => {
       pathname === "/dashboard/users" ||
       pathname === '/dashboard/crear-equipo' ||
       pathname === '/dashboard/equipos'
-      ? "" : <SMSFlotante />
+      ? "" : ""
        }
     </>
   );
 };
 
 export default Access;
+
+{/* <SMSFlotante /> */}

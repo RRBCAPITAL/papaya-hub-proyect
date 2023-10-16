@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
 
 const DashboardUserPage = () => {
   const [anunciosDeUsuario, setAnunciosDeUsuario] = useState([]);
@@ -16,10 +17,22 @@ const DashboardUserPage = () => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false)
   const [idAnuncio, setIdAnuncio] = useState()
+  const [ currentUser, setCurrentUser] = useState()
 
-  const {user, currentUser} = useCurrentUser()
+    const userR = useUser()
+    const id = currentUser?.id
 
-  const id = currentUser?.id;
+    useEffect(() => {
+        if(userR?.user){
+          
+          axios('/api/user')
+          .then(res => {
+            const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
+            setCurrentUser(foundUser)
+          })
+          .catch(err => console.log(err))
+          }
+    }, [userR])
 
   useEffect(() => {
     axios
@@ -82,18 +95,24 @@ const DashboardUserPage = () => {
             <div className="flex flex-col items-center gap-2 ">
               <h1 className="text-4xl font-extrabold dark:text-slate-600 text-center text-slate-200">No tienes anuncios disponibles</h1>
               <p className="dark:text-slate-400 text-slate-400 text-center text-sm px-6">Crea tu anuncio totalmente gratis y actívalo con nuestras súper promociones!</p>
-              <Link
+              { userR?.isSignedIn ? <Link
                 href={'/crear-anuncio'}
                 className={`bg-back-red flex mt-4 text-black dark:text-white p-4 border-none outline-none
                 rounded-[20px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
               >
                 Crear anuncio
-              </Link>
+              </Link> : <Link
+                href={'/sign-in'}
+                className={`bg-back-red flex mt-4 text-black dark:text-white p-4 border-none outline-none
+                rounded-[20px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+              >
+                Crear anuncio
+              </Link>}
             </div>
           )}
         </div>
       </div>
-      {modalDeleteOpen && <ModalDeleteU idAnuncio={idAnuncio} setModalDeleteOpen={setModalDeleteOpen} setIsDeleted={setIsDeleted} />}
+      {modalDeleteOpen && <ModalDeleteU idAnuncio={idAnuncio} setModalDeleteOpen={setModalDeleteOpen} setIsDeleted={setIsDeleted} currentUserOk={currentUser} />}
     </div>
   );
 };

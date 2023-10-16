@@ -1,20 +1,23 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
-import { currentUser } from "@clerk/nextjs";
 
 export async function DELETE(req, { params }) {
   try {
     const { id } = params;
 
-    const user = await currentUser(req);
-    const email = user?.emailAddresses[0]?.emailAddress;
+    console.log(id);
 
-    console.log(user);
-    console.log(email);
+    const idAnuncio = id?.substring(0, 25)
+    const userId = id.substring(25, 50)
+    // const user = await currentUser(req);
+    // const email = user?.emailAddresses[0]?.emailAddress;
+
+    // console.log(user);
+    // console.log(email);
 
     const currentUserDB = await prisma.user.findUnique({
       where: {
-        email
+        id: userId
       },
     });
 
@@ -31,7 +34,7 @@ export async function DELETE(req, { params }) {
 
     const anuncio = await prisma.anuncios.findUnique({
       where: {
-        id,
+        id: idAnuncio
       },
     });
 
@@ -52,7 +55,7 @@ export async function DELETE(req, { params }) {
       // Si el usuario es ADMIN, SUPER_ADMIN o el creador del anuncio, permite la eliminación
       await prisma.anuncios.delete({
         where: {
-          id,
+          id: idAnuncio
         },
       });
 

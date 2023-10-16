@@ -27,12 +27,28 @@ const Navbar = () => {
     const pathname = usePathname()
     const [ show, setShow ] = useState(false)
     const [loading, setLoading] = useState(false);
-    const { user, currentUser} = useCurrentUser()
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [showActive, setShowActive] = useState(false)
+    const [ currentUserR, setCurrentUserR] = useState()
 
-    console.log(currentUser);
+    const userR = useUser()
+
+    console.log(userR);
+
+    useEffect(() => {
+        if(userR?.user){
+          
+          axios('/api/user')
+          .then(res => {
+            const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
+            setCurrentUserR(foundUser)
+          })
+          .catch(err => console.log(err))
+          }
+    }, [userR])
     
+    console.log(currentUserR);
+
     const openModal = () => {
         setModalIsOpen(true);
       };
@@ -141,8 +157,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
       <FaUserCheck className="my-auto text-t-red"/>       
     </Link>
 
-                { user?.isSignedIn &&
-                   currentUser && (currentUser?.role === 'ADMIN' || currentUser?.role === 'SUPER_ADMIN') && 
+                { userR?.isSignedIn &&
+                   currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                     <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                            <h3 className="my-auto text-[#794cff]">Dashboard</h3>
@@ -151,7 +167,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     </Link>
                 }
 
-               {!user?.isSignedIn ? 
+               {!userR?.isSignedIn ? 
                 <Link href={'/sign-in'} className="text-[#fff] dark:text-black py-[0.5rem] px-[0.5rem] border-none outline-none
                 rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
                 Iniciar Sesión
@@ -163,8 +179,23 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 </div>
                 }
 
-        <Link
-                href={'/crear-anuncio'}
+                {
+                  userR?.isSignedIn ? <Link
+                  href={'/crear-anuncio'}
+                  className={`bg-back-red flex gap-[4px] text-black py-[0.5rem] px-[1rem] border-none outline-none
+                  rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                  
+                  >
+              <Button 
+              variant="outline"
+              isLoading={isLoadingAnuncio} // Utiliza el estado de isLoading de Chakra UI
+              loadingText="Cargando"
+              onClick={handleClick} // Llama a la función cuando se hace clic
+              >
+                  Crear anuncio
+              </Button>
+          </Link> : <Link
+                href={'/sign-in'}
                 className={`bg-back-red flex gap-[4px] text-black py-[0.5rem] px-[1rem] border-none outline-none
                 rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
                 
@@ -178,6 +209,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 Crear anuncio
             </Button>
         </Link>
+                }
 
             { theme === "dark" ?
             <button onClick={handleChangeTheme} className=" rounded-full px-[10px] transition-all duration-300 ease-in-out">
@@ -204,7 +236,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-6 my-2">
                     <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
-                  <div className="flex gap-2 text-white dark:text-black" >{user?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
+                  <div className="flex gap-2 text-white dark:text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
                         <Link href={'/reportar'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
@@ -221,8 +253,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                         
                     </Link>
 
-                    { user?.isSignedIn &&
-                    (currentUser?.role === 'ADMIN' || currentUser?.role === 'SUPER_ADMIN') && 
+                    { userR?.isSignedIn &&
+                    (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                     <Link href={'/dashboard'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                     
@@ -240,7 +272,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                         
                     </Link>
 
-                {!user.isSignedIn &&
+                {!userR.isSignedIn &&
                 <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] flex justify-center mt-2 bg-back-light text-white dark:text-black py-[1rem] px-[1rem] border-none outline-none
                 rounded-[10px] font-bold mx-2 cursor-pointer">
                 Iniciar Sesión

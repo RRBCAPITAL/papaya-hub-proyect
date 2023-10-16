@@ -9,7 +9,7 @@ const Banner = () => {
                 Si pediste un mercedez y te llega un kia...
           </h1>
           <h1 className="mx-6 text-[16px] sm:text-[24px] text-white text-center">
-                Reporta en <strong className="font-extrabold">soporte.</strong>
+                Dale clic en <strong className="font-extrabold">reportar.</strong>
           </h1>
           </textbanner>
 

@@ -10,18 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNothingFound, setModalFilterOpen, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma }) => {
 
-    console.log(textSearch);
-    console.log(selectedNacionalidad);
-    console.log(selectedRegion);
-    console.log(selectedLugar);
-    console.log(selectedIdioma);
-    console.log(selectedAtencion);
-
     const [ anuncios, setAnuncios ] = useState()
     const [filteredAnuncios, setFilteredAnuncios] = useState([]);
   
     useEffect(() => {
-        fetch('api/anuncio')
+        fetch('/api/anuncio')
         .then(data => data.json())
         .then(({ data })=> setAnuncios(data))
     }, [])
@@ -100,7 +93,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
       if (filtroSearchBar.length > 0) {
         setFilteredAnuncios(filtroSearchBar);
         toast.success('Se encontraron chicas.', {
-          position: 'top-right',
+          position: 'bottom-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -108,7 +101,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
         });
       } else {
         toast.error('No se encontró ninguna chica....', {
-          position: 'top-right',
+          position: 'bottom-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -138,7 +131,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
     return(
     <containertotal className='flex w-screen overflow-x-hidden'>
         <contain className='flex justify-center min-h-screen max-w-screen bg-dark-l dark:bg-[#fff]'>
-        <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
+        <ToastContainer autoClose={5000} theme='colored' newestOnTop={true}/>
                 <containcards className='w-[80%] mt-4 mb-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-10'>
                 {filteredAnuncios?.length > 0 ? (
             filteredAnuncios.map((a) => (
