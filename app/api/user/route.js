@@ -7,10 +7,9 @@ export async function POST(req) {
   try {
     // Obtener los datos del usuario registrado a través de Clerk
     const body = await req.json();
-    const { clerkId, email, firstname, lastname, fullname, image } = body;
+    const { clerkId, email, firstname, fullname, image } = body;
 
     console.log(email);
-
     // Buscar si existe un usuario con el mismo correo electrónico en la base de datos
     const duplicateUser = await prisma?.user?.findFirst({
         where: {
@@ -30,7 +29,7 @@ export async function POST(req) {
             data: {
               email: email, // Guardar el correo electrónico del usuario proporcionado por Clerk
               firstname: firstname || "",
-              lastname: lastname !== null ? lastname : "",
+              // lastname: lastname !== null ? lastname : "",
               fullname: fullname,
               image: image || "",
             },
@@ -42,14 +41,6 @@ export async function POST(req) {
               });
     }
 
-    //       console.log(data);
-    //       console.log(newUser);
-    
-    //       return NextResponse.json({
-    //         message: 'Usuario registrado exitosamente',
-    //         user: newUser,
-    //       });
-        
   } catch (error) {
     console.error(error);
     return NextResponse.json({
@@ -69,7 +60,7 @@ export async function GET(req) {
         select: {
           id: true,
           firstname: true,
-          lastname: user => user.lastname || "",
+          // lastname: user => user.lastname || "",
           fullname: true,
           email: true,
           role: true,

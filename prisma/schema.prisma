@@ -13,7 +13,6 @@ datasource db {
 model user {
   id        String      @id @default(cuid())
   firstname String
-  lastname  String
   fullname  String
   email     String   @unique
   createdAt DateTime @default(now())

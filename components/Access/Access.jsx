@@ -20,7 +20,7 @@ const Access = ({ children }) => {
   const userCreate = {
     clerkId: user?.user?.id || '', // Usar un valor predeterminado si 'user' o 'user.user' es nulo
     firstname: user?.user?.firstName || '',
-    lastname: user?.user?.lastName || '',
+    // lastname: user?.user?.lastName || '',
     fullname: user?.user?.fullName || '',
     email: user?.user?.emailAddresses[0]?.emailAddress || '',
     image: user?.user?.imageUrl || '',
