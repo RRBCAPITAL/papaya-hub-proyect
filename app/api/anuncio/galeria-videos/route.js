@@ -128,25 +128,9 @@ export async function POST(req, { params }) {
       const bytes = await video.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const fullUuid = uuidv4();
-      const publicId = `chicas_papayahub.pe_${fullUuid.substring(0, 5)}`;
-
       const response = await new Promise((resolve, reject) => {
         cloudinary.uploader.upload_stream({
-          public_id: publicId,
           resource_type: "video",
-          overlay: {
-            font_family: 'Arial',
-            font_size: 50,
-            text: 'www.papayahub.pe',
-            color: '#fff',
-            opacity: 60,
-            blend: 'over',
-          },
-          gravity: 'center',
-          color: '#fff',
-          opacity: 60,
-          font_size: 50,
         }, (err, result) => {
           if (err) {
             reject(err);
