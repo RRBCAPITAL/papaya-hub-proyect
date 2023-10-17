@@ -441,12 +441,15 @@ const CrearAnuncio = () => {
 
     console.log(formData);
 
-    const resGaleria = await fetch('api/anuncio/galeria-videos', {
-      method: "POST",
-      body: formData,
-    })
+    const resGaleria = await axios.post('api/anuncio/galeria-videos', formData).catch(err => console.log(err))
 
-    const dataG = await resGaleria.json()
+    console.log(resGaleria);
+
+    // const dataG = await resGaleria.json()
+
+    const dataG = resGaleria?.data
+
+    console.log(dataG);
 
     return dataG.videosUrl;
 
@@ -566,9 +569,10 @@ const CrearAnuncio = () => {
            setLoading(true); // Iniciar carga
     
            // Esperar a que ambas funciones de carga se completen
-           const [galeriaVideosUrl, galeriaImagesUrl] = await Promise.all([
-            actionCreateGaleriaVideos(),
+           const [galeriaImagesUrl,galeriaVideosUrl] = await Promise.all([
+           
             actionCreateGaleriaImages(),
+            actionCreateGaleriaVideos(),
           ]);
     
         //  await actionCreateGaleriaVideos();
