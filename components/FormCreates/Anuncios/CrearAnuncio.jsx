@@ -957,7 +957,7 @@ const CrearAnuncio = () => {
 
         <div className="flex flex-col gap-2">
               <label htmlFor="name" className="text-white dark:text-black">Galería de videos: <nav className="text-[10px]">(solo 3 videos como max.)</nav></label>
-              <CldUploadButton uploadPreset="uploadDash" 
+              <CldUploadButton uploadPreset="zw1ztiu3" 
               className="flex gap-2 items-center justify-center p-2 bg-back-red border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-[#ffcc8d] transition-all ease-linear duration-300"
               onUpload={(result) => {
                 // Extrae la URL segura de este objeto y guárdala en el array

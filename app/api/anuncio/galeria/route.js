@@ -9,19 +9,19 @@ import { currentUser } from "@clerk/nextjs";
 
 import {v2 as cloudinary} from 'cloudinary';
           
-cloudinary.config({ 
-  cloud_name: 'dvaiww9ri', 
-  api_key: '143137459793523', 
-  api_secret: '3Opq8vJZWnRQeIfBreaC-WmF0hM' 
-});
+// cloudinary.config({ 
+//   cloud_name: 'dvaiww9ri', 
+//   api_key: '143137459793523', 
+//   api_secret: '3Opq8vJZWnRQeIfBreaC-WmF0hM' 
+// });
 
 //RRB CAPITAL
 
-// cloudinary.config({ 
-//   cloud_name: 'doxatacbw', 
-//   api_key: '985616616318484', 
-//   api_secret: 'JCG3uob6Mwi4fCbxwY-_94qSehY' 
-// });
+cloudinary.config({ 
+  cloud_name: 'doxatacbw', 
+  api_key: '985616616318484', 
+  api_secret: 'JCG3uob6Mwi4fCbxwY-_94qSehY' 
+});
 
 export async function POST(req, { params }) {
   try {
