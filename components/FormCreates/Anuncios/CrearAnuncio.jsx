@@ -17,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ModalOk from "./ModalOk";
 import Link from "next/link";
 import { RiCloseFill } from 'react-icons/ri'
+import { CldUploadButton } from 'next-cloudinary'
+import { FaUpload } from 'react-icons/fa'
 
 const CrearAnuncio = () => {
 
@@ -24,6 +26,9 @@ const CrearAnuncio = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [dataFile, setDataFile] = useState({
+    linksVideos: []
+  })
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -55,7 +60,8 @@ const CrearAnuncio = () => {
     altura: "",
     peso: "",
     questionEnd: '',
-    atencion: []
+    atencion: [],
+    galeriaVideos: []
   });
 
   const handleTerminosCondiciones = (e) => {
@@ -384,89 +390,6 @@ const CrearAnuncio = () => {
     setPreviewImages(updatedPreviewImages);
   };
 
-  // FUNCION PARA CREAR GALERIA DE VIDEOS
-
-  const [selectedVideos, setSelectedVideos] = useState([]);
-  const [previewVideos, setPreviewVideos] = useState([]);
-
-  const handleVideosChange = (e) => {
-    const files = e.target.files;
-
-    const updatedSelectedVideos = [...selectedVideos];
-    const updatedPreviewVideos = [...previewVideos];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-
-      // Valida el tamaño del archivo (en bytes)
-      const maxSizeMB = 20; // 20 MB
-      if (file.size > maxSizeMB * 1024 * 1024) {
-        alert(`El video ${file.name} excede el tamaño máximo de ${maxSizeMB} MB.`);
-        continue; // Salta este archivo y pasa al siguiente
-      }
-
-      // Agregar el video a la lista de selección y vista previa
-      updatedSelectedVideos.push(file);
-      updatedPreviewVideos.push(URL.createObjectURL(file));
-    }
-
-    // Limitar la selección de videos a un máximo de 3
-    const limitedSelectedVideos = updatedSelectedVideos.slice(0, 3);
-    const limitedPreviewVideos = updatedPreviewVideos.slice(0, 3);
-
-    setSelectedVideos(limitedSelectedVideos);
-    setPreviewVideos(limitedPreviewVideos);
-  };
-
-  const removeVideo = (index) => {
-    const updatedSelectedVideos = [...selectedVideos];
-    const updatedPreviewVideos = [...previewVideos];
-
-    updatedSelectedVideos.splice(index, 1);
-    updatedPreviewVideos.splice(index, 1);
-
-    setSelectedVideos(updatedSelectedVideos);
-    setPreviewVideos(updatedPreviewVideos);
-  };
-
-  /** SUBMIT PARA CREAR ANUNCIO */
-
-  const actionCreateGaleriaVideos = async () => {
-
-    try {
-      const formData= new FormData();
-    for (const video of selectedVideos) {
-      formData.append('file', video);
-    }
-
-    console.log(formData);
-
-    const resGaleria = await axios.post('api/anuncio/galeria-videos', formData).catch(err => console.log(err))
-
-    console.log(resGaleria);
-
-    // const dataG = await resGaleria.json()
-
-    const dataG = resGaleria?.data
-
-    console.log(dataG);
-
-    return dataG.videosUrl;
-
-    // const videosUrl = dataG.videosUrl
-    
-    // setFormContent((prevFormContent) => ({
-    //   ...prevFormContent,
-    //   galeriaVideos: videosUrl,
-    // }), () => {
-    //   // Log the updated formContent here
-    //   console.log(formContent);
-    // });
- 
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const actionCreateGaleriaImages = async () => {
 
@@ -487,16 +410,6 @@ const CrearAnuncio = () => {
       const imagesUrl = dataG.imagesUrl;
 
       return dataG.imagesUrl;
-  
-      // // Use the state update callback to ensure the updated state is logged
-      // setFormContent((prevFormContent) => ({
-      //   ...prevFormContent,
-      //   galeriaFotos: imagesUrl,
-      // }), () => {
-      //   // Log the updated formContent here
-      //   console.log(formContent);
-      // });
-  
       
     } catch (error) {
       console.log(error);
@@ -532,7 +445,6 @@ const CrearAnuncio = () => {
 
     setSelectedImage("")
     setSelectedImages([])
-    setSelectedVideos([])
   }
 
   useEffect(() => {
@@ -569,14 +481,9 @@ const CrearAnuncio = () => {
            setLoading(true); // Iniciar carga
     
            // Esperar a que ambas funciones de carga se completen
-           const [galeriaImagesUrl,galeriaVideosUrl] = await Promise.all([
-           
+           const [galeriaImagesUrl] = await Promise.all([
             actionCreateGaleriaImages(),
-            actionCreateGaleriaVideos(),
           ]);
-    
-        //  await actionCreateGaleriaVideos();
-        //  await actionCreateGaleriaImages();
     
         // Imagen principal
           
@@ -606,12 +513,11 @@ const CrearAnuncio = () => {
         const updatedFormContent = {
           ...formContent,
           imagenPrincipal: imageUrl,
-          galeriaVideos: galeriaVideosUrl,
           galeriaFotos: galeriaImagesUrl,
         };
     
-          createAnuncio(updatedFormContent)
-    
+        createAnuncio(updatedFormContent)
+
           // Finalizar carga
           setLoading(false);
           setShowModal(true)
@@ -665,6 +571,9 @@ const CrearAnuncio = () => {
     });
   }
 
+  const arrayLinksVideos = [];
+
+  console.log(formContent);
 
   return (
     
@@ -1046,42 +955,40 @@ const CrearAnuncio = () => {
       )}
     </div>
 
-             {/* Galería de videos */}
-      <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="text-white dark:text-black">
-          Galería de videos (máximo 3 videos, máximo de 20MB/uno):
-        </label>
-        <input
-          type="file"
-          onChange={handleVideosChange}
-          multiple
-          accept="video/*"
-          className="p-[10px] border-2 text-white dark:text-black border-bor-red rounded-[10px] outline-none focus:ring focus:ring-blue-300"
-        />
-        {selectedVideos.length > 0 && (
-          <div>
-            <h2 className="text-white dark:text-black">Videos seleccionados:</h2>
-            <div className="flex flex-wrap items-center justify-center h-full w-full gap-1">
-              {selectedVideos.map((video, index) => (
-                <div key={index} className="relative">
+        <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="text-white dark:text-black">Galería de videos: <nav className="text-[10px]">(solo 3 videos como max.)</nav></label>
+              <CldUploadButton uploadPreset="uploadDash" 
+              className="flex gap-2 items-center justify-center p-2 bg-back-red border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-[#ffcc8d] transition-all ease-linear duration-300"
+              onUpload={(result) => {
+                // Extrae la URL segura de este objeto y guárdala en el array
+                if (result.info && result.info.secure_url) {
+                  const newLink = result.info.secure_url;
+                  setFormContent((prevFormContent) => ({
+                    ...prevFormContent,
+                    galeriaVideos: [...prevFormContent.galeriaVideos, newLink],
+                  }));
+                }
+                // Otras operaciones si es necesario
+                console.log(formContent.galeriaVideos);
+              }}
+              
+              >
+                <nav>Subir videos</nav>
+                <FaUpload className='w-4 h-4 text-black'/>
+              </ CldUploadButton>
+              <div className="flex">
+              { formContent && formContent?.galeriaVideos && formContent?.galeriaVideos?.map((g, index) => (
+
                   <video
-                    src={previewVideos[index]}
+                    key={index}
+                    src={g}
                     controls
                     className="max-w-full h-[200px]"
                   />
-                  <button
-                    className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
-                    onClick={() => removeVideo(index)}
-                    type="button"
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
+     
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
 
           </containerform>
           
