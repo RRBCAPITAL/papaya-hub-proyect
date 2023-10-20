@@ -33,7 +33,7 @@ const CardDeAnuncio = ({
 
   return (
     <div>
-      <container className="dark:bg-white bg-dark-d flex flex-col items-center justify-center gap-2 p-4 shadow-custom1 rounded-[10px]">   
+      <container className="bg-white dark:bg-dark-d flex flex-col items-center justify-center gap-2 p-4 shadow-custom1 rounded-[10px]">   
 
         <containinfo className=" flex flex-col lg:flex-row gap-10 p-2 sm:p-5 m-5">
 
@@ -99,12 +99,12 @@ const CardDeAnuncio = ({
 
           </sectionactions>
 
-          <containvistaprevia className='flex flex-col gap-1 text-slate-100 dark:text-slate-700  font-bold'>
+          <containvistaprevia className='flex flex-col gap-1 dark:text-slate-100 text-slate-700  font-bold'>
 
             <h1>VISTA PREVIA DEL ANUNCIO</h1>
 
           <containcard
-            className={`shadow-custom1 w-[280px] sm:max-w-[340px] bg-dark-d dark:bg-white rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease hover:bg-opacity-70 hover:cursor-pointer ${
+            className={`shadow-custom1 w-[280px] sm:max-w-[340px] dark:bg-dark-d bg-white rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease hover:bg-opacity-70 hover:cursor-pointer ${
               isHovered ? "hovered" : ""
             }`}
             onMouseEnter={toggleHover}
@@ -123,18 +123,18 @@ const CardDeAnuncio = ({
                 } object-fill rounded-t-[16px] border-[10px]`}
               />
             </card>
-            <containinfo className=" text-white dark:text-slate-600 p-4">
+            <containinfo className=" dark:text-white text-slate-600 p-4">
               <section1 className="flex flex-col gap-2 px-4">
                 <cuadrito className="flex flex-col gap-1">
-                  <h1 className="p-1 rounded text-sm  border-2 border-bor-red text-white dark:text-slate-800  font-bold my-auto text-center">
+                  <h1 className="p-1 rounded text-sm  border-2 border-bor-red dark:text-white text-slate-800  font-bold my-auto text-center">
                     {region}
                   </h1>
-                  <h1 className="p-1 rounded text-sm border-2 border-violet-700  text-white dark:text-slate-800  px-2 font-bold my-auto text-center">
+                  <h1 className="p-1 rounded text-sm border-2 border-violet-700  dark:text-white text-slate-800  px-2 font-bold my-auto text-center">
                     {lugar}
                   </h1>
 
                   <div className="flex gap-2 items-center justify-center">
-                    <nacionalidad className="flex gap-1 p-1 dark:text-white  px-2 rounded items-center justify-center bg-violet-700">
+                    <nacionalidad className="flex gap-1 p-1 text-white  px-2 rounded items-center justify-center bg-violet-700">
                       <h1 className="my-auto text-sm">{nacionalidad}</h1>
                       {nacionalidad === "Peruana" ? (
                         <img
@@ -222,7 +222,7 @@ const CardDeAnuncio = ({
                         />
                       )}
                     </nacionalidad>
-                    <edad className="flex gap-1 p-1 px-2 dark:text-white  rounded items-center justify-center bg-violet-700">
+                    <edad className="flex gap-1 p-1 px-2 text-white  rounded items-center justify-center bg-violet-700">
                       {edad} años
                     </edad>
                   </div>
@@ -241,7 +241,7 @@ const CardDeAnuncio = ({
               </section1>
 
               <section2 className="flex flex-col gap-2 p-4">
-                <h1 className="p-1 rounded bg-slate-700 dark:text-white text-center">
+                <h1 className="p-1 rounded bg-slate-700 text-white text-center">
                   <strong className="font-extrabold">ID:</strong> {shortId}
                 </h1>
               </section2>

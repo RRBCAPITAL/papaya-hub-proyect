@@ -6,7 +6,7 @@ const Banner = () => {
         <bannercontainer className="w-full mt-10 bg-transparent rounded-xl flex items-center justify-center relative scale-[0.9]"  >
           <textbanner className="z-30 my-10 w-screen leading-0 rounded-[20px] flex flex-col items-center justify-center">
           <h1 className="mx-6 text-[16px] sm:text-[24px] text-white text-center">
-                Si pediste un mercedez y te llega un kia...
+                Si pediste una mercedez y te llega un kia...
           </h1>
           <h1 className="mx-6 text-[16px] sm:text-[24px] text-white text-center">
                 Dale clic en <strong className="font-extrabold">reportar.</strong>

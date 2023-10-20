@@ -130,7 +130,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
 
     return(
     <containertotal className='flex w-screen overflow-x-hidden'>
-        <contain className='flex justify-center min-h-screen max-w-screen bg-dark-l dark:bg-[#fff]'>
+        <contain className='flex justify-center min-h-screen max-w-screen dark:bg-dark-l bg-[#fff]'>
         <ToastContainer autoClose={5000} theme='colored' newestOnTop={true}/>
                 <containcards className='w-[80%] mt-4 mb-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-10'>
                 {filteredAnuncios?.length > 0 ? (

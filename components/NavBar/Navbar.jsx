@@ -118,16 +118,16 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
     return (
     <>
-    <header className="z-50 w-screen fixed text-white bg-[#000000] dark:shadow-custom1 dark:bg-white py-0 px-[2rem]">
+    <header className="z-50 w-screen fixed text-white dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
         <div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between">
             
             <menu className="flex gap-10">
             <div className="text-[1.5rem] font-bold">
-            <Link href={'/'} onClick={handleNavbarPhone} className="text-white font-extrabold dark:text-slate-800">
+            <Link href={'/'} onClick={handleNavbarPhone} className="dark:text-white font-extrabold text-slate-800">
                     <img src="/assets/logoph.jpg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
             </Link>
             </div>
-            <div className="hidden lg:block dark:text-[#5a5a5a]">
+            <div className="hidden lg:block dark:text-white text-slate-800">
                 <ul className="my-auto flex gap-[2rem] h-full font-bold text-[16px]">
                 <Link
                     href={'/'}
@@ -168,11 +168,11 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 }
 
                {!userR?.isSignedIn ? 
-                <Link href={'/sign-in'} className="text-[#fff] dark:text-black py-[0.5rem] px-[0.5rem] border-none outline-none
+                <Link href={'/sign-in'} className="dark:text-[#fff] text-black py-[0.5rem] px-[0.5rem] border-none outline-none
                 rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
                 Iniciar Sesión
                 </Link>
-                : <div className="text-[#fff] dark:text-black mt-[1px] border-4 border-bor-red outline-none
+                : <div className="dark:text-[#fff] text-black mt-[1px] border-4 border-bor-red outline-none
                 rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
                 <UserButton afterSignOutUrl="/sign-in"/>
 
@@ -213,11 +213,11 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
             { theme === "dark" ?
             <button onClick={handleChangeTheme} className=" rounded-full px-[10px] transition-all duration-300 ease-in-out">
-                 <MdNightlight className="text-black w-6 h-6 transition-all duration-300 ease-in-out"/> 
+                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out"/>
             </button>
             :
-            <button onClick={handleChangeTheme} className=" rounded-full px-[10px] transition-all duration-300 ease-in-out">
-                 <MdOutlineLightMode className="w-6 h-6 transition-all duration-300 ease-in-out"/>
+            <button onClick={handleChangeTheme} className="rounded-full px-[10px] transition-all duration-300 ease-in-out">       
+                 <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease-in-out"/>
             </button>  
             }
                 </div>
@@ -225,18 +225,18 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             <div className=" lg:hidden"
             onClick={handleNavbarPhone}
             >
-                <div className="text-[#fff] dark:text-black text-[1.5rem] cursor-pointer flex-none">
+                <div className="dark:text-[#fff] text-black text-[1.5rem] cursor-pointer flex-none">
                     { show ? <MdOutlineClose /> : <FiMenu />}
                 </div>
             </div>
         </div>
         
         {
-            show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen bg-[#131313] dark:bg-white dark:text-t-dark backdrop:blur-[15px]
+            show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen dark:bg-[#131313] bg-white dark:text-t-dark backdrop:blur-[15px]
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-6 my-2">
                     <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
-                  <div className="flex gap-2 text-white dark:text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
+                  <div className="flex gap-2 dark:text-white text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
                         <Link href={'/reportar'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
@@ -273,24 +273,24 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     </Link>
 
                 {!userR.isSignedIn &&
-                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] flex justify-center mt-2 bg-back-light text-white dark:text-black py-[1rem] px-[1rem] border-none outline-none
+                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] flex justify-center mt-2 bg-back-light dark:text-white text-black py-[1rem] px-[1rem] border-none outline-none
                 rounded-[10px] font-bold mx-2 cursor-pointer">
                 Iniciar Sesión
                 </Link>
                 }
                 {/* <button className="dark:text-black" onClick={handleChangeTheme}>Cambiar</button> */}
                 { theme === "dark" ?
-            <div className="flex gap-2 mt-2 text-white dark:text-black">
+            <div className="flex gap-2 mt-2 dark:text-white text-black">
                 <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
             <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">    
-                 <MdNightlight className="text-t-dark w-6 h-6 transition-all duration-300 ease"/> 
+                 <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease"/> 
             </button>    
             </div>
             :
-            <div className="flex gap-2 mt-2  text-white dark:text-black">
+            <div className="flex gap-2 mt-2  dark:text-white text-black">
                 <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
             <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">
-                 <MdOutlineLightMode className="w-6 h-6 transition-all duration-300 ease"/>
+                 <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease"/>
             </button>  
             </div>
             }
@@ -301,7 +301,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
     </header>
 
-        <ModalConfirmLogin showActive={showActive} modalIsOpen={modalIsOpen} onClose={closeModal}/>
+        {/* <ModalConfirmLogin showActive={showActive} modalIsOpen={modalIsOpen} onClose={closeModal}/> */}
     </>
   )
 }

@@ -24,10 +24,10 @@ const Details = ({ id }) => {
 
   return (
     <div className='flex'>
-        <containerinfo className='flex flex-col gap-4 items-center justify-center bg-dark-l dark:bg-white min-h-screen w-screen'>
-           <contain className='flex flex-col gap-2 w-[90%] lg:w-[60%] p-10 mt-[90px] mx-20 bg-dark-d rounded-[10px] dark:bg-white shadow-custom1 '>
+        <containerinfo className='flex flex-col gap-4 items-center justify-center dark:bg-dark-l bg-white min-h-screen w-screen'>
+           <contain className='flex flex-col gap-2 w-[90%] lg:w-[60%] p-10 mt-[90px] mx-20 dark:bg-dark-d rounded-[10px] bg-white shadow-custom1 '>
             
-           <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[20px]'><strong>ID: {shortID}</strong></p>
+           <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[20px]'><strong>ID: {shortID}</strong></p>
             
             
             <div className='flex flex-col lg:flex-row gap-6'>
@@ -40,36 +40,36 @@ const Details = ({ id }) => {
 
             <detalles className='flex flex-col gap-6'>
               <info className='flex flex-col gap-4'>
-              <h1 className='dark:text-black text-white text-4xl font-extrabold'>{anuncio?.name}</h1>
+              <h1 className='text-black dark:text-white text-4xl font-extrabold'>{anuncio?.name}</h1>
               <div className='flex flex-col gap-2 '>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'>{anuncio?.description}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Edad:</strong> {anuncio?.edad} años</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Nacionalidad:</strong> {anuncio?.nacionalidad}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Idiomas:</strong>{" "}
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.description}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Edad:</strong> {anuncio?.edad} años</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Nacionalidad:</strong> {anuncio?.nacionalidad}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Idiomas:</strong>{" "}
               {anuncio?.idioma.join(", ") || ""}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x hora):</strong> S/{anuncio?.tarifaxhr}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x hora):</strong> S/{anuncio?.tarifaxhr}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</p>
               </div>
               </info>
 
               <contacto className='flex flex-col gap-4'>
-              <h1 className='dark:text-black text-white text-xl font-bold'>Información de contacto:</h1>
+              <h1 className='text-black dark:text-white text-xl font-bold'>Información de contacto:</h1>
               <div className='flex flex-col gap-2 '>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>WhatsApp:</strong> {anuncio?.whatsapp}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>WhatsApp:</strong> {anuncio?.whatsapp}</p>
               </div>
               </contacto>
 
               <adicional className='flex flex-col gap-4'>
-              <h1 className='dark:text-black text-white text-xl font-bold'>Detalles adicionales:</h1>
+              <h1 className='text-black dark:text-white text-xl font-bold'>Detalles adicionales:</h1>
               <div className='flex flex-col gap-2 '>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
               {anuncio?.atencion.join(", ") || ""}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Horario de atención:</strong></p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {conversorDeHora12(anuncio?.horarioInicio)} a {conversorDeHora12(anuncio?.horarioFin)}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Región de atención:</strong> {anuncio?.region}</p>
-              <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[16px]'><strong>Distrito de atención:</strong> {anuncio?.lugar}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Horario de atención:</strong></p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {conversorDeHora12(anuncio?.horarioInicio)} a {conversorDeHora12(anuncio?.horarioFin)}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Región de atención:</strong> {anuncio?.region}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Distrito de atención:</strong> {anuncio?.lugar}</p>
               </div>
               </adicional>
 

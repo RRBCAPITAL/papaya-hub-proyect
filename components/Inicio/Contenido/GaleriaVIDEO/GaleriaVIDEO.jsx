@@ -17,10 +17,10 @@ import { Pagination, Navigation } from 'swiper/modules';
 const GaleriaVIDEO = ({ galeriaVIDEO }) => {
   return (
     
-    <section className='bg-dark-d py-10 text-txt-dark-l dark:bg-white px-10 rounded-[10px] shadow-custom1 overflow-hidden relative mb-[5rem] w-[90%] lg:w-[60%] mx-20'>
+    <section className='dark:bg-dark-d py-10 text-txt-dark-l bg-white px-10 rounded-[10px] shadow-custom1 overflow-hidden relative mb-[5rem] w-[90%] lg:w-[60%] mx-20'>
         <div className='flex items-center justify-center'>
             <div className='items-center inline-block'>
-            <h2 className='text-center text-4xl mx-4 font-light dark:text-black text-white'><strong className='font-extrabold'>Galeria</strong> de videos</h2>
+            <h2 className='text-center text-4xl mx-4 font-light text-black dark:text-white'><strong className='font-extrabold'>Galeria</strong> de videos</h2>
             </div>
         </div>
         <Swiper

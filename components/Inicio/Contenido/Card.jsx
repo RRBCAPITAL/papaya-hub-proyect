@@ -14,21 +14,21 @@ const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, 
   
     return (
     <containcard 
-    className={`shadow-custom1 h-fit bg-dark-d dark:bg-white rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease hover:bg-opacity-70 hover:cursor-pointer ${isHovered ? 'hovered' : ''}`}
+    className={`shadow-custom1 h-fit dark:bg-dark-d bg-white rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease hover:bg-opacity-70 hover:cursor-pointer ${isHovered ? 'hovered' : ''}`}
     onMouseEnter={toggleHover}
     onMouseLeave={toggleHover}>
         <card>
             <img src={imagenPrincipal} alt="Imagen de la anfitriona" className={`${nivel === "BICHOTA" ? "border-bor-red" : nivel === "MOTOMAMI" ? "border-blue-500" : "border-slate-500"} rounded-t-[16px] border-[10px]`} />
         </card>
-        <containinfo className=' text-white dark:text-slate-600 px-4'>
+        <containinfo className=' dark:text-white text-slate-600 px-4'>
             
             <section1 className='flex flex-col px-4 gap-0 pb-8'>
                 <cuadrito className='flex gap-1'>
                 <lugar className='flex gap-1 items-center justify-center'>
-                <h1 className='p-1 px-2 rounded text-[10px] border-2 border-bor-red text-white dark:text-slate-800  font-bold my-auto text-center'>{region}, {lugar}</h1>
+                <h1 className='p-1 px-2 rounded text-[10px] border-2 border-bor-red dark:text-white text-slate-800  font-bold my-auto text-center'>{region}, {lugar}</h1>
                 
                 
-                <nacionalidad className='flex gap-[2px] p-1 dark:text-white px-2 rounded items-center justify-center bg-violet-700'>
+                <nacionalidad className='flex gap-[2px] p-1 text-white px-2 rounded items-center justify-center bg-violet-700'>
                     <h1 className='my-auto border-2 border-transparent text-[10px]'>{nacionalidad}</h1>
                     { nacionalidad === 'Peruana' ?
                     <img width="16" height="16" src="https://img.icons8.com/color/48/peru.png" alt="peru"/> :
@@ -72,7 +72,7 @@ const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, 
             </section1>
 
             <section2 className='flex gap-2 mt-4 absolute bottom-2 left-[40%] right-[60%] w-full'>
-                <h1 className='rounded text-white dark:text-black text-center'><strong className='font-extrabold'>ID:</strong> {shortId}</h1>
+                <h1 className='rounded dark:text-white text-black text-center'><strong className='font-extrabold'>ID:</strong> {shortId}</h1>
             </section2>
 
         </containinfo>

@@ -33,13 +33,13 @@ const GaleriaIMG = ({ galeriaIMG }) => {
   };
 
   return (
-    <section className="bg-dark-d py-10 text-txt-dark-l h-fit dark:bg-white px-10 rounded-[10px] shadow-custom1 overflow-hidden relative w-[90%] lg:w-[60%] mx-20">
+    <section className="dark:bg-dark-d py-10 text-txt-dark-l h-fit bg-white px-10 rounded-[10px] shadow-custom1 overflow-hidden relative w-[90%] lg:w-[60%] mx-20">
       <div className="flex items-center justify-center">
         <div className="items-center inline-block">
-          <h2 className="text-center text-4xl mx-4 font-light dark:text-black text-white">
+          <h2 className="text-center text-4xl mx-4 font-light text-black dark:text-white">
             <strong className="font-extrabold">Galeria</strong> de fotos
           </h2>
-          <h6 className="text-center dark:text-black text-white mt-2">Haz click en la imagen para expandirla.</h6>
+          <h6 className="text-center text-black dark:text-white mt-2">Haz click en la imagen para expandirla.</h6>
         </div>
       </div>
       <Swiper
