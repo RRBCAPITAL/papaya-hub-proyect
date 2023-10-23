@@ -21,6 +21,8 @@ const DashboardUserPage = () => {
   const [ currentUser, setCurrentUser] = useState()
   const { id } = useParams()
 
+  console.log(id);
+
     const userR = useUser()
     // const id = currentUser?.id
 

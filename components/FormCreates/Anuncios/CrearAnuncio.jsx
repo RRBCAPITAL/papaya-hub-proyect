@@ -71,6 +71,8 @@ const CrearAnuncio = () => {
   const [error, setError] = useState({})
   const id = currentUser?.id
   
+  console.log(id);
+
   useEffect(() => {
     setFormContent({
       ...formContent,

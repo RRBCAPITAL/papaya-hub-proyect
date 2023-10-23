@@ -149,7 +149,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 <div className="flex gap-[0.8rem]">
                 
                <Link 
-      href={'/dashboard-de-usuario'} 
+      href={`/dashboard-de-usuario/${id}`} 
       className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
     >
