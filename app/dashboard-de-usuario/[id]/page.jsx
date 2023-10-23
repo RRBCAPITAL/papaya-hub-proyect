@@ -38,7 +38,7 @@ const DashboardUserPage = () => {
 
   useEffect(() => {
     axios
-      .get(`api/anuncio/usuario/${id}`)
+      .get(`/api/anuncio/usuario/${id}`)
       .then((response) => {
         setAnunciosDeUsuario(response.data);
         setLoader(false); // Una vez que los datos se cargan con éxito, establece loader en false
@@ -49,7 +49,7 @@ const DashboardUserPage = () => {
   useEffect(() => {
     if (isDeleted) {
       axios
-        .get(`api/anuncio/usuario/${id}`)
+        .get(`/api/anuncio/usuario/${id}`)
         .then((response) => {
           setAnunciosDeUsuario(response.data);
           toast.success('El anuncio fue eliminado exitosamente!', {
