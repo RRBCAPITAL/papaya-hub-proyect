@@ -7,9 +7,9 @@ import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ModalDeleteU = ({ idAnuncio, setModalDeleteOpen, setIsDeleted}) => {
+const ModalDeleteU = ({ idAnuncio, setModalDeleteOpen, setIsDeleted, userId}) => {
 
-    const id = idAnuncio;
+    const id = idAnuncio + userId;
 
     const updateProcess = async () => {
         const res = await axios.delete(`/api/anuncio/delete/${id}`).catch(error => (

@@ -32,7 +32,7 @@ const Navbar = () => {
     const [ currentUserR, setCurrentUserR] = useState()
 
     const userR = useUser()
-
+    const id = currentUserR?.id
     console.log(userR);
 
     useEffect(() => {
@@ -150,7 +150,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 
                <Link 
       href={'/dashboard-de-usuario'} 
-      className={`${pathname === '/dashboard-de-usuario' && "bg-back-red-l"} flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
+      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
     >
       <h3 className="my-auto text-t-red">Mis anuncios</h3>
@@ -245,7 +245,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     
                     <div className="flex flex-col justify-center items-center text-2xl mx-6 p-4 rounded-xl gap-[8px]">
 
-                    <Link href={'/dashboard-de-usuario'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard-de-usuario') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
+                    <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard-de-usuario') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                         
                         <h3 className="my-auto text-xl text-[#5d36e8]">Mis anuncios</h3>

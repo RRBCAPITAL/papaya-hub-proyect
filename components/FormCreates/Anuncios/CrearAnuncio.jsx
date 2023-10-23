@@ -69,7 +69,8 @@ const CrearAnuncio = () => {
   };
 
   const [error, setError] = useState({})
-
+  const id = currentUser?.id
+  
   useEffect(() => {
     setFormContent({
       ...formContent,
@@ -595,7 +596,7 @@ const CrearAnuncio = () => {
               <img width="18" height="18" src="https://img.icons8.com/color/48/high-priority.png" alt="high-priority"/>
             </inactive>
             <buttons className='flex gap-2 mt-4'>
-              <Link href={'/dashboard-de-usuario'} className="p-4 bg-red-500 hover:bg-red-600 rounded text-center font-extrabold">Ver anuncio</Link>
+              <Link href={`/dashboard-de-usuario/${id}`} className="p-4 bg-red-500 hover:bg-red-600 rounded text-center font-extrabold">Ver anuncio</Link>
               <Link href={'/activar-anuncio'} className="p-4 bg-violet-600 hover:bg-violet-700 rounded text-center font-extrabold">Activar anuncio</Link>
             </buttons>
             </section>            
