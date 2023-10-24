@@ -37,20 +37,39 @@ const Access = ({ children }) => {
   
   console.log(userCreate.image);
 
-    useEffect(() => {
+    // useEffect(() => {
       
+    //     fetch("/api/user", {
+    //       method: "POST",
+    //       body: JSON.stringify(userCreate),
+    //       headers: { "Content-type": "application/json; charset=UTF-8" },
+    //     })
+    //     .then(data => data.json())
+    //     .then(res => console.log(res))
+    //     .catch(error => console.log("Hubo un error: ", error.message))
+
+      
+
+    // }, [user])
+
+    useEffect(() => {
+      const storedUser = localStorage.getItem("storedUser");
+      if (!storedUser) {
+        // El usuario no está almacenado localmente, así que guárdalo en la base de datos
         fetch("/api/user", {
           method: "POST",
           body: JSON.stringify(userCreate),
           headers: { "Content-type": "application/json; charset=UTF-8" },
         })
-        .then(data => data.json())
-        .then(res => console.log(res))
-        .catch(error => console.log("Hubo un error: ", error.message))
-
-      
-
-    }, [user])
+          .then((data) => data.json())
+          .then((res) => {
+            console.log(res);
+            // Almacena el usuario en el almacenamiento local
+            localStorage.setItem("storedUser", JSON.stringify(userCreate));
+          })
+          .catch((error) => console.log("Hubo un error: ", error.message));
+      }
+    }, [user]);
     
   return (
     <>
