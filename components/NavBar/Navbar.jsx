@@ -123,7 +123,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             
             <menu className="flex gap-10">
             <div className="text-[1.5rem] font-bold">
-            <Link href={'/'} onClick={handleNavbarPhone} className="dark:text-white font-extrabold text-slate-800">
+            <Link href={'/'} onClick={() => setShow(false)} className="dark:text-white font-extrabold text-slate-800">
                     <img src="/assets/logoph.jpg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
             </Link>
             </div>
@@ -134,9 +134,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}
                 >Chicas</Link>
                 <Link
-                    href={'/reportar'}
+                    href={'/soporte'}
                     className={`my-auto ${pathname === ('/reportar') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}>
-                Reportar</Link>
+                Soporte</Link>
                 
                 {
 
@@ -239,8 +239,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                   <div className="flex gap-2 dark:text-white text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
-                        <Link href={'/reportar'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Reportar</Link>
+                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
                     </ul>
     
                     <div className="flex flex-col justify-center items-center text-2xl mx-6 p-4 rounded-xl gap-[8px]">
