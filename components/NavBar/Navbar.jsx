@@ -33,52 +33,21 @@ const Navbar = () => {
 
     const userR = useUser()
     const id = currentUserR?.id
-    // console.log(userR);
+    console.log(userR);
 
-    // useEffect(() => {
-    //     if(userR?.user){
+    useEffect(() => {
+        if(userR?.user){
           
-    //       axios('/api/user')
-    //       .then(res => {
-    //         const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
-    //         setCurrentUserR(foundUser)
-    //       })
-    //       .catch(err => console.log(err))
-    //       }
-    // }, [userR])
+          axios('/api/user')
+          .then(res => {
+            const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
+            setCurrentUserR(foundUser)
+          })
+          .catch(err => console.log(err))
+          }
+    }, [userR])
     
-    // console.log(currentUserR);
-
-
-    // Función para almacenar el usuario en el localStorage
-  const storeUserInLocalStorage = (user) => {
-    localStorage?.setItem('user', JSON.stringify(user));
-  };
-
-  // Función para recuperar el usuario desde el localStorage
-  const getUserFromLocalStorage = () => {
-    const userJSON = localStorage?.getItem('user');
-    return userJSON ? JSON.parse(userJSON) : null;
-  };
-
-  useEffect(() => {
-    // Recuperar el usuario almacenado en el localStorage
-    const storedUser = getUserFromLocalStorage();
-
-    if (storedUser) {
-      // Si existe en el localStorage, establecerlo en el estado
-      setCurrentUserR(storedUser);
-    } else if (userR?.user) {
-      // Si no existe en el localStorage pero hay un usuario actual, almacenarlo y establecerlo en el estado
-      axios('/api/user')
-        .then(res => {
-          const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress);
-          setCurrentUserR(foundUser);
-          storeUserInLocalStorage(foundUser); // Almacena el usuario en el localStorage
-        })
-        .catch(err => console.log(err));
-    }
-  }, [userR]);
+    console.log(currentUserR);
 
     const openModal = () => {
         setModalIsOpen(true);

@@ -99,7 +99,7 @@ const DashboardUserPage = () => {
             <div className="flex flex-col items-center gap-2 ">
               <h1 className="text-4xl font-extrabol text-slate-600 text-center dark:text-slate-200">No tienes anuncios disponibles</h1>
               <p className="text-slate-400 dark:text-slate-400 text-center text-sm px-6">Crea tu anuncio totalmente gratis y actívalo con nuestras súper promociones!</p>
-              { userR?.isSignedIn ? <Link
+              { id ? <Link
                 href={'/crear-anuncio'}
                 className={`bg-back-red flex mt-4 dark:text-black text-white p-4 border-none outline-none
                 rounded-[20px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
