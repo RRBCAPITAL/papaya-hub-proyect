@@ -24,6 +24,8 @@ const CrearAnuncio = () => {
 
   const [currentUser, setCurrentUser] = useState(null)
 
+  console.log(currentUser?.id);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [dataFile, setDataFile] = useState({
