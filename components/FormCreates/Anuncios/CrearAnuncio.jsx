@@ -22,13 +22,22 @@ import { FaUpload } from 'react-icons/fa'
 
 const CrearAnuncio = () => {
 
-  const { currentUser } = useCurrentUser()
+  const [currentUser, setCurrentUser] = useState(null)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [dataFile, setDataFile] = useState({
     linksVideos: []
   })
+
+  useEffect(() => {
+    const parseCurrentUser = localStorage.getItem('storedUser')
+    const user = JSON.parse(parseCurrentUser)
+    
+    if(!currentUser){
+      setCurrentUser(user)
+    }
+  }, [])
 
   const openModal = () => {
     setIsModalOpen(true);

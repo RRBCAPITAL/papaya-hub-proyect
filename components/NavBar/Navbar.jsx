@@ -22,30 +22,30 @@ import { Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import ModalConfirmPay from "@/app/formulario-de-inscripcion/ModalConfirmPay";
 import ModalConfirmLogin from "@/modales/ModalConfirmLogin/ModalConfirmLogin";
 
-const Navbar = () => {
+const Navbar = ({ currentUserR }) => {
 
     const pathname = usePathname()
     const [ show, setShow ] = useState(false)
     const [loading, setLoading] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [showActive, setShowActive] = useState(false)
-    const [ currentUserR, setCurrentUserR] = useState()
+    // const [ currentUserR, setCurrentUserR] = useState()
 
     const userR = useUser()
     const id = currentUserR?.id
     console.log(userR);
 
-    useEffect(() => {
-        if(userR?.user){
+    // useEffect(() => {
+    //     if(userR?.user){
           
-          axios('/api/user')
-          .then(res => {
-            const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
-            setCurrentUserR(foundUser)
-          })
-          .catch(err => console.log(err))
-          }
-    }, [userR])
+    //       axios('/api/user')
+    //       .then(res => {
+    //         const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
+    //         setCurrentUserR(foundUser)
+    //       })
+    //       .catch(err => console.log(err))
+    //       }
+    // }, [userR])
     
     console.log(currentUserR);
 
@@ -236,7 +236,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-6 my-2">
                     <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
-                  <div className="flex gap-2 dark:text-white text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/"/></div>
+                  <div className="flex gap-2 dark:text-white text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/sign-in"/></div>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
                         <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none

@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import { usePathname } from "next/navigation";
 
 import { useUser } from "@clerk/nextjs";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SMSFlotante from "./SMSFlotante";
 import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 // import axios from "axios";
@@ -16,6 +16,7 @@ const Access = ({ children }) => {
   const mensaje ="&text=Hola%2C%20estoy%20interesad@%20en%20unirme%20a%20un%20equipo%20de%20desarrollo.";
   // const { user, currentUser} = useCurrentUser()
   const user = useUser()
+  const [ userData, setUserData ] = useState(null)
 
   const userCreate = {
     clerkId: user?.user?.id || '', // Usar un valor predeterminado si 'user' o 'user.user' es nulo
@@ -37,39 +38,49 @@ const Access = ({ children }) => {
   
   console.log(userCreate.image);
 
-    useEffect(() => {
-      
-        fetch("/api/user", {
-          method: "POST",
-          body: JSON.stringify(userCreate),
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-        })
-        .then(data => data.json())
-        .then(res => console.log(res))
-        .catch(error => console.log("Hubo un error: ", error.message))
-
-      
-
-    }, [user])
-
     // useEffect(() => {
-    //   const storedUser = localStorage.getItem("storedUser");
-    //   if (!storedUser) {
-    //     // El usuario no está almacenado localmente, así que guárdalo en la base de datos
+      
     //     fetch("/api/user", {
     //       method: "POST",
     //       body: JSON.stringify(userCreate),
     //       headers: { "Content-type": "application/json; charset=UTF-8" },
     //     })
-    //       .then((data) => data.json())
-    //       .then((res) => {
-    //         console.log(res);
-    //         // Almacena el usuario en el almacenamiento local
-    //         localStorage.setItem("storedUser", JSON.stringify(res));
-    //       })
-    //       .catch((error) => console.log("Hubo un error: ", error.message));
-    //   }
-    // }, [user]);
+    //     .then(data => data.json())
+    //     .then(res => console.log(res))
+    //     .catch(error => console.log("Hubo un error: ", error.message))
+
+      
+
+    // }, [user])
+
+    useEffect(() => {
+      const storedUser = localStorage.getItem("storedUser");
+      if(user && !userData && !storedUser){
+        console.log("entre aqui");
+        // El usuario no está almacenado localmente, así que guárdalo en la base de datos
+        fetch("/api/user", {
+          method: "POST",
+          body: JSON.stringify(userCreate),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        })
+          .then((data) => data.json())
+          .then((res) => {
+            console.log(res);
+            // Almacena el usuario en el almacenamiento local
+            setUserData(res.user)
+            localStorage.setItem("storedUser", JSON.stringify(res.user));
+          })
+          .catch((error) => console.log("Hubo un error: ", error.message));
+      }
+       const parsedUser = JSON.parse(storedUser) 
+
+       if(!userData){
+        setUserData(parsedUser)
+       }
+      console.log("estoy aqui");
+    }, [user, userData]);
+
+    console.log(userData);
     
   return (
     <>
@@ -82,7 +93,7 @@ const Access = ({ children }) => {
       pathname === '/dashboard/crear-equipo' ||
       pathname === '/dashboard/equipos'
         ? ""
-        : <Navbar />}
+        : <Navbar currentUserR={userData}/>}
       {children}
 
       {pathname === "/sign-in" ||

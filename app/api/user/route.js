@@ -20,7 +20,7 @@ export async function POST(req) {
     if(duplicateUser){
         console.log('Usuario antiguo reconocido.');
         return NextResponse.json({
-            duplicateUser
+            user: duplicateUser
         })
     }
 

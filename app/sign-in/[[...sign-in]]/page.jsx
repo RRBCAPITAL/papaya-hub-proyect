@@ -1,9 +1,14 @@
 "use client"
 
 import { SignIn } from "@clerk/nextjs";
+import { useEffect } from "react";
 
 export default function Page() {
 
+  useEffect(() => {
+    localStorage.removeItem('storedUser')
+  }, [])
+  
   return (
     <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center bg-back-light relative">
       <div className="z-10 mt-20 m-4 bg-[#0000003e] shadow-sm p-[2px] rounded-[20px] relative">

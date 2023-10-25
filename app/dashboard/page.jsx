@@ -11,9 +11,19 @@ const DashBoardPage = () => {
         
   const [arrUsers, setArrUsers] = useState()
   const router = useRouter()
-  const {user, currentUser} = useCurrentUser()
+        const [currentUser, setCurrentUser] = useState(null)
+     
+  
+  useEffect(() => {
 
-  console.log(currentUser)
+        const storedUser = localStorage.getItem("storedUser");
+        const parsedUser = JSON.parse(storedUser) 
+        setCurrentUser(parsedUser)
+     
+  }, [])
+
+  console.log(currentUser);
+
 if(currentUser?.role === "ADMIN" || currentUser?.role === "SUPER_ADMIN"){
         
   return (
@@ -28,9 +38,11 @@ if(currentUser?.role === "ADMIN" || currentUser?.role === "SUPER_ADMIN"){
   return (
         <>
   
-                {/* {currentUser?.role === 'ADMIN' || currentUser?.role === 'SUPER_ADMIN' ? <AdminDashboard arrUsers={arrUsers}/> : router.push('sign-in')} */}
-                <h1 className="mt-40 text-slate-500 font-bold text-3xl text-center">ACCESO DENEGADO: No tienes permiso de administrador.</h1>
-                <h1 className="mt-1 text-slate-500 font-bold text-2xl text-center">Espera 5s, puede que sus datos de administrador se esten cargando...</h1>
+                <div className="w-screen min-h-screen flex flex-col items-center justify-center">
+                <h1 className="text-slate-500 font-bold text-3xl text-center">ACCESO DENEGADO: No tienes permiso de administrador.</h1>
+                <button className="p-4 bg-red-500 rounded hover:bg-red-600 text-white mx-auto text-center mt-4" onClick={() => router.push('/')}>Volver al inicio</button>
+                </div>
+                
         </>
         )
 }
