@@ -17,6 +17,7 @@ const Access = ({ children }) => {
   // const { user, currentUser} = useCurrentUser()
   const user = useUser()
   const [ userData, setUserData ] = useState(null)
+  const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
 
   const userCreate = {
     clerkId: user?.user?.id || '', // Usar un valor predeterminado si 'user' o 'user.user' es nulo
@@ -82,6 +83,29 @@ const Access = ({ children }) => {
 
     console.log(userData);
     
+    
+
+  useEffect(() => {
+    const anuncioStorage = localStorage.getItem('anuncioStorage');
+    const LocalUpdatedAnuncio = localStorage.getItem('updatedAnuncio');
+    const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
+
+    if (parsedUpdatedAnuncio !== updatedAnuncio) {
+      setUpdatedAnuncio(parsedUpdatedAnuncio);
+    }
+
+    console.log(updatedAnuncio);
+
+    if (!anuncioStorage || updatedAnuncio) {
+      fetch("/api/anuncio")
+        .then((data) => data.json())
+        .then(({ data }) => {
+          localStorage.setItem("anuncioStorage", JSON.stringify(data));
+          localStorage.removeItem("updatedAnuncio");
+        });
+    }
+  }, [updatedAnuncio]);
+
   return (
     <>
       {

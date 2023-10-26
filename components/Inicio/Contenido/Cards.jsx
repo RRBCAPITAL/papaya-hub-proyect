@@ -12,7 +12,8 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
 
     const [ anuncios, setAnuncios ] = useState()
     const [filteredAnuncios, setFilteredAnuncios] = useState([]);
-  
+    const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
+
     // useEffect(() => {
     //     fetch('/api/anuncio')
     //     .then(data => data.json())
@@ -20,28 +21,48 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
     // }, [])
 
     useEffect(() => {
-      const anuncioStorage = localStorage.getItem('anuncioStorage')
-      const LocalUpdatedAnuncio = localStorage.getItem('updatedAnuncio')
-      const updatedAnuncio = JSON.parse(LocalUpdatedAnuncio)
+      const anuncioStorage = localStorage.getItem('anuncioStorage');
+      const LocalUpdatedAnuncio = localStorage.getItem('updatedAnuncio');
+      const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
+  
+      if (parsedUpdatedAnuncio !== updatedAnuncio) {
+        setUpdatedAnuncio(parsedUpdatedAnuncio);
+      }
   
       console.log(updatedAnuncio);
   
-      if(!anuncioStorage || updatedAnuncio){
+      if (!anuncioStorage || updatedAnuncio) {
         fetch("/api/anuncio")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          setAnuncios(data);
-          localStorage.setItem("anuncioStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedAnuncio")
-        });
+          .then((data) => data.json())
+          .then(({ data }) => {
+            setAnuncios(data)
+            localStorage.setItem("anuncioStorage", JSON.stringify(data));
+            localStorage.removeItem("updatedAnuncio");
+          });
       }
-  
-      const parsedAnuncios = JSON.parse(anuncioStorage)
-      if(!anuncios || anuncios?.length === 0){
-        setAnuncios(parsedAnuncios)
+
+      if(!anuncios){
+        const anunciosS = JSON.parse(anuncioStorage);
+setAnuncios(anunciosS)
       }
-  
-    }, []);
+
+    }, [updatedAnuncio]);
+
+    useEffect(() => {
+
+      window.addEventListener('beforeunload', () => {
+        localStorage.removeItem("anuncioStorage")
+        fetch("/api/anuncio")
+          .then((data) => data.json())
+          .then(({ data }) => {
+            setAnuncios(data)
+            localStorage.setItem("anuncioStorage", JSON.stringify(data));
+            localStorage.removeItem("updatedAnuncio");
+          });
+      });
+    }, [])
+    
+    console.log(anuncios);
 
     useEffect(() => {
       // Filtra los anuncios basados en los filtros seleccionados

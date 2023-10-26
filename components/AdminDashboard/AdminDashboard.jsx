@@ -81,39 +81,39 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
 
     console.log(isEdited);
     
-    // useEffect(() => {
-    //     // Realiza una nueva solicitud para obtener la lista de anuncios actualizada.
-    //     fetch('api/anuncio')
-    //       .then(data => data.json())
-    //       .then(({ data }) => {
-    //         // Ordena los anuncios primero por fecha y luego por hora
-    //         data.sort((a, b) => {
-    //           const dateA = new Date(a.createdAt);
-    //           const dateB = new Date(b.createdAt);
-    //           if (dateA > dateB) return -1; // Fecha A es más reciente
-    //           if (dateA < dateB) return 1; // Fecha B es más reciente
-    //           // Si las fechas son iguales, compara las horas
-    //           return dateB.getTime() - dateA.getTime();
-    //         });
-    //         setAnuncios(data);
-    //       });
-  
-    // }, [anuncios]);
-
     useEffect(() => {
-      const anuncios = localStorage.getItem("anuncioStorage")
-      const data = JSON.parse(anuncios)
-       // Ordena los anuncios primero por fecha y luego por hora
-       data.sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        if (dateA > dateB) return -1; // Fecha A es más reciente
-        if (dateA < dateB) return 1; // Fecha B es más reciente
-        // Si las fechas son iguales, compara las horas
-        return dateB.getTime() - dateA.getTime();
-      });
-      setAnuncios(data);
-    }, [])
+        // Realiza una nueva solicitud para obtener la lista de anuncios actualizada.
+        fetch('api/anuncio')
+          .then(data => data.json())
+          .then(({ data }) => {
+            // Ordena los anuncios primero por fecha y luego por hora
+            data.sort((a, b) => {
+              const dateA = new Date(a.createdAt);
+              const dateB = new Date(b.createdAt);
+              if (dateA > dateB) return -1; // Fecha A es más reciente
+              if (dateA < dateB) return 1; // Fecha B es más reciente
+              // Si las fechas son iguales, compara las horas
+              return dateB.getTime() - dateA.getTime();
+            });
+            setAnuncios(data);
+          });
+  
+    }, [anuncios]);
+
+    // useEffect(() => {
+    //   const anuncios = localStorage.getItem("anuncioStorage")
+    //   const data = JSON.parse(anuncios)
+    //    // Ordena los anuncios primero por fecha y luego por hora
+    //    data.sort((a, b) => {
+    //     const dateA = new Date(a.createdAt);
+    //     const dateB = new Date(b.createdAt);
+    //     if (dateA > dateB) return -1; // Fecha A es más reciente
+    //     if (dateA < dateB) return 1; // Fecha B es más reciente
+    //     // Si las fechas son iguales, compara las horas
+    //     return dateB.getTime() - dateA.getTime();
+    //   });
+    //   setAnuncios(data);
+    // }, [])
 
     useEffect(() => {
       if (isEdited || isDeleted) {

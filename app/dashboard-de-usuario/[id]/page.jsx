@@ -45,6 +45,19 @@ const DashboardUserPage = () => {
   }, [])
 
   useEffect(() => {
+
+    window.addEventListener('beforeunload', () => {
+        axios
+      .get(`/api/anuncio/usuario/${id}`)
+      .then((response) => {
+        setAnunciosDeUsuario(response.data);
+        setLoader(false); // Una vez que los datos se cargan con éxito, establece loader en false
+      })
+      .catch((error) => console.error('Hubo un error al obtener los anuncios: ', error));
+    });
+  }, [])
+
+  useEffect(() => {
     if (isDeleted) {
       axios
         .get(`/api/anuncio/usuario/${id}`)
@@ -69,8 +82,8 @@ const DashboardUserPage = () => {
         <div className='flex flex-col max-w-[95%] lg:max-w-[80%] gap-4'>
           {loader ? ( // Mostrar "Cargando anuncios" mientras los datos se cargan
             <p className='text-slate-400 font-bold text-xl'>Cargando anuncios...</p>
-          ) : anunciosDeUsuario.length > 0 ? (
-            anunciosDeUsuario.map((a) => (
+          ) : anunciosDeUsuario?.length > 0 ? (
+            anunciosDeUsuario?.map((a) => (
               <CardDeAnuncio
                 key={a?.id}
                 id={a?.id}

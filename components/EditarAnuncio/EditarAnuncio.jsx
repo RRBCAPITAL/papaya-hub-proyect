@@ -60,12 +60,19 @@ const EditarAnuncio = ({ id }) => {
     atencion: []
   });
 
-  useEffect(() => {
-    axios.get(`/api/anuncio/${id}`)
-    .then(res => setAnuncioEncontrado(res.data))
-    .catch(err => console.log(err))
-    }, [])
+  // useEffect(() => {
+  //   axios.get(`/api/anuncio/${id}`)
+  //   .then(res => setAnuncioEncontrado(res.data))
+  //   .catch(err => console.log(err))
+  //   }, [])
 
+  useEffect(() => {
+    const data = localStorage.getItem("anuncioStorage")
+    const Anuncios = JSON.parse(data)
+    const anuncioFound = Anuncios?.find((a) => a?.id === id)
+    setAnuncioEncontrado(anuncioFound)
+  }, [])
+  
     useEffect(() => {
         if (anuncioEncontrado) {
           setFormContent({
