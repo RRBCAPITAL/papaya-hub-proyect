@@ -7,6 +7,8 @@ import { useEffect } from 'react'
 import Card from './Card'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Masonry from 'react-masonry-css';
+import './stylecards.css'
 
 const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNothingFound, setModalFilterOpen, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma }) => {
 
@@ -127,9 +129,22 @@ setAnuncios(anunciosS)
   // Filtrar los anuncios según el valor de búsqueda
   useEffect(() => {
     if (textSearch) {
-      const filtroSearchBar = anuncios.filter(
+      function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+      const textSearchWithoutAccents = removeAccents(textSearch.toLowerCase());
+      const filtroSearchBar = anuncios?.filter(
         (a) =>
-          a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
+          removeAccents(a?.name)
+            ?.toLowerCase()
+            .includes(textSearchWithoutAccents) ||
+          removeAccents(a?.lugar)
+            ?.toLowerCase()
+            .includes(textSearchWithoutAccents) ||
+          removeAccents(a?.region)
+            ?.toLowerCase()
+            .includes(textSearchWithoutAccents) ||
+            a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
           (a.id && a.id.startsWith(textSearch.substring(0, 7)))
       );
       
@@ -171,12 +186,23 @@ setAnuncios(anunciosS)
     }
   }, [textSearch, anuncios]);
 
-
-    return(
-    <containertotal className='flex w-screen overflow-x-hidden'>
-        <contain className='flex justify-center min-h-screen max-w-screen dark:bg-dark-l bg-[#fff]'>
-        <ToastContainer autoClose={5000} theme='colored' newestOnTop={true}/>
-                <containcards className='w-[80%] mt-4 mb-20 grid sm:grid-cols-2 lg:grid-cols-4 gap-10'>
+  const breakpointColumnsObj = {
+    default: 5, // Número de columnas por defecto
+    1200: 4, // Cambiar a 4 columnas en pantallas de 1200px o menos
+    992: 3, // Cambiar a 3 columnas en pantallas de 992px o menos
+    768: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
+    576: 1, // Cambiar a 1 columna en pantallas de 576px o menos
+  };
+  
+  return (
+    <containertotal className="flex w-screen overflow-x-hidden mt-4 mb-10">
+      <contain className="flex justify-center min-h-screen w-screen dark:bg-dark-l bg-[#fff]">
+        <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
+        <Masonry
+    breakpointCols={breakpointColumnsObj}
+    className="my-masonry-grid"
+    columnClassName="my-masonry-grid_column"
+  >
                 {filteredAnuncios?.length > 0 ? (
             filteredAnuncios.map((a) => (
               <Card
@@ -194,9 +220,8 @@ setAnuncios(anunciosS)
               />
             ))
           ) : ""}
-                </containcards>
-        </contain>
-        
+           </Masonry>
+      </contain>
     </containertotal>
   )
 }

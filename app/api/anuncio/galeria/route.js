@@ -51,7 +51,7 @@ export async function POST(req, { params }) {
             overlay: {
               font_family: 'Arial',
               font_size: 50, // Tamaño del texto
-              text: 'www.papayahub.pe',
+              text: 'Papayahub.pe',
               color: '#fff', // Color del texto
               opacity: 60, // Opacidad del texto
               blend: 'over',

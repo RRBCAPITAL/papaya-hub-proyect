@@ -182,7 +182,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 {
                   userR?.isSignedIn ? <Link
                   href={'/crear-anuncio'}
-                  className={`bg-back-red flex gap-[4px] text-black py-[0.5rem] px-[1rem] border-none outline-none
+                  className={`bg-back-red flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
                   rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
                   
                   >
@@ -196,7 +196,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
               </Button>
           </Link> : <Link
                 href={'/sign-in'}
-                className={`bg-back-red flex gap-[4px] text-black py-[0.5rem] px-[1rem] border-none outline-none
+                className={`bg-back-red flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
                 rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
                 
                 >

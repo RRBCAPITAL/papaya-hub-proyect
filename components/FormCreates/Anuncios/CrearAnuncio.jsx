@@ -25,7 +25,7 @@ const CrearAnuncio = () => {
   const [currentUser, setCurrentUser] = useState(null)
 
   console.log(currentUser?.id);
-  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [dataFile, setDataFile] = useState({
@@ -867,7 +867,7 @@ const CrearAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="text-white dark:text-black">Selecciona los idiomas que domine:</label>
+              <label htmlFor="name" className="dark:text-white text-black">Selecciona los idiomas que domine:</label>
               <div className="bg-back-red dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {idiomasPrincipales.map((i) => (
                   <div key={i} className="flex gap-2">
@@ -911,7 +911,7 @@ const CrearAnuncio = () => {
                 value={formContent.altura}
                 onChange={handleChange}
                 placeholder="1.78"
-                cclassName="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
               
               />
               { error && error.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.altura}</p> : ""}

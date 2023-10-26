@@ -56,8 +56,8 @@ export const validation = (formContent) => {
     // Validar que la descripción no esté vacía y no tenga más de 300 caracteres
     if (!formContent.description) {
       errors.description = "La descripción es requerida.";
-    } else if (formContent.description.length > 300) {
-      errors.description = "La descripción no puede tener más de 300 caracteres.";
+    } else if (formContent.description.length > 1000) {
+      errors.description = "La descripción no puede tener más de 1000 caracteres.";
     }
   
     // Validar que la edad sea un número entre 1 y 100
