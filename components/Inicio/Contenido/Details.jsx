@@ -12,10 +12,17 @@ const Details = ({ id }) => {
 
     const [anuncio, setAnuncio] = useState()
 
+    // useEffect(() => {
+    //     axios.get(`/api/anuncio/${id}`)
+    //     .then(res => setAnuncio(res.data))
+    //     .catch(err => console.log(err))
+    // }, [])
+
     useEffect(() => {
-        axios.get(`/api/anuncio/${id}`)
-        .then(res => setAnuncio(res.data))
-        .catch(err => console.log(err))
+      const data = localStorage.getItem("anuncioStorage")
+      const Anuncios = JSON.parse(data)
+      const anuncioFound = Anuncios?.find((a) => a?.id === id)
+      setAnuncio(anuncioFound)
     }, [])
     
     const shortID = anuncio?.id?.substring(0, 7);
@@ -46,7 +53,7 @@ const Details = ({ id }) => {
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Edad:</strong> {anuncio?.edad} años</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Nacionalidad:</strong> {anuncio?.nacionalidad}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Idiomas:</strong>{" "}
-              {anuncio?.idioma.join(", ") || ""}</p>
+              {anuncio?.idioma?.join(", ") || ""}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x hora):</strong> S/{anuncio?.tarifaxhr}</p>
@@ -65,7 +72,7 @@ const Details = ({ id }) => {
               <h1 className='text-black dark:text-white text-xl font-bold'>Detalles adicionales:</h1>
               <div className='flex flex-col gap-2 '>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
-              {anuncio?.atencion.join(", ") || ""}</p>
+              {anuncio?.atencion?.join(", ") || ""}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Horario de atención:</strong></p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {conversorDeHora12(anuncio?.horarioInicio)} a {conversorDeHora12(anuncio?.horarioFin)}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Región de atención:</strong> {anuncio?.region}</p>

@@ -38,6 +38,7 @@ const ModalDelete = ({ idAnuncio, setModalDeleteOpen, setIsDeleted, currentUserO
                 draggable: true
               });
               setIsDeleted(true); // Marcamos como editado
+                localStorage.setItem('updatedAnuncio', JSON.stringify(true))
               setModalDeleteOpen(false)
               
         }

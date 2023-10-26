@@ -28,6 +28,7 @@ const ModalDeleteU = ({ idAnuncio, setModalDeleteOpen, setIsDeleted, userId}) =>
         ))
            
               setIsDeleted(true); // Marcamos como editado
+                localStorage.setItem('updatedAnuncio', JSON.stringify(true))
               setModalDeleteOpen(false) 
     }
     

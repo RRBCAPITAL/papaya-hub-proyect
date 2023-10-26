@@ -64,7 +64,8 @@ const ModalEdit = ({ idAnuncio, userId, nivel, setModalEditOpen, setIsEdited, an
       return dateB.getTime() - dateA.getTime();
     });
     setAnuncios(updatedAnuncios); // Actualiza el estado con la lista ordenada
-              setModalEditOpen(false)
+      localStorage.setItem('updatedAnuncio', JSON.stringify(true))      
+    setModalEditOpen(false)
               
         }
 
