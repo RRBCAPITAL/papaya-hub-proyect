@@ -61,9 +61,9 @@ className={`min-w-[280px]  mb-2  h-fit bg-dark-d dark:bg-white rounded-[28px] ho
                   nacionalidad === 'Boliviana' ?
                   <img width="16" height="16" src="https://img.icons8.com/color/48/bolivia.png" alt="bolivia"/> :
                   nacionalidad === 'Ecuatoriana' ?
-                  <img width="16" height="16" src="https://img.icons8.com/color/48/ecuador.png" alt="ecuador"/> :
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/ehcuador.png" alt="ehcuador"/> :
                   nacionalidad === 'Española' ?
-                  <img width="16" height="16" src="https://img.icons8.com/color/48/españa.png" alt="españa"/> :
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/spain-2.png" alt="spain-2"/> :
                   nacionalidad === 'Brasileña' ?
                   <img width="16" height="16" src="https://img.icons8.com/color/48/brazil.png" alt="brazil"/> :
                   nacionalidad === 'Chilena' ?

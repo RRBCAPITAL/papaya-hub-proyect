@@ -143,30 +143,30 @@ right: 0,
   </h1> */}
   <div className="flex gap-[2px] text-black px-2 py-1 rounded items-center justify-center bg-white">
   
-            { nacionalidad === 'Peruana' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/peru.png" alt="peru"/> :
-            nacionalidad === 'Colombiana' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/colombia.png" alt="colombia"/> :
-            nacionalidad === 'Argentina' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/argentina.png" alt="argentina"/> :
-            nacionalidad === 'Boliviana' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/bolivia.png" alt="bolivia"/> :
-            nacionalidad === 'Ecuatoriana' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/ecuador.png" alt="ecuador"/> :
-            nacionalidad === 'Española' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/españa.png" alt="españa"/> :
-            nacionalidad === 'Brasileña' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/brazil.png" alt="brazil"/> :
-            nacionalidad === 'Chilena' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/chile.png" alt="chile"/> :
-            nacionalidad === 'Uruguaya' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/uruguay.png" alt="uruguay"/> :
-            nacionalidad === 'Mexicana' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/mexico.png" alt="mexico"/> :
-            nacionalidad === 'Paraguaya' ?
-            <img width="16" height="16" src="https://img.icons8.com/color/48/paraguay.png" alt="paraguay"/> :
-            <img width="16" height="16" src="https://img.icons8.com/color/48/venezuela.png" alt="venezuela"/>
-            }
+  { nacionalidad === 'Peruana' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/peru.png" alt="peru"/> :
+                  nacionalidad === 'Colombiana' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/colombia.png" alt="colombia"/> :
+                  nacionalidad === 'Argentina' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/argentina.png" alt="argentina"/> :
+                  nacionalidad === 'Boliviana' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/bolivia.png" alt="bolivia"/> :
+                  nacionalidad === 'Ecuatoriana' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/ehcuador.png" alt="ehcuador"/> :
+                  nacionalidad === 'Española' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/spain-2.png" alt="spain-2"/> :
+                  nacionalidad === 'Brasileña' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/brazil.png" alt="brazil"/> :
+                  nacionalidad === 'Chilena' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/chile.png" alt="chile"/> :
+                  nacionalidad === 'Uruguaya' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/uruguay.png" alt="uruguay"/> :
+                  nacionalidad === 'Mexicana' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/mexico.png" alt="mexico"/> :
+                  nacionalidad === 'Paraguaya' ?
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/paraguay.png" alt="paraguay"/> :
+                  <img width="16" height="16" src="https://img.icons8.com/color/48/venezuela.png" alt="venezuela"/>
+                  }
             <h1 className='my-auto border-2 border-transparent text-[12px] mt-[3px]'>{name} -</h1>
             <h1 className='my-auto border-2 border-transparent text-[12px] mt-[3px]'>{edad} años</h1>
   </div>
