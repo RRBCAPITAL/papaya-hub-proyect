@@ -19,10 +19,10 @@ const SMSFlotante = () => {
     <>
     <div
     onMouseEnter={() => setModalSmsOpen(true)} // Muestra el modal al hacer hover
-    onMouseLeave={() => setModalSmsOpen(false)} // Oculta el modal al quitar el hover
+    // onMouseLeave={() => setModalSmsOpen(false)} // Oculta el modal al quitar el hover
 
     className="z-50 bottom-4 right-4 fixed transition-all ease-in-out duration-300">
-      <div className={` bg-[#632fff] shadow-normal transition-all ease-in-out duration-300 hover:bg-[#22193e] rounded-full w-fit cursor-pointer z-50`}>
+      <div className={` bg-[#ffb35c] shadow-normal transition-all ease-in-out duration-300 hover:bg-[#22193e] rounded-full w-fit cursor-pointer z-50`}>
         {/* <a
           href={`https://api.whatsapp.com/send?phone=+51924169968&text=Hola%2C%20estoy%20interesad@%20en%20unirme%20a%20un%20equipo%20de%20desarrollo.`}
           target="_blank"
@@ -35,11 +35,11 @@ const SMSFlotante = () => {
           />
           
         </a> */}
-        <div className="flex text-slate-100 font-bold w-fit py-1 px-2 sm:py-[6px] sm:px-[12px] durantion-300 transition-all ease-in-out">
+        <div className="flex text-slate-100 font-bold w-fit py-1 px-2 sm:px-[6px] durantion-300 transition-all ease-in-out">
         
         
         <img src="/assets/sms.png" alt="" className="scale-[0.6]"/>
-        <button  className="my-auto hidden sm:block hover:block text-sm">Ayúdanos a mejorar!</button>
+        {/* <button  className="my-auto hidden sm:block hover:block text-[14px] pr-2">Ayúdanos a mejorar!</button> */}
         </div>
       </div>
       {modalSmsOpen && <ModalSms setModalSmsOpen={setModalSmsOpen} closeModal={closeModal}/>}

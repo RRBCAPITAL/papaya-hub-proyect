@@ -144,7 +144,7 @@ function GaleriaIMG({ galeriaIMG }) {
             <h2 className='text-center text-4xl mx-4 pb-10 font-light text-black dark:text-white'><strong className='font-extrabold'>Galeria</strong> de fotos</h2>
         
    
-      <div className="grid sm:grid-cols-3 lg:grid-cols-4 gap-4  overflow-hidden relative">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4  overflow-hidden relative">
       {galeriaIMG?.map((item, index) => (
         <div key={index} className="wrapper-images">
           <img
