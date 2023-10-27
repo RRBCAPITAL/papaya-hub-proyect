@@ -42,25 +42,25 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
             localStorage.removeItem("updatedAnuncio");
           });
       }
-
+  
       if(!anuncios){
         const anunciosS = JSON.parse(anuncioStorage);
-setAnuncios(anunciosS)
+        setAnuncios(anunciosS)
       }
-
+  
     }, [updatedAnuncio]);
-
+  
     useEffect(() => {
-
+  
       window.addEventListener('beforeunload', () => {
         localStorage.removeItem("anuncioStorage")
-        fetch("/api/anuncio")
-          .then((data) => data.json())
-          .then(({ data }) => {
-            setAnuncios(data)
-            localStorage.setItem("anuncioStorage", JSON.stringify(data));
-            localStorage.removeItem("updatedAnuncio");
-          });
+        // fetch("/api/anuncio")
+        //   .then((data) => data.json())
+        //   .then(({ data }) => {
+        //     setAnuncios(data)
+        //     localStorage.setItem("anuncioStorage", JSON.stringify(data));
+        //     localStorage.removeItem("updatedAnuncio");
+        //   });
       });
     }, [])
     
@@ -133,20 +133,25 @@ setAnuncios(anunciosS)
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       }
       const textSearchWithoutAccents = removeAccents(textSearch.toLowerCase());
-      const filtroSearchBar = anuncios?.filter(
-        (a) =>
-          removeAccents(a?.name)
-            ?.toLowerCase()
-            .includes(textSearchWithoutAccents) ||
-          removeAccents(a?.lugar)
-            ?.toLowerCase()
-            .includes(textSearchWithoutAccents) ||
-          removeAccents(a?.region)
-            ?.toLowerCase()
-            .includes(textSearchWithoutAccents) ||
+      
+      const filtroSearchBar = anuncios?.filter((a) => {
+        if (a?.nivel === 'SIMPLE' || a?.nivel === 'MOTOMAMI' || a?.nivel === 'BICHOTA') {
+          const nameWithoutAccents = removeAccents(a?.name)?.toLowerCase();
+          const lugarWithoutAccents = removeAccents(a?.lugar)?.toLowerCase();
+          const regionWithoutAccents = removeAccents(a?.region)?.toLowerCase();
+          
+          // Comprueba si alguna de las propiedades cumple con la condición de búsqueda
+          return (
+            nameWithoutAccents.includes(textSearchWithoutAccents) ||
+            lugarWithoutAccents.includes(textSearchWithoutAccents) ||
+            regionWithoutAccents.includes(textSearchWithoutAccents) ||
             a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
-          (a.id && a.id.startsWith(textSearch.substring(0, 7)))
-      );
+            (a.id && a.id.startsWith(textSearch.substring(0, 7)))
+          );
+        }
+        // Si no cumple la condición, no se incluirá en el filtro
+        return false;
+      });
       
 
       if (filtroSearchBar.length > 0) {

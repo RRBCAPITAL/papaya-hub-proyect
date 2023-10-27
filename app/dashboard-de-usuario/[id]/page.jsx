@@ -26,36 +26,36 @@ const DashboardUserPage = () => {
     const userR = useUser()
     // const id = currentUser?.id
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`/api/anuncio/usuario/${id}`)
-  //     .then((response) => {
-  //       setAnunciosDeUsuario(response.data);
-  //       setLoader(false); // Una vez que los datos se cargan con éxito, establece loader en false
-  //     })
-  //     .catch((error) => console.error('Hubo un error al obtener los anuncios: ', error));
-  // }, [id]);
-
   useEffect(() => {
-    const data = localStorage.getItem("anuncioStorage")
-    const Anuncios = JSON.parse(data)
-    const anunciosFound = Anuncios?.filter((a) => a?.userId === id)
-    setAnunciosDeUsuario(anunciosFound);
-    setLoader(false);
-  }, [])
-
-  useEffect(() => {
-
-    window.addEventListener('beforeunload', () => {
-        axios
+    axios
       .get(`/api/anuncio/usuario/${id}`)
       .then((response) => {
         setAnunciosDeUsuario(response.data);
         setLoader(false); // Una vez que los datos se cargan con éxito, establece loader en false
       })
       .catch((error) => console.error('Hubo un error al obtener los anuncios: ', error));
-    });
-  }, [])
+  }, [id]);
+
+  // useEffect(() => {
+  //   const data = localStorage.getItem("anuncioStorage")
+  //   const Anuncios = JSON.parse(data)
+  //   const anunciosFound = Anuncios?.filter((a) => a?.userId === id)
+  //   setAnunciosDeUsuario(anunciosFound);
+  //   setLoader(false);
+  // }, [])
+
+  // useEffect(() => {
+
+  //   window.addEventListener('beforeunload', () => {
+  //       axios
+  //     .get(`/api/anuncio/usuario/${id}`)
+  //     .then((response) => {
+  //       setAnunciosDeUsuario(response.data);
+  //       setLoader(false); // Una vez que los datos se cargan con éxito, establece loader en false
+  //     })
+  //     .catch((error) => console.error('Hubo un error al obtener los anuncios: ', error));
+  //   });
+  // }, [])
 
   useEffect(() => {
     if (isDeleted) {

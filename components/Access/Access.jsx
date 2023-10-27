@@ -85,26 +85,26 @@ const Access = ({ children }) => {
     
     
 
-  useEffect(() => {
-    const anuncioStorage = localStorage.getItem('anuncioStorage');
-    const LocalUpdatedAnuncio = localStorage.getItem('updatedAnuncio');
-    const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
+  // useEffect(() => {
+  //   const anuncioStorage = localStorage.getItem('anuncioStorage');
+  //   const LocalUpdatedAnuncio = localStorage.getItem('updatedAnuncio');
+  //   const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
 
-    if (parsedUpdatedAnuncio !== updatedAnuncio) {
-      setUpdatedAnuncio(parsedUpdatedAnuncio);
-    }
+  //   if (parsedUpdatedAnuncio !== updatedAnuncio) {
+  //     setUpdatedAnuncio(parsedUpdatedAnuncio);
+  //   }
 
-    console.log(updatedAnuncio);
+  //   console.log(updatedAnuncio);
 
-    if (!anuncioStorage || updatedAnuncio) {
-      fetch("/api/anuncio")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("anuncioStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedAnuncio");
-        });
-    }
-  }, [updatedAnuncio]);
+  //   if (!anuncioStorage || updatedAnuncio) {
+  //     fetch("/api/anuncio")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         localStorage.setItem("anuncioStorage", JSON.stringify(data));
+  //         localStorage.removeItem("updatedAnuncio");
+  //       });
+  //   }
+  // }, [updatedAnuncio]);
 
   return (
     <>
