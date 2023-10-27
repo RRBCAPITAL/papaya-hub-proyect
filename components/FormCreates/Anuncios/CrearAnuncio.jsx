@@ -19,18 +19,32 @@ import Link from "next/link";
 import { RiCloseFill } from 'react-icons/ri'
 import { CldUploadButton } from 'next-cloudinary'
 import { FaUpload } from 'react-icons/fa'
+import { ordenarDiasYGenerarString } from "./ordenarDiasYGenerarString";
 
 const CrearAnuncio = () => {
 
   const [currentUser, setCurrentUser] = useState(null)
+  const [changeViewError, setChangeViewError] = useState(false)
+  const [touchedFields, setTouchedFields] = useState({});
 
   console.log(currentUser?.id);
 
+  const [selectedOptionsS, setSelectedOptionsS] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [dataFile, setDataFile] = useState({
     linksVideos: []
   })
+
+  const diasOptions = [
+    "LU",
+    "MA",
+    "MI",
+    "JU",
+    "VI",
+    "SA",
+    "DO"
+  ];
 
   useEffect(() => {
     const parseCurrentUser = localStorage.getItem('storedUser')
@@ -55,8 +69,8 @@ const CrearAnuncio = () => {
   const [formContent, setFormContent] = useState({
     
     userId: "",
-    tarifaxhr: 0,
-    tarifaxmr: 0,
+    tarifaxhr: null,
+    tarifaxmr: null,
     name: "",
     description: "",
     whatsapp: "",
@@ -66,7 +80,7 @@ const CrearAnuncio = () => {
     diasAtencion: "",
     horarioInicio: "",
     horarioFin: "",
-    edad: 0,
+    edad: null,
     idioma: [],
     altura: "",
     peso: "",
@@ -98,6 +112,12 @@ const CrearAnuncio = () => {
       [name]: value,
     });
 
+    // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    [name]: true,
+  });
+
     // Valida el campo y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, [name]: value });
 
@@ -119,7 +139,12 @@ const CrearAnuncio = () => {
         : [...prevFormData.atencion, value],
     }));
 
-    // Valida la selección de idiomas y configura el error correspondiente
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    atencion: true,
+  });
+
   const fieldErrors = validation({ ...formContent, atencion: value });
   setError((prev) => ({
     ...prev,
@@ -145,6 +170,12 @@ const CrearAnuncio = () => {
         nacionalidad: value,
       });
     }
+
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    nacionalidad: true,
+  });
     
     // Valida la nacionalidad y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, nacionalidad: value });
@@ -172,6 +203,12 @@ const CrearAnuncio = () => {
       });
     }
 
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    region: true,
+  });
+
      // Valida el departamento y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, region: value });
   setError((prev) => ({
@@ -198,6 +235,13 @@ const CrearAnuncio = () => {
         lugar: value,
       });
     }
+
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    provincia: true,
+  });
+
     // Valida la provincia y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, lugar: value });
   setError((prev) => ({
@@ -223,6 +267,12 @@ const CrearAnuncio = () => {
       });
     }
 
+ // Marcar el campo como tocado
+ setTouchedFields({
+  ...touchedFields,
+  diasAtencion: true,
+});
+
      // Valida los días de atención y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, diasAtencion: value });
   setError((prev) => ({
@@ -242,6 +292,12 @@ const CrearAnuncio = () => {
         ? prevFormData.idioma.filter((i) => i !== value)
         : [...prevFormData.idioma, value],
     }));
+
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    idioma: true,
+  });
 
     // Valida la selección de idiomas y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, idioma: value });
@@ -283,7 +339,7 @@ const CrearAnuncio = () => {
       }
 
       // Valida el tamaño del archivo (en bytes)
-      const maxSizeKB = 800; // 800KB
+      const maxSizeKB = 1500; // 1500KB
       if (file.size > maxSizeKB * 1024) {
         alert(`El tamaño del archivo debe ser menor o igual a ${maxSizeKB}KB.`);
         e.target.value = null; // Limpia la entrada de archivo
@@ -356,9 +412,9 @@ const CrearAnuncio = () => {
       const file = files[i];
 
       // Valida el tamaño del archivo (en bytes)
-      const maxSizeKB = 1000; // 800KB
+      const maxSizeKB = 1500; // 1500KB
       if (file.size > maxSizeKB * 1024) {
-        alert(`La imagen ${file.name} excede el tamaño máximo de 1000KB.`);
+        alert(`La imagen ${file.name} excede el tamaño máximo de 1.5MB.`);
         continue; // Salta este archivo y pasa al siguiente
       }
 
@@ -471,11 +527,13 @@ const CrearAnuncio = () => {
     try {
       e.preventDefault();
 
-      if(terminoscondiciones){
-        if(formContent?.questionEnd?.length > 0){
+      
           console.log(error);
       
-        if(Object.keys(error).length > 0){
+          if(Object.keys(error).length > 0){
+
+            setChangeViewError(true)
+
           toast.error('Error, por favor revise los campos.', {
             position: "top-right",
             autoClose: 3000,
@@ -488,7 +546,10 @@ const CrearAnuncio = () => {
             },
           });
         } else{
-    
+          setChangeViewError(false)
+          if(terminoscondiciones){
+            if(formContent?.questionEnd?.length > 0){
+          
           // que haya una rueda girando con un mensaje que indique que estan cargando los archivos de su anuncio
           clean()
            //Galeria de imagenes y videos
@@ -529,7 +590,9 @@ const CrearAnuncio = () => {
           imagenPrincipal: imageUrl,
           galeriaFotos: galeriaImagesUrl,
         };
-    
+        
+        
+
         createAnuncio(updatedFormContent)
 
           // Finalizar carga
@@ -537,7 +600,6 @@ const CrearAnuncio = () => {
           setShowModal(true)
           // setLoading(false); // Finalizar carga
           return
-        }
         }else{
           toast.error('Responde la pregunta obligatoria para continuar.', {
             position: "top-right",
@@ -564,6 +626,7 @@ const CrearAnuncio = () => {
           },
         });
       }
+        }
       
     } catch (error) {
       console.log(error);
@@ -585,7 +648,50 @@ const CrearAnuncio = () => {
     });
   }
 
-  const arrayLinksVideos = [];
+  const toggleOptionS = (optionS) => {
+    // Copia el array de opciones seleccionadas
+    const newSelectedOptionsS = [...selectedOptionsS];
+
+    // Verifica si la opción ya está seleccionada y la quita
+    if (newSelectedOptionsS.includes(optionS)) {
+      const index = newSelectedOptionsS.indexOf(optionS);
+      if (index !== -1) {
+        newSelectedOptionsS.splice(index, 1);
+      }
+    } else {
+      // Agrega la opción seleccionada
+      newSelectedOptionsS.push(optionS);
+    }
+    setSelectedOptionsS(newSelectedOptionsS);
+    const diasAtencionString = ordenarDiasYGenerarString(newSelectedOptionsS);
+
+    console.log(diasAtencionString);
+
+    // Actualiza el estado de opciones seleccionadas
+    setFormContent((prevFormContent) => ({
+      ...prevFormContent,
+      diasAtencion: diasAtencionString,
+    }));
+
+    // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    diasAtencion: true,
+  });
+
+  const fieldErrors = validation({ ...formContent, diasAtencion: diasAtencionString });
+  setError((prev) => ({
+    ...prev,
+    diasAtencion: fieldErrors.diasAtencion, // Configura el error para el campo de idioma
+  }));
+  };
+
+  const isOptionSelectedS =  (optionS) => {
+    if(selectedOptionsS?.includes(optionS)){
+      return true
+    }
+    return false
+  }
 
   console.log(formContent);
 
@@ -647,41 +753,41 @@ const CrearAnuncio = () => {
                 name="name"
                 value={formContent.name}
                 onChange={handleChange}
-                placeholder="Jenny Montero"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-              { error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
+              { changeViewError && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : touchedFields.name && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-1">
               <label htmlFor="name" className="dark:text-white text-black">Tarifa por hora (en soles):</label>
               <input
-                type="number"
+                type="text"
                 id="tarifaxhr"
                 name="tarifaxhr"
                 value={formContent.tarifaxhr}
                 onChange={handleChange}
-                placeholder="S/200"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-               { error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
+              { changeViewError && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : touchedFields.tarifaxhr && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-1">
               <label htmlFor="name" className="dark:text-white text-black">Tarifa por media hora (en soles):</label>
               <input
-                type="number"
+                type="text"
                 id="tarifaxmr"
                 name="tarifaxmr"
                 value={formContent.tarifaxmr}
                 onChange={handleChange}
-                placeholder="S/200"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-               { error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
+                { changeViewError && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : touchedFields.tarifaxmr && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -692,11 +798,11 @@ const CrearAnuncio = () => {
                 name="whatsapp"
                 value={formContent.whatsapp}
                 onChange={handleChange}
-                placeholder="924125323"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-              { error && error.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.whatsapp}</p> : ""}
+               { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -710,38 +816,33 @@ const CrearAnuncio = () => {
                 value={formContent.description}
                 onChange={handleChange}
                 style={{ resize: 'none' }}
-                placeholder="💓Mi nombre es Jenny 😄Un poco loca😋Creo que solo tenemos una vida y necesitamos vivirla al máximo! ¿Quieres chatear conmigo? escríbeme aquí https://fans.ly/r/jenny Sueño con convertirme en tu modelo
-                favorita❤️ Ofertas comerciales: jenny@gmail.com​"
+                placeholder="​"
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-              { error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
+               { changeViewError && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : touchedFields.description && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
             </div>
 
             <atencion className="flex flex-col gap-[12px]">
               <h1 className="dark:text-white text-black" >Horario de atención</h1>
-              <containerhorarioatencion className="bg-back-red dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
+              <containerhorarioatencion className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="dark:text-white text-black">Días:</label>
-                  <select
-                    name="diasAtencion"
-                    id="diasAtencion"
-                    value={formContent.diasAtencion}
-                    onChange={handleDiasDeAtencion}
-                    className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                  >
-                    <option value="">
-                      Selecciona
-                    </option>
-                    <option value="Todos los días">Todos los días</option>
-                    <option value="Lunes a viernes">Lunes a viernes</option>
-                    <option value="Solo sábados">Solo sábados</option>
-                    <option value="Solo domingos">Solo domingos</option>
-                    <option value="Sábados y domingos">
-                      Sábados y domingos
-                    </option>
-                  </select>
-                  { error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : ""}
+                  <label htmlFor="name" className="dark:text-white text-black">Selecciona tus días de atención:</label>
+                  <diasatencion className="grid grid-cols-7 gap-1">
+        {diasOptions.map((optionS) => (
+          <button
+            key={optionS}
+            type="button"
+            className={` ${
+              isOptionSelectedS(optionS) ? "bg-[#ff5f2f] text-white font-extrabold dark:bg-[#7c2929]" : "bg-white dark:bg-dark-l"
+            } text-sm p-[4px] border-2 border-white text-black dark:border-bor-red dark:text-t-red rounded-[10px] hover:bg-[#ff6a50] hover:text-white hover:dark:bg-[#7c2929] transition-all ease-linear duration-300`}
+            onClick={() => toggleOptionS(optionS)}
+          >
+            {optionS}
+          </button>
+        ))}
+      </diasatencion>
+                  { changeViewError && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : touchedFields.diasAtencion && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : ""}
                 </div>
 
                 <div className="flex gap-6 mx-auto">
@@ -775,7 +876,7 @@ const CrearAnuncio = () => {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Preferencias de atención</label>
-              <div className="bg-back-red dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
+              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {preferenciasPrincipales.map((i) => (
                   <div key={i} className="flex gap-1">
                     <label htmlFor={i}>{i}</label>
@@ -790,7 +891,7 @@ const CrearAnuncio = () => {
                   </div>
                 ))}
               </div>
-              { error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : ""}
+              { changeViewError && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : touchedFields.atencion && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -809,7 +910,7 @@ const CrearAnuncio = () => {
                   </option>
                 ))}
               </select>
-              { error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : ""}
+              { changeViewError && error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : touchedFields.nacionalidad && error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -828,7 +929,7 @@ const CrearAnuncio = () => {
                   </option>
                 ))}
               </select>
-              { error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : ""}
+              { changeViewError && error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : touchedFields.region && error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -848,27 +949,27 @@ const CrearAnuncio = () => {
                     </option>
                   ))}
               </select>
-              { error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : ""}
+              { changeViewError && error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : touchedFields.lugar && error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Edad en años:</label>
               <input
-                type="number"
+                type="text"
                 id="edad"
                 name="edad"
                 value={formContent.edad}
                 onChange={handleChange}
-                placeholder="25"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
                 
               />
-               { error && error.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.edad}</p> : ""}
+                { changeViewError && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : touchedFields.edad && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Selecciona los idiomas que domine:</label>
-              <div className="bg-back-red dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
+              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {idiomasPrincipales.map((i) => (
                   <div key={i} className="flex gap-2">
                     <label htmlFor={i}>{i}</label>
@@ -884,7 +985,7 @@ const CrearAnuncio = () => {
                   </div>
                 ))}
               </div>
-              { error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : ""}
+              { changeViewError && error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : touchedFields.idioma && error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -895,11 +996,11 @@ const CrearAnuncio = () => {
                 name="peso"
                 value={formContent.peso}
                 onChange={handleChange}
-                placeholder="48"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                
               />
-              { error && error.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.peso}</p> : ""}
+               { changeViewError && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : touchedFields.peso && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -910,15 +1011,15 @@ const CrearAnuncio = () => {
                 name="altura"
                 value={formContent.altura}
                 onChange={handleChange}
-                placeholder="1.78"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
               
               />
-              { error && error.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.altura}</p> : ""}
+               { changeViewError && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : touchedFields.altura && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : ""}
             </div>
                   {/* Imagen principal */}
             <div className="flex flex-col gap-2">
-      <label htmlFor="name" className="dark:text-white text-black flex gap-4">Imagen principal <nav className="dark:text-white text-black text-sm">(Ancho: 1350px, Alto: 1000px)</nav></label>
+      <label htmlFor="name" className="dark:text-white text-black flex gap-4">Imagen principal<nav className="dark:text-white text-black text-sm mt-[3px]">(Ancho: 1350px, Alto: 1000px)</nav></label>
       <input
         type="file"
         onChange={handleImageChange}
@@ -937,7 +1038,7 @@ const CrearAnuncio = () => {
 
                   {/* Galería de imagenes */}
     <div className="flex flex-col gap-2">
-      <label htmlFor="name" className="dark:text-white text-black">Galería de fotos (max. 6 fotos)</label>
+      <label htmlFor="name" className="dark:text-white text-black">Galería de fotos: </label>
       <input
         type="file"
         onChange={handleImagesChange}
@@ -967,9 +1068,9 @@ const CrearAnuncio = () => {
     </div>
 
         <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="dark:text-white text-black">Galería de videos: <nav className="text-[10px]">(solo 3 videos como max.)</nav></label>
+              <label htmlFor="name" className="dark:text-white text-black">Galería de videos: </label>
               <CldUploadButton uploadPreset="zw1ztiu3" 
-              className="flex gap-2 items-center justify-center p-2 bg-back-red border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-[#ffcc8d] transition-all ease-linear duration-300"
+              className="flex gap-2 items-center justify-center p-2 bg-[#ffc876] border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-back-red transition-all ease-linear duration-300"
               onUpload={(result) => {
                 // Extrae la URL segura de este objeto y guárdala en el array
                 if (result.info && result.info.secure_url) {

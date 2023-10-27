@@ -3,23 +3,19 @@
 export const validation = (formContent) => {
     const errors = {};
   
-    console.log(formContent.imagenPrincipal);
-
-    console.log(formContent.idioma);
-    console.log(formContent.idioma.length);
     // Validar que el nombre no esté vacío y no tenga más de 20 caracteres
     if (!formContent.name) {
       errors.name = "El nombre es requerido.";
-    } else if (formContent.name.length > 20) {
+    } else if (formContent?.name?.length > 20) {
       errors.name = "El nombre no puede tener más de 20 caracteres.";
     }
     // Validar que el tarifaxhr no esté vacío
     if (!formContent.tarifaxhr || formContent.tarifaxhr === "") {
         errors.tarifaxhr = "La tarifa es requerida.";
-      } else if(formContent.tarifaxhr < 0){
+      } else if(formContent?.tarifaxhr < 0){
         errors.tarifaxhr = "La tarifa no puede ser negativa.";
       }
-      else if (formContent.tarifaxhr.length > 4) {
+      else if (formContent?.tarifaxhr?.length > 4) {
         errors.tarifaxhr = "La tarifa no puede tener más de 4 dígitos.";
       }
 
@@ -29,7 +25,7 @@ export const validation = (formContent) => {
     } else if(formContent.tarifaxmr < 0){
       errors.tarifaxmr = "La tarifa no puede ser negativa.";
     }
-    else if (formContent.tarifaxhr.length > 4) {
+    else if (formContent?.tarifaxhr?.length > 4) {
       errors.tarifaxhr = "La tarifa no puede tener más de 4 dígitos.";
     }
 
@@ -48,7 +44,7 @@ export const validation = (formContent) => {
       // Validar que el n de whatsapp no esté vacía y no tenga más de 300 caracteres
     if (!formContent.whatsapp) {
         errors.whatsapp = "El número de WhatsApp es requerido.";
-      } else if (formContent.whatsapp.length !== 9) {
+      } else if (formContent?.whatsapp?.length !== 9) {
         errors.whatsapp = "El whatsapp debe tener 9 dígitos.";
       }  else if (isNaN(formContent.whatsapp)) {
         errors.whatsapp = "El whatsapp debe ser un número.";
@@ -56,7 +52,7 @@ export const validation = (formContent) => {
     // Validar que la descripción no esté vacía y no tenga más de 300 caracteres
     if (!formContent.description) {
       errors.description = "La descripción es requerida.";
-    } else if (formContent.description.length > 1000) {
+    } else if (formContent?.description?.length > 1000) {
       errors.description = "La descripción no puede tener más de 1000 caracteres.";
     }
   
@@ -105,7 +101,7 @@ export const validation = (formContent) => {
     
       // Validar que al menos un dia de atencion haya sido seleccionada
     if (!formContent.diasAtencion) {
-        errors.diasAtencion = "Selecciona los días de atención.";
+        errors.diasAtencion = "Seleccione al menos un día de atención.";
       }
   
     // Resto de las validaciones que desees agregar
