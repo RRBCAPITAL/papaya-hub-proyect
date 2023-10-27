@@ -850,24 +850,32 @@ const CrearAnuncio = () => {
                     <label htmlFor="horarioInicio" className="dark:text-white text-black">Hora de inicio:</label>
                     <input
                       type="time"
+                      step="3600" // Establece el paso a 1 hora (3600 segundos)
                       id="horarioInicio"
                       name="horarioInicio"
                       value={formContent.horarioInicio}
                       onChange={handleChange}
                       className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                      
+                      onClick={(e) => {
+                        // Establece la vista del selector de tiempo en horas (HH)
+                        e.currentTarget.stepUp();
+                      }}
                     />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="horarioFin" className="dark:text-white text-black">Hora de cierre:</label>
                     <input
                       type="time"
+                      step="3600" // Establece el paso a 1 hora (3600 segundos)
                       id="horarioFin"
                       name="horarioFin"
                       value={formContent.horarioFin}
                       onChange={handleChange}
                       className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                      
+                        onClick={(e) => {
+        // Establece la vista del selector de tiempo en horas (HH)
+        e.currentTarget.stepUp();
+      }}
                     />
                   </div>
                 </div>

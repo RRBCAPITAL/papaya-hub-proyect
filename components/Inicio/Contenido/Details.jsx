@@ -22,7 +22,13 @@ const Details = ({ id }) => {
       const data = localStorage.getItem("anuncioStorage")
       const Anuncios = JSON.parse(data)
       const anuncioFound = Anuncios?.find((a) => a?.id === id)
-      setAnuncio(anuncioFound)
+      if(anuncioFound){
+        setAnuncio(anuncioFound)
+      }else{
+        axios.get(`/api/anuncio/${id}`)
+            .then(res => setAnuncio(res.data))
+            .catch(err => console.log(err))
+      }
     }, [])
     
     const shortID = anuncio?.id?.substring(0, 7);
