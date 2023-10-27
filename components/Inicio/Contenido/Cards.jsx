@@ -196,8 +196,8 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
     1500: 4,
     1200: 3, // Cambiar a 4 columnas en pantallas de 1200px o menos
     992: 2, // Cambiar a 3 columnas en pantallas de 992px o menos
-    768: 1, // Cambiar a 2 columnas en pantallas de 768px o menos
-    576: 1, // Cambiar a 1 columna en pantallas de 576px o menos
+    768: 2, // Cambiar a 2 columnas en pantallas de 768px o menos
+    610: 1, // Cambiar a 2 columnas en pantallas de 768px o menos
   };
   
   return (
