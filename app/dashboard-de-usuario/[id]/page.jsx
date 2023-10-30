@@ -87,6 +87,7 @@ const DashboardUserPage = () => {
               <CardDeAnuncio
                 key={a?.id}
                 id={a?.id}
+                idFrontend={a?.idFrontend}
                 userId={a?.userId}
                 imagenPrincipal={a?.imagenPrincipal}
                 estado={a?.estado}

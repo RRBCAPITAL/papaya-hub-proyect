@@ -8,6 +8,7 @@ import { AiTwotoneEdit } from 'react-icons/ai'
 
 const CardDeAnuncio = ({
   id,
+  idFrontend,
   userId,
   estado,
   imagenPrincipal,
@@ -49,7 +50,7 @@ const CardDeAnuncio = ({
                 <MdNotificationsActive className="h-6 w-6"/>
                   <nav className=" mt-1">Activar</nav>
             </Link>
-                <nav className="text-center text-xl font-bold text-slate-700">ID: {shortId}</nav>
+                <nav className="text-center text-xl font-bold text-slate-700">ID: {idFrontend}</nav>
           </div>
           ) : (
             <div className="flex flex-col gap-2 p-5 bg-slate-200 shadow-2xl rounded-[20px]">
@@ -61,7 +62,7 @@ const CardDeAnuncio = ({
                 <p className="text-sm mx-4">Nivel</p>
               <nav className={`text-2xl rounded-[20px] text-center font-extrabold ${ nivel === "MOTOMAMI" ? "text-blue-200 bg-blue-700" : nivel === "BICHOTA" ? "text-t-red-l bg-back-red" : "text-slate-200 bg-slate-700"} p-2 mx-4`}>{nivel}</nav>
               </div>
-              <nav className="text-center text-xl font-bold text-slate-700">ID: {shortId}</nav>
+              <nav className="text-center text-xl font-bold text-slate-700">ID: {idFrontend}</nav>
             </div>
           )}
         </titulo>

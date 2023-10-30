@@ -1,9 +1,15 @@
 import axios from "axios"
+import { generateIDFrontend } from "./generateIDFrontend"
 
 export const createAnuncio = async (updatedFormContent) => {
 
+    const idFrontend  = generateIDFrontend()
+
+    console.log(idFrontend);
+
     const formContentData = {
         userId: updatedFormContent?.userId,
+        idFrontend: idFrontend && idFrontend,
         tarifaxhr: Number(updatedFormContent?.tarifaxhr),
         tarifaxmr: Number(updatedFormContent?.tarifaxmr),
         name: updatedFormContent?.name,

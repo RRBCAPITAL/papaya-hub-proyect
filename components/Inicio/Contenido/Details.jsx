@@ -40,7 +40,7 @@ const Details = ({ id }) => {
         <containerinfo className='flex flex-col gap-4 items-center justify-center dark:bg-dark-l bg-white min-h-screen w-screen'>
            <contain className='flex flex-col gap-2 w-[90%] lg:w-[60%] p-10 mt-[90px] mx-20 dark:bg-dark-d rounded-[10px] bg-white shadow-custom1 '>
             
-           <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[20px]'><strong>ID: {shortID}</strong></p>
+           <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[20px]'><strong>ID: {anuncio?.idFrontend}</strong></p>
             
             
             <div className='flex flex-col lg:flex-row gap-6'>

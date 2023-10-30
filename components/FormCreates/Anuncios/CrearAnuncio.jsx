@@ -702,7 +702,7 @@ const CrearAnuncio = () => {
           <div className="z-100 fixed bg-[#000000e6] flex h-full w-screen overflow-x-hidden items-center justify-center text-white">
        
             <section className="relative bg-[#144912] border-4 border-[#63ff41] p-10 flex flex-col items-center justify-center gap-1 mx-4">
-            <Link href={'/dashboard-de-usuario'} className="absolute text-red-500 font-bold top-0 right-0 text-xl p-1 bg-black hover:scale-105">
+            <Link href={`/dashboard-de-usuario/${id}`} className="absolute text-red-500 font-bold top-0 right-0 text-xl p-1 bg-black hover:scale-105">
               <RiCloseFill />
             </Link>
             <ok className='flex flex-col items-center justify-center gap-1 mt-2'>

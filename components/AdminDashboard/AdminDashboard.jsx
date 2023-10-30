@@ -47,7 +47,7 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
       const filtroSearchBar = anuncios?.filter(
         (a) =>
           a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
-          (a.id && a.id.startsWith(textSearch.substring(0, 7)))
+          (a.idFrontend && a.idFrontend.toLowerCase().startsWith(textSearch.toLowerCase()))
       );
 
       console.log(filtroSearchBar);
@@ -206,7 +206,7 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
             
             <tr key={arr?.id} className="border-b-4 border-bor-red">
             <td className="text-center px-4 py-2">{index + 1}</td>
-            <td className="text-center px-4 py-2">{arr?.id?.substring(0, 7)}</td>
+            <td className="text-center px-4 py-2">{arr?.idFrontend}</td>
             <td className="text-center px-4 py-2 flex flex-col gap-1">
               <nav className="text-sm">{arr?.user?.fullname}</nav>
               <nav className="text-[12px] font-bold">{arr?.user?.email}</nav>
@@ -243,7 +243,7 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
             
             <tr key={arr?.id} className="border-b-4 border-bor-red">
             <td className="text-center px-4 py-2">{index + 1}</td>
-            <td className="text-center px-4 py-2">{arr?.id?.substring(0, 7)}</td>
+            <td className="text-center px-4 py-2">{arr?.idFrontend}</td>
             <td className="text-center px-4 py-2 flex flex-col gap-1">
               <nav className="text-sm">{arr?.user?.fullname}</nav>
               <nav className="text-[12px] font-bold">{arr?.user?.email}</nav>

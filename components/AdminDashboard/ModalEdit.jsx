@@ -85,7 +85,7 @@ const ModalEdit = ({ idAnuncio, userId, nivel, setModalEditOpen, setIsEdited, an
         <div className='bg-back-red rounded-[10px] p-1'>
         <modal className='relative flex flex-col items-center justify-center gap-4 rounded-[10px] w-[500px] h-fit bg-white P-4'>
           <h1 className='text-black font-extrabold text-3xl mt-10 border-b-4 border-bor-red'><strong className='text-t-red'>Actualizar</strong> anuncio</h1>
-            <h6>ID de Anuncio: {idAnuncio.substring(0, 7)}</h6>
+            {/* <h6>ID de Anuncio: {idAnuncio.substring(0, 7)}</h6> */}
           <form action="" onSubmit={handleSubmit} className='flex flex-col gap-2 justify-center items-center'>
             <h1 className='text-xl text-white'>Modos</h1>
             

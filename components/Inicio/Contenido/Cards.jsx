@@ -146,7 +146,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
             lugarWithoutAccents.includes(textSearchWithoutAccents) ||
             regionWithoutAccents.includes(textSearchWithoutAccents) ||
             a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
-            (a.id && a.id.startsWith(textSearch.substring(0, 7)))
+            (a.idFrontend && a.idFrontend.toLowerCase().startsWith(textSearch.toLowerCase()))
           );
         }
         // Si no cumple la condición, no se incluirá en el filtro

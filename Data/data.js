@@ -6,6 +6,8 @@ export const generateUniqueId = (name) => {
   return `${initials}-${randomDigits}`;
 };
 
+export const existingNumbers = []
+
 export const preferenciasPrincipales = [
   "Hotel",
   "Delivery",

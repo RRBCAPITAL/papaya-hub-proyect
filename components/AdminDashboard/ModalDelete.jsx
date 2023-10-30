@@ -57,10 +57,10 @@ const ModalDelete = ({ idAnuncio, setModalDeleteOpen, setIsDeleted, currentUserO
         <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
         <div className='bg-back-red rounded-[10px] p-1'>
         <modal className='relative flex flex-col items-center justify-center gap-4 rounded-[10px] w-fit h-fit bg-white px-20 py-4'>
-          <h1 className='text-black font-extrabold text-3xl mt-10 border-b-4 border-bor-red'>¿Estás seguro/a?</h1>
-            <h6>ID de Anuncio: {idAnuncio.substring(0, 7)}</h6>
+          <h1 className='text-black font-extrabold text-3xl mt-10 border-b-4 border-bor-red'>Eliminar anuncio</h1>
+            {/* <h6>ID de Anuncio: {idAnuncio.substring(0, 7)}</h6> */}
           <form action="" onSubmit={handleSubmit} className='flex flex-col gap-2 justify-center items-center'>
-            <buttons className='flex gap-[10px] mb-5'>
+            <buttons className='flex gap-[10px] mt-4 mb-5'>
                 <button type='button' className=' mx-auto px-4 py-2 text-white rounded bg-red-800 hover:bg-red-900  hover:scale-110 transition-all ease-in-out duration-300' onClick={() => setModalDeleteOpen(false)}>Cancelar</button>
             <button type='submit' className=' mx-auto px-4 py-2 rounded text-white bg-violet-700 hover:bg-violet-800  hover:scale-110 transition-all ease-in-out duration-300'>Eliminar</button>
             </buttons>
