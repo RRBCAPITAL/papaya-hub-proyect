@@ -80,7 +80,7 @@ const Details = ({ id }) => {
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
               {anuncio?.atencion?.join(", ") || ""}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Horario de atención:</strong></p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {conversorDeHora12(anuncio?.horarioInicio)} a {conversorDeHora12(anuncio?.horarioFin)}</p>
+              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {anuncio?.horarioInicio} a {anuncio?.horarioFin}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Región de atención:</strong> {anuncio?.region}</p>
               <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Distrito de atención:</strong> {anuncio?.lugar}</p>
               </div>

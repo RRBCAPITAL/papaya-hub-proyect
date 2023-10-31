@@ -42,7 +42,6 @@ export async function PUT(req, { params }) {
           id: id,
         },
         data: {
-          idFrontend,
           tarifaxhr,
           name,
           description,
@@ -72,7 +71,6 @@ export async function PUT(req, { params }) {
           id: id,
         },
         data: {
-          idFrontend,
           tarifaxhr,
           name,
           description,

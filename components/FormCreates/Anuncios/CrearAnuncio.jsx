@@ -66,6 +66,10 @@ const CrearAnuncio = () => {
   const [terminoscondiciones, setTerminoscondiciones] = useState(false)
   const [filePrincipal, setFilePrincipal] = useState()
   const [galeriaImages, setGaleriaImages] = useState()
+  const [horaInicio, setHoraInicio] = useState("8:00")
+  const [horaIAmPm, setHoraIAmPm] = useState("AM")
+  const [horaFinal, setHoraFinal] = useState("12:00")
+  const [horaFAmPm, setHoraFAmPm] = useState("AM")
   const [formContent, setFormContent] = useState({
     
     userId: "",
@@ -89,6 +93,22 @@ const CrearAnuncio = () => {
     galeriaVideos: []
   });
 
+  useEffect(() => {
+    const hrF = horaFinal + " " + horaFAmPm
+    const hrI = horaInicio + " " + horaIAmPm
+
+    setFormContent((prev) => ({
+      ...prev,
+      horarioInicio: hrI
+    }))
+
+    setFormContent((prev) => ({
+      ...prev,
+      horarioFin: hrF
+    }))
+
+  }, [horaFinal, horaFAmPm, horaInicio, horaIAmPm])
+  
   const handleTerminosCondiciones = (e) => {
     setTerminoscondiciones(!terminoscondiciones); // Cambiar el estado entre true y false
   };
@@ -129,6 +149,44 @@ const CrearAnuncio = () => {
    
   };
 
+  const handleHoraInicio = (e) => {
+    
+    setHoraInicio("")
+    
+    const { value } = e.target
+
+      setHoraInicio(value)
+  }
+
+  const handleIAmPm = (e) => {
+
+    setHoraIAmPm("")
+
+    const { value } = e.target
+    
+    setHoraIAmPm(value)
+        
+  }
+
+  const handleHoraFinal = (e) => {
+    
+    setHoraFinal("")
+    
+    const { value } = e.target
+
+      setHoraFinal(value)
+  }
+
+  const handleFAmPm = (e) => {
+
+    setHoraFAmPm("")
+
+    const { value } = e.target
+    
+    setHoraFAmPm(value)
+        
+  }
+  
   const handleAtencion = (e) => {
     const { value } = e.target;
 
@@ -693,6 +751,7 @@ const CrearAnuncio = () => {
     return false
   }
 
+  const AmPm = ["AM", "PM"]
   console.log(formContent);
 
   return (
@@ -828,7 +887,7 @@ const CrearAnuncio = () => {
               <containerhorarioatencion className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="dark:text-white text-black">Selecciona tus días de atención:</label>
-                  <diasatencion className="grid grid-cols-7 gap-1">
+                  <diasatencion className="grid grid-cols-4 lg:grid-cols-7 gap-1">
         {diasOptions.map((optionS) => (
           <button
             key={optionS}
@@ -845,38 +904,58 @@ const CrearAnuncio = () => {
                   { changeViewError && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : touchedFields.diasAtencion && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : ""}
                 </div>
 
-                <div className="flex gap-6 mx-auto">
+                <div className="flex flex-row sm:flex-col lg:flex-row gap-2 mx-auto">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="horarioInicio" className="dark:text-white text-black">Hora de inicio:</label>
-                    <input
-                      type="time"
-                      step="3600" // Establece el paso a 1 hora (3600 segundos)
-                      id="horarioInicio"
-                      name="horarioInicio"
-                      value={formContent.horarioInicio}
-                      onChange={handleChange}
-                      className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                      onClick={(e) => {
-                        // Establece la vista del selector de tiempo en horas (HH)
-                        e.currentTarget.stepUp();
-                      }}
-                    />
+                    <hora className='flex flex-row gap-[1px]'>
+                    <select name="" id="" onChange={handleHoraInicio} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                      <option value="">Selecciona:</option>
+                      <option name="1:00" value="1:00">1:00</option>
+                      <option name="1:00" value="2:00">2:00</option>
+                      <option name="1:00" value="3:00">3:00</option>
+                      <option name="1:00" value="4:00">4:00</option>
+                      <option name="1:00" value="5:00">5:00</option>
+                      <option value="6:00">6:00</option>
+                      <option value="7:00">7:00</option>
+                      <option value="8:00">8:00</option>
+                      <option value="9:00">9:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                    </select>
+                    <select onChange={handleIAmPm} className="text-sm focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                      {/* <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">AM</button>
+                      <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">PM</button> */}
+                    </select>
+                    </hora>
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="horarioFin" className="dark:text-white text-black">Hora de cierre:</label>
-                    <input
-                      type="time"
-                      step="3600" // Establece el paso a 1 hora (3600 segundos)
-                      id="horarioFin"
-                      name="horarioFin"
-                      value={formContent.horarioFin}
-                      onChange={handleChange}
-                      className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                        onClick={(e) => {
-        // Establece la vista del selector de tiempo en horas (HH)
-        e.currentTarget.stepUp();
-      }}
-                    />
+                    <hora className='flex flex-row gap-[1px]'>
+                    <select name="" id="" onChange={handleHoraFinal} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                      <option value="">Selecciona:</option>
+                      <option value="1:00">1:00</option>
+                      <option value="2:00">2:00</option>
+                      <option value="3:00">3:00</option>
+                      <option value="4:00">4:00</option>
+                      <option value="5:00">5:00</option>
+                      <option value="6:00">6:00</option>
+                      <option value="7:00">7:00</option>
+                      <option value="8:00">8:00</option>
+                      <option value="9:00">9:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                    </select>
+                    <select onChange={handleFAmPm} className="text-sm focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                      {/* <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">AM</button>
+                      <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">PM</button> */}
+                    </select>
+                    </hora>
                   </div>
                 </div>
               </containerhorarioatencion>

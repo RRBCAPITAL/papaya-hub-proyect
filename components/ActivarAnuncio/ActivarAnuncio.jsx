@@ -16,7 +16,7 @@ const ActivarAnuncio = () => {
 
 
             <containcard
-            className={`shadow-custom1 border-slate-600 border-[10px] w-[280px] sm:max-w-[340px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
+            className={`shadow-custom1 border-slate-600 border-[10px] w-[280px] sm:w-[360px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
                 >
             <div className="flex flex-col gap-2 px-5 py-2 bg-slate-200 shadow-2xl rounded-t-[20px]">
               {/* <activo className='flex gap-2 items-center justify-center'>
@@ -28,8 +28,8 @@ const ActivarAnuncio = () => {
               <nav className={`text-2xl rounded-[20px] text-center font-extrabold text-slate-200 bg-slate-700 p-2 mx-4`}>SIMPLE</nav>
               </div>
               
-              <beneficios className='shadow p-2 rounded w-full'>
-                <linea className='flex gap-1'>
+              <beneficios className='shadow p-2 my-2 rounded w-full'>
+                {/* <linea className='flex gap-1'>
                 <img width="24" height="24" src="https://img.icons8.com/emoji/48/check-mark-button-emoji.png" alt="check-mark-button-emoji"/>
                     <nav className="text-center text-sm font-bold text-slate-700 my-auto">Chica económica.</nav>
                 </linea>
@@ -40,20 +40,23 @@ const ActivarAnuncio = () => {
                 <linea className='flex gap-1'>
                 <img width="22" height="22" src="https://img.icons8.com/fluency/48/cancel-2.png" alt="cancel-2"/>
                     <nav className="text-center text-sm font-bold text-slate-700 mt-1">Posicionamiento bajo.</nav>
-                </linea>
+                </linea> */}
+                <h1>Visibilidad estándar.</h1>
+                <h1>Posicionamiento bajo.</h1>
+                <h1>El más económico para publicar.</h1>
               </beneficios>
             </div>
             
             <card>
               <img
-                src='/assets/PROMO1.jpg'
+                src='/assets/modosimple.jpg'
                 alt="Imagen de la anfitriona"
                 className={` object-cover border-[10px]`}
               />
             </card>
 
-            <precio className='flex flex-col py-2 items-center bg-slate-600 border-4 border-slate-500  justify-center'>
-                <div>
+            <precio className='flex flex-col py-2 items-center bg-slate-600 border-4 rounded-b-[14px]  border-slate-500  justify-center'>
+                {/* <div>
                 <div className="flex gap-1 items-center justify-center">
                     <preciotachado className="text-center relative">
                       <p className="text-[18px] text-slate-200 relative z-10 font-light">S/120.00</p>
@@ -63,13 +66,22 @@ const ActivarAnuncio = () => {
                     <h1 className="text-red-600 font-bold bg-red-100 p-2 rounded-[20px]">AHORRA 70%</h1>
                 </div>
                 </div>
-                <h1 className='text-4xl font-bold text-center rounded-b-[20px] text-slate-200 p-2 '>S/36.00<strong className="text-sm font-normal">(mes)</strong></h1>
+                <h1 className='text-4xl font-bold text-center rounded-b-[20px] text-slate-200 p-2 '>S/36.00<strong className="text-sm font-normal">(mes)</strong></h1> */}
+                <div className="flex gap-1 items-center justify-center">
+                    <preciotachado className="text-center relative">
+                      <p className="text-[18px] text-slate-200 relative z-10 font-light">S/120.00</p>
+                      <div className="absolute w-full h-0.5 bg-slate-200 bottom-1/2 transform translate-y-1/2"></div>
+                    </preciotachado>
+
+                    <h1 className="text-blue-600 font-bold bg-blue-100 p-2 rounded-[20px]">AHORRA 100%</h1>
+                </div>
+               <h1 className='text-4xl font-bold text-center rounded-b-[20px] text-slate-200 p-2 '>Gratis</h1>
             </precio>
 
             </containcard>
 
             <containcard
-            className={`shadow-custom1 border-blue-600 border-[10px] w-[280px] sm:max-w-[340px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
+            className={`shadow-custom1 border-blue-600 border-[10px] w-[280px] sm:w-[360px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
                 >
             <div className="flex flex-col gap-2 px-5 py-2 bg-slate-200 shadow-2xl rounded-t-[20px]">
               {/* <activo className='flex gap-2 items-center justify-center'>
@@ -81,30 +93,22 @@ const ActivarAnuncio = () => {
               <nav className={`text-2xl rounded-[20px] text-center font-extrabold text-blue-200 bg-blue-700 p-2 mx-4`}>MOTOMAMI</nav>
               </div>
               <beneficios className='shadow p-2 rounded w-full'>
-                <linea className='flex gap-1'>
-                <img width="24" height="24" src="https://img.icons8.com/emoji/48/check-mark-button-emoji.png" alt="check-mark-button-emoji"/>
-                    <nav className="text-center text-sm font-bold text-slate-700 my-auto">Loca empresaria.</nav>
-                </linea>
-                <linea className='flex gap-1'>
-                <img width="24" height="24" src="https://img.icons8.com/emoji/48/check-mark-button-emoji.png" alt="check-mark-button-emoji"/>
-                    <nav className="text-center text-sm font-bold text-slate-700 mt-1">Visibilidad destacada.</nav>
-                </linea>
-                <linea className='flex gap-1'>
-                <img width="22" height="22" src="https://img.icons8.com/fluency/48/cancel-2.png" alt="cancel-2"/>
-                    <nav className="text-center text-sm font-bold text-slate-700 mt-1">Posicionamiento medio.</nav>
-                </linea>
+                <h1>Visibilidad destacada.</h1>
+                <h1>Posicionamiento intermedio.</h1>
+                <h1>Más cantidad de interesados.</h1>
+                <h1>Publicidad en nuestras redes.</h1>
               </beneficios>
             </div>
             
             <card>
               <img
-                src='/assets/PROMO2.jpg'
+                src='/assets/modomotomami.jpg'
                 alt="Imagen de la anfitriona"
                 className={` object-fill border-[10px] w-[500px]`}
               />
             </card>
 
-            <precio className='flex flex-col py-2 items-center bg-blue-700 border-4 border-blue-500  justify-center'>
+            <precio className='flex flex-col py-2 items-center bg-blue-700 border-4 border-blue-500 rounded-b-[14px]  justify-center'>
                 <div>
                 <div className="flex gap-1 items-center justify-center">
                     <preciotachado className="text-center relative">
@@ -122,7 +126,7 @@ const ActivarAnuncio = () => {
 
 
             <containcard
-            className={`shadow-custom1 border-bor-red border-[10px] w-[280px] sm:max-w-[340px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
+            className={`shadow-custom1 border-bor-red border-[10px] w-[280px] sm:w-[360px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
                 >
             <div className="flex flex-col gap-2 px-5 py-2 bg-slate-200 shadow-2xl rounded-t-[20px]">
               {/* <activo className='flex gap-2 items-center justify-center'>
@@ -135,31 +139,23 @@ const ActivarAnuncio = () => {
               </div>
               
               <beneficios className='shadow p-2 rounded w-full'>
-                <linea className='flex gap-1'>
-                <img width="24" height="24" src="https://img.icons8.com/emoji/48/check-mark-button-emoji.png" alt="check-mark-button-emoji"/>
-                    <nav className="text-center text-sm font-bold text-slate-700 my-auto">Diva absoluta.</nav>
-                </linea>
-                <linea className='flex gap-1'>
-                <img width="24" height="24" src="https://img.icons8.com/emoji/48/check-mark-button-emoji.png" alt="check-mark-button-emoji"/>
-                    <nav className="text-center text-sm font-bold text-slate-700 mt-1">Máxima exposición.</nav>
-                </linea>
-                <linea className='flex gap-1'>
-                <img width="24" height="24" src="https://img.icons8.com/emoji/48/check-mark-button-emoji.png" alt="check-mark-button-emoji"/>
-                    <nav className="text-center text-sm font-bold text-slate-700 mt-1">Posicionamiento VIP.</nav>
-                </linea>
+              <h1>Máxima exposición.</h1>
+                <h1>Posicionamiento en primera fila.</h1>
+                <h1>Mayor cantidad de interesados.</h1>
+                <h1>Publicidad en nuestras redes.</h1>
               </beneficios>
 
             </div>
             
             <card>
               <img
-                src='/assets/PROMO3.jpg'
+                src='/assets/modobichota.jpg'
                 alt="Imagen de la anfitriona"
                 className={`object-fill border-[10px]`}
               />
             </card>
 
-            <precio className='flex flex-col py-2 items-center bg-back-red border-4 border-yellow-100  justify-center'>
+            <precio className='flex flex-col py-2 items-center bg-back-red border-4 border-yellow-100 rounded-b-[14px]  justify-center'>
                 <div>
                 <div className="flex gap-1 items-center justify-center">
                     <preciotachado className="text-center relative">
@@ -185,7 +181,7 @@ const ActivarAnuncio = () => {
 
             <metodospago className="mx-2 flex flex-col gap-4 items-center mb-[40px]">
 
-          <div className="dark:text-white text-black p-5 border-bor-light border-4 rounded-lg gap-2">
+          <div className="w-[98%] dark:text-white text-black p-5 border-bor-light border-4 rounded-lg gap-2">
             <h1 className="text-center font-bold text-2xl">Cuentas bancarias (Perú)</h1>
             <h3 className="text-center mb-8"><strong>Titular:</strong> RRB CAPITAL E.I.R.L</h3>
 
@@ -234,8 +230,8 @@ const ActivarAnuncio = () => {
             </div>
           </div>
 
-         <div className="flex flex-col lg:flex-row p-5 gap-10">
-         <div className="w-full flex flex-col justify-center items-center dark:text-white text-black p-5 border-bor-light border-4 rounded-lg gap-2">
+         <div className="w-full flex flex-col  items-center justify-center sm:flex-row p-1 gap-4">
+         <div className="w-full flex flex-col justify-center items-center dark:text-white text-black p-4 border-bor-light border-4 rounded-lg gap-2">
           
           <h1 className="text-center font-bold text-3xl">Yape</h1>
           <h3 className="text-center">Escanea el qr desde tu yape</h3>
@@ -249,15 +245,16 @@ const ActivarAnuncio = () => {
           </div>
           </div>
 
-        <whatsapp className='w-full flex flex-col justify-center items-center text-white dark:text-t-dark p-5 border-bor-light border-4 rounded-lg gap-2'>
-          <a href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola%2C%20me%20interesa%20comprar%20un%20plan%20para%20mi%20anuncio%20en%20www.papayahub.pe`}
+        <whatsapp className='w-full h-full flex flex-col justify-center items-center text-white dark:text-t-dark p-5 border-bor-light border-4 rounded-lg gap-2'>
+          <a href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola%2C%20me%20interesa%20comprar%20un%20plan%20para%20mi%20anuncio%20en%20Papayahub.pe`}
         target="_blank"
         rel="noopener noreferrer"
          className='px-10 py-4 font-bold text-xl bg-green-500 hover:bg-green-600 text-white rounded-lg w-fit'>
                 WhatsApp
             </a>
             <div className='dark:text-white text-black text-center text-[16px] sm:text-base mx-10'>
-                <h1>Recuerda enviar el código del anuncio que deseas activar y tu voucher de pago.</h1>
+                <h1 className="">Envíanos un WhatsApp indicando el nivel de suscripción, código ID, nombre y activaremos tu perfil.</h1>
+    
             </div>
           </whatsapp>
          </div>
