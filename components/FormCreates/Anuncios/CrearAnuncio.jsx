@@ -468,7 +468,6 @@ const CrearAnuncio = () => {
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-
       // Valida el tamaño del archivo (en bytes)
       const maxSizeKB = 1500; // 1500KB
       if (file.size > maxSizeKB * 1024) {
@@ -504,7 +503,7 @@ const CrearAnuncio = () => {
       reader.readAsDataURL(file);
     }
 
-    setGaleriaImages(files)
+    setGaleriaImages(selectedImages)
   };
 
   const removeImage = (index) => {
@@ -525,7 +524,7 @@ const CrearAnuncio = () => {
 
 
       const formData = new FormData();
-      for (const image of galeriaImages) {
+      for (const image of selectedImages) {
         formData.append('file', image);
       }
   
@@ -585,7 +584,8 @@ const CrearAnuncio = () => {
     try {
       e.preventDefault();
 
-      
+      console.log(selectedImages);
+      console.log(formContent.galeriaVideos);
           console.log(error);
       
           if(Object.keys(error).length > 0){
@@ -1156,7 +1156,39 @@ const CrearAnuncio = () => {
 
         <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Galería de videos: </label>
-              <CldUploadButton uploadPreset="zw1ztiu3" 
+              <CldUploadButton cloudName="doxatacbw" uploadPreset="zw1ztiu3" 
+              text={{
+                en: {
+                  myFiles: "Mis archivos",
+                  webAddress: "Dirección web",
+                  camera: "Cámara",
+                  googleDrive: "Google Drive",
+                  dropbox: "Dropbox",
+                  shutterstock: "Shutterstock",
+                  gettyimages: "Getty Images",
+                  istock: "iStock",
+                  unsplash: "Unsplash",
+                  dragAndDrop: "Arrastra y suelta tus archivos aquí",
+                  or: "O",
+                  noFilesSelected: "Sin archivos seleccionados",
+                  browse: "Seleccionar archivos",
+                },
+                es: {
+                  myFiles: "Mis archivos",
+                  webAddress: "Dirección web",
+                  camera: "Cámara",
+                  googleDrive: "Google Drive",
+                  dropbox: "Dropbox",
+                  shutterstock: "Shutterstock",
+                  gettyimages: "Getty Images",
+                  istock: "iStock",
+                  unsplash: "Unsplash",
+                  dragAndDrop: "Arrastra y suelta tus archivos aquí",
+                  or: "O",
+                  noFilesSelected: "Sin archivos seleccionados",
+                  browse: "Seleccionar archivos",
+                },
+              }}
               className="flex gap-2 items-center justify-center p-2 bg-[#ffc876] border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-back-red transition-all ease-linear duration-300"
               onUpload={(result) => {
                 // Extrae la URL segura de este objeto y guárdala en el array
@@ -1170,21 +1202,36 @@ const CrearAnuncio = () => {
                 // Otras operaciones si es necesario
                 console.log(formContent.galeriaVideos);
               }}
+
+              
               
               >
                 <nav>Subir videos</nav>
                 <FaUpload className='w-4 h-4 text-black'/>
               </ CldUploadButton>
-              <div className="flex">
+              <div className="flex flex-wrap gap-2">
               { formContent && formContent?.galeriaVideos && formContent?.galeriaVideos?.map((g, index) => (
 
+                <div key={index} className="relative">
                   <video
                     key={index}
                     src={g}
                     controls
-                    className="max-w-full h-[200px]"
+                    className="max-w-full h-[120px]"
                   />
-     
+                  <button
+                  className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
+                  onClick={() => {
+                    setFormContent((prevFormContent) => ({
+                      ...prevFormContent,
+                      galeriaVideos: prevFormContent.galeriaVideos.filter((video) => video !== g),
+                    }));
+                  }}
+                  type="button"
+                >
+                  X
+                </button>
+                </div>
                 ))}
               </div>
             </div>
