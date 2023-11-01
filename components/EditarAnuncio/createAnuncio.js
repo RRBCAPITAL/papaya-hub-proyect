@@ -2,6 +2,9 @@ import axios from "axios"
 
 export const createAnuncio = async (updatedFormContent, id) => {
 
+    console.log(updatedFormContent);
+    console.log(id);
+
     const formContentData = {
         userId: updatedFormContent?.userId,
         tarifaxhr: Number(updatedFormContent?.tarifaxhr),
@@ -30,6 +33,8 @@ export const createAnuncio = async (updatedFormContent, id) => {
 
     const res = await axios.put(`/api/anuncio/${id}`, formContentData).catch(err => console.log("Hubo un error al crear: ", err))
     
+    console.log(res);
+
     if(res){
         localStorage.setItem('updatedAnuncio', JSON.stringify(true))
     }

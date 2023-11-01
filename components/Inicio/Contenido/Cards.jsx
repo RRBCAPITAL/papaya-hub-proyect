@@ -15,12 +15,27 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
     const [ anuncios, setAnuncios ] = useState()
     const [filteredAnuncios, setFilteredAnuncios] = useState([]);
     const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
+    const [listen, setListen] = useState(false)
 
     // useEffect(() => {
     //     fetch('/api/anuncio')
     //     .then(data => data.json())
     //     .then(({ data })=> setAnuncios(data))
     // }, [])
+
+    useEffect(() => {
+      setTimeout(() => {
+        setListen(!listen)
+        localStorage.removeItem('anuncioStorage')
+          fetch("/api/anuncio")
+            .then((data) => data.json())
+            .then(({ data }) => {
+              setAnuncios(data)
+              localStorage.setItem("anuncioStorage", JSON.stringify(data));
+              localStorage.removeItem("updatedAnuncio");
+            });
+      }, 60000)
+    }, [listen])
 
     useEffect(() => {
       const anuncioStorage = localStorage.getItem('anuncioStorage');

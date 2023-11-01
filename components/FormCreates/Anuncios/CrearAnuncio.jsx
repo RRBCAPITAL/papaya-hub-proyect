@@ -651,7 +651,7 @@ const CrearAnuncio = () => {
         
         
 
-        createAnuncio(updatedFormContent)
+        await createAnuncio(updatedFormContent)
 
           // Finalizar carga
           setLoading(false);

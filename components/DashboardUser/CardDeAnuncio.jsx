@@ -105,7 +105,7 @@ const CardDeAnuncio = ({
             <h1>VISTA PREVIA DEL ANUNCIO</h1>
             <h1 className="text-[10px] font-normal">(Clic para ver todos los detalles de tu anuncio.)</h1>
 
-            <Link href={`/chicas/${id}`}
+            <Link href={`/mis-anuncios/${id}`}
 
 >
   <div

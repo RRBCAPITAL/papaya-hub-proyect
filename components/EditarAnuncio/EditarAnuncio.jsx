@@ -1,4 +1,4 @@
-"use client";
+    "use client";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -9,21 +9,52 @@ import {
   distritos,
   preferenciasPrincipales
 } from "@/Data/data";
-import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 import { createAnuncio } from "./createAnuncio";
 import { validation } from "./validation";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from "next/link";
 import { RiCloseFill } from 'react-icons/ri'
+import { CldUploadButton } from 'next-cloudinary'
+import { FaUpload } from 'react-icons/fa'
+import { ordenarDiasYGenerarString } from "../FormCreates/Anuncios/ordenarDiasYGenerarString";
+import { useParams } from "next/navigation";
 
-const EditarAnuncio = ({ id }) => {
+const EditarAnuncio = () => {
 
-  const { currentUser } = useCurrentUser()
+  const params = useParams()
+  const [currentUser, setCurrentUser] = useState(null)
+  const [changeViewError, setChangeViewError] = useState(false)
+  const [touchedFields, setTouchedFields] = useState({});
+  const [anuncioEncontrado, setAnuncioEncontrado] = useState([])
 
-  const [anuncioEncontrado, setAnuncioEncontrado] = useState()
+  console.log(currentUser?.id);
+
+  const [selectedOptionsS, setSelectedOptionsS] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [dataFile, setDataFile] = useState({
+    linksVideos: []
+  })
+
+  const diasOptions = [
+    "LU",
+    "MA",
+    "MI",
+    "JU",
+    "VI",
+    "SA",
+    "DO"
+  ];
+
+  useEffect(() => {
+    const parseCurrentUser = localStorage.getItem('storedUser')
+    const user = JSON.parse(parseCurrentUser)
+    
+    if(!currentUser){
+      setCurrentUser(user)
+    }
+  }, [])
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -33,16 +64,19 @@ const EditarAnuncio = ({ id }) => {
     setIsModalOpen(false);
   };
 
-  console.log(anuncioEncontrado);
-
   const [terminoscondiciones, setTerminoscondiciones] = useState(false)
   const [filePrincipal, setFilePrincipal] = useState()
   const [galeriaImages, setGaleriaImages] = useState()
+  const [horaInicio, setHoraInicio] = useState("8:00")
+  const [horaIAmPm, setHoraIAmPm] = useState("AM")
+  const [horaFinal, setHoraFinal] = useState("12:00")
+  const [horaFAmPm, setHoraFAmPm] = useState("AM")
+  const [selectedImagesLinks, setSelectedImagesLinks] = useState([])
   const [formContent, setFormContent] = useState({
     
     userId: "",
-    tarifaxhr: 0,
-    tarifaxmr: 0,
+    tarifaxhr: null,
+    tarifaxmr: null,
     name: "",
     description: "",
     whatsapp: "",
@@ -52,26 +86,45 @@ const EditarAnuncio = ({ id }) => {
     diasAtencion: "",
     horarioInicio: "",
     horarioFin: "",
-    edad: 0,
+    edad: null,
     idioma: [],
     altura: "",
     peso: "",
     questionEnd: '',
-    atencion: []
+    atencion: [],
+    galeriaVideos: []
   });
 
+  useEffect(() => {
+    const hrF = horaFinal + " " + horaFAmPm
+    const hrI = horaInicio + " " + horaIAmPm
+
+    setFormContent((prev) => ({
+      ...prev,
+      horarioInicio: hrI
+    }))
+
+    setFormContent((prev) => ({
+      ...prev,
+      horarioFin: hrF
+    }))
+
+  }, [horaFinal, horaFAmPm, horaInicio, horaIAmPm])
+
   // useEffect(() => {
-  //   axios.get(`/api/anuncio/${id}`)
-  //   .then(res => setAnuncioEncontrado(res.data))
-  //   .catch(err => console.log(err))
-  //   }, [])
+  //   const data = localStorage.getItem("anuncioStorage")
+  //   const Anuncios = JSON.parse(data)
+  //   const anuncioFound = Anuncios?.find((a) => a?.id === id)
+  //   setAnuncioEncontrado(anuncioFound)
+  // }, [])
 
   useEffect(() => {
-    const data = localStorage.getItem("anuncioStorage")
-    const Anuncios = JSON.parse(data)
-    const anuncioFound = Anuncios?.find((a) => a?.id === id)
-    setAnuncioEncontrado(anuncioFound)
-  }, [])
+    axios.get(`/api/anuncio/${params?.id}`)
+    .then(res => setAnuncioEncontrado(res.data))
+    .catch(err => console.log(err))
+    }, [])
+
+    console.log(anuncioEncontrado);
   
     useEffect(() => {
         if (anuncioEncontrado) {
@@ -94,25 +147,36 @@ const EditarAnuncio = ({ id }) => {
             peso: anuncioEncontrado.peso,
             questionEnd: anuncioEncontrado.questionEnd,
             atencion: anuncioEncontrado.atencion,
+            galeriaFotos: anuncioEncontrado.galeriaFotos,
+            imagenPrincipal: anuncioEncontrado.imagenPrincipal,
+            galeriaVideos: anuncioEncontrado.galeriaVideos
           });
-
+  
           setSelectedImage(anuncioEncontrado.imagenPrincipal)
-          setSelectedImages(anuncioEncontrado.galeriaFotos)
-          setSelectedVideos(anuncioEncontrado.galeriaVideos)
-          setPreviewImages(anuncioEncontrado.galeriaFotos)
-          setPreviewVideos(anuncioEncontrado.galeriaVideos)
+          setSelectedImagesLinks(anuncioEncontrado.galeriaFotos)
+          // setSelectedImages(anuncioEncontrado.galeriaFotos)
+          // setPreviewImages(anuncioEncontrado.galeriaFotos)
           setFilePrincipal(anuncioEncontrado.imagenPrincipal)
           setGaleriaImages(anuncioEncontrado.galeriaFotos)
         }
       }, [anuncioEncontrado]);
-
-    console.log(anuncioEncontrado);
   
+      const handleImagesEdit = (value) => {
+
+        console.log(value);
+
+        setSelectedImagesLinks(selectedImagesLinks.filter((link) => link !== value));
+
+      }
+
   const handleTerminosCondiciones = (e) => {
     setTerminoscondiciones(!terminoscondiciones); // Cambiar el estado entre true y false
   };
 
   const [error, setError] = useState({})
+  const id = currentUser?.id
+  
+  console.log(id);
 
   useEffect(() => {
     setFormContent({
@@ -128,6 +192,12 @@ const EditarAnuncio = ({ id }) => {
       [name]: value,
     });
 
+    // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    [name]: true,
+  });
+
     // Valida el campo y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, [name]: value });
 
@@ -139,17 +209,60 @@ const EditarAnuncio = ({ id }) => {
    
   };
 
+  const handleHoraInicio = (e) => {
+    
+    setHoraInicio("")
+    
+    const { value } = e.target
+
+      setHoraInicio(value)
+  }
+
+  const handleIAmPm = (e) => {
+
+    setHoraIAmPm("")
+
+    const { value } = e.target
+    
+    setHoraIAmPm(value)
+        
+  }
+
+  const handleHoraFinal = (e) => {
+    
+    setHoraFinal("")
+    
+    const { value } = e.target
+
+      setHoraFinal(value)
+  }
+
+  const handleFAmPm = (e) => {
+
+    setHoraFAmPm("")
+
+    const { value } = e.target
+    
+    setHoraFAmPm(value)
+        
+  }
+  
   const handleAtencion = (e) => {
     const { value } = e.target;
 
     setFormContent((prevFormData) => ({
       ...prevFormData,
-      atencion: prevFormData.atencion.includes(value)
-        ? prevFormData.atencion.filter((i) => i !== value)
+      atencion: prevFormData?.atencion?.includes(value)
+        ? prevFormData?.atencion?.filter((i) => i !== value)
         : [...prevFormData.atencion, value],
     }));
 
-    // Valida la selección de idiomas y configura el error correspondiente
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    atencion: true,
+  });
+
   const fieldErrors = validation({ ...formContent, atencion: value });
   setError((prev) => ({
     ...prev,
@@ -175,6 +288,12 @@ const EditarAnuncio = ({ id }) => {
         nacionalidad: value,
       });
     }
+
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    nacionalidad: true,
+  });
     
     // Valida la nacionalidad y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, nacionalidad: value });
@@ -202,6 +321,12 @@ const EditarAnuncio = ({ id }) => {
       });
     }
 
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    region: true,
+  });
+
      // Valida el departamento y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, region: value });
   setError((prev) => ({
@@ -228,6 +353,13 @@ const EditarAnuncio = ({ id }) => {
         lugar: value,
       });
     }
+
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    provincia: true,
+  });
+
     // Valida la provincia y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, lugar: value });
   setError((prev) => ({
@@ -253,6 +385,12 @@ const EditarAnuncio = ({ id }) => {
       });
     }
 
+ // Marcar el campo como tocado
+ setTouchedFields({
+  ...touchedFields,
+  diasAtencion: true,
+});
+
      // Valida los días de atención y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, diasAtencion: value });
   setError((prev) => ({
@@ -272,6 +410,12 @@ const EditarAnuncio = ({ id }) => {
         ? prevFormData.idioma.filter((i) => i !== value)
         : [...prevFormData.idioma, value],
     }));
+
+     // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    idioma: true,
+  });
 
     // Valida la selección de idiomas y configura el error correspondiente
   const fieldErrors = validation({ ...formContent, idioma: value });
@@ -302,9 +446,13 @@ const EditarAnuncio = ({ id }) => {
     console.log(file);
 
     if (file) {
-      // Valida la extensión del archivo
       setSelectedImage()
+      setFormContent((prev) => ({
+        ...prev,
+        imagenPrincipal: ""
+      }))
       setFilePrincipal()
+      // Valida la extensión del archivo
       const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
       const extension = file.name.split(".").pop().toLowerCase();
 
@@ -315,7 +463,7 @@ const EditarAnuncio = ({ id }) => {
       }
 
       // Valida el tamaño del archivo (en bytes)
-      const maxSizeKB = 800; // 800KB
+      const maxSizeKB = 1500; // 1500KB
       if (file.size > maxSizeKB * 1024) {
         alert(`El tamaño del archivo debe ser menor o igual a ${maxSizeKB}KB.`);
         e.target.value = null; // Limpia la entrada de archivo
@@ -364,6 +512,7 @@ const EditarAnuncio = ({ id }) => {
 
     setFilePrincipal(file);
 
+
     }
   };
 
@@ -371,29 +520,24 @@ const EditarAnuncio = ({ id }) => {
 
    /** VALIDACION Y FUNCION PARA CREAR GALERIA DE IMAGENES DEL ANUNCIO */
 
+
    const [selectedImages, setSelectedImages] = useState([]);
   const [previewImages, setPreviewImages] = useState([]);
 
   const handleImagesChange = (e) => {
-    setSelectedImages([])
     const files = e.target.files;
 
     console.log(files);
-    
-    if(selectedImages?.length > 0){
-      return
-    }
 
     const updatedSelectedImages = [...selectedImages];
     const updatedPreviewImages = [...previewImages];
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-
       // Valida el tamaño del archivo (en bytes)
-      const maxSizeKB = 1000; // 800KB
+      const maxSizeKB = 1500; // 1500KB
       if (file.size > maxSizeKB * 1024) {
-        alert(`La imagen ${file.name} excede el tamaño máximo de 1000KB.`);
+        alert(`La imagen ${file.name} excede el tamaño máximo de 1.5MB.`);
         continue; // Salta este archivo y pasa al siguiente
       }
 
@@ -425,151 +569,52 @@ const EditarAnuncio = ({ id }) => {
       reader.readAsDataURL(file);
     }
 
-    setGaleriaImages(files)
+    setGaleriaImages(selectedImages)
   };
 
   const removeImage = (index) => {
-    // const updatedSelectedImages = [...selectedImages];
-    // const updatedPreviewImages = [...previewImages];
+    const updatedSelectedImages = [...selectedImages];
+    const updatedPreviewImages = [...previewImages];
 
-    // updatedSelectedImages.splice(index, 1);
-    // updatedPreviewImages.splice(index, 1);
+    updatedSelectedImages.splice(index, 1);
+    updatedPreviewImages.splice(index, 1);
 
-    // setSelectedImages(updatedSelectedImages);
-    // setPreviewImages(updatedPreviewImages);
-
-    setSelectedImages([])
-
+    setSelectedImages(updatedSelectedImages);
+    setPreviewImages(updatedPreviewImages);
   };
 
-  // FUNCION PARA CREAR GALERIA DE VIDEOS
-
-  const [selectedVideos, setSelectedVideos] = useState([]);
-  const [previewVideos, setPreviewVideos] = useState([]);
-
-  const handleVideosChange = (e) => {
-
-    setSelectedVideos([])
-
-    const files = e.target.files;
-    if(selectedVideos?.length > 0){
-      return
-    }
-    const updatedSelectedVideos = [...selectedVideos];
-    const updatedPreviewVideos = [...previewVideos];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-
-      // Valida el tamaño del archivo (en bytes)
-      const maxSizeMB = 20; // 20 MB
-      if (file.size > maxSizeMB * 1024 * 1024) {
-        alert(`El video ${file.name} excede el tamaño máximo de ${maxSizeMB} MB.`);
-        continue; // Salta este archivo y pasa al siguiente
-      }
-
-      // Agregar el video a la lista de selección y vista previa
-      updatedSelectedVideos.push(file);
-      updatedPreviewVideos.push(URL.createObjectURL(file));
-    }
-
-    // Limitar la selección de videos a un máximo de 3
-    const limitedSelectedVideos = updatedSelectedVideos.slice(0, 3);
-    const limitedPreviewVideos = updatedPreviewVideos.slice(0, 3);
-
-    setSelectedVideos(limitedSelectedVideos);
-    setPreviewVideos(limitedPreviewVideos);
-  };
-
-  const removeVideo = () => {
-    // const updatedSelectedVideos = [...selectedVideos];
-    // const updatedPreviewVideos = [...previewVideos];
-
-    // updatedSelectedVideos.splice(index, 1);
-    // updatedPreviewVideos.splice(index, 1);
-
-    // setSelectedVideos(updatedSelectedVideos);
-    // setPreviewVideos(updatedPreviewVideos);
-
-    setSelectedVideos([])
-  };
-
-  console.log(selectedVideos);
-
-  /** SUBMIT PARA CREAR ANUNCIO */
-
-  
-  function esArrayDeLinksCloudinary(variable) {
-    if (!Array.isArray(variable)) {
-      return false; // La variable no es un array
-    }
-  
-    // Verifica que todos los elementos del array sean cadenas de enlaces de Cloudinary
-    for (let i = 0; i < variable.length; i++) {
-      if (typeof variable[i] !== 'string' || !variable[i].includes('https://res.cloudinary.com/')) {
-        return false; // Uno de los elementos no es una cadena de enlace de Cloudinary
-      }
-    }
-  
-    return true; // Todos los elementos son enlaces de Cloudinary
-  }
-
-  const actionCreateGaleriaVideos = async () => {
-
-    try {
-     
-      if(esArrayDeLinksCloudinary(selectedVideos)){
-
-        return selectedVideos;
-      }
-      
-      const formData= new FormData();
-      for (const video of selectedVideos) {
-        formData.append('file', video);
-      }
-  
-      console.log(formData);
-  
-      const resGaleria = await fetch('api/anuncio/galeria-videos', {
-        method: "POST",
-        body: formData,
-      })
-  
-      const dataG = await resGaleria.json()
-  
-      console.log(dataG);
-      
-      console.log(dataG.videosUrl)
-  
-      return dataG.videosUrl;
-      
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const actionCreateGaleriaImages = async () => {
 
     try {
 
-      if(esArrayDeLinksCloudinary(selectedImages)){
-  
-        return selectedImages;
-      }
-      
+      if(selectedImages){
+        
       const formData = new FormData();
       for (const image of selectedImages) {
         formData.append('file', image);
       }
   
-      const resGaleria = await fetch('api/anuncio/galeria', {
+      const resGaleria = await fetch('/api/anuncio/galeria', {
         method: "POST",
         body: formData,
       });
   
       const dataG = await resGaleria.json();
+      const imagesUrl = dataG.imagesUrl;
 
-      return dataG.imagesUrl;
+      if(selectedImagesLinks?.length > 0){
+        if(imagesUrl?.length > 0){
+        return [...selectedImagesLinks , ...dataG.imagesUrl];
+        }
+        return selectedImagesLinks; 
+      } else if(imagesUrl?.length > 0){
+          return imagesUrl
+      }
+      }else{
+
+        return selectedImagesLinks; 
+      }
       
     } catch (error) {
       console.log(error);
@@ -582,6 +627,7 @@ const EditarAnuncio = ({ id }) => {
     setFormContent({
       userId: "",
       tarifaxhr: 0,
+      tarifaxmr: 0,
       name: "",
       description: "",
       whatsapp: "",
@@ -595,6 +641,8 @@ const EditarAnuncio = ({ id }) => {
       idioma: [],
       altura: "",
       peso: "",
+      atencion: "",
+      questionEnd: "",
       imagenPrincipal: "",
       galeriaFotos: [],
       galeriaVideos: [],
@@ -602,7 +650,9 @@ const EditarAnuncio = ({ id }) => {
 
     setSelectedImage("")
     setSelectedImages([])
-    setSelectedVideos([])
+    setSelectedImagesLinks([])
+    setGaleriaImages([])
+
   }
 
   useEffect(() => {
@@ -615,11 +665,16 @@ const EditarAnuncio = ({ id }) => {
     try {
       e.preventDefault();
 
-      if(terminoscondiciones){
-        if(formContent?.questionEnd?.length > 0){
+      console.log(formContent.galeriaFotos)
+      console.log(selectedImages);
+      console.log(selectedImagesLinks);
+      console.log(formContent.galeriaVideos);
           console.log(error);
       
-        if(Object.keys(error).length > 0){
+          if(Object.keys(error).length > 0){
+
+            setChangeViewError(true)
+
           toast.error('Error, por favor revise los campos.', {
             position: "top-right",
             autoClose: 3000,
@@ -632,32 +687,41 @@ const EditarAnuncio = ({ id }) => {
             },
           });
         } else{
-    
+          setChangeViewError(false)
+          if(terminoscondiciones){
+            if(formContent?.questionEnd?.length > 0){
+          
           // que haya una rueda girando con un mensaje que indique que estan cargando los archivos de su anuncio
           clean()
            //Galeria de imagenes y videos
            setLoading(true); // Iniciar carga
     
            // Esperar a que ambas funciones de carga se completen
-           const [galeriaVideosUrl, galeriaImagesUrl] = await Promise.all([
-            actionCreateGaleriaVideos(),
+           const [galeriaImagesUrl] = await Promise.all([
             actionCreateGaleriaImages(),
           ]);
     
-          if(filePrincipal?.length > 10){
+          console.log(galeriaImagesUrl);
+
+        // Imagen principal
+        
+        console.log(filePrincipal)
+        console.log(filePrincipal?.length);
+        console.log(formContent.imagenPrincipal);
+
+        if(filePrincipal?.length > 10){
           // Imagen principal
       
         // Actualizar formContent con las URLs de las galerías
         const updatedFormContent = {
           ...formContent,
           imagenPrincipal: filePrincipal,
-          galeriaVideos: galeriaVideosUrl,
           galeriaFotos: galeriaImagesUrl,
         };
     
         console.log(updatedFormContent);
 
-        createAnuncio(updatedFormContent, id)
+        await createAnuncio(updatedFormContent, params.id)
     
           // Finalizar carga
           setLoading(false);
@@ -665,22 +729,15 @@ const EditarAnuncio = ({ id }) => {
           // setLoading(false); // Finalizar carga
           return
           }
-            // Imagen principal
-          
+
         const formData = new FormData()
         formData.append('file', filePrincipal)
-    
-        console.log(filePrincipal);
-    
-        console.log(formData);
     
         const res = await fetch('/api/anuncio/imagen-principal', {
           method: "POST",
           body: formData,
         })
-
-        
-        
+    
         const data = await res.json()
         console.log(res);
         console.log(data);
@@ -699,22 +756,18 @@ const EditarAnuncio = ({ id }) => {
         const updatedFormContent = {
           ...formContent,
           imagenPrincipal: imageUrl,
-          galeriaVideos: galeriaVideosUrl,
           galeriaFotos: galeriaImagesUrl,
         };
+        
+        
 
-        console.log(updatedFormContent);
+        await createAnuncio(updatedFormContent, params.id)
 
-        createAnuncio(updatedFormContent, id)
-    
-        // Finalizar carga
-        setLoading(false);
-        setShowModal(true)
-        // setLoading(false); // Finalizar carga
-        return
-          
-    
-        }
+          // Finalizar carga
+          setLoading(false);
+          setShowModal(true)
+          // setLoading(false); // Finalizar carga
+          return
         }else{
           toast.error('Responde la pregunta obligatoria para continuar.', {
             position: "top-right",
@@ -741,6 +794,7 @@ const EditarAnuncio = ({ id }) => {
           },
         });
       }
+        }
       
     } catch (error) {
       console.log(error);
@@ -762,15 +816,62 @@ const EditarAnuncio = ({ id }) => {
     });
   }
 
+  const toggleOptionS = (optionS) => {
+    // Copia el array de opciones seleccionadas
+    const newSelectedOptionsS = [...selectedOptionsS];
+
+    // Verifica si la opción ya está seleccionada y la quita
+    if (newSelectedOptionsS.includes(optionS)) {
+      const index = newSelectedOptionsS.indexOf(optionS);
+      if (index !== -1) {
+        newSelectedOptionsS.splice(index, 1);
+      }
+    } else {
+      // Agrega la opción seleccionada
+      newSelectedOptionsS.push(optionS);
+    }
+    setSelectedOptionsS(newSelectedOptionsS);
+    const diasAtencionString = ordenarDiasYGenerarString(newSelectedOptionsS);
+
+    console.log(diasAtencionString);
+
+    // Actualiza el estado de opciones seleccionadas
+    setFormContent((prevFormContent) => ({
+      ...prevFormContent,
+      diasAtencion: diasAtencionString,
+    }));
+
+    // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    diasAtencion: true,
+  });
+
+  const fieldErrors = validation({ ...formContent, diasAtencion: diasAtencionString });
+  setError((prev) => ({
+    ...prev,
+    diasAtencion: fieldErrors.diasAtencion, // Configura el error para el campo de idioma
+  }));
+  };
+
+  const isOptionSelectedS =  (optionS) => {
+    if(selectedOptionsS?.includes(optionS)){
+      return true
+    }
+    return false
+  }
+
+  const AmPm = ["AM", "PM"]
+  console.log(formContent);
 
   return (
     
     <containert className="relative flex dark:bg-dark-d bg-white">
       {showModal && (
-          <div className="z-100 fixed bg-[#000000e6] flex h-full w-screen items-center justify-center text-white">
+          <div className="z-100 fixed bg-[#000000e6] flex h-full w-screen overflow-x-hidden items-center justify-center text-white">
        
             <section className="relative bg-[#144912] border-4 border-[#63ff41] p-10 flex flex-col items-center justify-center gap-1 mx-4">
-            <Link href={'/dashboard-de-usuario'} className="absolute text-red-500 font-bold top-0 right-0 text-xl p-1 bg-black hover:scale-105" >
+            <Link href={`/dashboard-de-usuario/${id}`} className="absolute text-red-500 font-bold top-0 right-0 text-xl p-1 bg-black hover:scale-105">
               <RiCloseFill />
             </Link>
             <ok className='flex flex-col items-center justify-center gap-1 mt-2'>
@@ -778,11 +879,13 @@ const EditarAnuncio = ({ id }) => {
               <nav className="text-center text-3xl lg:text-4xl font-extrabold">Actualización exitosa</nav>
               
             </ok>
-            <inactive className='flex flex-col items-center justify-center gap-1'>
-              <nav className="text-center font-extralight text-sm">Ya puedes revisar tu anuncio actualizado.</nav>
-            </inactive>
+            {/* <inactive className='flex flex-col items-center justify-center gap-1'>
+              <nav className="text-center font-extralight text-sm">Pero tu anuncio se encuentra inactivo</nav>
+              <img width="18" height="18" src="https://img.icons8.com/color/48/high-priority.png" alt="high-priority"/>
+            </inactive> */}
             <buttons className='flex gap-2 mt-4'>
-              <Link href={'/dashboard-de-usuario'} className="p-4 bg-red-500 hover:bg-red-600 rounded text-center font-extrabold">Ver anuncio</Link>
+              <Link href={`/dashboard-de-usuario/${id}`} className="p-4 bg-red-500 hover:bg-red-600 rounded text-center font-extrabold">Ver anuncio</Link>
+              {/* <Link href={'/activar-anuncio'} className="p-4 bg-violet-600 hover:bg-violet-700 rounded text-center font-extrabold">Activar anuncio</Link> */}
             </buttons>
             </section>            
           </div>
@@ -790,7 +893,7 @@ const EditarAnuncio = ({ id }) => {
       {loading && (
           <div className="z-100 fixed bg-[#000000e6] flex h-full w-screen items-center justify-center text-white font-extrabold">
        
-            <nav className=" absolute text-center text-2xl lg:text-3xl">Actualizando anuncio</nav>
+            <nav className=" absolute text-center text-2xl lg:text-3xl">Modificando anuncio</nav>
             <div class="flex flex-row gap-2 mt-[100px] lg:mt-[120px]">
               <div class="w-10 h-10 rounded-full bg-back-red animate-bounce [animation-delay:.7s]"></div>
               <div class="w-10 h-10 rounded-full bg-back-red animate-bounce [animation-delay:.3s]"></div>
@@ -798,11 +901,11 @@ const EditarAnuncio = ({ id }) => {
             </div>
           </div>
           )}
-      <contain className=" w-screen min-h-screen flex flex-col items-center">
+      <contain className=" w-screen min-h-screen overflow-x-hidden flex flex-col items-center">
       
       <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
         <titulo className="dark:text-white text-black mt-[100px] font-bold text-3xl border-b-4 border-bor-red">
-          <strong className="text-t-red">EDITAR</strong> ANUNCIO
+          <strong className="text-t-red">CREAR</strong> ANUNCIO
         </titulo>
 
         <form
@@ -817,43 +920,43 @@ const EditarAnuncio = ({ id }) => {
                 type="text"
                 id="name"
                 name="name"
-                value={formContent?.name}
+                value={formContent.name}
                 onChange={handleChange}
-                placeholder="Jenny Montero"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-              { error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
+              { changeViewError && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : touchedFields.name && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-1">
               <label htmlFor="name" className="dark:text-white text-black">Tarifa por hora (en soles):</label>
               <input
-                type="number"
+                type="text"
                 id="tarifaxhr"
                 name="tarifaxhr"
                 value={formContent.tarifaxhr}
                 onChange={handleChange}
-                placeholder="S/200"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] bg-white dark:text-white text-black dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder=""
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-               { error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
+              { error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : touchedFields.tarifaxhr && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-1">
               <label htmlFor="name" className="dark:text-white text-black">Tarifa por media hora (en soles):</label>
               <input
-                type="number"
+                type="text"
                 id="tarifaxmr"
                 name="tarifaxmr"
                 value={formContent.tarifaxmr}
                 onChange={handleChange}
-                placeholder="S/200"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] bg-white dark:text-white text-black dark:bg-dark-d focus:dark:text-white focustext-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder=""
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-               { error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
+                { error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : touchedFields.tarifaxmr && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -864,11 +967,11 @@ const EditarAnuncio = ({ id }) => {
                 name="whatsapp"
                 value={formContent.whatsapp}
                 onChange={handleChange}
-                placeholder="924125323"
+                placeholder=""
                 className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
-                x
+                
               />
-              { error && error.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.whatsapp}</p> : ""}
+               { error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -882,64 +985,87 @@ const EditarAnuncio = ({ id }) => {
                 value={formContent.description}
                 onChange={handleChange}
                 style={{ resize: 'none' }}
-                placeholder="💓Mi nombre es Jenny 😄Un poco loca😋Creo que solo tenemos una vida y necesitamos vivirla al máximo! ¿Quieres chatear conmigo? escríbeme aquí https://fans.ly/r/jenny Sueño con convertirme en tu modelo
-                favorita❤️ Ofertas comerciales: jenny@gmail.com​"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder="​"
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-              { error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
+               { error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : touchedFields.description && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
             </div>
 
             <atencion className="flex flex-col gap-[12px]">
               <h1 className="dark:text-white text-black" >Horario de atención</h1>
-              <containerhorarioatencion className="dark:bg-back-red bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
+              <containerhorarioatencion className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="dark:text-white text-black">Días:</label>
-                  <select
-                    name="diasAtencion"
-                    id="diasAtencion"
-                    value={formContent.diasAtencion}
-                    onChange={handleDiasDeAtencion}
-                    className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                  >
-                    <option value="">
-                      Selecciona
-                    </option>
-                    <option value="Todos los días">Todos los días</option>
-                    <option value="Lunes a viernes">Lunes a viernes</option>
-                    <option value="Solo sábados">Solo sábados</option>
-                    <option value="Solo domingos">Solo domingos</option>
-                    <option value="Sábados y domingos">
-                      Sábados y domingos
-                    </option>
-                  </select>
-                  { error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : ""}
+                  <label htmlFor="name" className="dark:text-white text-black">Selecciona tus días de atención:</label>
+                  <diasatencion className="grid grid-cols-4 lg:grid-cols-7 gap-1">
+        {diasOptions.map((optionS) => (
+          <button
+            key={optionS}
+            type="button"
+            className={` ${
+              isOptionSelectedS(optionS) ? "bg-[#ff5f2f] text-white font-extrabold dark:bg-[#7c2929]" : "bg-white dark:bg-dark-l"
+            } text-sm p-[4px] border-2 border-white text-black dark:border-bor-red dark:text-t-red rounded-[10px] hover:bg-[#ff6a50] hover:text-white hover:dark:bg-[#7c2929] transition-all ease-linear duration-300`}
+            onClick={() => toggleOptionS(optionS)}
+          >
+            {optionS}
+          </button>
+        ))}
+      </diasatencion>
+                  { error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : touchedFields.diasAtencion && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : ""}
                 </div>
 
-                <div className="flex gap-6 mx-auto">
+                <div className="flex flex-row sm:flex-col lg:flex-row gap-2 mx-auto">
                   <div className="flex flex-col gap-2">
                     <label htmlFor="horarioInicio" className="dark:text-white text-black">Hora de inicio:</label>
-                    <input
-                      type="time"
-                      id="horarioInicio"
-                      name="horarioInicio"
-                      value={formContent.horarioInicio}
-                      onChange={handleChange}
-                      className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                      
-                    />
+                    <hora className='flex flex-row gap-[1px]'>
+                    <select name="" id="" onChange={handleHoraInicio} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                      <option value="">Selecciona:</option>
+                      <option name="1:00" value="1:00">1:00</option>
+                      <option name="1:00" value="2:00">2:00</option>
+                      <option name="1:00" value="3:00">3:00</option>
+                      <option name="1:00" value="4:00">4:00</option>
+                      <option name="1:00" value="5:00">5:00</option>
+                      <option value="6:00">6:00</option>
+                      <option value="7:00">7:00</option>
+                      <option value="8:00">8:00</option>
+                      <option value="9:00">9:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                    </select>
+                    <select onChange={handleIAmPm} className="text-sm focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                      {/* <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">AM</button>
+                      <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">PM</button> */}
+                    </select>
+                    </hora>
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="horarioFin" className="dark:text-white text-black">Hora de cierre:</label>
-                    <input
-                      type="time"
-                      id="horarioFin"
-                      name="horarioFin"
-                      value={formContent.horarioFin}
-                      onChange={handleChange}
-                      className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
-                      
-                    />
+                    <hora className='flex flex-row gap-[1px]'>
+                    <select name="" id="" onChange={handleHoraFinal} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                      <option value="">Selecciona:</option>
+                      <option value="1:00">1:00</option>
+                      <option value="2:00">2:00</option>
+                      <option value="3:00">3:00</option>
+                      <option value="4:00">4:00</option>
+                      <option value="5:00">5:00</option>
+                      <option value="6:00">6:00</option>
+                      <option value="7:00">7:00</option>
+                      <option value="8:00">8:00</option>
+                      <option value="9:00">9:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="12:00">12:00</option>
+                    </select>
+                    <select onChange={handleFAmPm} className="text-sm focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                      {/* <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">AM</button>
+                      <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">PM</button> */}
+                    </select>
+                    </hora>
                   </div>
                 </div>
               </containerhorarioatencion>
@@ -947,7 +1073,7 @@ const EditarAnuncio = ({ id }) => {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Preferencias de atención</label>
-              <div className="bg-back-red dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
+              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {preferenciasPrincipales.map((i) => (
                   <div key={i} className="flex gap-1">
                     <label htmlFor={i}>{i}</label>
@@ -962,7 +1088,7 @@ const EditarAnuncio = ({ id }) => {
                   </div>
                 ))}
               </div>
-              { error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : ""}
+              { error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : touchedFields.atencion && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -972,7 +1098,7 @@ const EditarAnuncio = ({ id }) => {
                 id="nacionalidad"
                 value={formContent.nacionalidad}
                 onChange={handleNacionalidad}
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               >
                 <option value="">Selecciona una nacionalidad</option>
                 {nacionalidades.map((n) => (
@@ -981,7 +1107,7 @@ const EditarAnuncio = ({ id }) => {
                   </option>
                 ))}
               </select>
-              { error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : ""}
+              { error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : touchedFields.nacionalidad && error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -991,7 +1117,7 @@ const EditarAnuncio = ({ id }) => {
                 id="region"
                 value={formContent.region}
                 onChange={handleDepartamento}
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               >
                 <option value="">Selecciona un departamento</option>
                 {regiones.map((r) => (
@@ -1000,7 +1126,7 @@ const EditarAnuncio = ({ id }) => {
                   </option>
                 ))}
               </select>
-              { error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : ""}
+              { error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : touchedFields.region && error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -1010,7 +1136,7 @@ const EditarAnuncio = ({ id }) => {
                 id="lugar"
                 value={formContent.lugar}
                 onChange={handleProvincia}
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               >
                 <option value="">Selecciona una provincia</option>
                 {distritosEncontrados &&
@@ -1020,27 +1146,27 @@ const EditarAnuncio = ({ id }) => {
                     </option>
                   ))}
               </select>
-              { error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : ""}
+              { error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : touchedFields.lugar && error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Edad en años:</label>
               <input
-                type="number"
+                type="text"
                 id="edad"
                 name="edad"
                 value={formContent.edad}
                 onChange={handleChange}
-                placeholder="25"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder=""
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
                 
               />
-               { error && error.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.edad}</p> : ""}
+                { error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : touchedFields.edad && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
               <label htmlFor="name" className="dark:text-white text-black">Selecciona los idiomas que domine:</label>
-              <div className="bg-back-red dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
+              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {idiomasPrincipales.map((i) => (
                   <div key={i} className="flex gap-2">
                     <label htmlFor={i}>{i}</label>
@@ -1056,7 +1182,7 @@ const EditarAnuncio = ({ id }) => {
                   </div>
                 ))}
               </div>
-              { error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : ""}
+              { error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : touchedFields.idioma && error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -1067,11 +1193,11 @@ const EditarAnuncio = ({ id }) => {
                 name="peso"
                 value={formContent.peso}
                 onChange={handleChange}
-                placeholder="48"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder=""
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                
               />
-              { error && error.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.peso}</p> : ""}
+               { error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : touchedFields.peso && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2">
@@ -1082,15 +1208,15 @@ const EditarAnuncio = ({ id }) => {
                 name="altura"
                 value={formContent.altura}
                 onChange={handleChange}
-                placeholder="1.78"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder=""
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
               
               />
-              { error && error.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error.altura}</p> : ""}
+               { error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : touchedFields.altura && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : ""}
             </div>
                   {/* Imagen principal */}
             <div className="flex flex-col gap-2">
-      <label htmlFor="name" className="dark:text-white text-black flex gap-4">Imagen principal <nav className="dark:text-white text-black text-sm">(Ancho: 840px, Alto: 1060px)</nav></label>
+      <label htmlFor="name" className="dark:text-white text-black flex gap-4">Imagen principal<nav className="dark:text-white text-black text-sm mt-[3px]">(Ancho: 1350px, Alto: 1000px)</nav></label>
       <input
         type="file"
         onChange={handleImageChange}
@@ -1109,7 +1235,7 @@ const EditarAnuncio = ({ id }) => {
 
                   {/* Galería de imagenes */}
     <div className="flex flex-col gap-2">
-      <label htmlFor="name" className="dark:text-white text-black">Galería de fotos (max. 6 fotos)</label>
+      <label htmlFor="name" className="dark:text-white text-black">Galería de fotos: </label>
       <input
         type="file"
         onChange={handleImagesChange}
@@ -1117,65 +1243,129 @@ const EditarAnuncio = ({ id }) => {
         accept="image/jpeg, image/png, image/gif"
         className="p-[10px] border-2 dark:text-white text-black border-bor-red rounded-[10px] outline-none focus:ring focus:ring-blue-300"
       />
-      {selectedImages.length > 0 && (
-        <div>
-          <h2 className="dark:text-white text-black">Fotos seleccionadas:</h2>
-          <div className="relative flex flex-wrap gap-2 border-2 border-red-500 p-4 rounded-xl">
-            {selectedImages?.map((image, index) => (
+      <div className="flex flex-col gap-1">
+      {setSelectedImagesLinks?.length > 0 && (
+
+
+          <div className="grid grid-cols-4 overflow-hidden gap-1">
+            {selectedImagesLinks?.map((image, index) => (
               <div key={index} className="relative">
-                <img src={previewImages[index]} alt={`Foto ${index + 1}`} className="w-[100px] h-[100px]"/>
-               
-              </div>
-            ))}
-             <button
-                  className="absolute top-0 right-0 p-1 w-fit bg-red-500 text-white rounded-[20px]"
-                  onClick={() => removeImage()}
+                <img src={image} alt={`Foto ${index + 1}`} />
+                <button
+                  className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
+                  onClick={() => handleImagesEdit(image)}
                   type="button"
                 >
                   X
                 </button>
+              </div>
+            ))}
           </div>
-        </div>
+          
+ 
       )}
+      { selectedImages?.length > 0 && (
+      
+          <div className="grid grid-cols-4 overflow-hidden gap-1">
+            {selectedImages?.map((image, index) => (
+              <div key={index} className="relative">
+                <img src={previewImages[index]} alt={`Foto ${index + 1}`} />
+                <button
+                  className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
+                  onClick={() => removeImage(index)}
+                  type="button"
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          
+          </div>)
+          }
+      </div>
     </div>
 
-             {/* Galería de videos */}
-      <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="dark:text-white text-black">
-          Galería de videos (máximo 3 videos, máximo de 20MB / uno):
-        </label>
-        <input
-          type="file"
-          onChange={handleVideosChange}
-          multiple
-          accept="video/*"
-          className="p-[10px] border-2 dark:text-white text-black border-bor-red rounded-[10px] outline-none focus:ring focus:ring-blue-300"
-        />
-        {selectedVideos.length > 0 && (
-          <div>
-            <h2 className="dark:text-white text-black">Videos seleccionados:</h2>
-            <div className="relative flex flex-wrap gap-2 border-2 border-red-500 p-4 rounded-xl">
-              {selectedVideos.map((video, index) => (
+        <div className="flex flex-col gap-2">
+              <label htmlFor="name" className="dark:text-white text-black">Galería de videos: </label>
+              <CldUploadButton cloudName="doxatacbw" uploadPreset="zw1ztiu3" 
+              text={{
+                en: {
+                  myFiles: "Mis archivos",
+                  webAddress: "Dirección web",
+                  camera: "Cámara",
+                  googleDrive: "Google Drive",
+                  dropbox: "Dropbox",
+                  shutterstock: "Shutterstock",
+                  gettyimages: "Getty Images",
+                  istock: "iStock",
+                  unsplash: "Unsplash",
+                  dragAndDrop: "Arrastra y suelta tus archivos aquí",
+                  or: "O",
+                  noFilesSelected: "Sin archivos seleccionados",
+                  browse: "Seleccionar archivos",
+                },
+                es: {
+                  myFiles: "Mis archivos",
+                  webAddress: "Dirección web",
+                  camera: "Cámara",
+                  googleDrive: "Google Drive",
+                  dropbox: "Dropbox",
+                  shutterstock: "Shutterstock",
+                  gettyimages: "Getty Images",
+                  istock: "iStock",
+                  unsplash: "Unsplash",
+                  dragAndDrop: "Arrastra y suelta tus archivos aquí",
+                  or: "O",
+                  noFilesSelected: "Sin archivos seleccionados",
+                  browse: "Seleccionar archivos",
+                },
+              }}
+              className="flex gap-2 items-center justify-center p-2 bg-[#ffc876] border-2 rounded-[10px] border-bor-red text-black font-bold hover:bg-back-red transition-all ease-linear duration-300"
+              onUpload={(result) => {
+                // Extrae la URL segura de este objeto y guárdala en el array
+                if (result.info && result.info.secure_url) {
+                  const newLink = result.info.secure_url;
+                  setFormContent((prevFormContent) => ({
+                    ...prevFormContent,
+                    galeriaVideos: [...prevFormContent.galeriaVideos, newLink],
+                  }));
+                }
+                // Otras operaciones si es necesario
+                console.log(formContent.galeriaVideos);
+              }}
+
+              
+              
+              >
+                <nav>Subir videos</nav>
+                <FaUpload className='w-4 h-4 text-black'/>
+              </ CldUploadButton>
+              <div className="flex flex-wrap gap-2">
+              { formContent && formContent?.galeriaVideos && formContent?.galeriaVideos?.map((g, index) => (
+
                 <div key={index} className="relative">
                   <video
-                    src={previewVideos[index]}
+                    key={index}
+                    src={g}
                     controls
-                    className="max-w-full h-[200px]"
+                    className="max-w-full h-[120px]"
                   />
-                  
+                  <button
+                  className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
+                  onClick={() => {
+                    setFormContent((prevFormContent) => ({
+                      ...prevFormContent,
+                      galeriaVideos: prevFormContent.galeriaVideos.filter((video) => video !== g),
+                    }));
+                  }}
+                  type="button"
+                >
+                  X
+                </button>
                 </div>
-              ))}
-              <button
-                    className="absolute top-0 right-0 p-1 bg-red-500 text-white rounded-full"
-                    onClick={() => removeVideo()}
-                    type="button"
-                  >
-                    X
-                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
 
           </containerform>
           
@@ -1193,8 +1383,8 @@ const EditarAnuncio = ({ id }) => {
                 value={formContent.questionEnd}
                 onChange={handleChange}
                 style={{ resize: 'none' }}
-                placeholder="Me enteré de ustedes por medio de un anuncio de facebook...​"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-4 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-2 border-bor-red rounded-[10px] outline-none"
+                placeholder="​"
+                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
           </preguntaobligatoria>
@@ -1205,22 +1395,19 @@ const EditarAnuncio = ({ id }) => {
                       value={terminoscondiciones} checked={terminoscondiciones} onChange={handleTerminosCondiciones}/>
                   <h1>He leído y acepto los términos y condiciones</h1>
                  </div>
-                  <Link target="_blank" href={'https://drive.google.com/file/d/1IToRVqTx7j2mQ1FWvankDMRzwcYqE_zd/view?usp=sharing'} className={`text-sm text-red-500 hover:text-red-700 transition-all duration-300 ease-in-out`}>Leer términos y condiciones</Link>
+                  <Link target="_blank" href={'https://drive.google.com/file/d/1H1T-qnLR4bL4JWBkqTff3pnf8qfCqUA_/view?usp=drive_link'} className={`text-sm text-red-500 hover:text-red-700 transition-all duration-300 ease-in-out`}>Leer términos y condiciones</Link>
           </terminoscondiciones>
           
           {/* Agrega más campos del anuncio aquí */}
-          <containbuttons className="grid grid-cols-2 gap-2">
-          <Link href={'/dashboard-de-usuario'} type="button" onClick={handleClean} className="bg-red-500 shadow-normal p-4 rounded-[10px] text-white text-center hover:bg-red-600 font-bold mb-10">
-              Cancelar
-            </Link>
-            {/* <button type="button" onClick={handleClean} className="bg-yellow-50 shadow-normal p-4 rounded-[10px] text-t-red hover:bg-[#fff] font-bold mb-10">
+          <containbuttons className="grid grid-cols-2 gap-4">
+            <button type="button" onClick={handleClean} className="bg-transparent shadow-normal p-4 rounded-[10px] text-t-red hover:bg-[#fff] font-bold mb-10">
               Limpiar
-            </button> */}
+            </button>
             <button
               type="submit"
               className="bg-back-red shadow-normal red p-4 rounded-[10px] text-white hover:bg-[#ff8c57] font-bold mb-10"
             >
-              Actualizar Anuncio
+              Crear Anuncio
             </button>
           </containbuttons>
         </form>
