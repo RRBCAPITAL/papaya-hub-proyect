@@ -548,8 +548,8 @@ const CrearAnuncio = () => {
   const clean = () => {
     setFormContent({
       userId: "",
-      tarifaxhr: 0,
-      tarifaxmr: 0,
+      tarifaxhr: "",
+      tarifaxmr: "",
       name: "",
       description: "",
       whatsapp: "",
@@ -559,7 +559,7 @@ const CrearAnuncio = () => {
       diasAtencion: "",
       horarioInicio: "",
       horarioFin: "",
-      edad: 0,
+      edad: "",
       idioma: [],
       altura: "",
       peso: "",
@@ -801,10 +801,10 @@ const CrearAnuncio = () => {
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
-          className="m-5 flex flex-col dark:bg-dark-l bg-[#fffef4] sm:max-w-[80%] lg:max-w-[50%] shadow-custom1 rounded-[10px] px-5 items-center gap-2"
+          className="m-5 flex flex-col dark:bg-dark-l bg-[#fffef4] w-[95%] sm:max-w-[80%] lg:max-w-[50%] shadow-custom1 rounded-[10px] px-5 items-center gap-2"
         >
           <containerform className=" grid sm:grid-cols-2 lg:grid-cols-2 gap-4 my-10">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Nombre:</label>
               <input
                 type="text"
@@ -819,7 +819,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : touchedFields.name && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Tarifa por hora (en soles):</label>
               <input
                 type="text"
@@ -834,7 +834,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : touchedFields.tarifaxhr && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Tarifa por media hora (en soles):</label>
               <input
                 type="text"
@@ -849,7 +849,7 @@ const CrearAnuncio = () => {
                 { changeViewError && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : touchedFields.tarifaxmr && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Número de WhatsApp:</label>
               <input
                 type="text"
@@ -864,7 +864,7 @@ const CrearAnuncio = () => {
                { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Descripción:</label>
               <textarea
                 type="text"
@@ -882,12 +882,12 @@ const CrearAnuncio = () => {
                { changeViewError && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : touchedFields.description && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
             </div>
 
-            <atencion className="flex flex-col gap-[12px]">
+            <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto">
               <h1 className="dark:text-white text-black" >Horario de atención</h1>
               <containerhorarioatencion className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="dark:text-white text-black">Selecciona tus días de atención:</label>
-                  <diasatencion className="grid grid-cols-4 lg:grid-cols-7 gap-1">
+                  <diasatencion className="grid grid-cols-4 xl:grid-cols-7 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
         {diasOptions.map((optionS) => (
           <button
             key={optionS}
@@ -904,8 +904,8 @@ const CrearAnuncio = () => {
                   { changeViewError && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : touchedFields.diasAtencion && error && error?.diasAtencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.diasAtencion}</p> : ""}
                 </div>
 
-                <div className="flex flex-row sm:flex-col lg:flex-row gap-2 mx-auto">
-                  <div className="flex flex-col gap-2">
+                <div className="flex flex-col 2xl:flex-row gap-2 w-[300px] sm:w-full mx-auto">
+                  <div className="flex flex-row sm:flex-col gap-2">
                     <label htmlFor="horarioInicio" className="dark:text-white text-black">Hora de inicio:</label>
                     <hora className='flex flex-row gap-[1px]'>
                     <select name="" id="" onChange={handleHoraInicio} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
@@ -931,7 +931,7 @@ const CrearAnuncio = () => {
                     </select>
                     </hora>
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-row sm:flex-col gap-2">
                     <label htmlFor="horarioFin" className="dark:text-white text-black">Hora de cierre:</label>
                     <hora className='flex flex-row gap-[1px]'>
                     <select name="" id="" onChange={handleHoraFinal} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
@@ -961,7 +961,7 @@ const CrearAnuncio = () => {
               </containerhorarioatencion>
             </atencion>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Preferencias de atención</label>
               <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {preferenciasPrincipales.map((i) => (
@@ -981,7 +981,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : touchedFields.atencion && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Nacionalidad de la chica:</label>
               <select
                 name="nacionalidad"
@@ -1000,7 +1000,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : touchedFields.nacionalidad && error && error?.nacionalidad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.nacionalidad}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Departamento de atención:</label>
               <select
                 name="region"
@@ -1019,7 +1019,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : touchedFields.region && error && error?.region ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.region}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Provincia de atención:</label>
               <select
                 name="lugar"
@@ -1039,7 +1039,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : touchedFields.lugar && error && error?.lugar ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.lugar}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Edad en años:</label>
               <input
                 type="text"
@@ -1054,7 +1054,7 @@ const CrearAnuncio = () => {
                 { changeViewError && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : touchedFields.edad && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Selecciona los idiomas que domine:</label>
               <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
                 {idiomasPrincipales.map((i) => (
@@ -1075,7 +1075,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : touchedFields.idioma && error && error?.idioma ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.idioma}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black ">Peso en kg:</label>
               <input
                 type="text"
@@ -1090,7 +1090,7 @@ const CrearAnuncio = () => {
                { changeViewError && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : touchedFields.peso && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Altura:</label>
               <input
                 type="text"
@@ -1105,7 +1105,7 @@ const CrearAnuncio = () => {
                { changeViewError && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : touchedFields.altura && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : ""}
             </div>
                   {/* Imagen principal */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
       <label htmlFor="name" className="dark:text-white text-black flex gap-4">Imagen principal<nav className="dark:text-white text-black text-sm mt-[3px]">(Ancho: 1350px, Alto: 1000px)</nav></label>
       <input
         type="file"
@@ -1124,7 +1124,7 @@ const CrearAnuncio = () => {
     </div>
 
                   {/* Galería de imagenes */}
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
       <label htmlFor="name" className="dark:text-white text-black">Galería de fotos: </label>
       <input
         type="file"
@@ -1154,7 +1154,7 @@ const CrearAnuncio = () => {
       )}
     </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="dark:text-white text-black">Galería de videos: </label>
               <CldUploadButton cloudName="doxatacbw" uploadPreset="zw1ztiu3" 
               text={{
@@ -1240,8 +1240,8 @@ const CrearAnuncio = () => {
           
           <preguntaobligatoria className='mb-5 flex flex-col sm:flex-row gap-4 items-center justify-center'>
                 <div className="flex flex-col gap-2 items-center justify-center dark:text-white text-black">
-                <h1 className="text-xl font-bold">¿Cómo te enteraste de nosotros?</h1>
-                <h6 className="text-sm">(Pregunta obligatoria para continuar)</h6>
+                <h1 className="text-normal sm:text-xl font-bold">¿Cómo te enteraste de nosotros?</h1>
+                <h6 className="text-[12px] sm:text-sm">(Pregunta obligatoria para continuar)</h6>
                 </div>
                 <textarea
                 type="text"
@@ -1258,11 +1258,11 @@ const CrearAnuncio = () => {
               />
           </preguntaobligatoria>
 
-          <terminoscondiciones className="flex flex-col items-center gap-2 mb-5 font-bold dark:text-white text-black ">
-                 <div className="flex gap-2">
-                 <input type="radio"
+          <terminoscondiciones className="w-[300px] sm:w-full mx-auto flex flex-col items-center gap-2 mb-5 font-bold dark:text-white text-black ">
+                 <div className="flex items-center justify-center gap-2 text-normal">
+                 <input type="radio" className="mx-auto cursor-pointer"
                       value={terminoscondiciones} checked={terminoscondiciones} onChange={handleTerminosCondiciones}/>
-                  <h1>He leído y acepto los términos y condiciones</h1>
+                  <h1 className="text-center">He leído y acepto los términos y condiciones</h1>
                  </div>
                   <Link target="_blank" href={'https://drive.google.com/file/d/1H1T-qnLR4bL4JWBkqTff3pnf8qfCqUA_/view?usp=drive_link'} className={`text-sm text-red-500 hover:text-red-700 transition-all duration-300 ease-in-out`}>Leer términos y condiciones</Link>
           </terminoscondiciones>
@@ -1274,7 +1274,7 @@ const CrearAnuncio = () => {
             </button>
             <button
               type="submit"
-              className="bg-back-red shadow-normal red p-4 rounded-[10px] text-white hover:bg-[#ff8c57] font-bold mb-10"
+              className="bg-back-red shadow-normal red p-4 rounded-[10px] text-white hover:bg-[#ff8c57] duration-200 ease-linear transition-all font-bold mb-10"
             >
               Crear Anuncio
             </button>
