@@ -180,7 +180,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 }
 
                 {
-                  userR?.isSignedIn ? <Link
+                  currentUserR ? <Link
                   href={'/crear-anuncio'}
                   className={`bg-back-red flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
                   rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
@@ -264,15 +264,24 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     </Link>
                     }
 
-                    <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
-                        
-                        <h3 className="my-auto text-xl">Crear anuncio</h3>
-                        <FaUserCheck className="my-[4px] h-6 w-6"/>       
-                        
-                    </Link>
+                    {
+                      currentUserR ? <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                      rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                          
+                          <h3 className="my-auto text-xl">Crear anuncio</h3>
+                          <FaUserCheck className="my-[4px] h-6 w-6"/>       
+                          
+                      </Link> :
+                      <Link href={'/sign-in'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                      rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                          
+                          <h3 className="my-auto text-xl">Crear anuncio</h3>
+                          <FaUserCheck className="my-[4px] h-6 w-6"/>       
+                          
+                      </Link>
+                    }
 
-                {!userR.isSignedIn &&
+                {!currentUserR &&
                 <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] flex justify-center mt-2 bg-back-light dark:text-white text-black py-[1rem] px-[1rem] border-none outline-none
                 rounded-[10px] font-bold mx-2 cursor-pointer">
                 Iniciar Sesión
