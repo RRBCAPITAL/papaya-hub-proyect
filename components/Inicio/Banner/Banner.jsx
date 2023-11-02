@@ -1,4 +1,5 @@
 import React from 'react'
+import { BsInstagram, BsFacebook, BsTelegram, BsTiktok} from 'react-icons/bs'
 
 const Banner = () => {
   return (
@@ -21,6 +22,12 @@ const Banner = () => {
                       m-auto bg-no-repeat object-cover w-full h-full rounded-[20px]"
               
             />
+            <div className='absolute z-50 bottom-1 right-2 flex gap-6 text-4xl p-[10px] rounded-[10px] w-fit items-center justify-center'>
+              <a target='_blank' href="" className=" text-white"><BsInstagram className='w-4 h-4 sm:w-6 sm:h-6  hover:scale-125 transition-all ease-linear duration-300'/></a>
+              <a target='_blank' href="" className="text-white"><BsTiktok className='w-4 h-4 sm:w-6 sm:h-6 hover:scale-125 transition-all ease-linear duration-300'/></a>
+              <a target='_blank' href="" className="text-white"><BsTelegram className='w-4 h-4 sm:w-6 sm:h-6  hover:scale-125 transition-all ease-linear duration-300'/></a>
+              
+          </div>
              {/* <img
               src="/assets/newbannerpro12.jpg"
               alt="teamdev"
