@@ -22,10 +22,12 @@ const Banner = () => {
                       m-auto bg-no-repeat object-cover w-full h-full rounded-[20px]"
               
             />
-            <div className='absolute z-50 bottom-1 right-2 flex gap-4 text-4xl p-[10px] rounded-[10px] w-fit items-center justify-center'>
+            <div className='absolute z-50 bottom-1 right-2 flex gap-4 text-4xl p-[4px] rounded-[10px] w-fit items-center justify-center'>
+              <h1 className='text-sm lg:text-[18px]'>¡Únete a la comunidad!</h1>
+              <a target='_blank' href="https://t.me/+582ZqhG3W_g2YzYx" className=""><img src='/assets/logotelegram.png' className='w-4 h-4 sm:w-[25px] sm:h-[25px]  hover:scale-125 transition-all ease-linear duration-300'/></a>
               <a target='_blank' href="https://www.instagram.com/papayahub.pe" className=" text-white"><BsInstagram className='w-4 h-4 sm:w-6 sm:h-6  hover:scale-125 transition-all ease-linear duration-300'/></a>
               {/* <a target='_blank' href="" className="text-white"><BsTiktok className='w-4 h-4 sm:w-6 sm:h-6 hover:scale-125 transition-all ease-linear duration-300'/></a> */}
-              <a target='_blank' href="https://t.me/+582ZqhG3W_g2YzYx" className=""><img src='/assets/logotelegram.png' className='w-4 h-4 sm:w-[25px] sm:h-[25px]  hover:scale-125 transition-all ease-linear duration-300'/></a>
+              
 
           </div>
              {/* <img
