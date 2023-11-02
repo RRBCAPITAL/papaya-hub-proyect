@@ -157,7 +157,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
       <FaUserCheck className="my-auto text-t-red"/>       
     </Link>
 
-                { userR?.isSignedIn &&
+                {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                     <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
@@ -167,7 +167,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     </Link>
                 }
 
-               {!userR?.isSignedIn ? 
+               {!currentUserR? 
                 <Link href={'/sign-in'} className="dark:text-[#fff] text-black py-[0.5rem] px-[0.5rem] border-none outline-none
                 rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
                 Iniciar Sesión
