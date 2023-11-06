@@ -1,9 +1,13 @@
 import React from 'react'
 import { BsInstagram, BsFacebook, BsTelegram, BsTiktok} from 'react-icons/bs'
+import { motion } from "framer-motion"
+import { fadeIn } from '@/utils/motionTransitions'
 
 const Banner = () => {
   return (
-    <div className="mt-10 z-9 flex flex-col  text-white">
+    <motion.div className="mt-10 z-9 flex flex-col  text-white"
+    variants={fadeIn("right", 0)} initial='hidden' animate="show" exit="hidden"
+    >
         <bannercontainer className=" overflow-hidden w-full mt-10 bg-transparent rounded-xl flex items-center justify-center relative scale-[0.9]"  >
           <textbanner className="z-30 my-10 w-screen leading-0 rounded-[20px] flex flex-col items-center justify-center">
           <h1 className="mx-6 text-[16px] sm:text-3xl text-white text-center">
@@ -39,7 +43,7 @@ const Banner = () => {
             /> */}
           </div>
         </bannercontainer>
-      </div>
+      </motion.div>
   )
 }
 

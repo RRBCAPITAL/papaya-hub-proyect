@@ -5,6 +5,9 @@ import { useState } from 'react'
 import { TbFilterStar } from 'react-icons/tb'
 import ModalFilter from '../ModalFilter'
 
+import { motion } from "framer-motion"
+import { changeIn } from '@/utils/motionTransitions'
+
 
 const Filtros = ({ setTextSearch, setModalFilterOpen, setSelectedNacionalidad, setSelectedRegion, setSelectedLugar, setSelectedIdioma }) => {
 
@@ -44,7 +47,9 @@ const [nombreid, setNombreid] = useState()
   console.log(nombreid);
 
   return (
-    <filtroscontainer className='z-1 flex sm:flex-row flex-col gap-4 p-2  text-black dark:bg-dark-d bg-[#fff7e3] shadow-2xl rounded-[20px] scale-[0.9] lg:scale-[0.7]'>
+    <motion.div 
+    variants={changeIn(0.3)} initial='hidden' animate="show" exit="hidden"
+    className='z-1 flex sm:flex-row flex-col gap-4 p-2  text-black dark:bg-dark-d bg-[#fff7e3] shadow-2xl rounded-[20px] scale-[0.9] lg:scale-[0.7]'>
         <form action="" onSubmit={handleClickSearch} onKeyUp={handleKeyUp} className='lg:h-[80px] flex sm:flex-row flex-col w-full items-center justify-center gap-2 sm:gap-6'>
           <input type="text" name="nombreid" value={nombreid} onChange={handleSearch} className='w-full lg:w-[50%] sm:h-[70px] lg:h-[70px] my-auto outline-none text-sm sm:text-xl shadow-xl  p-4 rounded-[10px] placeholder:text-[#818181] placeholder:font-medium' placeholder='Busca por id, nombre o ciudad' />
           
@@ -75,7 +80,7 @@ const [nombreid, setNombreid] = useState()
         
 
         
-    </filtroscontainer>
+    </motion.div>
   )
 }
 

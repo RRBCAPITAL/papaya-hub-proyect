@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { motion } from "framer-motion"
+import { changeIn } from '@/utils/motionTransitions'
 
 const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, region, nivel, whatsapp}) => {
   
@@ -16,10 +18,10 @@ const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, 
       <Link href={`chicas/${id}`}
 
       >
-        <div
+        <motion.div
 style={{ position: 'relative' }}
 className={`min-w-[280px]  mb-2  h-fit bg-dark-d dark:bg-white rounded-[28px] hover:cursor-pointer`}
-
+variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
 >
 <img
   src={imagenPrincipal}
@@ -110,7 +112,7 @@ className={`min-w-[280px]  mb-2  h-fit bg-dark-d dark:bg-white rounded-[28px] ho
   </div> */}
 </div>
 
-</div>
+</motion.div>
       </Link>   
       
   )

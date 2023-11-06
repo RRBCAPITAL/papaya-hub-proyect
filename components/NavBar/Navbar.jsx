@@ -5,22 +5,16 @@ import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import { FaUserCheck } from 'react-icons/fa'
-import { BiSolidDownload } from "react-icons/bi";
 import { UserButton, useUser } from "@clerk/nextjs";
-import Image from "next/image";
-import style from './NavBar.module.css'
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { MdNightlight } from 'react-icons/md'
 import { MdOutlineLightMode } from 'react-icons/md'
-import LoadingNavBar from "./LoadingNavBar";
-import axios from "axios";
-
-import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 
 import { Button, ButtonGroup, Stack } from '@chakra-ui/react'
-import ModalConfirmPay from "@/app/formulario-de-inscripcion/ModalConfirmPay";
-import ModalConfirmLogin from "@/modales/ModalConfirmLogin/ModalConfirmLogin";
+
+import { motion } from "framer-motion"
+import { fadeIn } from '@/utils/motionTransitions'
 
 const Navbar = ({ currentUserR }) => {
 
@@ -119,7 +113,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     return (
     <>
     <header className="z-50 w-screen fixed text-white dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
-        <div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between">
+        <motion.div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between"
+         variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
+        >
             
             <menu className="flex gap-10">
             <div className="text-[1.5rem] font-bold">
@@ -229,7 +225,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     { show ? <MdOutlineClose /> : <FiMenu />}
                 </div>
             </div>
-        </div>
+        </motion.div>
         
         {
             show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen dark:bg-[#131313] bg-white dark:text-t-dark backdrop:blur-[15px]
