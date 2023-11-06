@@ -64,7 +64,7 @@ const EditarAnuncio = () => {
     setIsModalOpen(false);
   };
 
-  const [terminoscondiciones, setTerminoscondiciones] = useState(false)
+  const [terminoscondiciones, setTerminoscondiciones] = useState(true)
   const [filePrincipal, setFilePrincipal] = useState()
   const [galeriaImages, setGaleriaImages] = useState()
   const [horaInicio, setHoraInicio] = useState("8:00")
@@ -626,8 +626,8 @@ const EditarAnuncio = () => {
   const clean = () => {
     setFormContent({
       userId: "",
-      tarifaxhr: 0,
-      tarifaxmr: 0,
+      tarifaxhr: "",
+      tarifaxmr: "",
       name: "",
       description: "",
       whatsapp: "",
@@ -637,7 +637,7 @@ const EditarAnuncio = () => {
       diasAtencion: "",
       horarioInicio: "",
       horarioFin: "",
-      edad: 0,
+      edad: "",
       idioma: [],
       altura: "",
       peso: "",
