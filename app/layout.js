@@ -17,7 +17,7 @@ import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from './GoogleAnalytics';
 
 export const metadata = {
-  title: 'Papaya Hub',
+  title: 'Papayahub',
   description: 'La mejor plataforma de chicas para ti.',
   icons: {
     icon: ['/favicon_io/favicon.ico?v=4'],
