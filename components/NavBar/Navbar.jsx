@@ -126,6 +126,10 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             <div className="hidden lg:block dark:text-white text-slate-800">
                 <ul className="my-auto flex gap-[2rem] h-full font-bold text-[16px]">
                 <Link
+                    href={'/inicio'}
+                    className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}
+                >Inicio</Link>
+                <Link
                     href={'/'}
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}
                 >Chicas</Link>
@@ -232,7 +236,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-6 my-2">
                     <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
-                  <div className="flex gap-2 dark:text-white text-black" >{userR?.user?.firstName} <UserButton afterSignOutUrl="/sign-in"/></div>
+                  <div className="flex gap-2 dark:text-white text-black" >{currentUserR.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
+                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
                         <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none

@@ -7,15 +7,15 @@ const Footer = () => {
         <div className='grid sm:grid-cols-4 mx-20 gap-10 sm:gap-20'>
             <div className='footer-1'>
                 <Link href={'/'} className="flex flex-col gap-4 max-w-[180px]">
-                    <h4 className="text-2xl font-extrabold">Papaya Hub</h4>
-                    <p>Somos la mejor plataforma para ti, amamos lo que hacemos.</p>
+                    <h1 className="text-2xl font-extrabold">Papayahub</h1>
+                    <h2>Conectamos anfitrionas, escorts y kinesiólogas a nivel nacional</h2>
                 </Link>
             </div>  
 
             <div className="flex flex-col gap-4">
                 <h4 className="text-xl font-extrabold">Enlaces</h4>
                 <ul className="flex flex-col gap-4">
-                    {/* <li><Link href={'/'}>Inicio</Link></li> */}
+                    <li><Link href={'/inicio'}>Inicio</Link></li>
                     <li><Link href={'/'}>Chicas</Link></li>
                     <li><Link href={'/reportar'}>Reportar</Link></li>
                 </ul>
