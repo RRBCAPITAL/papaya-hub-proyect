@@ -236,7 +236,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-6 my-2">
                     <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
-                  <div className="flex gap-2 dark:text-white text-black" >{currentUserR.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
+                  <div className="flex gap-2 dark:text-white text-black" >{currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
                   <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none

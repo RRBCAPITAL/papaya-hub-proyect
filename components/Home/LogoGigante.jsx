@@ -2,7 +2,7 @@ import React from 'react'
 
 const LogoGigante = () => {
   return (
-    <div className='min-h-screen w-screen bg-white dark:bg-dark-l pt-20'>
+    <div className='min-h-screen w-screen bg-white dark:bg-dark-l py-20'>
         <div className='w-fit flex mx-auto px-6 py-4 h-full text-[60px] lg:text-[120px] bg-[#FEBD57] rounded-[10px] items-center justify-center'>
             <h2 className='text-black font-custom'>Papaya</h2>
             <h2 className='text-white font-custom'>hub</h2>
