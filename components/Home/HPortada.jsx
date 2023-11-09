@@ -6,7 +6,7 @@ const dancing = Quicksand({ subsets: ['latin'] })
 
 const HPortada = () => {
   return (
-    <div className="overflow-hidden flex border-none">
+    <div className="flex border-none">
       <div className="bg-[#00000085] lg:bg-transparent min-h-screen w-screen overflow-hidden border-none flex flex-col justify-center">
         <strong className="z-30 mx-auto text-center sm:text-left sm:w-[65%] sm:mx-20 text-[34px] sm:text-[60px] text-white">
           <h1 className={dancing.className}>LA VIDA ES HOY</h1>
