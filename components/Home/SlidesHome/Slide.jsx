@@ -27,7 +27,7 @@ export default function Slide() {
 
   return (
     <>
-      <div className='w-screen min-h-fit border-none bg-white dark:bg-dark-l'>
+      <div className='overflow-hidden w-screen min-h-fit border-none bg-white dark:bg-dark-l'>
         <h1 className='w-[80%] text-center text-3xl sm:text-5xl font-bold text-slate-600 dark:text-white mb-10 border-b-4 pb-2 lg:w-fit mx-auto border-bor-red'>Tenemos a las mejores escorts del Perú</h1>
       <Swiper
       slidesPerView={1}

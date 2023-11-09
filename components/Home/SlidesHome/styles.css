@@ -20,7 +20,7 @@
   
 
   .swiper {
-    @apply bg-green-500 dark:bg-dark-l;
+    @apply bg-white dark:bg-dark-l;
     width: 80%;
     height: 100%;
   }

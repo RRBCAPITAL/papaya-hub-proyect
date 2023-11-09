@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const HBeneficiosP = () => {
   return (
-    <div className="flex border-none"> 
+    <div className="overflow-hidden flex border-none"> 
       <div className="min-h-screen border-none py-20 px-6 sm:px-10 lg:px-[160px] w-screen overflow-hidden grid sm:grid-cols-2 gap-4 bg-[#FFFFFF] dark:bg-dark-l justify-center">
         {/* <h1 className="border-b-4 pb-4 border-bor-red z-30 w-[30%] font-extrabold mx-20 text-[16px] text-center sm:text-[40px] text-slate-600 dark:text-white leading-[45px]">
           Dicen que la felicidad no tiene precio, pero puedes venir a vernos.

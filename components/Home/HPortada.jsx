@@ -6,13 +6,13 @@ const dancing = Quicksand({ subsets: ['latin'] })
 
 const HPortada = () => {
   return (
-    <div className="flex border-none">
-      <div className="min-h-screen w-screen overflow-hidden border-none flex flex-col justify-center">
+    <div className="overflow-hidden flex border-none">
+      <div className="bg-[#00000085] lg:bg-transparent min-h-screen w-screen overflow-hidden border-none flex flex-col justify-center">
         <strong className="z-30 mx-auto text-center sm:text-left sm:w-[65%] sm:mx-20 text-[34px] sm:text-[60px] text-white">
           <h1 className={dancing.className}>LA VIDA ES HOY</h1>
         </strong>
         <h1 className="z-30 mx-auto text-center sm:text-left w-[80%] leading-[22px] sm:mx-20 sm:w-[65%] lg:w-[35%] mt-4 text-[16px] sm:text-xl text-white">
-          <strong className="font-extrabold">
+          <strong className="font-normal">
             En Papayahub encontrarás hermosas escorts que brindan servicios de
             manera casual y profesional, así como kinesiólogas que darán el
             mejor servicio para ti.
@@ -28,7 +28,7 @@ const HPortada = () => {
         <img
           src="/assets/portadahome.jpg"
           alt=""
-          className=" z-10 absolute top-0 right-0 left-0 
+          className="lg:opacity-90 opacity-50 z-10 absolute top-0 right-0 left-0 
                       m-auto bg-no-repeat object-cover w-full h-full"
         />
       </div>

@@ -6,7 +6,7 @@ import Slide from "@/components/Home/SlidesHome/Slide"
 
 const InicioPage = () => {
   return (
-    <div className='flex flex-col border-none'>
+    <div className='overflow-hidden flex flex-col border-none'>
 
           <HPortada />
           <HEslogan />
