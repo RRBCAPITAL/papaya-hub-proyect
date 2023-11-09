@@ -15,6 +15,7 @@ import { dark } from '@clerk/themes';
 
 import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from './GoogleAnalytics';
+import { Quicksand } from 'next/font/google'
 
 export const metadata = {
   title: 'Papayahub',
@@ -25,6 +26,8 @@ export const metadata = {
     shortcut: ['/favicon_io/apple-touch-icon.png']
   }
 }
+
+const quicksand = Quicksand({ subsets: ['latin'] })
 
 export default function RootLayout({ children }) {
   return (
@@ -53,7 +56,7 @@ export default function RootLayout({ children }) {
     localization={esES}
     
     >
-    <html lang="es">
+    <html lang="es" className={quicksand.className}>
       <body className="w-screen overflow-x-hidden">
 
         <Head>

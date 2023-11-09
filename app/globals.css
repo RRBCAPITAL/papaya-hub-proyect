@@ -5,17 +5,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap'); */
 
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Quicksand", sans-serif;
+  /* font-family: "Quicksand", sans-serif; */
 }
 
-@font-face {
+/* @font-face {
     font-family: "Dancing Script", cursive;
   src: url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap') format('truetype');
 }
@@ -23,7 +23,7 @@
 
 .font-custom {
     font-family: "Dancing Script", cursive;
-}
+} */
 
 *::after, *::before {
   box-sizing: border-box;

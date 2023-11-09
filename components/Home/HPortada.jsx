@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import { Quicksand } from 'next/font/google'
+
+const dancing = Quicksand({ subsets: ['latin'] })
 
 const HPortada = () => {
   return (
     <div className="flex border-none">
       <div className="min-h-screen w-screen overflow-hidden border-none flex flex-col justify-center">
-        <h1 className="z-30 mx-auto text-center sm:text-left sm:w-[65%] sm:mx-20 text-[34px] sm:text-[60px] text-white">
-          <strong className="font-extrabold font-custom">LA VIDA ES HOY</strong>
-        </h1>
+        <strong className="z-30 mx-auto text-center sm:text-left sm:w-[65%] sm:mx-20 text-[34px] sm:text-[60px] text-white">
+          <h1 className={dancing.className}>LA VIDA ES HOY</h1>
+        </strong>
         <h1 className="z-30 mx-auto text-center sm:text-left w-[80%] leading-[22px] sm:mx-20 sm:w-[65%] lg:w-[35%] mt-4 text-[16px] sm:text-xl text-white">
           <strong className="font-extrabold">
             En Papayahub encontrarás hermosas escorts que brindan servicios de
