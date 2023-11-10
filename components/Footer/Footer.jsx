@@ -8,7 +8,7 @@ const Footer = () => {
             <div className='footer-1'>
                 <Link href={'/'} className="flex flex-col gap-4 max-w-[180px]">
                     <h1 className="text-2xl font-extrabold">Papayahub</h1>
-                    <h2>Conectamos anfitrionas, escorts y kinesiólogas a nivel nacional</h2>
+                    <h2>Conectamos escorts y kinesiólogas a nivel nacional.</h2>
                 </Link>
             </div>  
 

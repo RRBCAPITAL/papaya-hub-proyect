@@ -120,7 +120,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             <menu className="flex gap-10">
             <div className="text-[1.5rem] font-bold">
             <Link href={'/'} onClick={() => setShow(false)} className="dark:text-white font-extrabold text-slate-800">
-                    <img src="/assets/logoph.jpg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
+                    <img src="/assets/phlogo.jpeg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
             </Link>
             </div>
             <div className="hidden lg:block dark:text-white text-slate-800">
