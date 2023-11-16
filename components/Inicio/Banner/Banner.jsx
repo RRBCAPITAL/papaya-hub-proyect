@@ -10,12 +10,12 @@ const Banner = () => {
     >
         <bannercontainer className=" overflow-hidden w-full mt-10 bg-transparent rounded-xl flex items-center justify-center relative scale-[0.9]"  >
           <textbanner className="z-30 my-10 w-screen leading-0 rounded-[20px] flex flex-col items-center justify-center">
-          <h1 className="mx-6 text-[16px] sm:text-3xl text-white text-center">
-          <strong className="font-bold font-mono">DICEN QUE LA FELICIDAD NO TIENE PRECIO</strong>
-          </h1>
-          <h1 className="mx-6 text-[16px] sm:text-3xl text-white text-center">
-                 <strong className="font-bold font-mono">PERO PUEDES VENIR A VERNOS.</strong>
-          </h1>
+          <h2 className="mx-6 text-[16px] sm:text-3xl text-white text-center font-extrabold font-mono">
+          DICEN QUE LA FELICIDAD NO TIENE PRECIO
+          </h2>
+          <h2 className="mx-6 text-[16px] sm:text-3xl text-white text-center font-extrabold font-mono">
+                PERO PUEDES VENIR A VERNOS.
+          </h2>
           </textbanner>
 
           <div>

@@ -55,34 +55,34 @@ const Details = ({ id }) => {
               <info className='flex flex-col gap-4'>
               <h1 className='text-black dark:text-white text-4xl font-extrabold'>{anuncio?.name}</h1>
               <div className='flex flex-col gap-2 '>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.description}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Edad:</strong> {anuncio?.edad} años</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Nacionalidad:</strong> {anuncio?.nacionalidad}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Idiomas:</strong>{" "}
-              {anuncio?.idioma?.join(", ") || ""}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x hora):</strong> S/{anuncio?.tarifaxhr}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</p>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.description}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Edad:</strong> {anuncio?.edad} años</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Nacionalidad:</strong> {anuncio?.nacionalidad}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Idiomas:</strong>{" "}
+              {anuncio?.idioma?.join(", ") || ""}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x hora):</strong> S/{anuncio?.tarifaxhr}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</h2>
               </div>
               </info>
 
               <contacto className='flex flex-col gap-4'>
               <h1 className='text-black dark:text-white text-xl font-bold'>Información de contacto:</h1>
               <div className='flex flex-col gap-2 '>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>WhatsApp:</strong> {anuncio?.whatsapp}</p>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>WhatsApp:</strong> {anuncio?.whatsapp}</h2>
               </div>
               </contacto>
 
               <adicional className='flex flex-col gap-4'>
               <h1 className='text-black dark:text-white text-xl font-bold'>Detalles adicionales:</h1>
               <div className='flex flex-col gap-2 '>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
-              {anuncio?.atencion?.join(", ") || ""}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Horario de atención:</strong></p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {anuncio?.horarioInicio} a {anuncio?.horarioFin}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Región de atención:</strong> {anuncio?.region}</p>
-              <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Distrito de atención:</strong> {anuncio?.lugar}</p>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
+              {anuncio?.atencion?.join(", ") || ""}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Horario de atención:</strong></h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'>{anuncio?.diasAtencion} de {anuncio?.horarioInicio} a {anuncio?.horarioFin}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Región de atención:</strong> {anuncio?.region}</h2>
+              <h2 className='text-slate-500 dark:text-slate-300 text-medium font-think text-[16px]'><strong>Distrito de atención:</strong> {anuncio?.lugar}</h2>
               </div>
               </adicional>
 

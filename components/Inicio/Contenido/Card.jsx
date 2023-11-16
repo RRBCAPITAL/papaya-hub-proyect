@@ -49,9 +49,6 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
   <section className="flex flex-col px-1 gap-0 pb-4">
     <div className="flex gap-1">
       <div className="flex gap-1 items-center justify-center">
-        {/* <h1 className="p-1 px-2 rounded text-[10px] border-2 border-bor-red text-white dark:text-slate-800 font-bold my-auto text-center">
-          {region}, {lugar}
-        </h1> */}
         <div className="flex gap-[2px] text-black px-2 py-1 rounded items-center justify-center bg-white">
         
                   { nacionalidad === 'Peruana' ?
@@ -78,38 +75,18 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
                   <img width="16" height="16" src="https://img.icons8.com/color/48/paraguay.png" alt="paraguay"/> :
                   <img width="16" height="16" src="https://img.icons8.com/color/48/venezuela.png" alt="venezuela"/>
                   }
-                  <h1 className='my-auto border-2 border-transparent text-[12px] mt-[3px]'>{name} -</h1>
-                  <h1 className='my-auto border-2 border-transparent text-[12px] mt-[3px]'>{edad} años</h1>
+                  <h2 className='my-auto border-2 border-transparent text-[12px] mt-[3px]'>{name} -</h2>
+                  <h2 className='my-auto border-2 border-transparent text-[12px] mt-[3px]'>{edad} años</h2>
         </div>
       </div>
     </div>
 
     <div className="flex gap-1 mt-1 rounded-[5px] w-fit px-2 py-1 bg-white">
-      <p className="text-black my-auto text-[12px]">{lugar} - S/{tarifaxhr}</p>
+      <h2 className="text-black my-auto text-[12px]">{lugar} - S/{tarifaxhr}</h2>
     </div>
 
-    {/* <div className="flex gap-1 mt-2">
-      <h3 className="p-2 border-2 border-slate-500 -w-auto text-center text-xl font-extrabold font-mono rounded-[10px]">
-        S/{tarifaxhr}
-      </h3>
-      <nav className="my-auto">x hora</nav>
-    </div> */}
-    {/* <div className="flex gap-1 mt-1 rounded-[5px] w-fit p-2 bg-white">
-      <p className="text-black my-auto">{region}, </p>
-      <p className="text-black my-auto">{lugar}</p>
-    </div> */}
-
-    {/* <div className="flex gap-1 mt-1 rounded-[5px] w-fit p-2 bg-white">
-      <p className="text-black my-auto"><strong>Seguidores:</strong> {formattedFollowers}</p>
-    </div> */}
-
   </section>
-
-  {/* <div className="flex gap-2 mt-4 absolute bottom-2 left-[40%] right-[60%] w-full">
-    <h1 className="rounded text-white dark:text-black text-center">
-      <strong className="font-extrabold">ID:</strong> {shortId}
-    </h1>
-  </div> */}
+  
 </div>
 
 </motion.div>
