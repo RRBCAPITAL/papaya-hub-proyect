@@ -73,9 +73,11 @@ const Access = ({ children }) => {
           })
           .catch((error) => console.log("Hubo un error: ", error.message));
       }
-       const parsedUser = JSON.parse(storedUser) 
+      
+      const parsedUser = JSON.parse(storedUser) 
 
        if(!userData){
+        
         setUserData(parsedUser)
        }
       console.log("estoy aqui");

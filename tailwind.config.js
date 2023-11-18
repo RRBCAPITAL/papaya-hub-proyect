@@ -34,7 +34,9 @@ module.exports = {
         'customwhite': '0px 0px 62px -35px rgba(123,0,255,1)',
         'dark': '0px 0px 5px -1px rgba(255,0,81,1)',
         'red': '0px 0px 12px 1px rgba(255,5,84,1)',
-        'normal': '0px 0px 8px -4px rgba(12,0,61,1)'
+        'normal': '0px 0px 8px -4px rgba(12,0,61,1)',
+        'p4': '0 0 8px #f0a939',
+        'p1': '0 0 8px rgba(130,0,250,1)',
       },
       backgroundColor: {
         // 'back-red': '#febd57',
