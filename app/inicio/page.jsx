@@ -207,16 +207,17 @@ const InicioPage = () => {
           <LogoGigante />
 
 
-          <div className='flex flex-col gap-2 items-center justify-center mt-20 mb-6'>
+          <div className='dark:bg-dark-l bg-white flex flex-col gap-2 items-center justify-center pt-20 pb-6'>
     {/* <h1 className="my-auto text-red-600 font-bold bg-red-100 p-2 rounded-[20px]">DESCUENTOS por lanzamiento</h1> */}
         <h1 className='mx-auto w-[80%] sm:w-[85%] lg:w-fit text-center dark:text-slate-200 text-slate-600 text-3xl sm:text-5xl font-bold border-b-4 pb-2 border-bor-red'>¿Aún no te has registrado?</h1>      
         <h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] mt-4 text-2xl sm:text-2xl text-slate-500 dark:text-white text-left sm:text-center'>No te tomará ni un minuto; registrarse es tan fácil como iniciar sesión. Nosotros nos encargamos del resto.</h2> 
-        {/* <h2 className='text-xl text-red-500 font-bold'>Por lanzamiento: 70% de descuento en todos los planes!</h2> */}
-    </div>
-
-    <buttons className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mb-20'>
+       
+        <buttons className=' mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-4 pb-20'>
       <Link href='/sign-in' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-back-red hover:bg-[#ff9f51] text-yellow-100 shadow-p4 hover:shadow text-xl font-bold">Registrarme ahora <FaUserCheck className="h-6 w-6 inline-block mb-1"/></Link>
     </buttons>
+    </div>
+
+    
  
     </div>
   )
