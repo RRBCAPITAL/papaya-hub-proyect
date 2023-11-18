@@ -28,9 +28,10 @@ const HPortada = () => {
         <img
           src="/assets/portadahome.jpg"
           alt=""
-          className="lg:opacity-90 opacity-80 z-10 absolute top-0 right-0 left-0 
+          className=" z-10 absolute opacity-90 top-0 right-0 left-0 
                       m-auto bg-no-repeat object-cover w-full h-full"
         />
+         <div className="absolute opacity-10 lg:opacity-0 z-10 top-0 right-0 left-0 m-auto bg-black min-h-screen w-screen"></div>
       </div>
     </div>
   );

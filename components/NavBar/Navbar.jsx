@@ -238,9 +238,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen dark:bg-[#131313] bg-white dark:text-t-dark backdrop:blur-[15px]
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-1 my-2">
-                    <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
+                    <ul className="flex flex-col text-2xl gap-[0.5rem] p-[0.7rem] my-4 items-center justify-center">
                     {!currentUserR &&
-                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] bg-[#694d19] border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] outline-none
+                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] bg-[#694d19] border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[1rem] px-[1.2rem] outline-none
                 rounded-[20px] text-[20px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
                 <nav className="inline-block text-t-red">Iniciar</nav> Sesión
                 </Link>
