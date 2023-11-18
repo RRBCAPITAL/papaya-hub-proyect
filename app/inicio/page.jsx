@@ -208,7 +208,7 @@ const InicioPage = () => {
 
 
           <div className='dark:bg-dark-l bg-white flex flex-col gap-2 items-center justify-center pt-20 pb-6'>
-    {/* <h1 className="my-auto text-red-600 font-bold bg-red-100 p-2 rounded-[20px]">DESCUENTOS por lanzamiento</h1> */}
+
         <h1 className='mx-auto w-[80%] sm:w-[85%] lg:w-fit text-center dark:text-slate-200 text-slate-600 text-3xl sm:text-5xl font-bold border-b-4 pb-2 border-bor-red'>¿Aún no te has registrado?</h1>      
         <h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] mt-4 text-2xl sm:text-2xl text-slate-500 dark:text-white text-left sm:text-center'>No te tomará ni un minuto; registrarse es tan fácil como iniciar sesión. Nosotros nos encargamos del resto.</h2> 
        
