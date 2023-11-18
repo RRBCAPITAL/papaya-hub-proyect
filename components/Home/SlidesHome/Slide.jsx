@@ -32,7 +32,7 @@ export default function Slide() {
   return (
     <>
       <div className='overflow-hidden w-screen min-h-fit border-none bg-white dark:bg-dark-l'>
-        <h1 className='w-[80%] text-center text-3xl sm:text-5xl font-bold text-slate-600 dark:text-white mb-4 border-b-4 pb-2 lg:w-fit mx-auto border-bor-red'>Tenemos a las mejores escorts del Perú</h1>
+        <h1 className='w-[80%] text-center text-3xl sm:text-5xl font-bold text-slate-600 dark:text-white mb-4 border-b-4 pb-2 lg:w-fit mx-auto border-bor-red uppercase'>Tenemos a las mejores escorts del Perú</h1>
         <h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] mb-10 text-2xl sm:text-2xl text-slate-500 dark:text-white text-left sm:text-center'>Si estás en busca de una hermosa escort o kinesióloga para vivir momentos increíbles, aquí la encontrarás. Y si eres tú la hermosa escort, no dudes en crear tu anuncio para que tu chat se llene de mensajes de futuros clientes.</h2>
       <Swiper
       slidesPerView={1}

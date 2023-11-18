@@ -16,6 +16,10 @@ import { Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { motion } from "framer-motion"
 import { fadeIn } from '@/utils/motionTransitions'
 
+import { Quicksand } from 'next/font/google'
+
+const quick = Quicksand({ subsets: ['latin'] })
+
 const Navbar = ({ currentUserR }) => {
 
     const pathname = usePathname()
@@ -111,7 +115,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     const handleNavbarPhone = () => setShow(!show)
 
     return (
-    <>
+    <div className={quick.className}>
     <header className="z-50 w-screen fixed text-white dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
         <motion.div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
@@ -150,7 +154,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 
                <Link 
       href={`/dashboard-de-usuario/${id}`} 
-      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
+      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
     >
       <h3 className="my-auto text-t-red">Mis anuncios</h3>
@@ -159,7 +163,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                 {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
-                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
+                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                            <h3 className="my-auto text-[#794cff]">Dashboard</h3>
                         <FaUserCheck className="my-auto text-[#794cff]"/>  
@@ -182,8 +186,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 {
                   currentUserR ? <Link
                   href={'/crear-anuncio'}
-                  className={`bg-back-red flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
-                  rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
+                  rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   
                   >
               <Button 
@@ -196,8 +200,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
               </Button>
           </Link> : <Link
                 href={'/sign-in'}
-                className={`bg-back-red flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
-                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
+                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                 
                 >
             <Button 
@@ -313,7 +317,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     </header>
 
         {/* <ModalConfirmLogin showActive={showActive} modalIsOpen={modalIsOpen} onClose={closeModal}/> */}
-    </>
+    </div>
   )
 }
 

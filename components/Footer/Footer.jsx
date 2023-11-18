@@ -1,9 +1,13 @@
 import Link from "next/link"
 import { AiFillFacebook } from 'react-icons/ai'
+import { Quicksand } from 'next/font/google'
+
+const quick = Quicksand({ subsets: ['latin'] })
 
 const Footer = () => {
   return (
-    <footer className='footer text-white bg-back-red pt-[2rem] lg:pt-[5rem] text-[1rem]'>
+    <div className={quick.className}>
+        <footer className='footer text-white bg-back-red pt-[2rem] lg:pt-[5rem] text-[1rem]'>
         <div className='grid sm:grid-cols-4 mx-20 gap-10 sm:gap-20'>
             <div className='footer-1'>
                 <Link href={'/'} className="flex flex-col gap-4 max-w-[180px]">
@@ -57,6 +61,7 @@ const Footer = () => {
         </div>
         
     </footer>
+    </div>
   )
 }
 

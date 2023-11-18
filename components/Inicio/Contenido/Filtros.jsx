@@ -8,6 +8,10 @@ import ModalFilter from '../ModalFilter'
 import { motion } from "framer-motion"
 import { changeIn } from '@/utils/motionTransitions'
 
+import { Quicksand } from 'next/font/google'
+
+const quick = Quicksand({ subsets: ['latin'] })
+
 
 const Filtros = ({ setTextSearch, setModalFilterOpen, setSelectedNacionalidad, setSelectedRegion, setSelectedLugar, setSelectedIdioma }) => {
 
@@ -47,7 +51,8 @@ const [nombreid, setNombreid] = useState()
   console.log(nombreid);
 
   return (
-    <motion.div 
+    <div className={quick.className}>
+      <motion.div 
     variants={changeIn(0.3)} initial='hidden' animate="show" exit="hidden"
     className='z-1 flex sm:flex-row flex-col gap-4 p-2  text-black dark:bg-dark-d bg-[#fff7e3] shadow-2xl rounded-[20px] scale-[0.9] lg:scale-[0.7]'>
         <form action="" onSubmit={handleClickSearch} onKeyUp={handleKeyUp} className='lg:h-[80px] flex sm:flex-row flex-col w-full items-center justify-center gap-2 sm:gap-6'>
@@ -76,11 +81,9 @@ const [nombreid, setNombreid] = useState()
         </div>
           
         </form>
-
-        
-
-        
+  
     </motion.div>
+    </div>
   )
 }
 
