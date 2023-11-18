@@ -21,6 +21,8 @@ import { useEffect } from 'react';
 
 import Link from 'next/link';
 
+import { FaUserCheck  } from 'react-icons/fa'
+
 export default function Slide() {
 
 
@@ -69,9 +71,13 @@ export default function Slide() {
         <SwiperSlide ><img src="/assets/slide4.jpg" alt="" className='w-fit h-[500px]'/></SwiperSlide>
       </Swiper>
 
-      <buttons className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-10 mb-2'>
+      {/* <buttons className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-10 mb-2'>
       <Link href='/crear-anuncio' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-back-red hover:bg-[#ff9f51] text-yellow-100 shadow-p4 hover:shadow text-xl font-bold">Crea tu anuncio aquí <FaLongArrowAltRight className='w-[26px] h-[26px] inline-block'/></Link>
-    </buttons>
+    </buttons> */}
+
+<buttons className=' mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-8'>
+<Link href='/sign-in' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-back-red hover:bg-[#ff9f51] text-yellow-100 shadow-p4 hover:shadow text-xl font-bold">Registrarme ahora <FaUserCheck className="h-6 w-6 inline-block mb-1"/></Link>
+</buttons>
       </div>
     </>
   );

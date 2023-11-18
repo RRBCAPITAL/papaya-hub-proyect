@@ -204,9 +204,13 @@ className={`object-fill border-[10px]`}
 <Link href='/activar-anuncio' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-violet-500 hover:bg-violet-600 text-violet-100 shadow-p1 hover:shadow text-xl font-bold">Métodos de pago <RiSecurePaymentFill  className="h-6 w-6 inline-block mb-1"/></Link>
 </buttons> */}
 
-<buttons className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-6 mb-2'>
+{/* <buttons className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-6 mb-2'>
       <Link href='/crear-anuncio' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-back-red hover:bg-[#ff9f51] text-yellow-100 shadow-p4 hover:shadow text-xl font-bold">Crea tu anuncio aquí <FaLongArrowAltRight className='w-[26px] h-[26px] inline-block'/></Link>
-    </buttons>
+    </buttons> */}
+
+<buttons className=' mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-4'>
+<Link href='/sign-in' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-back-red hover:bg-[#ff9f51] text-yellow-100 shadow-p4 hover:shadow text-xl font-bold">Registrarme ahora <FaUserCheck className="h-6 w-6 inline-block mb-1"/></Link>
+</buttons>
 
 </containerall>
 
