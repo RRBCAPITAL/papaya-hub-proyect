@@ -155,7 +155,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                <Link 
       href={`/dashboard-de-usuario/${id}`} 
       className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
     >
       <h3 className="my-auto text-t-red">Mis anuncios</h3>
       <FaUserCheck className="my-auto text-t-red"/>       
@@ -164,7 +164,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                     <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
                            <h3 className="my-auto text-[#794cff]">Dashboard</h3>
                         <FaUserCheck className="my-auto text-[#794cff]"/>  
                         
@@ -172,12 +172,11 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 }
 
                {!currentUserR? 
-                <Link href={'/sign-in'} className="dark:text-[#fff] text-black py-[0.5rem] px-[0.5rem] border-none outline-none
-                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
-                Iniciar Sesión
+                  <Link href={'/sign-in'} className="bg-[#694d19] border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] outline-none
+                  rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
+                <nav className="inline-block text-t-red">Iniciar</nav> Sesión
                 </Link>
-                : <div className="dark:text-[#fff] text-black mt-[1px] border-4 border-bor-red outline-none
-                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease">
+                : <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
                 <UserButton afterSignOutUrl="/sign-in"/>
 
                 </div>
@@ -238,20 +237,26 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
         {
             show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen dark:bg-[#131313] bg-white dark:text-t-dark backdrop:blur-[15px]
             overflow-hidden transition-nicetransition">
-                <div className="flex flex-col justify-between gap-6 my-2">
+                <div className="flex flex-col justify-between gap-1 my-2">
                     <ul className="flex flex-col text-2xl gap-[1rem] p-[0.7rem] my-4 items-center justify-center">
+                    {!currentUserR &&
+                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] bg-[#694d19] border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] outline-none
+                rounded-[20px] text-[20px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
+                <nav className="inline-block text-t-red">Iniciar</nav> Sesión
+                </Link>
+                }
                   <div className="flex gap-2 dark:text-white text-black" >{currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
-                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
-                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
-                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
                     </ul>
     
                     <div className="flex flex-col justify-center items-center text-2xl mx-6 p-4 rounded-xl gap-[8px]">
 
-                    <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard-de-usuario') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
+                    <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard-de-usuario') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[0.5rem] px-[1rem] border-2 border-[#5d36e8] outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                         
                         <h3 className="my-auto text-xl text-[#5d36e8]">Mis anuncios</h3>
@@ -261,7 +266,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                     { userR?.isSignedIn &&
                     (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
-                    <Link href={'/dashboard'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[1rem] px-[1rem] border-2 border-[#5d36e8] outline-none
+                    <Link href={'/dashboard'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[0.5rem] px-[1rem] border-2 border-[#5d36e8] outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                     
                         <h3 className="my-auto text-xl text-[#5d36e8]">Dashboard</h3>
@@ -271,14 +276,14 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     }
 
                     {
-                      currentUserR ? <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                      currentUserR ? <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                       rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                           
                           <h3 className="my-auto text-xl">Crear anuncio</h3>
                           <FaUserCheck className="my-[4px] h-6 w-6"/>       
                           
                       </Link> :
-                      <Link href={'/sign-in'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[1rem] px-[1rem] border-2 border-bor-red outline-none
+                      <Link href={'/sign-in'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                       rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                           
                           <h3 className="my-auto text-xl">Crear anuncio</h3>
@@ -287,13 +292,6 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                       </Link>
                     }
 
-                {!currentUserR &&
-                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] flex justify-center mt-2 bg-back-light dark:text-white text-black py-[1rem] px-[1rem] border-none outline-none
-                rounded-[10px] font-bold mx-2 cursor-pointer">
-                Iniciar Sesión
-                </Link>
-                }
-                {/* <button className="dark:text-black" onClick={handleChangeTheme}>Cambiar</button> */}
                 { theme === "dark" ?
             <div className="flex gap-2 mt-2 dark:text-white text-black">
                 <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
