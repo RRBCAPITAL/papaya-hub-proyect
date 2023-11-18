@@ -27,15 +27,6 @@ const Access = ({ children }) => {
     email: user?.user?.emailAddresses[0]?.emailAddress || '',
     image: user?.user?.imageUrl || '',
   };
-
-  // const userCreate = {
-  //   clerkId: "user_2T2sOu",
-  //   firstname: "Cris",
-  //   lastname: "Rojas",
-  //   fullname: "Cris Rojas",
-  //   email: "cris.rojas2345@gmail.com",
-  //   image: "https://img.clerk.com"
-  // };
   
   console.log(userCreate.image);
 
@@ -73,13 +64,13 @@ const Access = ({ children }) => {
           })
           .catch((error) => console.log("Hubo un error: ", error.message));
       }
-      
       const parsedUser = JSON.parse(storedUser) 
 
        if(!userData){
         
         setUserData(parsedUser)
        }
+      
       console.log("estoy aqui");
     }, [user, userData]);
 
@@ -139,7 +130,7 @@ const Access = ({ children }) => {
       pathname === "/formulario-de-inscripcion"||
       pathname === '/dashboard/crear-equipo' ||
       pathname === '/dashboard/equipos' ||
-      pathname === "/reportar"
+      pathname === "/soporte"
         ? ""
         : <Footer />}
 

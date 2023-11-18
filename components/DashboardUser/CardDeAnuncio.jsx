@@ -34,7 +34,7 @@ const CardDeAnuncio = ({
 
   return (
     <div>
-      <container className="bg-white dark:bg-dark-d flex flex-col items-center justify-center gap-2 p-4 shadow-custom1 rounded-[10px]">   
+      <container className="dark:bg-white bg-dark-d flex flex-col items-center justify-center gap-2 p-4 shadow-custom1 rounded-[10px]">   
 
         <containinfo className=" flex flex-col lg:flex-row gap-10 p-2 sm:p-5 m-5">
 
@@ -100,7 +100,7 @@ const CardDeAnuncio = ({
 
           </sectionactions>
 
-          <containvistaprevia className='w-[300px] h-fit flex flex-col gap-1 dark:text-slate-100 text-slate-700  font-bold'>
+          <containvistaprevia className='w-[300px] h-fit flex flex-col gap-1 text-slate-100 dark:text-slate-700  font-bold'>
 
             <h1>VISTA PREVIA DEL ANUNCIO</h1>
             <h1 className="text-[10px] font-normal">(Clic para ver todos los detalles de tu anuncio.)</h1>
@@ -110,7 +110,7 @@ const CardDeAnuncio = ({
 >
   <div
 style={{ position: 'relative' }}
-className={`min-w-[280px]  mb-2  h-fit bg-dark-d dark:bg-white rounded-[28px] hover:cursor-pointer`}
+className={`min-w-[280px]  mb-2  h-fit dark:bg-dark-d bg-white rounded-[28px] hover:cursor-pointer`}
 
 >
 <img
@@ -177,29 +177,7 @@ right: 0,
 <div className="flex gap-1 mt-1 rounded-[5px] w-fit px-2 py-1 bg-white">
 <p className="text-black my-auto text-[12px]">{lugar} - S/{tarifaxhr}</p>
 </div>
-
-{/* <div className="flex gap-1 mt-2">
-<h3 className="p-2 border-2 border-slate-500 -w-auto text-center text-xl font-extrabold font-mono rounded-[10px]">
-  S/{tarifaxhr}
-</h3>
-<nav className="my-auto">x hora</nav>
-</div> */}
-{/* <div className="flex gap-1 mt-1 rounded-[5px] w-fit p-2 bg-white">
-<p className="text-black my-auto">{region}, </p>
-<p className="text-black my-auto">{lugar}</p>
-</div> */}
-
-{/* <div className="flex gap-1 mt-1 rounded-[5px] w-fit p-2 bg-white">
-<p className="text-black my-auto"><strong>Seguidores:</strong> {formattedFollowers}</p>
-</div> */}
-
 </section>
-
-{/* <div className="flex gap-2 mt-4 absolute bottom-2 left-[40%] right-[60%] w-full">
-<h1 className="rounded text-white dark:text-black text-center">
-<strong className="font-extrabold">ID:</strong> {shortId}
-</h1>
-</div> */}
 </div>
 
 </div>

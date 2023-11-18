@@ -79,7 +79,7 @@ const Inicio = () => {
   // }
 
   return (
-    <main className="z-20 grid min-h-screen w-screen dark:bg-dark-l bg-[#fff]">
+    <main className="z-20 grid min-h-screen w-screen bg-dark-l dark:bg-[#fff]">
        <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
     <Banner />
     <Filtros setTextSearch={setTextSearch} setModalFilterOpen={setModalFilterOpen}  setSelectedNacionalidad={setSelectedNacionalidad}

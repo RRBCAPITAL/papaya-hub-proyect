@@ -866,7 +866,7 @@ const EditarAnuncio = () => {
 
   return (
     
-    <containert className="relative flex dark:bg-dark-d bg-white">
+    <containert className="relative flex bg-dark-d dark:bg-white">
       {showModal && (
           <div className="z-100 fixed bg-[#000000e6] flex h-full w-screen overflow-x-hidden items-center justify-center text-white">
        
@@ -904,18 +904,18 @@ const EditarAnuncio = () => {
       <contain className=" w-screen min-h-screen overflow-x-hidden flex flex-col items-center">
       
       <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
-        <titulo className="dark:text-white text-black mt-[100px] font-bold text-3xl border-b-4 border-bor-red">
+        <titulo className="text-white dark:text-black mt-[100px] font-bold text-3xl border-b-4 border-bor-red">
           <strong className="text-t-red">EDITAR</strong> ANUNCIO
         </titulo>
 
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
-          className="m-5 flex flex-col dark:bg-dark-l bg-[#fffef4] sm:max-w-[80%] lg:max-w-[50%] shadow-custom1 rounded-[10px] px-5 items-center gap-2"
+          className="m-5 flex flex-col bg-dark-l dark:bg-[#fffef4] sm:max-w-[80%] lg:max-w-[50%] shadow-custom1 rounded-[10px] px-5 items-center gap-2"
         >
           <containerform className=" grid sm:grid-cols-2 lg:grid-cols-2 gap-4 my-10">
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="dark:text-white text-black">Nombre:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Nombre:</label>
               <input
                 type="text"
                 id="name"
@@ -923,14 +923,14 @@ const EditarAnuncio = () => {
                 value={formContent.name}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
               { changeViewError && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : touchedFields.name && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="dark:text-white text-black">Tarifa por hora (en soles):</label>
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa por hora (en soles):</label>
               <input
                 type="text"
                 id="tarifaxhr"
@@ -938,14 +938,14 @@ const EditarAnuncio = () => {
                 value={formContent.tarifaxhr}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
               { changeViewError && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : touchedFields.tarifaxhr && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="dark:text-white text-black">Tarifa por media hora (en soles):</label>
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa por media hora (en soles):</label>
               <input
                 type="text"
                 id="tarifaxmr"
@@ -953,14 +953,14 @@ const EditarAnuncio = () => {
                 value={formContent.tarifaxmr}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
                 { changeViewError && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : touchedFields.tarifaxmr && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="dark:text-white text-black">Número de WhatsApp:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Número de WhatsApp:</label>
               <input
                 type="text"
                 id="whatsapp"
@@ -968,14 +968,14 @@ const EditarAnuncio = () => {
                 value={formContent.whatsapp}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
                { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="dark:text-white text-black">Descripción:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Descripción:</label>
               <textarea
                 type="text"
                 id="description"
@@ -986,25 +986,25 @@ const EditarAnuncio = () => {
                 onChange={handleChange}
                 style={{ resize: 'none' }}
                 placeholder="​"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
                { changeViewError && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : touchedFields.description && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
             </div>
 
             <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto">
-              <h1 className="dark:text-white text-black" >Horario de atención</h1>
-              <containerhorarioatencion className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
+              <h1 className="text-white dark:text-black" >Horario de atención</h1>
+              <containerhorarioatencion className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="dark:text-white text-black">Selecciona tus días de atención:</label>
+                  <label htmlFor="name" className="text-white dark:text-black">Selecciona tus días de atención:</label>
                   <diasatencion className="grid grid-cols-4 xl:grid-cols-7 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
         {diasOptions.map((optionS) => (
           <button
             key={optionS}
             type="button"
             className={` ${
-              isOptionSelectedS(optionS) ? "duration-200 ease-linear transition-all bg-[#ff5f2f] text-white font-extrabold dark:bg-[#7c2929]" : "bg-white dark:bg-dark-l"
-            } text-sm p-[4px] border-2 border-white text-black dark:border-bor-red dark:text-t-red rounded-[10px] hover:bg-[#ff6a50] hover:text-white hover:dark:bg-[#7c2929] transition-all ease-linear duration-300`}
+              isOptionSelectedS(optionS) ? "dark:bg-[#ff5f2f] dark:text-white text-black font-extrabold bg-[#7c2929]" : "dark:bg-white bg-dark-l"
+            } text-sm p-[4px] border-2 dark:border-white dark:text-black border-bor-red text-t-red rounded-[10px] dark:hover:bg-[#ff6a50] hover:text-white hover:bg-[#7c2929] transition-all ease-linear duration-300`}
             onClick={() => toggleOptionS(optionS)}
           >
             {optionS}
@@ -1016,9 +1016,9 @@ const EditarAnuncio = () => {
 
                 <div className="flex flex-col 2xl:flex-row gap-2 w-[300px] sm:w-full mx-auto">
                   <div className="flex flex-row sm:flex-col gap-2">
-                    <label htmlFor="horarioInicio" className="dark:text-white text-black">Hora de inicio:</label>
+                    <label htmlFor="horarioInicio" className="text-white dark:text-black">Hora de inicio:</label>
                     <hora className='flex flex-row gap-[1px]'>
-                    <select name="" id="" onChange={handleHoraInicio} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <select name="" id="" onChange={handleHoraInicio} className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
                       <option value="">Selecciona:</option>
                       <option name="1:00" value="1:00">1:00</option>
                       <option name="1:00" value="2:00">2:00</option>
@@ -1033,7 +1033,7 @@ const EditarAnuncio = () => {
                       <option value="11:00">11:00</option>
                       <option value="12:00">12:00</option>
                     </select>
-                    <select onChange={handleIAmPm} className="text-sm focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <select onChange={handleIAmPm} className="text-sm focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white focus:dark:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                       {/* <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">AM</button>
@@ -1042,9 +1042,9 @@ const EditarAnuncio = () => {
                     </hora>
                   </div>
                   <div className="flex flex-row sm:flex-col gap-2">
-                    <label htmlFor="horarioFin" className="dark:text-white text-black">Hora de cierre:</label>
+                    <label htmlFor="horarioFin" className="text-white dark:text-black">Hora de cierre:</label>
                     <hora className='flex flex-row gap-[1px]'>
-                    <select name="" id="" onChange={handleHoraFinal} className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <select name="" id="" onChange={handleHoraFinal} className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
                       <option value="">Selecciona:</option>
                       <option value="1:00">1:00</option>
                       <option value="2:00">2:00</option>
@@ -1059,7 +1059,7 @@ const EditarAnuncio = () => {
                       <option value="11:00">11:00</option>
                       <option value="12:00">12:00</option>
                     </select>
-                    <select onChange={handleFAmPm} className="text-sm focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
+                    <select onChange={handleFAmPm} className="text-sm focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                       {/* <button className="flex flex-col gap-1 focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red text-sm">AM</button>
@@ -1072,8 +1072,8 @@ const EditarAnuncio = () => {
             </atencion>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Preferencias de atención</label>
-              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
+              <label htmlFor="name" className="text-white dark:text-black">Preferencias de atención</label>
+              <div className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center text-white dark:text-black">
                 {preferenciasPrincipales.map((i) => (
                   <div key={i} className="flex gap-1">
                     <label htmlFor={i}>{i}</label>
@@ -1092,13 +1092,13 @@ const EditarAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Nacionalidad de la chica:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Nacionalidad de la chica:</label>
               <select
                 name="nacionalidad"
                 id="nacionalidad"
                 value={formContent.nacionalidad}
                 onChange={handleNacionalidad}
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               >
                 <option value="">Selecciona una nacionalidad</option>
                 {nacionalidades.map((n) => (
@@ -1111,13 +1111,13 @@ const EditarAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Departamento de atención:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Departamento de atención:</label>
               <select
                 name="region"
                 id="region"
                 value={formContent.region}
                 onChange={handleDepartamento}
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               >
                 <option value="">Selecciona un departamento</option>
                 {regiones.map((r) => (
@@ -1130,13 +1130,13 @@ const EditarAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="dark:text-white text-black">Provincia de atención:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Provincia de atención:</label>
               <select
                 name="lugar"
                 id="lugar"
                 value={formContent.lugar}
                 onChange={handleProvincia}
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               >
                 <option value="">Selecciona una provincia</option>
                 {distritosEncontrados &&
@@ -1150,7 +1150,7 @@ const EditarAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Edad en años:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Edad en años:</label>
               <input
                 type="text"
                 id="edad"
@@ -1158,15 +1158,15 @@ const EditarAnuncio = () => {
                 value={formContent.edad}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
                 
               />
                 { changeViewError && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : touchedFields.edad && error && error?.edad ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.edad}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Selecciona los idiomas que domine:</label>
-              <div className="bg-[#ffc876] dark:bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center dark:text-white text-black">
+              <label htmlFor="name" className="text-white dark:text-black">Selecciona los idiomas que domine:</label>
+              <div className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center text-white dark:text-black">
                 {idiomasPrincipales.map((i) => (
                   <div key={i} className="flex gap-2">
                     <label htmlFor={i}>{i}</label>
@@ -1186,7 +1186,7 @@ const EditarAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black ">Peso en kg:</label>
+              <label htmlFor="name" className="text-white dark:text-black ">Peso en kg:</label>
               <input
                 type="text"
                 id="peso"
@@ -1194,14 +1194,14 @@ const EditarAnuncio = () => {
                 value={formContent.peso}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
                
               />
                { changeViewError && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : touchedFields.peso && error && error?.peso ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.peso}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Altura:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Altura:</label>
               <input
                 type="text"
                 id="altura"
@@ -1209,23 +1209,23 @@ const EditarAnuncio = () => {
                 value={formContent.altura}
                 onChange={handleChange}
                 placeholder=""
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
               
               />
                { changeViewError && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : touchedFields.altura && error && error?.altura ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.altura}</p> : ""}
             </div>
                   {/* Imagen principal */}
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-      <label htmlFor="name" className="dark:text-white text-black flex gap-4">Imagen principal<nav className="dark:text-white text-black text-sm mt-[3px]">(Ancho: 1350px, Alto: 1000px)</nav></label>
+      <label htmlFor="name" className="text-white dark:text-black flex gap-4">Imagen principal<nav className="text-white dark:text-black text-sm mt-[3px]">(Ancho: 1350px, Alto: 1000px)</nav></label>
       <input
         type="file"
         onChange={handleImageChange}
         accept="image/jpeg, image/png, image/gif"
-        className="p-[10px] border-2 dark:text-white text-black border-bor-red rounded-[10px] outline-none"
+        className="p-[10px] border-2 text-white dark:text-black border-bor-red rounded-[10px] outline-none"
       />
       {selectedImage && (
         <div>
-          <h2 className="dark:text-white text-black">Imagen seleccionada:</h2>
+          <h2 className="text-white dark:text-black">Imagen seleccionada:</h2>
           <img src={selectedImage} alt="Vista previa de la imagen" />
         </div>
       )
@@ -1235,13 +1235,13 @@ const EditarAnuncio = () => {
 
                   {/* Galería de imagenes */}
     <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-      <label htmlFor="name" className="dark:text-white text-black">Galería de fotos: </label>
+      <label htmlFor="name" className="text-white dark:text-black">Galería de fotos: </label>
       <input
         type="file"
         onChange={handleImagesChange}
         multiple
         accept="image/jpeg, image/png, image/gif"
-        className="p-[10px] border-2 dark:text-white text-black border-bor-red rounded-[10px] outline-none focus:ring focus:ring-blue-300"
+        className="p-[10px] border-2 text-white dark:text-black border-bor-red rounded-[10px] outline-none focus:ring focus:ring-blue-300"
       />
       <div className="flex flex-col gap-1">
       {setSelectedImagesLinks?.length > 0 && (
@@ -1286,7 +1286,7 @@ const EditarAnuncio = () => {
     </div>
 
         <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto ">
-              <label htmlFor="name" className="dark:text-white text-black">Galería de videos: </label>
+              <label htmlFor="name" className="text-white dark:text-black">Galería de videos: </label>
               <CldUploadButton cloudName="doxatacbw" uploadPreset="zw1ztiu3" 
               text={{
                 en: {
@@ -1370,7 +1370,7 @@ const EditarAnuncio = () => {
           </containerform>
           
           <preguntaobligatoria className='mb-5 flex flex-col sm:flex-row gap-4 items-center justify-center'>
-                <div className="flex flex-col gap-2 items-center justify-center dark:text-white text-black">
+                <div className="flex flex-col gap-2 items-center justify-center text-white dark:text-black">
                 <h1 className="text-normal sm:text-xl font-bold">¿Cómo te enteraste de nosotros?</h1>
                 <h6 className="text-[12px] sm:text-sm">(Pregunta obligatoria para continuar)</h6>
                 </div>
@@ -1384,12 +1384,12 @@ const EditarAnuncio = () => {
                 onChange={handleChange}
                 style={{ resize: 'none' }}
                 placeholder="​"
-                className="focus:ring focus:ring-yellow-400 focus:bg-yellow-50 dark:focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 dark:text-white text-black bg-white dark:bg-dark-d focus:dark:text-white focus:text-black border-bor-red rounded-[10px] outline-none"
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[10px] border-2 border-bor-red"
                 
               />
           </preguntaobligatoria>
 
-          <terminoscondiciones className="w-[300px] sm:w-full mx-auto flex flex-col items-center justify-center gap-2 mb-5 font-bold dark:text-white text-black ">
+          <terminoscondiciones className="w-[300px] sm:w-full mx-auto flex flex-col items-center justify-center gap-2 mb-5 font-bold text-white dark:text-black ">
                  <div className="flex items-center justify-center gap-2 text-normal">
                  <input type="radio"
                       value={terminoscondiciones} checked={terminoscondiciones} onChange={handleTerminosCondiciones}/>
@@ -1400,12 +1400,12 @@ const EditarAnuncio = () => {
           
           {/* Agrega más campos del anuncio aquí */}
           <containbuttons className="grid grid-cols-2 gap-4">
-            <button type="button" onClick={handleClean} className="bg-transparent shadow-normal p-4 rounded-[10px] text-t-red hover:bg-[#fff] font-bold mb-10">
+            <button type="button" onClick={handleClean} className="bg-transparent border-2 border-bor-red shadow-p4 duration-300 ease-linear transition-all p-4 rounded-[10px] text-t-red hover:bg-[#fff] font-bold mb-10">
               Limpiar
             </button>
             <button
               type="submit"
-              className="bg-back-red shadow-normal red p-4 rounded-[10px] text-white hover:bg-[#ff8c57] duration-200 ease-linear transition-all font-bold mb-10"
+              className="bg-back-red shadow-p4 red p-4 rounded-[10px] text-white hover:bg-[#ff8c57] duration-200 ease-linear transition-all font-bold mb-10"
             >
               Crear Anuncio
             </button>

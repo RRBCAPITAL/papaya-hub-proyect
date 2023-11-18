@@ -116,14 +116,14 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
     return (
     <div className={quick.className}>
-    <header className="z-50 w-screen fixed text-white dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
+    <header className="z-50 w-screen fixed  bg-[#000000] shadow-custom1 dark:bg-white py-0 px-[2rem]">
         <motion.div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
         >
             
             <menu className="flex gap-10">
             <div className="text-[1.5rem] font-bold">
-            <Link href={'/'} onClick={() => setShow(false)} className="dark:text-white font-extrabold text-slate-800">
+            <Link href={'/'} onClick={() => setShow(false)} className="font-extrabold">
                     <img src="/assets/phlogo.jpeg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
             </Link>
             </div>
@@ -131,15 +131,15 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 <ul className="my-auto flex gap-[2rem] h-full font-bold text-[16px]">
                 <Link
                     href={'/inicio'}
-                    className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}
+                    className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
                 >Inicio</Link>
                 <Link
                     href={'/'}
-                    className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}
+                    className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
                 >Chicas</Link>
                 <Link
                     href={'/soporte'}
-                    className={`my-auto ${pathname === ('/reportar') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out"}`}>
+                    className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}>
                 Soporte</Link>
                 
                 {
@@ -172,7 +172,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 }
 
                {!currentUserR? 
-                  <Link href={'/sign-in'} className="bg-[#694d19] border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] outline-none
+                  <Link href={'/sign-in'} className="bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] outline-none
                   rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
                 <nav className="inline-block text-t-red">Iniciar</nav> Sesión
                 </Link>
@@ -228,29 +228,29 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             <div className=" lg:hidden"
             onClick={handleNavbarPhone}
             >
-                <div className="dark:text-[#fff] text-black text-[1.5rem] cursor-pointer flex-none">
+                <div className="text-[#fff] dark:text-black text-[1.5rem] cursor-pointer flex-none">
                     { show ? <MdOutlineClose /> : <FiMenu />}
                 </div>
             </div>
         </motion.div>
         
         {
-            show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen dark:bg-[#131313] bg-white dark:text-t-dark backdrop:blur-[15px]
+            show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen bg-[#131313] dark:bg-white dark:text-t-dark backdrop:blur-[15px]
             overflow-hidden transition-nicetransition">
                 <div className="flex flex-col justify-between gap-1 my-2">
                     <ul className="flex flex-col text-2xl gap-[0.5rem] p-[0.7rem] my-4 items-center justify-center">
                     {!currentUserR &&
-                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] bg-[#694d19] border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[1rem] px-[1.2rem] outline-none
+                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[1rem] px-[1.2rem] outline-none
                 rounded-[20px] text-[20px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
                 <nav className="inline-block text-t-red">Iniciar</nav> Sesión
                 </Link>
                 }
-                  <div className="flex gap-2 dark:text-white text-black" >{currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
-                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
+                  <div className="flex gap-2 text-white dark:text-black" >{currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
+                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
-                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
+                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
-                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-[#361e09]" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
+                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
                     </ul>
     
@@ -293,14 +293,14 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     }
 
                 { theme === "dark" ?
-            <div className="flex gap-2 mt-2 dark:text-white text-black">
+            <div className="flex gap-2 mt-2 text-white dark:text-black">
                 <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
             <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">    
                  <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease"/> 
             </button>    
             </div>
             :
-            <div className="flex gap-2 mt-2  dark:text-white text-black">
+            <div className="flex gap-2 mt-2 text-white dark:text-black">
                 <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
             <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">
                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease"/>

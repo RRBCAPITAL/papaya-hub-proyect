@@ -10,6 +10,9 @@ import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import { useParams } from 'next/navigation';
+import { Quicksand } from 'next/font/google'
+
+const quick = Quicksand({ subsets: ['latin'] })
 
 const DashboardUserPage = () => {
   const [anunciosDeUsuario, setAnunciosDeUsuario] = useState([]);
@@ -76,7 +79,8 @@ const DashboardUserPage = () => {
   }, [id, isDeleted]);
 
   return (
-    <div className="flex flex-col gap-4 min-h-screen min-w-screen dark:bg-dark-l bg-white">
+   <div className={quick.className}>
+     <div className="flex flex-col gap-4 min-h-screen min-w-screen bg-dark-l dark:bg-white">
       <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
       <div className='my-[100px] w-full flex flex-col items-center gap-10 '>
         <div className='flex flex-col max-w-[95%] lg:max-w-[80%] gap-4'>
@@ -107,18 +111,18 @@ const DashboardUserPage = () => {
             ))
           ) : (
             <div className="flex flex-col items-center gap-2 ">
-              <h1 className="text-4xl font-extrabol text-slate-600 text-center dark:text-slate-200">No tienes anuncios disponibles</h1>
-              <p className="text-slate-400 dark:text-slate-400 text-center text-sm px-6">Crea tu anuncio totalmente gratis y actívalo con nuestras súper promociones!</p>
+              <h1 className="text-4xl font-extrabol dark:text-slate-600 text-center text-slate-200">No tienes anuncios disponibles</h1>
+              <p className="dark:text-slate-400 text-slate-400 text-center text-sm px-6">Crea tu anuncio totalmente gratis y actívalo con nuestras súper promociones!</p>
               { id ? <Link
                 href={'/crear-anuncio'}
-                className={`bg-back-red flex mt-4 dark:text-black text-white p-4 border-none outline-none
-                rounded-[20px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                className={`bg-back-red shadow-p4 flex mt-4 text-white p-4 border-none outline-none
+                rounded-[50px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all duration-200 scale-[1] ease`}
               >
                 Crear anuncio
               </Link> : <Link
                 href={'/sign-in'}
-                className={`bg-back-red flex mt-4 dark:text-black text-white p-4 border-none outline-none
-                rounded-[20px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}
+                className={`bg-back-red shadow-p4 flex mt-4 text-white p-4 border-none outline-none
+                rounded-[50px] text-xl mx-auto font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all duration-200 scale-[1] ease`}
               >
                 Crear anuncio
               </Link>}
@@ -128,6 +132,7 @@ const DashboardUserPage = () => {
       </div>
       {modalDeleteOpen && <ModalDeleteU idAnuncio={idAnuncio} setModalDeleteOpen={setModalDeleteOpen} setIsDeleted={setIsDeleted} userId={id} />}
     </div>
+   </div>
   );
 };
 
