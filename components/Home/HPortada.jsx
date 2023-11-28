@@ -20,7 +20,7 @@ const HPortada = () => {
         </h2>
         <Link
           href={"/"}
-          className="font-medium mx-auto text-slate-600 text-xl hover:shadow-md hover:shadow-yellow-300 transition-all duration-200 ease-linear flex z-30 sm:mx-[250px] my-8 w-fit text-center px-4 py-2 rounded-full bg-[#fff] gap-2"
+          className=" font-medium mx-auto text-slate-600 text-xl hover:shadow-md hover:shadow-yellow-300 transition-all duration-200 ease-linear flex z-30 sm:mx-[250px] my-8 w-fit text-center px-4 py-2 rounded-full bg-[#fff] gap-2"
         >
           <nav>Ver escorts</nav>
           <FaArrowRight className="my-auto" />
