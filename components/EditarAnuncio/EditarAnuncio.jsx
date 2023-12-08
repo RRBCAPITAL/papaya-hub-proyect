@@ -665,16 +665,16 @@ const EditarAnuncio = () => {
     try {
       e.preventDefault();
 
-      console.log(formContent.galeriaFotos)
       console.log(selectedImages);
       console.log(selectedImagesLinks);
       console.log(formContent.galeriaVideos);
+
+      if(terminoscondiciones){
+        console.log('estoy aqui');
+        if(formContent?.questionEnd?.length > 0){
           console.log(error);
       
-          if(Object.keys(error).length > 0){
-
-            setChangeViewError(true)
-
+        if(Object.keys(error).length > 0){
           toast.error('Error, por favor revise los campos.', {
             position: "top-right",
             autoClose: 3000,
@@ -687,31 +687,24 @@ const EditarAnuncio = () => {
             },
           });
         } else{
-          setChangeViewError(false)
-          if(terminoscondiciones){
-            if(formContent?.questionEnd?.length > 0){
-          
+          console.log('estoy aqui');
           // que haya una rueda girando con un mensaje que indique que estan cargando los archivos de su anuncio
           clean()
            //Galeria de imagenes y videos
            setLoading(true); // Iniciar carga
-    
+          
            // Esperar a que ambas funciones de carga se completen
            const [galeriaImagesUrl] = await Promise.all([
             actionCreateGaleriaImages(),
           ]);
-    
+          
           console.log(galeriaImagesUrl);
 
         // Imagen principal
         
-        console.log(filePrincipal)
-        console.log(filePrincipal?.length);
-        console.log(formContent.imagenPrincipal);
-
         if(filePrincipal?.length > 10){
           // Imagen principal
-      
+          console.log('estoy aqui');
         // Actualizar formContent con las URLs de las galerías
         const updatedFormContent = {
           ...formContent,
@@ -721,7 +714,7 @@ const EditarAnuncio = () => {
     
         console.log(updatedFormContent);
 
-        await createAnuncio(updatedFormContent, params.id)
+        await createAnuncio(updatedFormContent, id)
     
           // Finalizar carga
           setLoading(false);
@@ -758,16 +751,15 @@ const EditarAnuncio = () => {
           imagenPrincipal: imageUrl,
           galeriaFotos: galeriaImagesUrl,
         };
-        
-        
-
-        await createAnuncio(updatedFormContent, params.id)
+    
+        await createAnuncio(updatedFormContent, id)
 
           // Finalizar carga
           setLoading(false);
           setShowModal(true)
           // setLoading(false); // Finalizar carga
           return
+        }
         }else{
           toast.error('Responde la pregunta obligatoria para continuar.', {
             position: "top-right",
@@ -794,7 +786,6 @@ const EditarAnuncio = () => {
           },
         });
       }
-        }
       
     } catch (error) {
       console.log(error);
