@@ -32,11 +32,11 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
       : nivel === 'MOTOMAMI'
       ? 'border-blue-500'
       : 'border-slate-500'
-  } relative rounded-[16px] sm:w-[200px] sm:h-[200px] xl:w-[500px] xl:h-[400px] 2xl:h-[500px] object-cover border-[4px]`}
+  } relative rounded-[16px] w-[300px] sm:w-[400px] sm:h-[600px] h-[300px] xl:w-[600px] xl:h-[400px] 2xl:h-[500px] object-cover border-[4px]`}
 />
 
 <div
-  className="absolute text-white dark:text-slate-600 px-4"
+  className="absolute text-white dark:text-slate-600 px-1 lg:px-4"
   style={{
     // backgroundColor: 'rgba(0, 0, 0, 0.7)',
     borderRadius: '0 0 18px 18px',
@@ -46,10 +46,10 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
     right: 0,
   }}
 >
-  <section className="flex flex-col px-1 gap-0 pb-4">
+  <section className="flex flex-col px-1 gap-0 pb-2 lg:pb-[20px]">
     <div className="flex gap-1">
       <div className="flex gap-1 items-center justify-center">
-        <div className="flex gap-[2px] text-black px-2 py-1 rounded items-center justify-center bg-white">
+        <div className="w-full flex gap-[1px] text-black px-1 py-1 rounded items-center justify-center bg-white">
         
                   { nacionalidad === 'Peruana' ?
                   <img width="16" height="16" src="https://img.icons8.com/color/48/peru.png" alt="peru"/> :

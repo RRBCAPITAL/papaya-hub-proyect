@@ -3,11 +3,25 @@
     display: flex;
     margin-left: -16px; /* Ajusta el margen a tus necesidades */
     width: auto;
-    gap: 2px;
-    width: 82%;
+    gap: 1px;
+    width: 96%;
   }
   
   .my-masonry-grid_column {
-    padding-left: 14px; /* Ajusta el relleno a tus necesidades */
+    padding-left: 4px; /* Ajusta el relleno a tus necesidades */
     background-clip: padding-box;
+  }
+
+  @media (min-width: 600px) {
+    /* Estilos para pantallas de 600px en adelante (celulares y tablets) */
+    .my-masonry-grid {
+      width: 96%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    /* Estilos para pantallas de 1024px en adelante (dispositivos grandes) */
+    .my-masonry-grid {
+      width: 82%;
+    }
   }

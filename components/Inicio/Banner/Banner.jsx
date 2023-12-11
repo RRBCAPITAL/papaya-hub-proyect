@@ -53,7 +53,7 @@ const Banner = () => {
     variants={fadeIn("right", 0)} initial='hidden' animate="show" exit="hidden"
     >
         <bannercontainer className=" overflow-hidden w-full mt-24 mb-6 bg-transparent flex items-center justify-center relative"  >
-        <iconbanner className="z-30 w-screen flex gap-10 items-center justify-center">
+        <iconos className="z-30 w-screen flex gap-10 items-center justify-center">
           
         <div className='flex flex-col text-sm items-center justify-center gap-2 border-b-4 pb-2 border-transparent'>
           <img src="/assets/1icon-scort.png" alt="scort" className='h-[40px] w-[40px] hover:opacity-80' />
@@ -107,7 +107,8 @@ const Banner = () => {
           <h1 className='text-white dark:text-slate-400'>69</h1>
           </div>
 
-          </iconbanner>        
+          </iconos>  
+                
         </bannercontainer>
 
       </motion.div>
