@@ -30,6 +30,8 @@ const CrearAnuncio = () => {
   console.log(currentUser?.id);
 
   const [selectedOptionsS, setSelectedOptionsS] = useState([]);
+  const [selectedOptionsC, setSelectedOptionsC] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [dataFile, setDataFile] = useState({
@@ -44,6 +46,33 @@ const CrearAnuncio = () => {
     "VI",
     "SA",
     "DO"
+  ];
+
+  const categorias = [
+    "Escort",
+    "Imagenes y videos hot",
+    "Videollamada hot",
+    "Fotos de pies",
+    "Masajes",
+    "Conversar y consejos",
+    "Audios hot",
+    "Chat erotico",
+    "Anal",
+    "69",
+    "Fetiche",
+    "Sexo en la ducha",
+    "Depa propio",
+    "Atencion en hotel",
+    "Atencion a domicilio",
+    "Juguetes eroticos",
+    "Atencion a discapacitados",
+    "Atencion a mujeres",
+    "Oral peladito",
+    "Eyaculacion corporal",
+    "Eyaculacion en la boca",
+    "Eyaculacion facial",
+    "Trio M-H-M",
+    "Trio H-M-H"
   ];
 
   useEffect(() => {
@@ -751,7 +780,49 @@ const CrearAnuncio = () => {
     return false
   }
 
-  const AmPm = ["AM", "PM"]
+
+  const toggleOptionC = (optionC) => {
+    // Copia el array de opciones seleccionadas
+    const newSelectedOptionsC = [...selectedOptionsC];
+
+    // Verifica si la opción ya está seleccionada y la quita
+    if (newSelectedOptionsC.includes(optionC)) {
+      const index = newSelectedOptionsC.indexOf(optionC);
+      if (index !== -1) {
+        newSelectedOptionsC.splice(index, 1);
+      }
+    } else {
+      // Agrega la opción seleccionada
+      newSelectedOptionsC.push(optionC);
+    }
+    setSelectedOptionsC(newSelectedOptionsC);
+
+    // Actualiza el estado de opciones seleccionadas
+    setFormContent((prevFormContent) => ({
+      ...prevFormContent,
+      categorias: newSelectedOptionsC,
+    }));
+
+    // Marcar el campo como tocado
+  setTouchedFields({
+    ...touchedFields,
+    categorias: true,
+  });
+
+  const fieldErrors = validation({ ...formContent, categorias: newSelectedOptionsC });
+  setError((prev) => ({
+    ...prev,
+    categorias: fieldErrors.categorias, // Configura el error para el campo de idioma
+  }));
+  };
+
+  const isOptionSelectedC =  (optionC) => {
+    if(selectedOptionsC?.includes(optionC)){
+      return true
+    }
+    return false
+  }
+
   console.log(formContent);
 
   return (
@@ -803,7 +874,7 @@ const CrearAnuncio = () => {
           encType="multipart/form-data"
           className="m-5 flex flex-col bg-dark-l dark:bg-[#fffef4] w-[95%] sm:max-w-[80%] lg:max-w-[50%] shadow-custom1 rounded-[10px] px-5 items-center gap-2"
         >
-          <containerform className=" grid sm:grid-cols-2 lg:grid-cols-2 gap-4 my-10">
+          <containerform className=" grid sm:grid-cols-2 lg:grid-cols-2 gap-10 my-10">
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="text-white dark:text-black">Nombre:</label>
               <input
@@ -864,6 +935,31 @@ const CrearAnuncio = () => {
                { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
             </div>
 
+            <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto">
+             
+              <containerhorarioatencion className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-white dark:text-black">Selecciona tus categorias de atención:</label>
+                  <diasatencion className="grid grid-cols-2 xl:grid-cols-3 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
+        {categorias.map((optionC) => (
+          <button
+            key={optionC}
+            type="button"
+            className={` text-[11px] 2xl:text-sm p-[4px] border-2 dark:border-white dark:text-black hover:dark:text-white border-bor-red text-t-red rounded-[10px] hover:bg-[#ff6a50] hover:text-white hover:dark:bg-[#7c2929] transition-all ease-linear duration-300 ${
+              isOptionSelectedC(optionC) ? "dark:bg-[#ff5f2f] dark:text-white text-black bg-[#7c2929]" : "dark:bg-white bg-dark-l"
+            } `}
+            onClick={() => toggleOptionC(optionC)}
+          >
+            {optionC}
+          </button>
+        ))}
+      </diasatencion>
+                  { changeViewError && error && error?.categorias ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.categorias}</p> : touchedFields.categorias && error && error?.categorias ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.categorias}</p> : ""}
+                </div>
+
+              </containerhorarioatencion>
+            </atencion>
+
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="text-white dark:text-black">Descripción:</label>
               <textarea
@@ -871,7 +967,7 @@ const CrearAnuncio = () => {
                 id="description"
                 name="description"
                 cols="10"
-                rows="7"
+                rows="16"
                 value={formContent.description}
                 onChange={handleChange}
                 style={{ resize: 'none' }}

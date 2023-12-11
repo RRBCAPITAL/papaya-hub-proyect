@@ -55,7 +55,7 @@ const Details = ({ id }) => {
               <info className='flex flex-col gap-4'>
               <h1 className='dark:text-black text-white text-4xl font-extrabold'>{anuncio?.name}</h1>
               <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
-              <h2 className=' text-medium font-think text-[16px]'>{anuncio?.description}</h2>
+              <h2 className=' text-medium font-think text-[16px]' style={{ whiteSpace: "pre-line" }}>{anuncio?.description}</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Edad:</strong> {anuncio?.edad} años</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Nacionalidad:</strong> {anuncio?.nacionalidad}</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Idiomas:</strong>{" "}
@@ -77,6 +77,8 @@ const Details = ({ id }) => {
               <adicional className='flex flex-col gap-4'>
               <h1 className='dark:text-black text-white text-xl font-bold'>Detalles adicionales:</h1>
               <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+              <h2 className='text-medium font-think text-[16px]'><strong>Categorias de atención:</strong>{" "}
+              {anuncio?.categorias?.join(", ") || ""}</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Preferencia de atención:</strong>{" "}
               {anuncio?.atencion?.join(", ") || ""}</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Horario de atención:</strong></h2>

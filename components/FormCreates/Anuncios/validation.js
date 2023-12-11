@@ -78,6 +78,10 @@ export const validation = (formContent) => {
     if (formContent?.atencion?.length === 0) {
       errors.atencion = "Selecciona al menos un modo de atención.";
     }
+
+    if (formContent?.categorias?.length === 0) {
+      errors.categorias = "Selecciona al menos una categoria.";
+    }
   
     // // Validar que la imagen principal haya sido seleccionada
     // if (!formContent.imagenPrincipal) {

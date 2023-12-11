@@ -15,6 +15,7 @@ export const createAnuncio = async (updatedFormContent) => {
         name: updatedFormContent?.name,
         questionEnd: updatedFormContent?.questionEnd,
         description: updatedFormContent?.description,
+        categorias: updatedFormContent?.categorias,
         whatsapp: updatedFormContent?.whatsapp,
         region: updatedFormContent?.region,
         lugar: updatedFormContent?.lugar,
