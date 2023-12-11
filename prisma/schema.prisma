@@ -44,6 +44,7 @@ model anuncios {
   horarioFin      String      // Campo para la hora de finalización del horario de atención
   edad          Int
   idioma        String[]
+  categorias    String[]
   altura        String
   peso           String
   createdAt DateTime @default(now())

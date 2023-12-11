@@ -46,7 +46,8 @@ module.exports = {
         // 'back-red': '#ff3d64',
         // 'back-red-l': '#fff2f7',
         'dark-d': '#161616',
-        'dark-l': '#3b3b3b'
+        // 'dark-l': '#3b3b3b'
+        'dark-l': '#242526'
       },
       borderColor: {
         'bor-red': '#f0a939',

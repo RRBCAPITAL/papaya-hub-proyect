@@ -207,7 +207,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
   }, [textSearch, anuncios]);
 
   const breakpointColumnsObj = {
-    default: 5, // Número de columnas por defecto
+    default: 4, // Número de columnas por defecto
     1500: 4,
     1200: 3, // Cambiar a 4 columnas en pantallas de 1200px o menos
     992: 2, // Cambiar a 3 columnas en pantallas de 992px o menos
@@ -216,7 +216,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
   };
   
   return (
-    <containertotal className="flex w-screen overflow-x-hidden mt-4 mb-10">
+    <containertotal className="flex w-screen overflow-x-hidden mt-[200px] mb-10">
       <contain className="flex justify-center min-h-screen w-screen bg-dark-l dark:bg-[#fff]">
         <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
         <Masonry

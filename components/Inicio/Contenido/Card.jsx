@@ -4,9 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion"
 import { changeIn } from '@/utils/motionTransitions'
+import { useRouter } from 'next/navigation'
 
 const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, region, nivel, whatsapp}) => {
   
+    const router = useRouter()  
     const shortId = id?.substring(0, 7);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -15,12 +17,10 @@ const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, 
     };
   
     return (
-      <Link href={`chicas/${id}`}
-
-      >
+      <div onClick={() => router.push(`/chicas/${id}`)} >
         <motion.div
 style={{ position: 'relative' }}
-className={`min-w-[280px]  mb-2  h-fit bg-dark-d dark:bg-white rounded-[28px] hover:cursor-pointer`}
+className={`mb-2 bg-dark-d dark:bg-white rounded-[28px] hover:cursor-pointer`}
 variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
 >
 <img
@@ -32,7 +32,7 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
       : nivel === 'MOTOMAMI'
       ? 'border-blue-500'
       : 'border-slate-500'
-  } relative rounded-[16px] border-[4px]`}
+  } relative rounded-[16px] sm:w-[200px] sm:h-[200px] xl:w-[500px] xl:h-[400px] 2xl:h-[500px] object-cover border-[4px]`}
 />
 
 <div
@@ -90,7 +90,7 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
 </div>
 
 </motion.div>
-      </Link>   
+      </div>   
       
   )
 }
