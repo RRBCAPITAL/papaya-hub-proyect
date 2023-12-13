@@ -17,8 +17,8 @@ const InicioPage = () => {
       <div className='overflow-hidden dark:bg-white bg-dark-l flex flex-col gap-0 border-none'>
 
 <HPortada />
-<HEslogan />
-<HBeneficiosP />
+
+{/* <HBeneficiosP /> */}
 <Slide />
 
 

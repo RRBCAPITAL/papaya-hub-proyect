@@ -42,6 +42,8 @@ const Inicio = () => {
   const [ resultadosEncontrados, setResultadosEncontrados] = useState(false)
   const [openModal18, setOpenModal18] = useState(false)
   
+  const [categoria, setCategoria] = useState("")
+  
   const actionFilterNothing = () => {
     setFilterNothing(false)
     if(modalFilterOpen){
@@ -82,10 +84,10 @@ const Inicio = () => {
     <main className="z-20 grid min-h-screen w-screen bg-dark-l dark:bg-[#fff]">
        <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
     <Banner />
-    <Filtros setTextSearch={setTextSearch} setModalFilterOpen={setModalFilterOpen}  setSelectedNacionalidad={setSelectedNacionalidad}
+    <Filtros setCategoria={setCategoria} setTextSearch={setTextSearch} setModalFilterOpen={setModalFilterOpen}  setSelectedNacionalidad={setSelectedNacionalidad}
     setSelectedRegion={setSelectedRegion} setSelectedLugar={setSelectedLugar} setSelectedIdioma={setSelectedIdioma}
     />  
-    <Cards textSearch={textSearch} setResultadosEncontrados={setResultadosEncontrados} setNothingFound={setNothingFound} setModalFilterOpen={setModalFilterOpen}  selectedNacionalidad={selectedNacionalidad}
+    <Cards categoria={categoria} textSearch={textSearch} setResultadosEncontrados={setResultadosEncontrados} setNothingFound={setNothingFound} setModalFilterOpen={setModalFilterOpen}  selectedNacionalidad={selectedNacionalidad}
     selectedRegion={selectedRegion} selectedLugar={selectedLugar} selectedIdioma={selectedIdioma} selectedAtencion={selectedAtencion}/>
 
     {

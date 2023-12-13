@@ -116,7 +116,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
     return (
     <div className={quick.className}>
-    <header className="z-50 w-screen fixed  bg-[#000000] shadow-custom1 dark:bg-white py-0 px-[2rem]">
+    <header className="z-[999] w-screen fixed  bg-[#000000] shadow-custom1 dark:bg-white py-0 px-[2rem]">
         <motion.div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
         >

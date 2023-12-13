@@ -155,7 +155,7 @@ toast.error('No se encontraron chicas.', {
   );
 
     return (
-      <div className='fixed flex items-center justify-center min-h-screen w-screen bg-[#000000e3]'>
+      <div className='z-[1000] fixed flex items-center justify-center min-h-screen w-screen bg-[#000000e3]'>
         <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
         <div className='bg-back-red rounded-[10px] p-1'>
         <modal className='relative flex flex-col items-center justify-center gap-4 rounded-[10px] w-fit h-fit bg-white px-6 py-4'>

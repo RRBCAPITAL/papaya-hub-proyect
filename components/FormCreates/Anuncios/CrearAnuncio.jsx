@@ -7,7 +7,8 @@ import {
   regiones,
   nacionalidades,
   distritos,
-  preferenciasPrincipales
+  preferenciasPrincipales,
+  categorias
 } from "@/Data/data";
 import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 import { createAnuncio } from "./createAnuncio";
@@ -46,33 +47,6 @@ const CrearAnuncio = () => {
     "VI",
     "SA",
     "DO"
-  ];
-
-  const categorias = [
-    "Escort",
-    "Imagenes y videos hot",
-    "Videollamada hot",
-    "Fotos de pies",
-    "Masajes",
-    "Conversar y consejos",
-    "Audios hot",
-    "Chat erotico",
-    "Anal",
-    "69",
-    "Fetiche",
-    "Sexo en la ducha",
-    "Depa propio",
-    "Atencion en hotel",
-    "Atencion a domicilio",
-    "Juguetes eroticos",
-    "Atencion a discapacitados",
-    "Atencion a mujeres",
-    "Oral peladito",
-    "Eyaculacion corporal",
-    "Eyaculacion en la boca",
-    "Eyaculacion facial",
-    "Trio M-H-M",
-    "Trio H-M-H"
   ];
 
   useEffect(() => {

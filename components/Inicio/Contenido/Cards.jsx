@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Masonry from 'react-masonry-css';
 import './stylecards.css'
 
-const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNothingFound, setModalFilterOpen, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma }) => {
+const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrados, setNothingFound, setModalFilterOpen, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma }) => {
 
     const [ anuncios, setAnuncios ] = useState()
     const [filteredAnuncios, setFilteredAnuncios] = useState([]);
@@ -86,6 +86,11 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
       const filteredAnun = anuncios?.filter((a) => {
        
        if(a?.nivel === 'SIMPLE' || a?.nivel === 'MOTOMAMI' || a?.nivel === 'BICHOTA'){
+
+        if (categoria && !a?.categorias?.includes(categoria)) {
+          return false;
+        }
+
          // Nacionalidad
          if (selectedNacionalidad && a?.nacionalidad !== selectedNacionalidad) {
           return false;
@@ -138,7 +143,7 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
       
       
 
-    }, [selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma, selectedAtencion, anuncios]);
+    }, [categoria, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma, selectedAtencion, anuncios]);
     
     
   // Filtrar los anuncios según el valor de búsqueda
@@ -216,12 +221,12 @@ const Cards = ({ selectedAtencion, textSearch, setResultadosEncontrados, setNoth
   };
   
   return (
-    <containertotal className="flex w-screen overflow-x-hidden mt-[200px] mb-10">
+    <containertotal className="flex w-screen overflow-x-hidden mt-[230px] mb-10">
       <contain className="flex justify-center min-h-screen w-screen bg-dark-l dark:bg-[#fff]">
         <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
         <Masonry
     breakpointCols={breakpointColumnsObj}
-    className="my-masonry-grid w-[82%]"
+    className="my-masonry-grid lg:w-[82%] 2xl:w-[76%]"
     columnClassName="my-masonry-grid_column"
   >
                 {filteredAnuncios?.length > 0 ? (

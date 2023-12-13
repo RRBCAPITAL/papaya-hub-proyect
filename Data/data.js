@@ -8,6 +8,134 @@ export const generateUniqueId = (name) => {
 
 export const existingNumbers = []
 
+export const categorias = [
+  "Escort",
+  "Imágenes y videos hot",
+  "Videollamada hot",
+  "Fotos de pies",
+  "Masajes",
+  "Conversar y consejos",
+  "Audios hot",
+  "Chat erótico",
+  "Anal",
+  "69",
+  "Fetiche",
+  "Sexo en la ducha",
+  "Depa propio",
+  "Atención en hotel",
+  "Atención a domicilio",
+  "Juguetes eróticos",
+  "Atención a discapacitados",
+  "Atención a mujeres",
+  "Oral peladito",
+  "Eyaculación corporal",
+  "Eyaculación en la boca",
+  "Eyaculación facial",
+  "Trio M-H-M",
+  "Trio H-M-H"
+];
+
+export const categoriasNameIcon = [
+
+  {
+    name: "Escort",
+    path: "/assets/1icon-scort.png"
+  },
+  {
+    name: "Imágenes y videos hot",
+    path: "/assets/3icon-cel.png"
+  },
+  {
+    name: "Videollamada hot",
+    path: "/assets/2icon-telf.png"
+  },
+  {
+    name: "Fotos de pies",
+    path: "/assets/4icon-pies.png"
+  },
+  {
+    name: "Masajes",
+    path: "/assets/5icon-masajes.png"
+  },
+  {
+    name: "Conversar y consejos",
+    path: "/assets/6icon-phone.png"
+  },
+  {
+    name: "Audios hot",
+    path: "/assets/icon-audio.png"
+  },
+  {
+    name: "Chat erótico",
+    path: "/assets/icon-chat.png"
+  },
+  {
+    name: "Anal",
+    path: "/assets/icon-anal.png"
+  },
+  {
+    name: "69",
+    path: "/assets/icon-69.png"
+  },
+  {
+    name: "Fetiche",
+    path: "/assets/"
+  },
+  {
+    name: "Sexo en la ducha",
+    path: "/assets/"
+  },
+  {
+    name: "Depa propio",
+    path: "/assets/"
+  },
+  {
+    name: "Atención en hotel",
+    path: "/assets/"
+  },
+  {
+    name: "Atención a domicilio",
+    path: "/assets/"
+  },
+  {
+    name: "Juguetes eróticos",
+    path: "/assets/"
+  },
+  {
+    name: "Atención en hotel",
+    path: "/assets/"
+  },
+  {
+    name: "Atención a discapacitados",
+    path: "/assets/"
+  },
+  {
+    name: "Oral peladito",
+    path: "/assets/"
+  },
+  {
+    name: "Eyaculación corporal",
+    path: "/assets/"
+  },
+  {
+    name: "Eyaculación en la boca",
+    path: "/assets/"
+  },
+  {
+    name: "Eyaculación facial",
+    path: "/assets/"
+  },
+  {
+    name: "Trio M-H-M",
+    path: "/assets/"
+  },
+  {
+    name: "Trio H-M-H",
+    path: "/assets/"
+  },
+  
+];
+
 export const preferenciasPrincipales = [
   "Hotel",
   "Delivery",
