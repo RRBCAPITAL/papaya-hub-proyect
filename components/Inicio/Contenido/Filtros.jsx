@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { TbFilterStar } from "react-icons/tb";
 import ModalFilter from "../ModalFilter";
@@ -10,22 +10,11 @@ import { changeIn } from "@/utils/motionTransitions";
 
 import { categoriasNameIcon } from "@/Data/data";
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import "./styles.css"
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import { Poppins } from "next/font/google";
 
-// import './styles.css';
-
-// import required modules
-import { Pagination, Navigation } from 'swiper/modules';
-
-import { Quicksand } from "next/font/google";
-
-const quick = Quicksand({ subsets: ["latin"] });
+const quick = Poppins({ subsets: ['latin'], weight: "400" })
 
 const Filtros = ({
   setCategoria,
@@ -36,6 +25,11 @@ const Filtros = ({
   setSelectedLugar,
   setSelectedIdioma,
 }) => {
+
+  const containerRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+
   const [active, setActive] = useState(false);
 
   const [nombreid, setNombreid] = useState();
@@ -108,59 +102,39 @@ const Filtros = ({
           
         </form> */}
 
-        <bannercontainer className=" overflow-hidden w-full mt-24 mb-2 bg-transparent flex  items-center justify-center relative bg-white ">
+        <bannercontainer className=" overflow-hidden w-full mt-24 bg-transparent flex  items-center justify-center relative bg-white ">
           <iconos className="z-30 w-screen flex flex-col lg:flex-row items-center justify-center">
 
-          <Swiper
-          slidesPerView={2}
-          spaceBetween={0}
-          breakpoints = {{
-            600: {
-                slidesPerView: 5
-            },
-            1024: {
-                slidesPerView: 7
-            },
-            1444: {
-              slidesPerView: 10
-          },
-            1920: {
-              slidesPerView: 12
-          }
-        }}
-        pagination={false}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper z-30 flex gap-10 items-center justify-center bg-white "
+      <div
+        className="filter-div"
       >
-        {categoriasNameIcon?.map((i, index) => (
-                <SwiperSlide
-                  onClick={() => {
-                    setActive(i?.name);
-                    setCategoria(i?.name);
-                  }}
-                  className={`h-[40px] w-[40px]  ${
-                    active === i?.name
-                      ? "border-b-4 pb-4 border-slate-400"
-                      : "border-b-4 pb-4 border-transparent"
-                  }  cursor-pointer flex flex-col text-sm items-center justify-center gap-2 ${index === 0 && "hidden"} ${index === l - 1 && "hidden"}`}
-                >
-                  <img
-                    src={i?.path}
-                    alt="scort"
-                    style={{ width: '40px', height: '40px' }}
-                    width={35}
-                    height={35}
-                    className="hover:opacity-80"
-                  />
-                  <h1 className="text-white dark:text-slate-400">{i?.name}</h1>
-                </SwiperSlide>
-              ))}
+        {categoriasNameIcon.map((i, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              setCategoria(i?.name);
+              setActive(i?.name);
+            }}
+            className={`links-box ${ active === i?.name && "selected-box"}`}
+          >
+            <img
+              src={i.path}
+              alt={i.name}
+              width={35}
+              height={35}
+              className="links-img"
+            />
+            <h1 className={`links-label ${ active === i?.name && "selected-label"}`}>{i.name}</h1>
+          </div>
+        ))}
+      </div>
 
-      </Swiper>
+
+      
+      
 
             <div className="z-30 w-[20%] flex justify-center gap-2">
-            <button
+            {/* <button
               className="flex gap-2 my-auto text-sm font-light px-2 py-4 text-slate-400 border-2 border-slate-400 transition-all ease-linear duration-300 rounded-[10px]"
               onClick={() => setModalFilterOpen(true)}
             >
@@ -168,9 +142,9 @@ const Filtros = ({
                 Filtros
               </nav>
               <TbFilterStar className="my-auto text-slate-400" />
-            </button>
+            </button> */}
 
-            <button
+            {/* <button
               className="flex gap-1 my-auto text-sm font-light px-2 py-4 text-slate-400 border-2 border-slate-400 transition-all ease-linear duration-300 rounded-[10px]"
               onClick={handleReset}
             >
@@ -178,7 +152,7 @@ const Filtros = ({
                 Todo
               </nav>
               <TbFilterStar className="my-auto" />
-            </button>
+            </button> */}
             </div>
       
           </iconos>

@@ -16,6 +16,7 @@ import { dark } from '@clerk/themes';
 import { Analytics } from '@vercel/analytics/react';
 import GoogleAnalytics from './GoogleAnalytics';
 import { Quicksand } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 
 export const metadata = {
   title: 'Papayahub',
@@ -27,7 +28,9 @@ export const metadata = {
   }
 }
 
-const quicksand = Quicksand({ subsets: ['latin'] })
+// const quicksand = Quicksand({ subsets: ['latin'] })
+
+const quicksand = Poppins({ subsets: ['latin'], weight: "400" })
 
 export default function RootLayout({ children }) {
   return (
@@ -84,7 +87,7 @@ export default function RootLayout({ children }) {
         </Head>      
             <GoogleAnalytics />
             <Suspense fallback={<Loading />}>
-           <Access>{children}</Access>
+           <Access children={children}/>
             </Suspense>
             <Analytics />
       </body>

@@ -31,22 +31,26 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar {
-  background-color: white;
+  cursor: pointer;
+  background-color: #f1f1f1;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background-color: #ffb265;
+  cursor: pointer;
+  background-color: #d9d9d9;
 }
 
 /* Handle hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(253, 255, 187);
+  cursor: pointer;
+  background-color: rgb(173, 173, 173);
 }
 /* Add these styles to force the vertical scrollbar */
 body {

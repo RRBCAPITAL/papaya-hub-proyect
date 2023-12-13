@@ -79,59 +79,59 @@ export const categoriasNameIcon = [
   },
   {
     name: "Fetiche",
-    path: "/assets/"
+    path: "/assets/icon-fetiche.png"
   },
   {
     name: "Sexo en la ducha",
-    path: "/assets/"
+    path: "/assets/icon-ducha.png"
   },
   {
     name: "Depa propio",
-    path: "/assets/"
+    path: "/assets/icon-depa.png"
   },
   {
     name: "Atención en hotel",
-    path: "/assets/"
+    path: "/assets/icon-hotel.png"
   },
   {
     name: "Atención a domicilio",
-    path: "/assets/"
+    path: "/assets/icon-domicilio.png"
   },
   {
     name: "Juguetes eróticos",
-    path: "/assets/"
+    path: "/assets/icon-juguete.png"
   },
   {
     name: "Atención en hotel",
-    path: "/assets/"
+    path: "/assets/icon-hotel.png"
   },
   {
     name: "Atención a discapacitados",
-    path: "/assets/"
+    path: "/assets/icon-discapacitados.png"
   },
   {
     name: "Oral peladito",
-    path: "/assets/"
+    path: "/assets/icon-oral.png"
   },
   {
     name: "Eyaculación corporal",
-    path: "/assets/"
+    path: "/assets/icon-eyaculacion.png"
   },
   {
     name: "Eyaculación en la boca",
-    path: "/assets/"
+    path: "/assets/icon-eyaculacionb.png"
   },
   {
     name: "Eyaculación facial",
-    path: "/assets/"
+    path: "/assets/icon-eyaculacionv.png"
   },
   {
     name: "Trio M-H-M",
-    path: "/assets/"
+    path: "/assets/icon-triom.png"
   },
   {
     name: "Trio H-M-H",
-    path: "/assets/"
+    path: "/assets/icon-trioh.png"
   },
   
 ];
