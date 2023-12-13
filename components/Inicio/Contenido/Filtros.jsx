@@ -102,11 +102,11 @@ const Filtros = ({
           
         </form> */}
 
-        <bannercontainer className=" overflow-hidden w-full mt-24 bg-transparent flex  items-center justify-center relative bg-white ">
-          <iconos className="z-30 w-screen flex flex-col lg:flex-row items-center justify-center">
+        <bannercontainer className="w-screen flex mt-24 bg-transparent relative bg-white ">
+          <iconos className="z-30 lg:w-[82%] lg:flex-row items-center justify-center mx-auto  overflow-hidden">
 
       <div
-        className="filter-div"
+        className="filter-div mx-4 lg:mx-0 lg:px-[1.5rem] overflow-hidden lg:mr-6"
       >
         {categoriasNameIcon.map((i, index) => (
           <div
@@ -115,7 +115,7 @@ const Filtros = ({
               setCategoria(i?.name);
               setActive(i?.name);
             }}
-            className={`links-box ${ active === i?.name && "selected-box"}`}
+            className={`links-box ${ active === i?.name && "selected-box"}  overflow-hidden`}
           >
             <img
               src={i.path}
