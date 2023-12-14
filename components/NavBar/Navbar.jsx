@@ -10,11 +10,16 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { MdNightlight } from 'react-icons/md'
 import { MdOutlineLightMode } from 'react-icons/md'
+import SignOutButton from "./SignOutButton";
+
+import { HiOutlineLogout } from "react-icons/hi";
 
 import { Button, ButtonGroup, Stack } from '@chakra-ui/react'
 
 import { motion } from "framer-motion"
 import { fadeIn } from '@/utils/motionTransitions'
+
+import { useClerk } from "@clerk/clerk-react";
 
 import { Poppins } from 'next/font/google'
 
@@ -31,6 +36,9 @@ const Navbar = ({ currentUserR }) => {
 
     const userR = useUser()
     const id = currentUserR?.id
+
+    const { signOut } = useClerk();
+    const router = useRouter()
     console.log(userR);
 
     // useEffect(() => {
@@ -258,7 +266,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 </div>
                 </div> :
                 <>
-                <div className="flex gap-2 text-white dark:text-slate-600 py-[0.1rem] px-[1rem]" >Hola {currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
+                <div className="flex gap-2 text-white dark:text-slate-600 py-[0.1rem] px-[1rem]" >Hola {currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/> </div>
                 <div className="flex flex-col gap-1 text-slate-600">
                   <h2 className="text-sm  py-[0.1rem] px-[1rem]">Publica gratis y empieza a recibir mensajes.</h2>
                 <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
@@ -312,6 +320,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                     </ul>
     
+            {
+              currentUserR && <SignOutButton />  
+            }
                     
                 </div>
                     </motion.div> : ""
