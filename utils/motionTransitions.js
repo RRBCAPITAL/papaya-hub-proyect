@@ -34,9 +34,10 @@ export const fadeIn = (direction, delay) => {
             x: direction === "left" ? 80 : direction === "right" ? -80 : 0,
             transition: {
                 type: "tween",
-                duration: 1,
+                duration: 0.3,
                 delay: delay,
-                ease: [0.25, 0.6, 0.3, 0.8]
+                // ease: [0.25, 0.6, 0.3, 0.8]
+                ease: [0.10, 0.45, 0.15, 0.25]
             },
         },
         show: {
@@ -45,9 +46,10 @@ export const fadeIn = (direction, delay) => {
             opacity: 1,
             transition: {
                 type: "tween",
-                duration: 1,
+                duration: 0.3,
                 delay: delay,
-                ease: [0.25, 0.25, 0.25, 0.75],
+                // ease: [0.25, 0.25, 0.25, 0.75],
+                ease: [0.10, 0.10, 0.10, 0.25],
             },
         },
     };

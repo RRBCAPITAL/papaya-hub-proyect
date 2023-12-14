@@ -235,81 +235,86 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
         </motion.div>
         
         {
-            show ? <div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen bg-[#131313] dark:bg-white dark:text-t-dark backdrop:blur-[15px]
-            overflow-hidden transition-nicetransition">
+            show ? <motion.div className="z-50 lg:hidden fixed left-[0rem] h-screen w-screen bg-[#131313] dark:bg-white dark:text-t-dark backdrop:blur-[15px]
+            overflow-hidden transition-nicetransition"
+            variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
+            >
                 <div className="flex flex-col justify-between gap-1 my-2">
-                    <ul className="flex flex-col text-2xl gap-[0.5rem] p-[0.7rem] my-4 items-center justify-center">
-                    {!currentUserR &&
-                <Link href={'/sign-in'} onClick={handleNavbarPhone} className="sm:w-[284px] bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[1rem] px-[1.2rem] outline-none
-                rounded-[20px] text-[20px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
-                <nav className="inline-block text-t-red">Iniciar</nav> Sesión
+                    <ul className="flex flex-col text-2xl gap-[0.5rem] p-[0.7rem] my-4 ">
+                    {!currentUserR ?
+                <div className="flex flex-col gap-1 ">
+                  <h2 className="py-[0.1rem] px-[1rem] font-bold text-black">¡Hola!</h2>
+                  <h2 className="text-sm  py-[0.1rem] px-[1rem] text-slate-600">Regístrate o ingresa para empezar a publicar gratis.</h2>
+                  <div className="flex gap-1 items-center justify-center">
+                  <Link href={'/sign-upp'} onClick={handleNavbarPhone} className="w-full text-t-red border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] py-[0.3rem] px-[1rem] outline-none
+                rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
+                Registrarse
                 </Link>
-                }
-                  <div className="flex gap-2 text-white dark:text-black" >{currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
-                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
-                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Servicios</Link>
-                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
-                    </ul>
-    
-                    <div className="flex flex-col justify-center items-center text-2xl mx-6 p-4 rounded-xl gap-[8px]">
 
-                    <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard-de-usuario') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[0.5rem] px-[1rem] border-2 border-[#5d36e8] outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                  <Link href={'/sign-in'} onClick={handleNavbarPhone} className="w-full bg-back-red border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] text-white py-[0.3rem] px-[1rem] outline-none
+                rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
+                Ingresar
+                </Link>
+                </div>
+                </div> :
+                <>
+                <div className="flex gap-2 text-white dark:text-slate-600 py-[0.1rem] px-[1rem]" >Hola {currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/></div>
+                <div className="flex flex-col gap-1 text-slate-600">
+                  <h2 className="text-sm  py-[0.1rem] px-[1rem]">Publica gratis y empieza a recibir mensajes.</h2>
+                <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
                         
-                        <h3 className="my-auto text-xl text-[#5d36e8]">Mis anuncios</h3>
-                        <FaUserCheck className="my-[4px] h-6 w-6 text-[#5d36e8]"/>       
+                        <h3 className="my-auto">Publicar gratis</h3>
+                        <FaUserCheck className="my-[4px] h-6 w-6"/>       
                         
                     </Link>
-
+                </div>
+                </>        
+                }
+                  
+                  <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "text-t-red" } mt-4 my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
+                        <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "text-t-red" } my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Servicios</Link>
+                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "text-t-red" } my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
+                    <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === `/dashboard-de-usuario/${id}`  && "text-t-red" } my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mis anuncios</Link>
+                    
                     { userR?.isSignedIn &&
                     (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
-                    <Link href={'/dashboard'} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') && "bg-[#170936]" } w-full flex items-center justify-center gap-2 text-[#5d36e8] py-[0.5rem] px-[1rem] border-2 border-[#5d36e8] outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
+                    <Link href={`/dashboard`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') && "text-t-red" } my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Dashboard</Link> }
                     
-                        <h3 className="my-auto text-xl text-[#5d36e8]">Dashboard</h3>
-                        <FaUserCheck className="my-[4px] h-6 w-6 text-[#5d36e8]"/>       
-                        
-                    </Link>
-                    }
-
                     {
-                      currentUserR ? <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
-                      rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
-                          
-                          <h3 className="my-auto text-xl">Crear anuncio</h3>
-                          <FaUserCheck className="my-[4px] h-6 w-6"/>       
-                          
-                      </Link> :
-                      <Link href={'/sign-in'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
-                      rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>
-                          
-                          <h3 className="my-auto text-xl">Crear anuncio</h3>
-                          <FaUserCheck className="my-[4px] h-6 w-6"/>       
-                          
-                      </Link>
+                      currentUserR ?
+                    <Link href={`/crear-anuncio`} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "text-t-red" } my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear anuncio</Link> :
+                    <Link href={`/sign-in`} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "text-t-red" } my-auto text-xl w-full flex gap-2 text-slate-600 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear anuncio</Link>
                     }
-
-                { theme === "dark" ?
-            <div className="flex gap-2 mt-2 text-white dark:text-black">
-                <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
-            <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">    
+                    
+                    { theme === "dark" ?
+            <div className="flex gap-2 text-white dark:text-slate-600 py-[0.1rem] px-[1rem] hover:scale-[1.05] transition-all scale-[1] ease">
+                <p className="my-auto text-[16px]"></p>
+            <button onClick={handleChangeTheme} className="rounded-full transition-all duration-300 ease">    
                  <MdNightlight className="text-t-red w-6 h-6 transition-all duration-300 ease"/> 
             </button>    
             </div>
             :
-            <div className="flex gap-2 mt-2 text-white dark:text-black">
-                <p className="my-auto font-bold font-mono text-xl">Cambiar tema</p>
-            <button onClick={handleChangeTheme} className="rounded-full p-[10px] transition-all duration-300 ease">
+            <div className="flex gap-2 text-white dark:text-slate-600 py-[0.1rem] px-[1rem] hover:scale-[1.05] transition-all scale-[1] ease">
+                <p className="my-auto text-[16px]"></p>
+            <button onClick={handleChangeTheme} className="rounded-full transition-all duration-300 ease">
                  <MdOutlineLightMode className="text-t-red w-6 h-6 transition-all duration-300 ease"/>
             </button>  
             </div>
             }
-                    </div>
+
+                    </ul>
+    
+                    
                 </div>
-                    </div> : ""
+                    </motion.div> : ""
         }
 
     </header>
