@@ -14,7 +14,7 @@ const SignOutButton = ({handleNavbarPhone}) => {
 
   return (
     // Clicking on this button will sign out a user and reroute them to the "/" (home) page.
-    <button onClick={() => signOut(handleClick)}>
+    <button onClick={() => signOut(handleClick)} className="text-white dark:text-slate-600">
       Salir
     </button>
   );
