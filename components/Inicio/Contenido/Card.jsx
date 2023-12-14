@@ -17,7 +17,16 @@ const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, 
     };
   
     return (
-      <div onClick={() => router.push(`/chicas/${id}`)} >
+      <div 
+      onClick={() => {
+        const formattedNacionalidad = nacionalidad.replace(/\s+/g, '-');
+        const formattedRegion = region.replace(/\s+/g, '-');
+        const formattedLugar = lugar.replace(/\s+/g, '-');
+        const formattedName = name.replace(/\s+/g, '-');
+    
+        router.push(`/servicios/kinesiologas/${formattedNacionalidad}/${formattedRegion}/${formattedLugar}/${formattedName}/${id}`);
+    }}
+    >
         <motion.div
 style={{ position: 'relative' }}
 className={`mb-2 bg-dark-d dark:bg-white rounded-[28px] hover:cursor-pointer`}

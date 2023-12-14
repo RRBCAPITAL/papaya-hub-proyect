@@ -1,18 +1,18 @@
-"use client"
+// "use client"
 
-import Details from "@/components/Inicio/Contenido/Details"
-import { usePathname } from "next/navigation"
-import { useParams } from "next/navigation"
+// import Details from "@/components/Inicio/Contenido/Details"
+// import { usePathname } from "next/navigation"
+// import { useParams } from "next/navigation"
 
-const detallesID = () => {
+// const detallesID = () => {
 
-    const { id } = useParams()
+//     const { id } = useParams()
 
-  return (
-    <>
-        <Details id={id}/>
-    </>
-  )
-}
+//   return (
+//     <>
+//         <Details id={id}/>
+//     </>
+//   )
+// }
 
-export default detallesID
+// export default detallesID
