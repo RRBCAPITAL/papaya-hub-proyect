@@ -321,7 +321,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     </ul>
     
             {
-              currentUserR && <SignOutButton />  
+              currentUserR && <SignOutButton handleNavbarPhone={handleNavbarPhone}/>  
             }
                     
                 </div>
