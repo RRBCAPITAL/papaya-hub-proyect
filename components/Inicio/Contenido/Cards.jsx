@@ -221,7 +221,7 @@ const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrad
   };
   
   return (
-    <containertotal className="flex w-screen overflow-x-hidden mt-[215px] mb-10">
+    <containertotal className="flex w-screen overflow-x-hidden mt-[200px] mb-10">
       <contain className="flex justify-center min-h-screen w-screen bg-dark-l dark:bg-[#fff]">
         <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
         <Masonry

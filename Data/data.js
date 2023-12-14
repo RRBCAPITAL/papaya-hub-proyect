@@ -39,27 +39,27 @@ export const categoriasNameIcon = [
 
   {
     name: "Escort",
-    path: "/assets/1icon-scort.png"
+    path: "/assets/icon-scort.png"
   },
   {
     name: "Imágenes y videos hot",
-    path: "/assets/3icon-cel.png"
-  },
-  {
-    name: "Videollamada hot",
-    path: "/assets/2icon-telf.png"
+    path: "/assets/icon-cel.png"
   },
   {
     name: "Fotos de pies",
-    path: "/assets/4icon-pies.png"
+    path: "/assets/icon-pies.png"
+  },
+  {
+    name: "Videollamada hot",
+    path: "/assets/icon-telf.png"
   },
   {
     name: "Masajes",
-    path: "/assets/5icon-masajes.png"
+    path: "/assets/icon-masajes.png"
   },
   {
     name: "Conversar y consejos",
-    path: "/assets/6icon-phone.png"
+    path: "/assets/icon-phone.png"
   },
   {
     name: "Audios hot",
@@ -102,12 +102,12 @@ export const categoriasNameIcon = [
     path: "/assets/icon-juguete.png"
   },
   {
-    name: "Atención en hotel",
-    path: "/assets/icon-hotel.png"
+    name: "Atención a mujeres",
+    path: "/assets/icon-mujer.png"
   },
   {
     name: "Atención a discapacitados",
-    path: "/assets/icon-discapacitados.png"
+    path: "/assets/icon-discapacitado.png"
   },
   {
     name: "Oral peladito",

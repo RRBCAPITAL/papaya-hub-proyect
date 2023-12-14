@@ -1,14 +1,14 @@
 import Link from "next/link"
 import { AiFillFacebook } from 'react-icons/ai'
-import { Quicksand } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 
-const quick = Quicksand({ subsets: ['latin'] })
+const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
 
 const Footer = () => {
   return (
     <div className={quick.className}>
-        <footer className='footer text-white bg-back-red pt-[2rem] lg:pt-[5rem] text-[1rem]'>
-        <div className='grid sm:grid-cols-4 mx-20 gap-10 sm:gap-20'>
+        <footer className='flex flex-col items-center justify-center text-white bg-back-red pt-[2rem] lg:pt-[5rem] text-[1rem]'>
+        <div className='grid sm:grid-cols-4 mx-10 lg:mx-20 gap-10 sm:gap-40'>
             <div className='footer-1'>
                 <Link href={'/'} className="flex flex-col gap-4 max-w-[180px]">
                     <h1 className="text-2xl font-extrabold">Papayahub</h1>
@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
   
         </div>
-        <div className="text-center mt-[4rem] py-[0.8rem] border-t border-slate-500 w-full">
+        <div className="text-center mt-[4rem] py-[0.8rem] mx-auto border-t border-slate-500 w-screen">
                 <small>Copyright &copy; Papaya Hub 2023</small>
         </div>
         

@@ -32,7 +32,7 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
       : nivel === 'MOTOMAMI'
       ? 'border-blue-500'
       : 'border-slate-500'
-  } relative rounded-[16px] w-[300px] sm:w-[400px] sm:h-[600px] h-[300px] xl:w-[600px] xl:h-[400px] 2xl:h-[500px] object-cover border-[4px]`}
+  } relative rounded-[16px] w-[300px] sm:w-[400px] sm:h-[600px] h-[300px] xl:w-[600px] xl:h-[400px] 2xl:h-[500px] object-cover border-[2px]`}
 />
 
 <div

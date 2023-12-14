@@ -16,9 +16,9 @@ import { Button, ButtonGroup, Stack } from '@chakra-ui/react'
 import { motion } from "framer-motion"
 import { fadeIn } from '@/utils/motionTransitions'
 
-import { Quicksand } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 
-const quick = Quicksand({ subsets: ['latin'] })
+const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
 
 const Navbar = ({ currentUserR }) => {
 
@@ -117,18 +117,18 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     return (
     <div className={quick.className}>
     <header className="z-[999] w-screen fixed  bg-[#000000] shadow-custom1 dark:bg-white py-0 px-[2rem]">
-        <motion.div className=" h-[70px] w-[90%] mx-auto flex items-center justify-between"
+        <motion.div className=" h-[60px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
         >
             
             <menu className="flex gap-10">
-            <div className="text-[1.5rem] font-bold">
+            <div className="text-[1rem] font-bold">
             <Link href={'/'} onClick={() => setShow(false)} className="font-extrabold">
-                    <img src="/assets/phlogo.jpeg" alt="" className="h-12 w-auto rounded-md shadow-sm"/>
+                    <img src="/assets/phlogo.jpeg" alt="" className="h-10 w-auto rounded-md shadow-sm"/>
             </Link>
             </div>
             <div className="hidden lg:block dark:text-white text-slate-800">
-                <ul className="my-auto flex gap-[2rem] h-full font-bold text-[16px]">
+                <ul className="my-auto flex gap-[2rem] h-full font-bold text-[14px]">
                 <Link
                     href={'/inicio'}
                     className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
@@ -136,7 +136,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 <Link
                     href={'/'}
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
-                >Chicas</Link>
+                >Servicios</Link>
                 <Link
                     href={'/soporte'}
                     className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}>
@@ -154,8 +154,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 
                <Link 
       href={`/dashboard-de-usuario/${id}`} 
-      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.4rem] px-[1rem]
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
+      className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
+                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
     >
       <h3 className="my-auto text-t-red">Mis anuncios</h3>
       <FaUserCheck className="my-auto text-t-red"/>       
@@ -163,8 +163,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                 {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
-                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.4rem] px-[1rem]
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
+                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
+                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
                            <h3 className="my-auto text-[#794cff]">Dashboard</h3>
                         <FaUserCheck className="my-auto text-[#794cff]"/>  
                         
@@ -172,8 +172,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 }
 
                {!currentUserR? 
-                  <Link href={'/sign-in'} className="bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] outline-none
-                  rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
+                  <Link href={'/sign-in'} className="bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] outline-none
+                  rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
                 <nav className="inline-block text-t-red">Iniciar</nav> Sesión
                 </Link>
                 : <div className="my-auto border-2 scale-[1.1] border-bor-red rounded-full">
@@ -185,8 +185,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 {
                   currentUserR ? <Link
                   href={'/crear-anuncio'}
-                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
-                  rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
+                  className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] border-none outline-none
+                  rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   
                   >
               <Button 
@@ -199,8 +199,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
               </Button>
           </Link> : <Link
                 href={'/sign-in'}
-                className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.5rem] px-[1rem] border-none outline-none
-                rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
+                className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] border-none outline-none
+                rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                 
                 >
             <Button 
@@ -249,7 +249,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                   <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
-                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Chicas</Link>
+                    rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Servicios</Link>
                         <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/reportar') && "bg-back-red-l" } my-auto text-xl w-full flex items-center justify-center gap-2 text-t-red py-[0.5rem] px-[1rem] border-2 border-bor-red outline-none
                     rounded-[20px] text-[16px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
                     </ul>

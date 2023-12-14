@@ -19,22 +19,20 @@
     align-items: center;
     margin-right: center;
     opacity: 0.5;
-    border-bottom: 2px solid transparent;
     min-width: fit-content;
 }
 
 .links-box:hover {
 
     opacity: 1;
-    border-bottom: 2px solid #b5b5b5;
     transition: all 0.3s;
     cursor: pointer;
 }
 
 .links-img {
 
-    width: 2.1rem;
-    height: 1.6rem;
+    width: 2.4rem;
+    height: 2rem;
     object-fit: contain;
 }
 
@@ -42,7 +40,6 @@
 
     font-size: 0.7rem;
     font-weight: 600;
-    color: var(--font-grey);
     text-align: center;
     padding: 10px 0px;
 }
@@ -50,7 +47,6 @@
 .selected-box {
 
     opacity: 1;
-    border-bottom: 2px solid black;
     transition: all 0.3s;
     cursor: pointer;
 }
