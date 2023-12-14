@@ -18,8 +18,9 @@ const InicioPage = () => {
 
 <HPortada />
 
-{/* <HBeneficiosP /> */}
-<Slide />
+<HBeneficiosP />
+
+{/* <Slide /> */}
 
 
 <div className='flex'>
