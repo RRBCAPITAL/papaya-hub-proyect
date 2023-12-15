@@ -62,8 +62,8 @@ const Details = ({ id }) => {
               {anuncio?.idioma?.join(", ") || ""}</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</h2>
-              <h2 className='text-medium font-think text-[16px]'><strong>Tarifa (x hora):</strong> S/{anuncio?.tarifaxhr}</h2>
-              <h2 className='text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</h2>
+              <h2 className='text-medium font-think text-[16px]'><strong>Tarifa:</strong> S/{anuncio?.tarifaxhr}</h2>
+              {/* <h2 className='text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</h2> */}
               </div>
               </info>
 

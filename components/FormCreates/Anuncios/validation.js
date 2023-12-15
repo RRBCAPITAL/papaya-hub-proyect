@@ -19,16 +19,6 @@ export const validation = (formContent) => {
         errors.tarifaxhr = "La tarifa no puede tener más de 4 dígitos.";
       }
 
-      // Validar que el tarifaxmr no esté vacío
-    if (!formContent.tarifaxmr || formContent.tarifaxmr === "") {
-      errors.tarifaxmr = "La tarifa es requerida.";
-    } else if(formContent.tarifaxmr < 0){
-      errors.tarifaxmr = "La tarifa no puede ser negativa.";
-    }
-    else if (formContent?.tarifaxhr?.length > 4) {
-      errors.tarifaxhr = "La tarifa no puede tener más de 4 dígitos.";
-    }
-
 
       // Validar que el peso no esté vacío
       if (!formContent.peso || formContent.peso=== "") {
@@ -73,10 +63,6 @@ export const validation = (formContent) => {
     // Validar que al menos un idioma haya sido seleccionado
     if (formContent?.idioma?.length === 0) {
       errors.idioma = "Debes seleccionar al menos un idioma.";
-    }
-
-    if (formContent?.atencion?.length === 0) {
-      errors.atencion = "Selecciona al menos un modo de atención.";
     }
 
     if (formContent?.categorias?.length === 0) {

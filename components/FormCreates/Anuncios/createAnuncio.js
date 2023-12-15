@@ -11,7 +11,6 @@ export const createAnuncio = async (updatedFormContent) => {
         userId: updatedFormContent?.userId,
         idFrontend: idFrontend && idFrontend,
         tarifaxhr: Number(updatedFormContent?.tarifaxhr),
-        tarifaxmr: Number(updatedFormContent?.tarifaxmr),
         name: updatedFormContent?.name,
         questionEnd: updatedFormContent?.questionEnd,
         description: updatedFormContent?.description,
@@ -30,7 +29,6 @@ export const createAnuncio = async (updatedFormContent) => {
         imagenPrincipal: updatedFormContent?.imagenPrincipal,
         galeriaFotos: updatedFormContent?.galeriaFotos,
         galeriaVideos: updatedFormContent?.galeriaVideos,
-        atencion: updatedFormContent?.atencion
     }
 
     console.log(formContentData);

@@ -17,6 +17,8 @@ const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrad
     const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
     const [listen, setListen] = useState(false)
 
+    console.log(categoria);
+
     // useEffect(() => {
     //     fetch('/api/anuncio')
     //     .then(data => data.json())

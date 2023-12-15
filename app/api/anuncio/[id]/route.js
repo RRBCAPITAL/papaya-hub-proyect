@@ -30,9 +30,8 @@ export async function PUT(req, { params }) {
       galeriaVideos,
       estado,
       nivel,
-      tarifaxmr,
       questionEnd,
-      atencion
+
     } = body;
 
     const currentUser = await prisma?.user?.findUnique({
@@ -66,9 +65,8 @@ export async function PUT(req, { params }) {
           imagenPrincipal,
           galeriaFotos,
           galeriaVideos,
-          tarifaxmr,
           questionEnd,
-          atencion
+
         },
       });
 
@@ -103,9 +101,8 @@ export async function PUT(req, { params }) {
           galeriaVideos,
           estado,
           nivel,
-          tarifaxmr,
           questionEnd,
-          atencion
+
         },
       });
 

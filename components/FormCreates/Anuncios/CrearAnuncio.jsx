@@ -22,6 +22,10 @@ import { CldUploadButton } from 'next-cloudinary'
 import { FaUpload } from 'react-icons/fa'
 import { ordenarDiasYGenerarString } from "./ordenarDiasYGenerarString";
 
+import { Poppins } from "next/font/google";
+
+const quick = Poppins({ subsets: ['latin'], weight: "400" })
+
 const CrearAnuncio = () => {
 
   const [currentUser, setCurrentUser] = useState(null)
@@ -77,7 +81,6 @@ const CrearAnuncio = () => {
     
     userId: "",
     tarifaxhr: null,
-    tarifaxmr: null,
     name: "",
     description: "",
     whatsapp: "",
@@ -92,7 +95,6 @@ const CrearAnuncio = () => {
     altura: "",
     peso: "",
     questionEnd: '',
-    atencion: [],
     galeriaVideos: []
   });
 
@@ -189,29 +191,7 @@ const CrearAnuncio = () => {
     setHoraFAmPm(value)
         
   }
-  
-  const handleAtencion = (e) => {
-    const { value } = e.target;
-
-    setFormContent((prevFormData) => ({
-      ...prevFormData,
-      atencion: prevFormData?.atencion?.includes(value)
-        ? prevFormData?.atencion?.filter((i) => i !== value)
-        : [...prevFormData.atencion, value],
-    }));
-
-     // Marcar el campo como tocado
-  setTouchedFields({
-    ...touchedFields,
-    atencion: true,
-  });
-
-  const fieldErrors = validation({ ...formContent, atencion: value });
-  setError((prev) => ({
-    ...prev,
-    atencion: fieldErrors.atencion, // Configura el error para el campo de idioma
-  }));
-  };
+ 
 
   console.log(formContent);
 
@@ -552,7 +532,6 @@ const CrearAnuncio = () => {
     setFormContent({
       userId: "",
       tarifaxhr: "",
-      tarifaxmr: "",
       name: "",
       description: "",
       whatsapp: "",
@@ -800,7 +779,7 @@ const CrearAnuncio = () => {
   console.log(formContent);
 
   return (
-    
+    <div className={quick.className}>
     <containert className="relative flex bg-dark-d dark:bg-white">
       {showModal && (
           <div className="z-100 fixed bg-[#000000e6] flex h-full w-screen overflow-x-hidden items-center justify-center text-white">
@@ -846,7 +825,7 @@ const CrearAnuncio = () => {
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
-          className="m-5 flex flex-col bg-dark-l dark:bg-[#fffef4] w-[95%] sm:max-w-[80%] lg:max-w-[50%] shadow-custom1 rounded-[10px] px-5 items-center gap-2"
+          className="m-5 flex flex-col bg-dark-l dark:bg-white w-[95%] sm:max-w-[80%] lg:max-w-[60%] shadow-2xl rounded-[10px] px-5 items-center gap-2"
         >
           <containerform className=" grid sm:grid-cols-2 lg:grid-cols-2 gap-10 my-10">
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
@@ -865,7 +844,7 @@ const CrearAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Tarifa por hora (en soles):</label>
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa (en soles):</label>
               <input
                 type="text"
                 id="tarifaxhr"
@@ -879,7 +858,7 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : touchedFields.tarifaxhr && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
+            {/* <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="text-white dark:text-black">Tarifa por media hora (en soles):</label>
               <input
                 type="text"
@@ -892,22 +871,7 @@ const CrearAnuncio = () => {
                 
               />
                 { changeViewError && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : touchedFields.tarifaxmr && error && error?.tarifaxmr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxmr}</p> : ""}
-            </div>
-
-            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Número de WhatsApp:</label>
-              <input
-                type="text"
-                id="whatsapp"
-                name="whatsapp"
-                value={formContent.whatsapp}
-                onChange={handleChange}
-                placeholder=""
-                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
-                
-              />
-               { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
-            </div>
+            </div> */}
 
             <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto">
              
@@ -941,7 +905,7 @@ const CrearAnuncio = () => {
                 id="description"
                 name="description"
                 cols="10"
-                rows="16"
+                rows="14"
                 value={formContent.description}
                 onChange={handleChange}
                 style={{ resize: 'none' }}
@@ -1032,23 +996,18 @@ const CrearAnuncio = () => {
             </atencion>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Preferencias de atención</label>
-              <div className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] flex gap-2 text-sm items-center justify-center text-white dark:text-black">
-                {preferenciasPrincipales.map((i) => (
-                  <div key={i} className="flex gap-1">
-                    <label htmlFor={i}>{i}</label>
-                    <input
-                      type="checkbox"
-                      name="atencion"
-                      id={i}
-                      value={i}
-                      checked={formContent?.atencion?.includes(i)}
-                      onChange={handleAtencion}
-                    />
-                  </div>
-                ))}
-              </div>
-              { changeViewError && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : touchedFields.atencion && error && error?.atencion ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.atencion}</p> : ""}
+              <label htmlFor="name" className="text-white dark:text-black">Número de WhatsApp:</label>
+              <input
+                type="text"
+                id="whatsapp"
+                name="whatsapp"
+                value={formContent.whatsapp}
+                onChange={handleChange}
+                placeholder=""
+                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
+                
+              />
+               { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
@@ -1354,6 +1313,7 @@ const CrearAnuncio = () => {
 
       </contain>
     </containert>
+    </div>
   );
 };
 
