@@ -11,6 +11,8 @@ import { conversorDeHora12 } from './conversorDeHora12'
 const Details = ({ id }) => {
 
     const [anuncio, setAnuncio] = useState()
+    const [tarifaPresencial, setTarifaPresencial] = useState()
+    const [tarifaVirtual, setTarifaVirtual] = useState()
 
     // useEffect(() => {
     //     axios.get(`/api/anuncio/${id}`)
@@ -33,6 +35,24 @@ const Details = ({ id }) => {
     
     const shortID = anuncio?.id?.substring(0, 7);
 
+    useEffect(() => {
+      if(anuncio?.tarifaPresencial){
+        const tarifaPresencial = JSON.parse(anuncio?.tarifaPresencial);
+        console.log(tarifaPresencial);
+        setTarifaPresencial(tarifaPresencial)
+      }
+      if(anuncio?.tarifaVirtual){
+        const tarifaVirtual = JSON.parse(anuncio?.tarifaVirtual);
+        console.log(tarifaVirtual);
+        setTarifaVirtual(tarifaVirtual)
+      }
+      
+    }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial])
+
+    console.log(anuncio?.tarifaPresencial);
+    console.log(anuncio?.tarifaVirtual);
+    console.log(tarifaPresencial);
+    console.log(tarifaVirtual);
     console.log(anuncio);
 
   return (
@@ -62,10 +82,41 @@ const Details = ({ id }) => {
               {anuncio?.idioma?.join(", ") || ""}</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Altura:</strong> {anuncio?.altura} cm</h2>
               <h2 className='text-medium font-think text-[16px]'><strong>Peso:</strong> {anuncio?.peso} kg</h2>
-              <h2 className='text-medium font-think text-[16px]'><strong>Tarifa:</strong> S/{anuncio?.tarifaxhr}</h2>
+              {/* <h2 className='text-medium font-think text-[16px]'><strong>Tarifa:</strong> S/{anuncio?.tarifaxhr}</h2> */}
               {/* <h2 className='text-medium font-think text-[16px]'><strong>Tarifa (x media hora):</strong> S/{anuncio?.tarifaxmr}</h2> */}
               </div>
               </info>
+
+              <tarifas className='flex flex-col gap-4'>
+              {(anuncio?.tarifaPresencial || anuncio?.tarifaVirtual) && <h1 className='dark:text-black text-white text-xl font-bold'>Tarifas:</h1>}
+              {
+                anuncio?.tarifaPresencial && 
+               
+                
+                <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+                <h2 className='text-medium font-think text-[16px]'><strong>Tarifa Presencial:</strong> {" "}
+                {tarifaPresencial?.map((tarifa, index) => (
+            <span key={tarifa.name}>
+              {`${tarifa.name} minutos - S/${tarifa.value}${index !== tarifaPresencial.length - 1 ? ', ' : ''}`}
+            </span>
+          ))}
+              </h2>
+                </div>
+              }
+              {
+                anuncio?.tarifaVirtual &&
+                <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+                <h2 className='text-medium font-think text-[16px]'><strong>Tarifa Virtual:</strong> {" "}
+                {tarifaVirtual?.map((tarifa, index) => (
+            <span key={tarifa.name}>
+              {`${tarifa.name} minutos - S/${tarifa.value}${index !== tarifaVirtual.length - 1 ? ', ' : ''}`}
+            </span>
+          ))}
+              </h2>
+                </div>
+               
+              }
+               </tarifas>
 
               <contacto className='flex flex-col gap-4'>
               <h1 className='dark:text-black text-white text-xl font-bold'>Información de contacto:</h1>
