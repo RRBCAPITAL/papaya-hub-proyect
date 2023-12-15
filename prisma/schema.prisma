@@ -24,7 +24,7 @@ model user {
   pago   Pago @default(NO_PAGO)
   blocked Blocked @default(FALSE)
 }
- 
+
 model anuncios {
 
   id       String      @id @default(cuid())
@@ -34,7 +34,7 @@ model anuncios {
   tarifaxhr     Int?
   tarifaxmr     Int?
   tarifaPresencial String[]
-  tarifaVirtual    String[] 
+  tarifaVirtual String[]
   name        String
   description String
   whatsapp    String

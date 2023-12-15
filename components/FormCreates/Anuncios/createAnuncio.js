@@ -11,30 +11,8 @@ export const createAnuncio = async (updatedFormContent) => {
         userId: updatedFormContent?.userId,
         idFrontend: idFrontend && idFrontend,
         // tarifaxhr: Number(updatedFormContent?.tarifaxhr),
-        tarifaPresencial: [
-            {
-            name: "60",
-            value: updatedFormContent?.tarifaPresencial[0]?.value
-            },
-            {
-              name: "30",
-              value: updatedFormContent?.tarifaPresencial[1]?.value
-            }
-        ],
-          tarifaVirtual: [
-              {
-              name: "60",
-              value: updatedFormContent?.tarifaVirtual[0]?.value
-              },
-              {
-                name: "30",
-                value: updatedFormContent?.tarifaVirtual[1]?.value
-              },
-              {
-                name: "15",
-                value: updatedFormContent?.tarifaVirtual[2]?.value
-              }
-          ],
+        tarifaPresencial: JSON.stringify(updatedFormContent?.tarifaPresencial),
+        tarifaVirtual: JSON.stringify(updatedFormContent?.tarifaVirtual),    
         name: updatedFormContent?.name,
         questionEnd: updatedFormContent?.questionEnd,
         description: updatedFormContent?.description,
