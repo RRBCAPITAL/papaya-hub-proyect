@@ -10,7 +10,9 @@ export async function PUT(req, { params }) {
     const body = await req.json();
     const {
       userId,
-      tarifaxhr,
+      // tarifaxhr,
+      tarifaPresencial,
+      tarifaVirtual,
       name,
       description,
       whatsapp,
@@ -47,7 +49,9 @@ export async function PUT(req, { params }) {
           id: id,
         },
         data: {
-          tarifaxhr,
+          // tarifaxhr,
+          tarifaPresencial,
+          tarifaVirtual,
           name,
           description,
           whatsapp,
@@ -81,7 +85,9 @@ export async function PUT(req, { params }) {
           id: id,
         },
         data: {
-          tarifaxhr,
+          // tarifaxhr,
+          tarifaPresencial,
+          tarifaVirtual,
           name,
           description,
           whatsapp,

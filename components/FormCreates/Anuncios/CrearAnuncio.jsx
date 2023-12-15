@@ -80,7 +80,31 @@ const CrearAnuncio = () => {
   const [formContent, setFormContent] = useState({
     
     userId: "",
-    tarifaxhr: null,
+    // tarifaxhr: null,
+    tarifaPresencial: [
+      {
+      name: "60",
+      value: ""
+      },
+      {
+        name: "30",
+        value: ""
+      }
+  ],
+    tarifaVirtual: [
+        {
+        name: "60",
+        value: ""
+        },
+        {
+          name: "30",
+          value: ""
+        },
+        {
+          name: "15",
+          value: ""
+        }
+    ],
     name: "",
     description: "",
     whatsapp: "",
@@ -154,6 +178,47 @@ const CrearAnuncio = () => {
    
   };
 
+  const handleTarifaPresencial = (e) => {
+    const { name, value } = e.target;
+  
+    console.log(name);
+    console.log(value);
+  
+    const updatedTarifaPresencial = formContent.tarifaPresencial.map((item) => {
+      if (item.name === name) {
+        return {
+          ...item,
+          value: value,
+        };
+      }
+      return item;
+    });
+  
+    setFormContent({
+      ...formContent,
+      tarifaPresencial: updatedTarifaPresencial,
+    });
+  };
+  
+  const handleTarifaVirtual = (e) => {
+    const { name, value } = e.target;
+  
+    const updatedTarifaVirtual = formContent.tarifaVirtual.map((item) => {
+      if (item.name === name) {
+        return {
+          ...item,
+          value: value,
+        };
+      }
+      return item;
+    });
+  
+    setFormContent({
+      ...formContent,
+      tarifaVirtual: updatedTarifaVirtual,
+    });
+  };
+  
   const handleHoraInicio = (e) => {
     
     setHoraInicio("")
@@ -843,19 +908,125 @@ const CrearAnuncio = () => {
               { changeViewError && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : touchedFields.name && error && error?.name ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.name}</p> : ""}
             </div>
 
-            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Tarifa (en soles):</label>
+            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
+              <label htmlFor="name" className="text-white dark:text-black">Número de WhatsApp:</label>
               <input
                 type="text"
-                id="tarifaxhr"
-                name="tarifaxhr"
-                value={formContent.tarifaxhr}
+                id="whatsapp"
+                name="whatsapp"
+                value={formContent.whatsapp}
                 onChange={handleChange}
                 placeholder=""
                 className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
                 
               />
-              { changeViewError && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : touchedFields.tarifaxhr && error && error?.tarifaxhr ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.tarifaxhr}</p> : ""}
+               { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
+            </div>
+
+            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
+              
+              <div className="flex flex-col gap-1 w-full">
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa presencial:</label>
+
+              <div className="grid grid-cols-2 w-full text-sm">
+                <div className="flex gap-2 w-[50%]">
+                <label htmlFor="name" className=" text-white dark:text-black">60 min:</label>
+                
+                <div className="flex flex-col gap-2 w-full">
+                <input
+                type="text"
+                id="60"
+                name="60"
+                value={formContent?.tarifaPresencial && formContent?.tarifaPresencial[0]?.value}
+                onChange={handleTarifaPresencial}
+                placeholder=""
+                className=" focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
+                
+              />
+                </div>
+                </div>
+
+                <div className="flex gap-2 w-[50%]">
+                <label htmlFor="name" className=" text-white dark:text-black">30 min:</label>
+                
+                <div className="flex flex-col gap-2 w-full">
+                <input
+                type="text"
+                id="30"
+                name="30"
+                value={formContent?.tarifaPresencial && formContent?.tarifaPresencial[1]?.value}
+                onChange={handleTarifaPresencial}
+                placeholder=""
+                className=" focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
+                
+              />
+                </div>
+                </div>
+              </div>
+              </div>
+
+            </div>
+
+            <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
+              
+              <div className="flex flex-col gap-1 w-full">
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa virtual:</label>
+
+              <div className="grid grid-cols-3 w-full  text-sm">
+                <div className="flex gap-2 w-[50%]">
+                <label htmlFor="name" className=" text-white dark:text-black">60 min:</label>
+                
+                <div className="flex flex-col gap-2 w-full">
+                <input
+                type="text"
+                id="60"
+                name="60"
+                value={formContent?.tarifaVirtual && formContent?.tarifaVirtual[0]?.value}
+                onChange={handleTarifaVirtual}
+                placeholder=""
+                className=" focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
+                
+              />
+                </div>
+                </div>
+
+                <div className="flex gap-2 w-[50%]">
+                <label htmlFor="name" className=" text-white dark:text-black">30 min:</label>
+                
+                <div className="flex flex-col gap-2 w-full">
+                <input
+                type="text"
+                id="30"
+                name="30"
+                value={formContent?.tarifaVirtual && formContent?.tarifaVirtual[1]?.value}
+                onChange={handleTarifaVirtual}
+                placeholder=""
+                className=" focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
+                
+              />
+                </div>
+                </div>
+
+                <div className="flex gap-2 w-[50%]">
+                <label htmlFor="name" className=" text-white dark:text-black">15 min:</label>
+                
+                <div className="flex flex-col gap-2 w-full">
+                <input
+                type="text"
+                id="15"
+                name="15"
+                value={formContent?.tarifaVirtual && formContent?.tarifaVirtual[2]?.value}
+                onChange={handleTarifaVirtual}
+                placeholder=""
+                className=" focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
+                
+              />
+                </div>
+                </div>
+
+              </div>
+              </div>
+
             </div>
 
             {/* <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
@@ -994,21 +1165,6 @@ const CrearAnuncio = () => {
                 </div>
               </containerhorarioatencion>
             </atencion>
-
-            <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Número de WhatsApp:</label>
-              <input
-                type="text"
-                id="whatsapp"
-                name="whatsapp"
-                value={formContent.whatsapp}
-                onChange={handleChange}
-                placeholder=""
-                className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 p-[10px] border-2 text-white dark:text-black dark:bg-white bg-dark-d  dark:focus:text-black border-bor-red rounded-[10px] outline-none"
-                
-              />
-               { changeViewError && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : touchedFields.whatsapp && error && error?.whatsapp ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.whatsapp}</p> : ""}
-            </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="text-white dark:text-black">Nacionalidad de la chica:</label>

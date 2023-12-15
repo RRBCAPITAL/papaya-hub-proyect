@@ -9,15 +9,15 @@ export const validation = (formContent) => {
     } else if (formContent?.name?.length > 20) {
       errors.name = "El nombre no puede tener más de 20 caracteres.";
     }
-    // Validar que el tarifaxhr no esté vacío
-    if (!formContent.tarifaxhr || formContent.tarifaxhr === "") {
-        errors.tarifaxhr = "La tarifa es requerida.";
-      } else if(formContent?.tarifaxhr < 0){
-        errors.tarifaxhr = "La tarifa no puede ser negativa.";
-      }
-      else if (formContent?.tarifaxhr?.length > 4) {
-        errors.tarifaxhr = "La tarifa no puede tener más de 4 dígitos.";
-      }
+    // // Validar que el tarifaxhr no esté vacío
+    // if (!formContent.tarifaxhr || formContent.tarifaxhr === "") {
+    //     errors.tarifaxhr = "La tarifa es requerida.";
+    //   } else if(formContent?.tarifaxhr < 0){
+    //     errors.tarifaxhr = "La tarifa no puede ser negativa.";
+    //   }
+    //   else if (formContent?.tarifaxhr?.length > 4) {
+    //     errors.tarifaxhr = "La tarifa no puede tener más de 4 dígitos.";
+    //   }
 
 
       // Validar que el peso no esté vacío

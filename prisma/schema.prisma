@@ -33,6 +33,8 @@ model anuncios {
   userId       String
   tarifaxhr     Int
   tarifaxmr     Int 
+  tarifaPresencial String[]
+  tarifaVirtual    String[] 
   name        String
   description String
   whatsapp    String
