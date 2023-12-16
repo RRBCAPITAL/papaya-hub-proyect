@@ -926,7 +926,7 @@ const CrearAnuncio = () => {
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               
               <div className="flex flex-col gap-1 w-full">
-              <label htmlFor="name" className="text-white dark:text-black">Tarifa presencial:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa presencial (S/):</label>
 
               <div className="grid grid-cols-2 w-full text-sm">
                 <div className="flex gap-2 w-[50%]">
@@ -970,11 +970,11 @@ const CrearAnuncio = () => {
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
               
               <div className="flex flex-col gap-1 w-full">
-              <label htmlFor="name" className="text-white dark:text-black">Tarifa virtual:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Tarifa virtual (S/):</label>
 
               <div className="grid grid-cols-3 w-full  text-sm">
                 <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">60 min:</label>
+                <label htmlFor="name" className=" text-white dark:text-black">15 min:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -991,7 +991,7 @@ const CrearAnuncio = () => {
                 </div>
 
                 <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">30 min:</label>
+                <label htmlFor="name" className=" text-white dark:text-black">10 min:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -1008,7 +1008,7 @@ const CrearAnuncio = () => {
                 </div>
 
                 <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">15 min:</label>
+                <label htmlFor="name" className=" text-white dark:text-black">05 min:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -1167,7 +1167,7 @@ const CrearAnuncio = () => {
             </atencion>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Nacionalidad de la chica:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Nacionalidad:</label>
               <select
                 name="nacionalidad"
                 id="nacionalidad"
@@ -1225,7 +1225,7 @@ const CrearAnuncio = () => {
             </div>
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
-              <label htmlFor="name" className="text-white dark:text-black">Edad en años:</label>
+              <label htmlFor="name" className="text-white dark:text-black">Edad:</label>
               <input
                 type="text"
                 id="edad"

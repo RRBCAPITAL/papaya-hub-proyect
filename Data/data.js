@@ -10,7 +10,7 @@ export const existingNumbers = []
 
 export const categorias = [
   "Escort",
-  "Imágenes y videos hot",
+  "Packs fotos y videos",
   "Videollamada hot",
   "Fotos de pies",
   "Masajes",
@@ -42,7 +42,7 @@ export const categoriasNameIcon = [
     path: "/assets/icon-scort.png"
   },
   {
-    name: "Imágenes y videos hot",
+    name: "Packs fotos y videos",
     path: "/assets/icon-cel.png"
   },
   {

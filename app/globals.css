@@ -44,13 +44,13 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
-  background-color: #d9d9d9;
+  background-color: #939393;
 }
 
 /* Handle hover */
 ::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
-  background-color: rgb(173, 173, 173);
+  background-color: rgb(113, 113, 113);
 }
 /* Add these styles to force the vertical scrollbar */
 body {

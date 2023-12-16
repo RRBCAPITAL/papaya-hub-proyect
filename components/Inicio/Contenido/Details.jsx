@@ -88,34 +88,32 @@ const Details = ({ id }) => {
               </info>
 
               <tarifas className='flex flex-col gap-4'>
-              {(anuncio?.tarifaPresencial || anuncio?.tarifaVirtual) && <h1 className='dark:text-black text-white text-xl font-bold'>Tarifas:</h1>}
               {
-                anuncio?.tarifaPresencial && 
-               
-                
-                <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
-                <h2 className='text-medium font-think text-[16px]'><strong>Tarifa Presencial:</strong> {" "}
-                {tarifaPresencial?.map((tarifa, index) => (
-            <span key={tarifa.name}>
-              {`${tarifa.name} minutos - S/${tarifa.value}${index !== tarifaPresencial.length - 1 ? ', ' : ''}`}
-            </span>
-          ))}
-              </h2>
-                </div>
-              }
-              {
-                anuncio?.tarifaVirtual &&
-                <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
-                <h2 className='text-medium font-think text-[16px]'><strong>Tarifa Virtual:</strong> {" "}
-                {tarifaVirtual?.map((tarifa, index) => (
-            <span key={tarifa.name}>
-              {`${tarifa.name} minutos - S/${tarifa.value}${index !== tarifaVirtual.length - 1 ? ', ' : ''}`}
-            </span>
-          ))}
-              </h2>
-                </div>
-               
-              }
+  ( tarifaPresencial || tarifaVirtual ) && (
+    <tarifas className='flex flex-col gap-4'>
+      <h1 className='dark:text-black text-white text-xl font-bold'>Tarifas:</h1>
+      
+      <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+        <h2 className='text-medium font-think text-[16px]'>
+          <strong>Tarifa Presencial:</strong> {" "}
+          {tarifaPresencial?.filter(tarifa => tarifa.value !== undefined && tarifa.value !== "")
+            ?.map(tarifa => `${tarifa.name} minutos - ${tarifa.value}`)
+            ?.join(", ") || "No especificado"}
+        </h2>
+      </div>
+
+      <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+        <h2 className='text-medium font-think text-[16px]'>
+          <strong>Tarifa Virtual:</strong> {" "}
+          {tarifaVirtual?.filter(tarifa => tarifa.value !== undefined && tarifa.value !== "")
+            ?.map(tarifa => `${tarifa.name} minutos - ${tarifa.value}`)
+            ?.join(", ") || "No especificado"}
+        </h2>
+      </div>
+    </tarifas>
+  )
+}
+
                </tarifas>
 
               <contacto className='flex flex-col gap-4'>
