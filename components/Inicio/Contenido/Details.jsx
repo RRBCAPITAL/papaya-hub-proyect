@@ -97,7 +97,7 @@ const Details = ({ id }) => {
         <h2 className='text-medium font-think text-[16px]'>
           <strong>Tarifa Presencial:</strong> {" "}
           {tarifaPresencial?.filter(tarifa => tarifa.value !== undefined && tarifa.value !== "")
-            ?.map(tarifa => `${tarifa.name} minutos - ${tarifa.value}`)
+            ?.map(tarifa => `${tarifa.name} minutos - S/${tarifa.value}`)
             ?.join(", ") || "No especificado"}
         </h2>
       </div>
@@ -106,7 +106,7 @@ const Details = ({ id }) => {
         <h2 className='text-medium font-think text-[16px]'>
           <strong>Tarifa Virtual:</strong> {" "}
           {tarifaVirtual?.filter(tarifa => tarifa.value !== undefined && tarifa.value !== "")
-            ?.map(tarifa => `${tarifa.name} minutos - ${tarifa.value}`)
+            ?.map(tarifa => `${tarifa.name} minutos - S/${tarifa.value}`)
             ?.join(", ") || "No especificado"}
         </h2>
       </div>
