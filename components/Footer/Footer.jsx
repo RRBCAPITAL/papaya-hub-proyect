@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { AiFillFacebook } from 'react-icons/ai'
+import { AiFillFacebook, AiFillInstagram, AiFillTiktok } from 'react-icons/ai'
+import { SiTiktok, SiInstagram, SiFacebook } from "react-icons/si";
 import { Poppins } from 'next/font/google'
 
 const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
@@ -53,9 +54,12 @@ const Footer = () => {
                     <button className="p-[0.8rem] max-w-[260px] rounded bg-slate-900 hover:bg-[#6f01ff] border-2 border-[#6f01ff] text-white outline-none">Enviar</button> */}
                 </div>
 
-                {/* <ul className="socials">
-                    <li><Link href={'/'}><AiFillFacebook /></Link></li>
-                </ul> */}
+                <h4 className="text-xl font-extrabold">Redes sociales</h4>
+                <ul className="socials flex gap-6">
+                    <li><Link target="_blank" href={'https://www.instagram.com/papayahub_pe/'}><SiInstagram /></Link></li>
+                    {/* <li><Link href={'/'}><SiFacebook /></Link></li> */}
+                    <li><Link target="_blank" href={'https://www.tiktok.com/@papayahub_pe'}><SiTiktok /></Link></li>          
+                </ul>
             </div>
   
         </div>
