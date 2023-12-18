@@ -49,12 +49,6 @@ const Details = ({ id }) => {
       
     }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial])
 
-    console.log(anuncio?.tarifaPresencial);
-    console.log(anuncio?.tarifaVirtual);
-    console.log(tarifaPresencial);
-    console.log(tarifaVirtual);
-    console.log(anuncio);
-
   return (
     <div className='flex'>
         <containerinfo className='flex flex-col gap-4 items-center justify-center bg-dark-l dark:bg-white min-h-screen w-screen'>

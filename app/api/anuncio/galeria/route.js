@@ -47,19 +47,19 @@ export async function POST(req, { params }) {
         cloudinary.uploader.upload_stream({
           
             public_id: publicId,
-            colors: true,
-            overlay: {
-              font_family: 'Arial',
-              font_size: 50, // Tamaño del texto
-              text: 'Papayahub.pe',
-              color: '#fff', // Color del texto
-              opacity: 60, // Opacidad del texto
-              blend: 'over',
-            },
-            gravity: 'center', // Centrar el texto en la imagen
-            color: '#fff',
-            opacity: 60,
-            font_size: 50
+            // colors: true,
+            // overlay: {
+            //   font_family: 'Arial',
+            //   font_size: 50, // Tamaño del texto
+            //   text: 'Papayahub.pe',
+            //   color: '#fff', // Color del texto
+            //   opacity: 60, // Opacidad del texto
+            //   blend: 'over',
+            // },
+            // gravity: 'center', // Centrar el texto en la imagen
+            // color: '#fff',
+            // opacity: 60,
+            // font_size: 50
           
         }, (err, result) => {
           if (err) {

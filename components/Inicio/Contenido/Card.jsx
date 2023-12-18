@@ -1,21 +1,41 @@
 "use client"
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion"
 import { changeIn } from '@/utils/motionTransitions'
 import { useRouter } from 'next/navigation'
 
-const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, region, nivel, whatsapp}) => {
+const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, region, nivel, whatsapp, anuncioTarifaPresencial, anuncioTarifaVirtual}) => {
   
     const router = useRouter()  
     const shortId = id?.substring(0, 7);
     const [isHovered, setIsHovered] = useState(false);
 
+    const [tarifaPresencial, setTarifaPresencial] = useState([])
+    const [tarifaVirtual, setTarifaVirtual] = useState([])
+
     const toggleHover = () => {
       setIsHovered(!isHovered);
     };
   
+    useEffect(() => {
+      if(anuncioTarifaPresencial){
+        const tarifaPresencial = JSON.parse(anuncioTarifaPresencial);
+        console.log(tarifaPresencial);
+        setTarifaPresencial(tarifaPresencial)
+      }
+      if(anuncioTarifaVirtual){
+        const tarifaVirtual = JSON.parse(anuncioTarifaVirtual);
+        console.log(tarifaVirtual);
+        setTarifaVirtual(tarifaVirtual)
+      }
+      
+    }, [anuncioTarifaVirtual, anuncioTarifaPresencial])
+
+    console.log(tarifaPresencial);
+    console.log(tarifaVirtual);
+
     return (
       <div 
       onClick={() => {
@@ -91,7 +111,7 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
     </div>
 
     <div className="flex gap-1 mt-1 rounded-[5px] w-fit px-2 py-1 bg-white">
-      <h2 className="text-black my-auto text-[12px]">{lugar} - S/{tarifaxhr}</h2>
+      <h2 className="text-black my-auto text-[12px]">{lugar} - S/{tarifaPresencial[0]?.value ? tarifaPresencial[0]?.value : tarifaVirtual[0]?.value && tarifaVirtual[0]?.value}</h2>
     </div>
 
   </section>

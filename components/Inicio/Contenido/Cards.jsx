@@ -245,6 +245,8 @@ const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrad
                 region={a.region}
                 nivel={a.nivel}
                 whatsapp={a?.whatsapp}
+                anuncioTarifaPresencial={a?.tarifaPresencial}
+                anuncioTarifaVirtual={a?.tarifaVirtual}
               />
             ))
           ) : ""}
