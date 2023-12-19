@@ -15,7 +15,7 @@ const VipPage = () => {
         <h1 className='font-extrabold text-2xl sm:text-[30px] text-white dark:text-black'>Papaya <nav className='bg-back-red p-2 inline-block rounded-[10px]'>Vip</nav></h1>
 
         <p className='text-center text-[12px] sm:text-sm'>
-        Si deseas brindar servicios exclusivos y discretos con tarifas desde 500 a más, escríbenos y consulta los requisitos para ser parte de este segmento papayahubvip@gmail.com</p>
+        Si deseas brindar servicios exclusivos y discretos con tarifas desde S/. 500 a más, escríbenos y consulta los requisitos para ser parte de este segmento papayahubvip@gmail.com</p>
         </div>
 
 
