@@ -112,7 +112,7 @@ const Details = ({ id }) => {
       
     }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial])
 
-    const numeroTelefono = anuncio?.telefono;
+    const numeroTelefono = anuncio?.whatsapp;
 
     const galeriaVIDEO = anuncio?.galeriaVideos
 
