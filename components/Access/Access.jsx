@@ -130,7 +130,8 @@ const Access = ({ children }) => {
       pathname === "/formulario-de-inscripcion"||
       pathname === '/dashboard/crear-equipo' ||
       pathname === '/dashboard/equipos' ||
-      pathname === "/soporte"
+      pathname === "/soporte" ||
+      pathname === "/vip"
         ? ""
         : <Footer />}
 

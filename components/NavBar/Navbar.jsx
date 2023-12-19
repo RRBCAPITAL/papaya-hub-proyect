@@ -121,7 +121,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
     return (
     <div className={quick.className}>
-    <header className="z-[999] w-screen fixed  bg-[#000000] shadow-custom1 dark:bg-white py-0 px-[2rem]">
+    <header className="z-[100] w-screen fixed  bg-[#000000] shadow-custom1 dark:bg-white py-0 px-[2rem]">
         <motion.div className=" h-[60px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
         >
@@ -142,6 +142,10 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     href={'/'}
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
                 >Servicios</Link>
+                <Link
+                    href={'/vip'}
+                    className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}>
+                Vip</Link>
                 <Link
                     href={'/soporte'}
                     className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}>
