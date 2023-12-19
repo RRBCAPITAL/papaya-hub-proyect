@@ -285,6 +285,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') ? "text-t-red" : "text-white dark:text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Servicios</Link>
+                    <Link href={'/vip'} onClick={handleNavbarPhone} className={` ${pathname === ('/vip') ? "text-t-red" : "text-white dark:text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Vip</Link>
                         <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/soporte') ? "text-t-red" : "text-white dark:text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
                     <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === `/dashboard-de-usuario/${id}` ? "text-t-red" : "text-white dark:text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none

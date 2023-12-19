@@ -138,7 +138,7 @@ function GaleriaIMG({ galeriaIMG }) {
   };
 
   return (
-    <div className="wrapper w-[90%] lg:w-[60%] flex items-center justify-center bg-dark-d py-10 text-txt-dark-l dark:bg-white  shadow-custom2 mx-2 lg:mx-20 px-10 rounded-[10px]">
+    <div className="wrapper w-[90%] lg:w-[90%] 2xl:w-[1170px] flex items-center justify-center bg-dark-d py-10 text-txt-dark-l dark:bg-white  shadow-custom2 mx-2 lg:mx-20 px-10 rounded-[10px]">
  
    
             <h2 className='text-center text-4xl mx-4 pb-10 font-light dark:text-black text-white'><strong className='font-extrabold'>Galeria</strong> de fotos</h2>
