@@ -934,7 +934,7 @@ const CrearAnuncio = () => {
                 <div className="flex gap-10 w-[100%]">
                 <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">60 minutos:</label>
                 
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full overflow-hidden">
                 <input
                 type="text"
                 id="60"
@@ -951,7 +951,7 @@ const CrearAnuncio = () => {
                 <div className="flex gap-10 w-[100%]">
                 <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">30 minutos:</label>
                 
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full overflow-hidden">
                 <input
                 type="text"
                 id="30"
@@ -978,7 +978,7 @@ const CrearAnuncio = () => {
                 <div className="flex gap-10 w-[100%]">
                 <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">15 minutos:</label>
                 
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex flex-col gap-2 w- overflow-hidden">
                 <input
                 type="text"
                 id="60"
@@ -995,7 +995,7 @@ const CrearAnuncio = () => {
                 <div className="flex gap-10 w-[100%]">
                 <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">10 minutos:</label>
                 
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full overflow-hidden">
                 <input
                 type="text"
                 id="30"
@@ -1012,7 +1012,7 @@ const CrearAnuncio = () => {
                 <div className="flex gap-10 w-[100%]">
                 <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">05 minutos:</label>
                 
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full overflow-hidden">
                 <input
                 type="text"
                 id="15"
