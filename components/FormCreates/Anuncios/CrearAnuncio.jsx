@@ -7,7 +7,9 @@ import {
   regiones,
   nacionalidades,
   distritos,
-  preferenciasPrincipales,
+  lugarEncuentro,
+  servicios,
+  serviciosExclusivos,
   categorias
 } from "@/Data/data";
 import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
@@ -890,7 +892,7 @@ const CrearAnuncio = () => {
         <form
           onSubmit={handleSubmit}
           encType="multipart/form-data"
-          className="m-5 flex flex-col bg-dark-l dark:bg-white w-[95%] sm:max-w-[80%] lg:max-w-[60%] shadow-2xl rounded-[10px] px-5 items-center gap-2"
+          className="m-5 flex flex-col bg-dark-l dark:bg-white w-[95%] sm:max-w-[100%] lg:w-[900px] shadow-2xl rounded-[10px] px-5 items-center gap-2"
         >
           <containerform className=" grid sm:grid-cols-2 lg:grid-cols-2 gap-10 my-10">
             <div className="flex flex-col gap-1 w-[300px] sm:w-full mx-auto">
@@ -928,9 +930,9 @@ const CrearAnuncio = () => {
               <div className="flex flex-col gap-1 w-full">
               <label htmlFor="name" className="text-white dark:text-black">Tarifa presencial (S/):</label>
 
-              <div className="grid grid-cols-2 w-full text-sm">
-                <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">60 min:</label>
+              <div className="grid grid-cols-1 gap-1 w-full text-sm">
+                <div className="flex gap-10 w-[100%]">
+                <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">60 minutos:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -946,8 +948,8 @@ const CrearAnuncio = () => {
                 </div>
                 </div>
 
-                <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">30 min:</label>
+                <div className="flex gap-10 w-[100%]">
+                <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">30 minutos:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -972,9 +974,9 @@ const CrearAnuncio = () => {
               <div className="flex flex-col gap-1 w-full">
               <label htmlFor="name" className="text-white dark:text-black">Tarifa virtual (S/):</label>
 
-              <div className="grid grid-cols-3 w-full  text-sm">
-                <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">15 min:</label>
+              <div className="grid grid-cols-1 gap-1 w-full  text-sm">
+                <div className="flex gap-10 w-[100%]">
+                <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">15 minutos:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -990,8 +992,8 @@ const CrearAnuncio = () => {
                 </div>
                 </div>
 
-                <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">10 min:</label>
+                <div className="flex gap-10 w-[100%]">
+                <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">10 minutos:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -1007,8 +1009,8 @@ const CrearAnuncio = () => {
                 </div>
                 </div>
 
-                <div className="flex gap-2 w-[50%]">
-                <label htmlFor="name" className=" text-white dark:text-black">05 min:</label>
+                <div className="flex gap-10 w-[100%]">
+                <label htmlFor="name" className=" text-white dark:text-black w-full my-auto">05 minutos:</label>
                 
                 <div className="flex flex-col gap-2 w-full">
                 <input
@@ -1049,8 +1051,9 @@ const CrearAnuncio = () => {
               <containerhorarioatencion className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="text-white dark:text-black">Selecciona tus categorias de atención:</label>
-                  <diasatencion className="grid grid-cols-2 xl:grid-cols-3 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
-        {categorias.map((optionC) => (
+                  <label htmlFor="name" className="text-white dark:text-black text-xl font-bold">Lugar de encuentro:</label>
+                  <encuentro className="grid grid-cols-2 xl:grid-cols-3 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
+        {lugarEncuentro.map((optionC) => (
           <button
             key={optionC}
             type="button"
@@ -1062,7 +1065,39 @@ const CrearAnuncio = () => {
             {optionC}
           </button>
         ))}
-      </diasatencion>
+      </encuentro>
+
+      <label htmlFor="name" className="text-white dark:text-black text-xl font-bold">Servicios:</label>
+                  <encuentro className="grid grid-cols-2 xl:grid-cols-3 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
+        {servicios.map((optionC) => (
+          <button
+            key={optionC}
+            type="button"
+            className={` text-[11px] 2xl:text-sm p-[4px] border-2 dark:border-white dark:text-black hover:dark:text-white border-bor-red text-t-red rounded-[10px] hover:bg-[#ff6a50] hover:text-white hover:dark:bg-[#7c2929] transition-all ease-linear duration-300 ${
+              isOptionSelectedC(optionC) ? "dark:bg-[#ff5f2f] dark:text-white text-black bg-[#7c2929]" : "dark:bg-white bg-dark-l"
+            } `}
+            onClick={() => toggleOptionC(optionC)}
+          >
+            {optionC}
+          </button>
+        ))}
+      </encuentro>
+
+      <label htmlFor="name" className="text-white dark:text-black text-xl font-bold">Servicios exclusivos:</label>
+                  <encuentro className="grid grid-cols-2 xl:grid-cols-3 xl:w-[260px] 2xl:w-full gap-1 w-[270px] sm:w-full overflow-hidden">
+        {serviciosExclusivos.map((optionC) => (
+          <button
+            key={optionC}
+            type="button"
+            className={` text-[11px] 2xl:text-sm p-[4px] border-2 dark:border-white dark:text-black hover:dark:text-white border-bor-red text-t-red rounded-[10px] hover:bg-[#ff6a50] hover:text-white hover:dark:bg-[#7c2929] transition-all ease-linear duration-300 ${
+              isOptionSelectedC(optionC) ? "dark:bg-[#ff5f2f] dark:text-white text-black bg-[#7c2929]" : "dark:bg-white bg-dark-l"
+            } `}
+            onClick={() => toggleOptionC(optionC)}
+          >
+            {optionC}
+          </button>
+        ))}
+      </encuentro>
                   { changeViewError && error && error?.categorias ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.categorias}</p> : touchedFields.categorias && error && error?.categorias ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.categorias}</p> : ""}
                 </div>
 
@@ -1085,9 +1120,8 @@ const CrearAnuncio = () => {
                 
               />
                { changeViewError && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : touchedFields.description && error && error?.description ? <p className="text-white text-center font-mono text-[12px] p-1 bg-red-500 w-auto ">{error?.description}</p> : ""}
-            </div>
-
-            <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto">
+            
+               <atencion className="flex flex-col gap-[12px] w-[300px] sm:w-full mx-auto mt-6 lg:mt-2">
               <h1 className="text-white dark:text-black" >Horario de atención</h1>
               <containerhorarioatencion className="dark:bg-[#ffc876] bg-[#2c2c2c] p-4 rounded-[10px] grid gap-2">
                 <div className="flex flex-col gap-2">
@@ -1111,7 +1145,7 @@ const CrearAnuncio = () => {
 
                 <div className="flex flex-col 2xl:flex-row gap-2 w-[300px] sm:w-full mx-auto">
                   <div className="flex flex-row sm:flex-col gap-2">
-                    <label htmlFor="horarioInicio" className="text-white dark:text-black">Hora de inicio:</label>
+                    <label htmlFor="horarioInicio" className="text-white dark:text-black">Inicia:</label>
                     <hora className='flex flex-row gap-[1px]'>
                     <select name="" id="" onChange={handleHoraInicio} className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
                       <option value="">Selecciona:</option>
@@ -1137,7 +1171,7 @@ const CrearAnuncio = () => {
                     </hora>
                   </div>
                   <div className="flex flex-row sm:flex-col gap-2">
-                    <label htmlFor="horarioFin" className="text-white dark:text-black">Hora de cierre:</label>
+                    <label htmlFor="horarioFin" className="text-white dark:text-black">Finaliza:</label>
                     <hora className='flex flex-row gap-[1px]'>
                     <select name="" id="" onChange={handleHoraFinal} className="focus:ring focus:ring-yellow-400 dark:focus:bg-yellow-50 focus:bg-slate-800 focus:transition-all focus:ease-in-out transition-all ease-in-out duration-300 focus:duration-300 outline-none text-white dark:text-black dark:bg-white bg-dark-d focus:text-white dark:focus:text-black rounded-[10px] p-[2px] border-2 border-bor-red">
                       <option value="">Selecciona:</option>
@@ -1165,6 +1199,10 @@ const CrearAnuncio = () => {
                 </div>
               </containerhorarioatencion>
             </atencion>
+
+            </div>
+
+            
 
             <div className="flex flex-col gap-2 w-[300px] sm:w-full mx-auto">
               <label htmlFor="name" className="text-white dark:text-black">Nacionalidad:</label>

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { TbFilterStar } from "react-icons/tb";
 import ModalFilter from "../ModalFilter";
 
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { changeIn } from "@/utils/motionTransitions";
 
 import { categoriasNameIcon } from "@/Data/data";
@@ -30,9 +30,32 @@ const Filtros = ({
   const [currentIndex, setCurrentIndex] = useState(0);
 
 
-  const [active, setActive] = useState("Escort");
+  const [active, setActive] = useState("Todas");
 
   const [nombreid, setNombreid] = useState();
+
+  const [scrollDirection, setScrollDirection] = useState("down");
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+
+      if (scrollTop > 50 && scrollDirection === "down") {
+        setScrollDirection("up");
+        controls.start({ y: -100, opacity: 0 });
+      } else if (scrollTop <= 50 && scrollDirection === "up") {
+        setScrollDirection("down");
+        controls.start({ y: 0, opacity: 1 });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollDirection, controls]);
 
   const handleSearch = (e) => {
     const { value } = e.target;
@@ -53,12 +76,12 @@ const Filtros = ({
   };
 
   const handleReset = () => {
-    setNombreid("");
-    setTextSearch(nombreid),
-      setSelectedNacionalidad(""),
-      setSelectedIdioma(""),
-      setSelectedLugar(""),
-      setSelectedRegion("");
+    // setNombreid("");
+    // setTextSearch(nombreid),
+    //   setSelectedNacionalidad(""),
+    //   setSelectedIdioma(""),
+    //   setSelectedLugar(""),
+    //   setSelectedRegion("");
     setCategoria("");
   };
 
@@ -70,8 +93,9 @@ const Filtros = ({
     <div className={quick.className}>
       <motion.div
         variants={changeIn(0.3)}
-        initial="hidden"
-        animate="show"
+        initial="show"
+        animate={controls}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         exit="hidden"
         className="z-[999] flex sm:flex-row flex-col gap-4 p-2  text-black dark:bg-white bg-dark-l fixed rounded-[20px]"
       >
@@ -114,6 +138,9 @@ const Filtros = ({
             onClick={() => {
               setCategoria(i?.name);
               setActive(i?.name);
+
+              i?.name === "Todas" && handleReset()
+              
             }}
             className={`links-box border-b-2 border-transparent hover:border-b-2 hover:border-[#b5b5b5] ${ active === i?.name && "border-b-2 dark:border-black border-white selected-box"}  overflow-hidden`}
           >

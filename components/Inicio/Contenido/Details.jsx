@@ -24,11 +24,15 @@ import './GaleriaVIDEO/styles.css';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 
+import { lugarEncuentro, servicios, serviciosExclusivos } from '@/Data/data'
+
 const Details = ({ id }) => {
 
     const [anuncio, setAnuncio] = useState()
     const [tarifaPresencial, setTarifaPresencial] = useState([])
     const [tarifaVirtual, setTarifaVirtual] = useState([])
+
+    const [encuentro, setEncuentro] = useState(false)
 
     const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -112,7 +116,7 @@ const Details = ({ id }) => {
       
     }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial])
 
-    const numeroTelefono = anuncio?.whatsapp;
+    const numeroTelefono = anuncio?.telefono;
 
     const galeriaVIDEO = anuncio?.galeriaVideos
 
@@ -134,7 +138,7 @@ const Details = ({ id }) => {
             <div className='flex flex-col lg:flex-row gap-6'>
             
             <div className='flex flex-col gap-2'>
-            <img src={anuncio?.imagenPrincipal} alt="" className='max-w-[400px] h-fit lg:min-w-[400px] border-4 border-bor-red lg:h-fit rounded-[10px] shadow-xl'/>
+            <img src={anuncio?.imagenPrincipal} alt="" className='max-w-[400px] h-fit lg:min-w-[400px] border-4 lg:h-fit rounded-[10px] shadow-xl'/>
             
             <div className='flex gap-4 w-full items-center justify-center sm:w-[50%] lg:w-full'>
             <button                                                                                
@@ -160,13 +164,13 @@ const Details = ({ id }) => {
               <infodetails className='flex flex-col lg:flex-row gap-2 dark:text-slate-700 text-white'>
               <h1 className=' text-4xl font-extrabold'>{anuncio?.name}</h1>
               
-              <div className='text-[12px] sm:text-sm grid grid-cols-3 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-none overflow-hidden 2xl:flex gap-2'>
-              <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>{anuncio?.nacionalidad}</h2>
-              <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>{anuncio?.edad} años</h2>
-              <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>{anuncio?.altura} cm</h2>
-              <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>{anuncio?.peso} kg</h2>
+              <div className='text-[12px] sm:text-sm grid grid-cols-3 text-slate-700 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-none overflow-hidden 2xl:flex gap-2'>
+              <h2 className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>{anuncio?.nacionalidad}</h2>
+              <h2 className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>{anuncio?.edad} años</h2>
+              <h2 className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>{anuncio?.altura} cm</h2>
+              <h2 className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>{anuncio?.peso} kg</h2>
               {/* <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>Idioma: <nav className='inline-block'>{" "}{idioma?.join(", ") || ""}</nav></h2> */}
-              <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>ID: {anuncio?.idFrontend}</h2>
+              <h2 className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>ID: {anuncio?.idFrontend}</h2>
               </div>
                  
               </infodetails>
@@ -177,11 +181,11 @@ const Details = ({ id }) => {
               </infodescription>
               </info>
 
-              <tarifasall className='flex flex-col gap-4'>
+              {
+        tarifaPresencial[0]?.value || tarifaPresencial[1]?.value || tarifaVirtual[0]?.value || tarifaVirtual[1]?.value || tarifaVirtual[2]?.value ? <tarifasall className='flex flex-col gap-4'>
               
     <tarifas className='flex flex-col lg:flex-row gap-4 lg:gap-32'>
-      {/* <h1 className='dark:text-black text-white text-xl font-bold'>Tarifas presencial:</h1> */}
-      
+
       {
         tarifaPresencial[0]?.value || tarifaPresencial[1]?.value ?
         <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
@@ -216,38 +220,52 @@ const Details = ({ id }) => {
       }
 
     </tarifas>
-               </tarifasall>
+               </tarifasall>  : "" }
 
-               <lugarencuentro className='flex flex-col gap-2'>
-  <h1 className='dark:text-black text-white text-xl font-bold'>Lugar de encuentro:</h1>
+               {lugarEncuentro.some(categoria => anuncio?.categorias?.includes(categoria)) ?   <lugarencuentro className='flex flex-col gap-2'>
+   <h1 className='dark:text-black text-white text-xl font-bold'>Lugar de encuentro:</h1> 
   <div className='text-[12px] sm:text-sm flex flex-wrap gap-2'>
     {
       anuncio?.categorias?.map((c, index) => (
-        <h2 key={index} className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>
+        
+          lugarEncuentro.includes(c) ? 
+          <h2 key={index} className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>
           {c}
-        </h2>
+        </h2> : ""
       ))
     }
   </div>
-</lugarencuentro>
+</lugarencuentro> : ""}
 
-              <misservicios className='flex flex-col gap-2'>
-              <h1 className='dark:text-black text-white text-xl font-bold'>Mis servicios:</h1>
+{servicios.some(categoria => anuncio?.categorias?.includes(categoria)) ?   <misservicios className='flex flex-col gap-2'>
+               <h1 className='dark:text-black text-white text-xl font-bold'>Mis servicios:</h1>
               <div className='text-[12px] sm:text-sm flex flex-wrap gap-2'>
               {
-                anuncio?.categorias?.map((c) => <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>{c}</h2>)
-              }
+      anuncio?.categorias?.map((c, index) => (
+        
+          servicios.includes(c) ?
+          <h2 key={index} className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>
+          {c}
+        </h2> : ""
+      ))
+    }
               </div>
-              </misservicios>
+              </misservicios>  : ""}
 
-              <serviciosexclusivos className='flex flex-col gap-2'>
-              <h1 className='dark:text-black text-white text-xl font-bold'>Servicios exclusivos:</h1>
+              {serviciosExclusivos.some(categoria => anuncio?.categorias?.includes(categoria)) ? <serviciosexclusivos className='flex flex-col gap-2'>
+               <h1 className='dark:text-black text-white text-xl font-bold'>Servicios exclusivos:</h1> 
               <div className='text-[12px] sm:text-sm flex flex-wrap gap-2'>
               {
-                anuncio?.categorias?.map((c) => <h2 className='rounded-[10px] bg-back-red my-auto px-2 py-1 text-center'>{c}</h2>)
-              }
+      anuncio?.categorias?.map((c, index) => (
+        
+          serviciosExclusivos.includes(c) ?
+          <h2 key={index} className='rounded-[10px] bg-back-orange my-auto px-2 py-1 text-center'>
+          {c}
+        </h2> : ""
+      ))
+    }
               </div>
-              </serviciosexclusivos>
+              </serviciosexclusivos> : ""}
 
               <adicional className='flex flex-col gap-4'>
               <h1 className='dark:text-black text-white text-xl font-bold'>Detalles adicionales:</h1>

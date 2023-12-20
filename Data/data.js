@@ -35,8 +35,46 @@ export const categorias = [
   "Trio H-M-H"
 ];
 
+export const lugarEncuentro = [
+  "Depa propio",
+  "Atención en hotel",
+  "Atención a domicilio",
+]
+
+export const servicios = [
+  "Escort",
+  "Packs fotos y videos",
+  "Videollamada hot",
+  "Fotos de pies",
+  "Masajes",
+  "Conversar y consejos",
+  "Audios hot",
+  "Chat erótico",
+  "69",
+  "Eyaculación corporal",
+  "Atención a discapacitados",
+]
+
+export const serviciosExclusivos = [
+
+  "Anal",
+  "Fetiche",
+  "Sexo en la ducha",
+  "Juguetes eróticos",
+  "Atención a mujeres",
+  "Oral peladito",
+  "Eyaculación en la boca",
+  "Eyaculación facial",
+  "Trio M-H-M",
+  "Trio H-M-H"
+];
+
 export const categoriasNameIcon = [
 
+  {
+    name: "Todas",
+    path: "/assets/icon-todas.png"
+  },
   {
     name: "Escort",
     path: "/assets/icon-scort.png"

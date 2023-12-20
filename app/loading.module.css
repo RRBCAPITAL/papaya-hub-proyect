@@ -1,10 +1,10 @@
 .spinner {
-    width: 150px;
-    height: 150px;
+    width: 50px;
+    height: 50px;
     display: grid;
-    border: 4.5px solid #0000;
+    border: 2px solid #0000;
     border-radius: 50%;
-    border-color: #ae00ff #0000;
+    border-color: #ffcc00 #0000;
     animation: spinner-e04l1k 1s infinite linear;
   }
   
@@ -18,7 +18,7 @@
   }
   
   .spinner::before {
-    border-color: #474bff #0000;
+    border-color: #ff7e47 #0000;
     animation: inherit;
     animation-duration: 0.5s;
     animation-direction: reverse;

@@ -22,13 +22,29 @@ import { fadeIn } from '@/utils/motionTransitions'
 import { useClerk } from "@clerk/clerk-react";
 
 import { Poppins } from 'next/font/google'
+import Inicio from "../Inicio/Inicio";
 
 const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
+
+export const changeNabvar = (changeNabvarF) => {
+  console.log(changeNabvarF);
+  if(typeof changeNabvar === "undefined"){
+    const changeNabvarF = true
+    return changeNabvarF
+  }
+  return changeNabvarF
+}
 
 const Navbar = ({ currentUserR }) => {
 
     const pathname = usePathname()
     const [ show, setShow ] = useState(false)
+
+    const [ changeNabvarF, setChangeNabvarF ] = useState(false)
+
+    changeNabvar(changeNabvarF)
+
+
     // const [ currentUserR, setCurrentUserR] = useState()
 
     const userR = useUser()
@@ -128,7 +144,10 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             
             <menu className="flex gap-10">
             <div className="text-[1rem] font-bold">
-            <Link href={'/'} onClick={() => setShow(false)} className="font-extrabold">
+            <Link href={'/'} onClick={() => {
+              setShow(false)
+              setChangeNabvarF(!changeNabvarF)
+            }} className="font-extrabold">
                     <img src="/assets/phlogo.jpeg" alt="" className="h-10 w-auto rounded-md shadow-sm"/>
             </Link>
             </div>

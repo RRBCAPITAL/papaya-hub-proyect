@@ -111,7 +111,7 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
     </div>
 
     <div className="flex gap-1 mt-1 rounded-[5px] w-fit px-2 py-1 bg-white">
-      <h2 className="text-black my-auto text-[12px]">{lugar} - S/{tarifaPresencial[0]?.value ? tarifaPresencial[0]?.value : tarifaVirtual[0]?.value && tarifaVirtual[0]?.value}</h2>
+      <h2 className="text-black my-auto text-[12px]">{lugar} {tarifaPresencial[0]?.value ? `- S/${tarifaPresencial[0]?.value}` : tarifaVirtual[0]?.value && `- S/${tarifaVirtual[0]?.value}`}</h2>
     </div>
 
   </section>

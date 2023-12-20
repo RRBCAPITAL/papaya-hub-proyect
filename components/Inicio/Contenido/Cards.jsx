@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Masonry from 'react-masonry-css';
 import './stylecards.css'
 
+import { changeNabvar } from '@/components/NavBar/Navbar'
+
 const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrados, setNothingFound, setModalFilterOpen, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma }) => {
 
     const [ anuncios, setAnuncios ] = useState()
@@ -17,6 +19,7 @@ const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrad
     const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
     const [listen, setListen] = useState(false)
 
+    console.log(changeNabvar());
     console.log(categoria);
 
     // useEffect(() => {
@@ -84,6 +87,17 @@ const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrad
     console.log(anuncios);
 
     useEffect(() => {
+      const anunciosSegunNivel = anuncios?.sort((a, b) => {
+        const niveles = ['BICHOTA', 'MOTOMAMI', 'SIMPLE'];
+        const nivelA = niveles.indexOf(a.nivel);
+        const nivelB = niveles.indexOf(b.nivel);
+        return nivelA - nivelB;
+      });
+  
+      setFilteredAnuncios(anunciosSegunNivel);
+    }, [anuncios, changeNabvar]);
+
+    useEffect(() => {
       // Filtra los anuncios basados en los filtros seleccionados
       const filteredAnun = anuncios?.filter((a) => {
        
@@ -93,125 +107,120 @@ const Cards = ({ categoria, selectedAtencion, textSearch, setResultadosEncontrad
           return false;
         }
 
-         // Nacionalidad
-         if (selectedNacionalidad && a?.nacionalidad !== selectedNacionalidad) {
-          return false;
-        }
-        // Departamento
-        if (selectedRegion && a?.region !== selectedRegion) {
-          return false;
-        }
-        // Lugar (Distrito)
-        if (selectedLugar && a?.lugar !== selectedLugar) {
-          return false;
-        }
-        // Idioma
-        if (selectedIdioma && !a?.idioma.includes(selectedIdioma)) {
-          return false;
-        }
-        // Atencion
-        if (selectedAtencion && !a?.atencion.includes(selectedAtencion)) {
-          return false;
-        }
         setNothingFound(false)
         setResultadosEncontrados(true)
         return true;
        }
 
       });
- 
-      if(filteredAnun?.length === 0 || !filteredAnun){
-        setNothingFound(true); // Establecer nothingFound en true si no se encontraron resultados
-        setResultadosEncontrados(false); 
-      }
 
-      setNothingFound(false); // Establecer nothingFound en false si se encontraron resultados
-      setResultadosEncontrados(true);
+      console.log("Estoy aqui");
 
-      const anunciosSimplesH = filteredAnun?.filter((s) => s.nivel === 'SIMPLE') || [];
-      const anunciosMotoMamiH = filteredAnun?.filter((s) => s.nivel === 'MOTOMAMI') || [];
-      const anunciosBichotaH = filteredAnun?.filter((s) => s.nivel === 'BICHOTA') || [];
-      const anunciosSegunNivelH = [
-        ...anunciosBichotaH,
-        ...anunciosMotoMamiH,
-        ...anunciosSimplesH,
-      ];
-    
-      if(anunciosSegunNivelH?.length > 0){
-        setFilteredAnuncios(anunciosSegunNivelH);
-        setModalFilterOpen(false)
-        setFilteredAnuncios(filteredAnun);
-      }
-      
-      
-
-    }, [categoria, selectedNacionalidad, selectedRegion, selectedLugar, selectedIdioma, selectedAtencion, anuncios]);
-    
-    
-  // Filtrar los anuncios según el valor de búsqueda
-  useEffect(() => {
-    if (textSearch) {
-      function removeAccents(str) {
-        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      }
-      const textSearchWithoutAccents = removeAccents(textSearch.toLowerCase());
-      
-      const filtroSearchBar = anuncios?.filter((a) => {
-        if (a?.nivel === 'SIMPLE' || a?.nivel === 'MOTOMAMI' || a?.nivel === 'BICHOTA') {
-          const nameWithoutAccents = removeAccents(a?.name)?.toLowerCase();
-          const lugarWithoutAccents = removeAccents(a?.lugar)?.toLowerCase();
-          const regionWithoutAccents = removeAccents(a?.region)?.toLowerCase();
-          
-          // Comprueba si alguna de las propiedades cumple con la condición de búsqueda
-          return (
-            nameWithoutAccents.includes(textSearchWithoutAccents) ||
-            lugarWithoutAccents.includes(textSearchWithoutAccents) ||
-            regionWithoutAccents.includes(textSearchWithoutAccents) ||
-            a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
-            (a.idFrontend && a.idFrontend.toLowerCase().startsWith(textSearch.toLowerCase()))
-          );
+        if(filteredAnun?.length === 0 || !filteredAnun){
+          setNothingFound(true); // Establecer nothingFound en true si no se encontraron resultados
+          setResultadosEncontrados(false); 
+          setFilteredAnuncios([])
+              // Si no hay valor de búsqueda, mostrar todos los anuncios en el orden deseado
+              const anunciosSimples = anuncios?.filter((s) => s.nivel === 'SIMPLE') || [];
+              const anunciosMotoMami = anuncios?.filter((s) => s.nivel === 'MOTOMAMI') || [];
+              const anunciosBichota = anuncios?.filter((s) => s.nivel === 'BICHOTA') || [];
+              const anunciosSegunNivel = [
+                ...anunciosBichota,
+                ...anunciosMotoMami,
+                ...anunciosSimples,
+              ];
+              setFilteredAnuncios(anunciosSegunNivel);
         }
-        // Si no cumple la condición, no se incluirá en el filtro
-        return false;
-      });
+  
+        setNothingFound(false); // Establecer nothingFound en false si se encontraron resultados
+        setResultadosEncontrados(true);
+  
+        const anunciosSimplesH = filteredAnun?.filter((s) => s.nivel === 'SIMPLE') || [];
+        const anunciosMotoMamiH = filteredAnun?.filter((s) => s.nivel === 'MOTOMAMI') || [];
+        const anunciosBichotaH = filteredAnun?.filter((s) => s.nivel === 'BICHOTA') || [];
+        const anunciosSegunNivelH = [
+          ...anunciosBichotaH,
+          ...anunciosMotoMamiH,
+          ...anunciosSimplesH,
+        ];
+  
+        if(anunciosSegunNivelH?.length > 0){
+          setFilteredAnuncios([])
+          setFilteredAnuncios(anunciosSegunNivelH);
+          setModalFilterOpen(false)
+          setFilteredAnuncios(filteredAnun);
+        }
+        
+      
       
 
-      if (filtroSearchBar.length > 0) {
-        setFilteredAnuncios(filtroSearchBar);
-        toast.success('Se encontraron chicas.', {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-        });
-      } else {
-        toast.error('No se encontró ninguna chica....', {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          draggable: true,
-          style: {
-            background: '#ff3d64',
-            color: 'white',
-          },
-        });
-      }
-    } else {
-      setFilteredAnuncios([])
-      // Si no hay valor de búsqueda, mostrar todos los anuncios en el orden deseado
-      const anunciosSimples = anuncios?.filter((s) => s.nivel === 'SIMPLE') || [];
-      const anunciosMotoMami = anuncios?.filter((s) => s.nivel === 'MOTOMAMI') || [];
-      const anunciosBichota = anuncios?.filter((s) => s.nivel === 'BICHOTA') || [];
-      const anunciosSegunNivel = [
-        ...anunciosBichota,
-        ...anunciosMotoMami,
-        ...anunciosSimples,
-      ];
-      setFilteredAnuncios(anunciosSegunNivel);
-    }
-  }, [textSearch, anuncios]);
+    }, [categoria, anuncios]);
+    
+    
+  // // Filtrar los anuncios según el valor de búsqueda
+  // useEffect(() => {
+  //   if (textSearch) {
+  //     function removeAccents(str) {
+  //       return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  //     }
+  //     const textSearchWithoutAccents = removeAccents(textSearch.toLowerCase());
+      
+  //     const filtroSearchBar = anuncios?.filter((a) => {
+  //       if (a?.nivel === 'SIMPLE' || a?.nivel === 'MOTOMAMI' || a?.nivel === 'BICHOTA') {
+  //         const nameWithoutAccents = removeAccents(a?.name)?.toLowerCase();
+  //         const lugarWithoutAccents = removeAccents(a?.lugar)?.toLowerCase();
+  //         const regionWithoutAccents = removeAccents(a?.region)?.toLowerCase();
+          
+  //         // Comprueba si alguna de las propiedades cumple con la condición de búsqueda
+  //         return (
+  //           nameWithoutAccents.includes(textSearchWithoutAccents) ||
+  //           lugarWithoutAccents.includes(textSearchWithoutAccents) ||
+  //           regionWithoutAccents.includes(textSearchWithoutAccents) ||
+  //           a.name?.toLowerCase().includes(textSearch.toLowerCase()) ||
+  //           (a.idFrontend && a.idFrontend.toLowerCase().startsWith(textSearch.toLowerCase()))
+  //         );
+  //       }
+  //       // Si no cumple la condición, no se incluirá en el filtro
+  //       return false;
+  //     });
+      
+
+  //     if (filtroSearchBar.length > 0) {
+  //       setFilteredAnuncios(filtroSearchBar);
+  //       toast.success('Se encontraron chicas.', {
+  //         position: 'bottom-right',
+  //         autoClose: 3000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         draggable: true,
+  //       });
+  //     } else {
+  //       toast.error('No se encontró ninguna chica....', {
+  //         position: 'bottom-right',
+  //         autoClose: 3000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         draggable: true,
+  //         style: {
+  //           background: '#ff3d64',
+  //           color: 'white',
+  //         },
+  //       });
+  //     }
+  //   } else {
+  //     setFilteredAnuncios([])
+  //     // Si no hay valor de búsqueda, mostrar todos los anuncios en el orden deseado
+  //     const anunciosSimples = anuncios?.filter((s) => s.nivel === 'SIMPLE') || [];
+  //     const anunciosMotoMami = anuncios?.filter((s) => s.nivel === 'MOTOMAMI') || [];
+  //     const anunciosBichota = anuncios?.filter((s) => s.nivel === 'BICHOTA') || [];
+  //     const anunciosSegunNivel = [
+  //       ...anunciosBichota,
+  //       ...anunciosMotoMami,
+  //       ...anunciosSimples,
+  //     ];
+  //     setFilteredAnuncios(anunciosSegunNivel);
+  //   }
+  // }, [textSearch, anuncios]);
 
   const breakpointColumnsObj = {
     default: 4, // Número de columnas por defecto
