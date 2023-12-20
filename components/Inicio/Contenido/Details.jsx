@@ -116,7 +116,7 @@ const Details = ({ id }) => {
       
     }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial])
 
-    const numeroTelefono = anuncio?.telefono;
+    const numeroTelefono = anuncio?.whatsapp;
 
     const galeriaVIDEO = anuncio?.galeriaVideos
 
@@ -150,7 +150,7 @@ const Details = ({ id }) => {
           </button>
           <Link                                                                                
               target="_blank"
-          href={`https://api.whatsapp.com/send?phone=+51${anuncio?.whatsapp}&text=Hola %20${anuncio?.name},%20te%20vi%20en%20Papayahub.pe,%20¿en%20qué%20horario%20estás%20disponible%20hoy?`} 
+          href={`https://api.whatsapp.com/send?phone=+51${anuncio?.whatsapp}&text=Hola%20${anuncio?.name},%20te%20vi%20en%20Papayahub.pe,%20¿en%20qué%20horario%20estás%20disponible%20hoy?`} 
           className="flex gap-2 items-center w-fit justify-center bg-green-500 text-white px-6 py-2 rounded-[10px] ease-linear duration-200 transition-all hover:bg-green-600">
               <img width="28" height="28" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp--v1" className='my-auto w-[20px] h-[20px] sm:w-[28px] sm:h-[28px]'/>
               <nav className='text-[12px] sm:text-[16px] font-bold my-auto'>WhatsApp</nav>
