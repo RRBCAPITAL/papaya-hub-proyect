@@ -155,19 +155,19 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 <ul className="my-auto flex gap-[2rem] h-full font-bold text-[14px]">
                 <Link
                     href={'/inicio'}
-                    className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
+                    className={`my-auto ${pathname === ('/inicio') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}
                 >Inicio</Link>
                 <Link
                     href={'/'}
-                    className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}
+                    className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}
                 >Servicios</Link>
                 <Link
                     href={'/vip'}
-                    className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}>
+                    className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
                 Vip</Link>
                 <Link
                     href={'/soporte'}
-                    className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out text-white  dark:text-slate-800"}`}>
+                    className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
                 Soporte</Link>
                 
                 {
@@ -185,7 +185,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
       className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                     rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
     >
-      <h3 className="my-auto text-t-red">Mis anuncios</h3>
+      <h3 className="my-auto text-t-red">Mis anuncios</h3>  
       <FaUserCheck className="my-auto text-t-red"/>       
     </Link>
 
