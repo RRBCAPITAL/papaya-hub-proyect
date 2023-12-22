@@ -34,7 +34,7 @@ const CardDeAnuncio = ({
 
   return (
     <div>
-      <container className="dark:bg-white bg-dark-d flex flex-col items-center justify-center gap-2 p-4 shadow-custom1 rounded-[10px]">   
+      <container className="bg-white dark:bg-dark-d flex flex-col items-center justify-center gap-2 p-4 shadow-custom1 rounded-[10px]">   
 
         <containinfo className=" flex flex-col lg:flex-row gap-10 p-2 sm:p-5 m-5">
 
@@ -100,7 +100,7 @@ const CardDeAnuncio = ({
 
           </sectionactions>
 
-          <containvistaprevia className='w-[300px] h-fit flex flex-col gap-1 text-slate-100 dark:text-slate-700  font-bold'>
+          <containvistaprevia className='w-[300px] h-fit flex flex-col gap-1 dark:text-slate-100 text-slate-700  font-bold'>
 
             <h1>VISTA PREVIA DEL ANUNCIO</h1>
             <h1 className="text-[10px] font-normal">(Clic para ver todos los detalles de tu anuncio.)</h1>

@@ -80,7 +80,7 @@ const DashboardUserPage = () => {
 
   return (
    <div className={quick.className}>
-     <div className="flex flex-col gap-4 min-h-screen min-w-screen bg-dark-l dark:bg-white">
+     <div className="flex flex-col gap-4 min-h-screen min-w-screen dark:bg-dark-l bg-white">
       <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
       <div className='my-[100px] w-full flex flex-col items-center gap-10 '>
         <div className='flex flex-col max-w-[95%] lg:max-w-[80%] gap-4'>
@@ -111,8 +111,8 @@ const DashboardUserPage = () => {
             ))
           ) : (
             <div className="flex flex-col items-center gap-2 ">
-              <h1 className="text-4xl font-extrabol dark:text-slate-600 text-center text-slate-200">No tienes anuncios disponibles</h1>
-              <p className="dark:text-slate-400 text-slate-400 text-center text-sm px-6">Crea tu anuncio totalmente gratis y actívalo con nuestras súper promociones!</p>
+              <h1 className="text-4xl font-extrabol text-slate-600 text-center dark:text-slate-200">No tienes anuncios disponibles</h1>
+              <p className="text-slate-400 dark:text-slate-400 text-center text-sm px-6">Crea tu anuncio totalmente gratis y actívalo con nuestras súper promociones!</p>
               { id ? <Link
                 href={'/crear-anuncio'}
                 className={`bg-back-red shadow-p4 flex mt-4 text-white p-4 border-none outline-none

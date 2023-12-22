@@ -5,10 +5,10 @@ const ActivarAnuncio = () => {
   return (
     <div className='flex'>
 
-        <containerall className='flex flex-col items-center  gap-4 min-h-screen w-screen py-[100px] bg-dark-d dark:bg-white'>
+        <containerall className='flex flex-col items-center  gap-4 min-h-screen w-screen py-[100px] dark:bg-dark-d bg-whitet'>
             <div className='flex gap-1 items-center justify-center'>
             {/* <h1 className="my-auto text-red-600 font-bold bg-red-100 p-2 rounded-[20px]">DESCUENTOS por lanzamiento</h1> */}
-                <h1 className='text-center text-slate-200 dark:text-slate-600 text-2xl sm:text-3xl font-bold'><strong className="text-t-red">Elige</strong> tu plan de anuncio</h1>       
+                <h1 className='text-center dark:text-slate-200 text-slate-600 text-2xl sm:text-3xl font-bold'><strong className="text-t-red">Elige</strong> tu plan de anuncio</h1>       
                 {/* <h2 className='text-xl text-red-500 font-bold'>Por lanzamiento: 70% de descuento en todos los planes!</h2> */}
             </div>
 
@@ -175,20 +175,20 @@ const ActivarAnuncio = () => {
 
 
             <div className='mt-10'>
-                <h1 className='text-center text-slate-200 dark:text-slate-600 text-2xl sm:text-3xl font-bold'><strong className="text-t-red">Métodos</strong> de pago</h1>
+                <h1 className='text-center dark:text-slate-200 text-slate-600 text-2xl sm:text-3xl font-bold'><strong className="text-t-red">Métodos</strong> de pago</h1>
             </div>
 
 
             <metodospago className="mx-2 flex flex-col gap-4 items-center mb-[40px]">
 
-          <div className="w-[98%] text-white dark:text-black p-5 border-bor-light border-4 rounded-lg gap-2">
+          <div className="w-[98%] dark:text-white text-black p-5 border-bor-light border-4 rounded-lg gap-2">
             <h1 className="text-center font-bold text-2xl">Cuentas bancarias (Perú)</h1>
             <h3 className="text-center mb-8"><strong>Titular:</strong> RRB CAPITAL E.I.R.L</h3>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 items-center justify-center">
               <section className="flex gap-2 justify-center items-center rounded-lg">
                 <img src="https://res.cloudinary.com/dvaiww9ri/image/upload/v1694015210/bcpp_jpbbp1.png" alt="" className="h-[100px] w-[100px] my-auto"/>
-                <infocta className='text-white dark:text-black'>
+                <infocta className='dark:text-white text-black'>
                 <h1 className="text-center font-bold text-2xl mb-2">Bcp</h1>
                   <contain className='flex lg:flex-row flex-col lg:gap-2'>
                     <p className="font-bold">Cuenta: </p>
@@ -231,7 +231,7 @@ const ActivarAnuncio = () => {
           </div>
 
          <div className="w-full flex flex-col  items-center justify-center sm:flex-row p-1 gap-4">
-         <div className="w-full flex flex-col justify-center items-center text-white dark:text-black p-4 border-bor-light border-4 rounded-lg gap-2">
+         <div className="w-full flex flex-col justify-center items-center dark:text-white text-black p-4 border-bor-light border-4 rounded-lg gap-2">
           
           <h1 className="text-center font-bold text-3xl">Yape</h1>
           <h3 className="text-center">Escanea el qr desde tu yape</h3>
@@ -252,7 +252,7 @@ const ActivarAnuncio = () => {
          className='px-10 py-[12px] font-bold text-xl bg-green-500 hover:bg-green-600 duration-200 transition-all ease-linear text-white rounded-lg w-fit'>
                 <img width="32" height="32" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp--v1" className='my-auto mb-2 inline-block'/> WhatsApp 
             </a>
-            <div className='text-white dark:text-black text-center text-[16px] sm:text-base mx-10'>
+            <div className='dark:text-white text-black text-center text-[16px] sm:text-base mx-10'>
                 <h1 className="">Envíanos un WhatsApp indicando el nivel de suscripción, código ID, nombre y activaremos tu perfil.</h1>
     
             </div>

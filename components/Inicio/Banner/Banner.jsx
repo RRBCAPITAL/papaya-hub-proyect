@@ -49,7 +49,7 @@ const Banner = () => {
     //     </bannercontainer>
     //   </motion.div>
 
-    <motion.div className="z-[999] bg-dark-l dark:bg-white flex flex-col fixed text-white"
+    <motion.div className="z-[999] dark:bg-dark-l bg-white flex flex-col fixed text-black"
     variants={fadeIn("right", 0)} initial='hidden' animate="show" exit="hidden"
     >
         {/* <bannercontainer className=" overflow-hidden w-full mt-24 mb-6 bg-transparent flex items-center justify-center relative"  >

@@ -97,7 +97,7 @@ const Filtros = ({
         animate={controls}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         exit="hidden"
-        className="z-[999] flex sm:flex-row flex-col gap-4 p-2  text-black dark:bg-white bg-dark-l fixed rounded-[20px]"
+        className="z-[999] flex sm:flex-row flex-col gap-4 p-2 text-white bg-whitet dark:bg-dark-l fixed rounded-[20px]"
       >
         {/* <form action="" onSubmit={handleClickSearch} onKeyUp={handleKeyUp} className='lg:h-[80px] flex sm:flex-row flex-col w-full items-center justify-center gap-2 sm:gap-6'>
           <input type="text" name="nombreid" value={nombreid} onChange={handleSearch} className='w-full lg:w-[50%] sm:h-[70px] lg:h-[70px] my-auto outline-none text-sm sm:text-xl shadow-xl  p-4 rounded-[10px] placeholder:text-[#818181] placeholder:font-medium' placeholder='Busca por id, nombre o ciudad' />
@@ -142,7 +142,7 @@ const Filtros = ({
               i?.name === "Todas" && handleReset()
               
             }}
-            className={`links-box border-b-2 border-transparent hover:border-b-2 hover:border-[#b5b5b5] ${ active === i?.name && "border-b-2 dark:border-black border-white selected-box"}  overflow-hidden`}
+            className={`links-box border-b-2 border-transparent hover:border-b-2 hover:border-[#b5b5b5] ${ active === i?.name && "border-b-2 border-black dark:border-white selected-box"}  overflow-hidden`}
           >
             <img
               src={i.path}
@@ -151,7 +151,7 @@ const Filtros = ({
               height={35}
               className="links-img"
             />
-            <h1 className={`links-label dark:text-black text-white ${ active === i?.name && "selected-label"}`}>{i.name}</h1>
+            <h1 className={`links-label text-black dark:text-white ${ active === i?.name && "selected-label"}`}>{i.name}</h1>
           </div>
         ))}
       </div>

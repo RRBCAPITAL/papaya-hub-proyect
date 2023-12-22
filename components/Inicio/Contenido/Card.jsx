@@ -49,7 +49,7 @@ const Card = ({id, imagenPrincipal, name, nacionalidad, lugar, edad, tarifaxhr, 
     >
         <motion.div
 style={{ position: 'relative' }}
-className={`mb-2 bg-dark-d dark:bg-white rounded-[28px] hover:cursor-pointer`}
+className={`mb-2 dark:bg-dark-d bg-white rounded-[28px] hover:cursor-pointer`}
 variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
 >
 <img
@@ -65,7 +65,7 @@ variants={changeIn(0)} initial='hidden' animate="show" exit="hidden"
 />
 
 <div
-  className="absolute text-white dark:text-slate-600 px-1 lg:px-4"
+  className="absolute dark:text-white text-slate-600 px-1 lg:px-4"
   style={{
     // backgroundColor: 'rgba(0, 0, 0, 0.7)',
     borderRadius: '0 0 18px 18px',

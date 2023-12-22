@@ -14,7 +14,7 @@ const quick = Quicksand({ subsets: ['latin'] })
 const InicioPage = () => {
   return (
     <div className={quick.className}>
-      <div className='overflow-hidden dark:bg-white bg-dark-l flex flex-col gap-0 border-none'>
+      <div className='overflow-hidden bg-white dark:bg-dark-l flex flex-col gap-0 border-none'>
 
 <HPortada />
 
@@ -25,11 +25,11 @@ const InicioPage = () => {
 
 <div className='flex'>
 
-<containerall className='flex flex-col items-center  gap-4 min-h-screen w-screen py-20 bg-dark-l dark:bg-white'>
+<containerall className='flex flex-col items-center  gap-4 min-h-screen w-screen py-20 dark:bg-dark-l bg-white'>
 <div className='flex flex-col gap-2 items-center justify-center mb-6'>
 {/* <h1 className="my-auto text-red-600 font-bold bg-red-100 p-2 rounded-[20px]">DESCUENTOS por lanzamiento</h1> */}
-<h1 className='mx-auto w-[80%] sm:w-[85%] lg:w-fit text-center text-slate-200 dark:text-slate-600 text-3xl sm:text-5xl font-bold border-b-4 pb-2 border-bor-red'>LOS MEJORES PLANES PARA TU ANUNCIO</h1>      
-<h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[60%] mt-4 text-2xl sm:text-2xl dark:text-slate-500 text-white text-left sm:text-center'>En PapayaHub, pensamos en ti. Por eso, creamos planes superpersonalizados y exclusivos adaptados específicamente a tus necesidades. Elige tu plan y descubre una experiencia única con nosotros.</h2> 
+<h1 className='mx-auto w-[80%] sm:w-[85%] lg:w-fit text-center dark:text-slate-200 text-slate-600 text-3xl sm:text-5xl font-bold border-b-4 pb-2 border-bor-red'>LOS MEJORES PLANES PARA TU ANUNCIO</h1>      
+<h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[60%] mt-4 text-2xl sm:text-2xl text-slate-500 dark:text-white text-left sm:text-center'>En PapayaHub, pensamos en ti. Por eso, creamos planes superpersonalizados y exclusivos adaptados específicamente a tus necesidades. Elige tu plan y descubre una experiencia única con nosotros.</h2> 
 {/* <h2 className='text-xl text-red-500 font-bold'>Por lanzamiento: 70% de descuento en todos los planes!</h2> */}
 </div>
 
@@ -195,7 +195,7 @@ className={`object-fill border-[10px]`}
 </containeniveles>
 
 
-<div className='mx-auto mt-6 flex flex-col gap-4 text-slate-200 dark:text-slate-600'>
+<div className='mx-auto mt-6 flex flex-col gap-4 dark:text-slate-200 text-slate-600'>
 {/* <h1 className='text-center  text-3xl sm:text-5xl font-bold '>Más fácil, imposible!</h1> */}
 <h2 className="w-[80%] sm:w-full text-center text-2xl sm:text-3xl mx-auto">Paga con BCP, INTERBANK o YAPE.</h2>
 {/* <h2>Envíanos un WhatsApp indicando el nivel de suscripción, código ID, nombre y activaremos tu perfil.</h2> */}
@@ -220,10 +220,10 @@ className={`object-fill border-[10px]`}
 <LogoGigante />
 
 
-<div className='bg-dark-l dark:bg-white flex flex-col gap-2 items-center justify-center pt-20 pb-6'>
+<div className='darkbg-dark-l :bg-white flex flex-col gap-2 items-center justify-center pt-20 pb-6'>
 
-<h1 className='mx-auto w-[80%] sm:w-[85%] lg:w-fit text-center text-slate-200 dark:text-slate-600 text-3xl sm:text-5xl font-bold border-b-4 pb-2 border-bor-red uppercase'>¿Aún no te has registrado?</h1>      
-<h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] mt-4 text-2xl sm:text-2xl dark:text-slate-500 text-white text-left sm:text-center'>No te tomará ni un minuto; registrarse es tan fácil como iniciar sesión. Nosotros nos encargamos del resto.</h2> 
+<h1 className='mx-auto w-[80%] sm:w-[85%] lg:w-fit text-center dark:text-slate-200 text-slate-600 text-3xl sm:text-5xl font-bold border-b-4 pb-2 border-bor-red uppercase'>¿Aún no te has registrado?</h1>      
+<h2 className='mx-auto w-[80%] sm:w-[85%] lg:w-[50%] mt-4 text-2xl sm:text-2xl text-slate-500 dark:text-white text-left sm:text-center'>No te tomará ni un minuto; registrarse es tan fácil como iniciar sesión. Nosotros nos encargamos del resto.</h2> 
 
 <buttons className=' mx-auto w-[80%] sm:w-[85%] lg:w-[50%] flex flex-col items-center justify-center sm:flex-row gap-4 mt-4 pb-20'>
 <Link href='/sign-in' className="w-full lg:w-fit px-6 text-center py-4 rounded-[50px] duration-200 transition-all ease-linear bg-back-red hover:bg-[#ff9f51] text-yellow-100 shadow-p4 hover:shadow text-xl font-bold">Registrarme ahora <FaUserCheck className="h-6 w-6 inline-block mb-1"/></Link>

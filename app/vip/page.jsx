@@ -10,16 +10,16 @@ const VipPage = () => {
   <div className='flex'>
         <containreportar className='z-10 flex flex-col gap-1 min-h-screen overflow-hidden items-center justify-center w-screen relative'>
         
-        <containcuadrito className='flex flex-col gap-4 p-6 w-[95%] lg:w-[450px] rounded-lg bg-dark-d dark:bg-white border-4 border-bor-red shadow-custom1'>
-        <div className='flex flex-col gap-2 items-center justify-center text-white dark:text-black'>
-        <h1 className='font-extrabold text-2xl sm:text-[30px] text-white dark:text-black'>Papaya <nav className='bg-back-red p-2 inline-block rounded-[10px]'>Vip</nav></h1>
+        <containcuadrito className='flex flex-col gap-4 p-6 w-[95%] lg:w-[450px] rounded-lg dark:bg-dark-d bg-white border-4 border-bor-red shadow-custom1'>
+        <div className='flex flex-col gap-2 items-center justify-center dark:text-white text-black'>
+        <h1 className='font-extrabold text-2xl sm:text-[30px] dark:text-white text-black'>Papaya <nav className='bg-back-red p-2 inline-block rounded-[10px]'>Vip</nav></h1>
 
         <p className='text-center text-[12px] sm:text-sm'>
         Si deseas brindar servicios exclusivos y discretos con tarifas desde S/. 500 a más, escríbenos y consulta los requisitos para ser parte de este segmento papayahubvip@gmail.com</p>
         </div>
 
 
-        <whatsapp className='w-full h-full flex flex-col justify-center items-center text-white dark:text-t-dark rounded-lg gap-2'>
+        <whatsapp className='w-full h-full flex flex-col justify-center items-center text-white dark:text-blackt rounded-lg gap-2'>
           <a href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola,%20me%20gustaría%20pertenecer%20a%20Papayahubvip.`}
         target="_blank"
         rel="noopener noreferrer"
