@@ -268,10 +268,10 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
             >
                 <div className="flex flex-col justify-between gap-1 my-2">
-                    <ul className="flex flex-col text-2xl gap-[0.5rem] p-[0.7rem] my-4 ">
+                    <ul className="flex flex-col text-2xl gap-0 p-[0.1rem] my-4 ">
                     {!currentUserR ?
                 <div className="flex flex-col gap-1 ">
-                  <h2 className="py-[0.1rem] px-[1rem] font-bold text-black">¡Hola!</h2>
+                  <h2 className="py-[0.1rem] px-[1rem] font-bold dark:text-white text-slate-600">¡Hola!</h2>
                   <h2 className="text-sm  py-[0.1rem] px-[1rem] text-slate-600">Regístrate o ingresa para empezar a publicar gratis.</h2>
                   <div className="flex gap-1 items-center justify-center">
                   <Link href={'/sign-upp'} onClick={handleNavbarPhone} className="w-full text-t-red border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] py-[0.3rem] px-[1rem] outline-none
