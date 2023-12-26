@@ -129,10 +129,10 @@ const Details = ({ id }) => {
 
   return (
     <div className='flex'>
-        <containerinfo className='flex flex-col gap-4 items-center justify-center bg-dark-l dark:bg-[#edeced] min-h-screen w-screen pb-10'>
-           <contain className='flex flex-col gap-2 w-[90%] lg:w-[90%] 2xl:w-[1170px] p-10 mt-[90px] mx-20 bg-dark-d rounded-[10px] dark:bg-white shadow-2xl '>
+        <containerinfo className='flex flex-col gap-4 items-center justify-center dark:bg-dark-l bg-[#edeced] min-h-screen w-screen pb-10'>
+           <contain className='flex flex-col gap-2 w-[90%] lg:w-[90%] 2xl:w-[1170px] p-10 mt-[90px] mx-20 dark:bg-dark-d rounded-[10px] bg-white shadow-2xl '>
             
-           <p className='dark:text-slate-500 text-slate-300 text-medium font-think text-[20px]'><strong>ID: {anuncio?.idFrontend}</strong></p>
+           <p className='text-slate-500 dark:text-slate-300 text-medium font-think text-[20px]'><strong>ID: {anuncio?.idFrontend}</strong></p>
             
             
             <div className='flex flex-col lg:flex-row gap-6'>
@@ -161,7 +161,7 @@ const Details = ({ id }) => {
 
             <detalles className='flex flex-col gap-6'>
               <info className='flex flex-col gap-4'>
-              <infodetails className='flex flex-col lg:flex-row gap-2 dark:text-slate-700 text-white'>
+              <infodetails className='flex flex-col lg:flex-row gap-2 text-slate-700 dark:text-white'>
               <h1 className=' text-4xl font-extrabold'>{anuncio?.name}</h1>
               
               <div className='text-[12px] sm:text-sm grid grid-cols-3 text-slate-700 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-none overflow-hidden 2xl:flex gap-2'>
@@ -174,7 +174,7 @@ const Details = ({ id }) => {
               </div>
                  
               </infodetails>
-              <infodescription className='flex flex-col gap-2 dark:text-slate-500 text-slate-300 w-full'>
+              <infodescription className='flex flex-col gap-2 text-slate-500 dark:text-slate-300 w-full'>
               <h2 className=' text-medium font-think text-[16px] text-justify' style={{ whiteSpace: "pre-line" }}>{anuncio?.description}</h2>
               <h2 className='text-medium font-think text-[16px] text-red-500 font-bold'>No olvides mencionar que me viste en Papayahub.</h2>
              
@@ -188,9 +188,9 @@ const Details = ({ id }) => {
 
       {
         tarifaPresencial[0]?.value || tarifaPresencial[1]?.value ?
-        <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+        <div className='flex flex-col gap-2 text-slate-500 dark:text-slate-300'>
         <div className='flex flex-col gap-2 text-medium font-think text-[16px]'>
-          <h2 className='dark:text-black text-white text-xl font-bold'>Tarifa Presencial</h2> {" "}
+          <h2 className='text-black dark:text-white text-xl font-bold'>Tarifa Presencial</h2> {" "}
           {tarifaPresencial?.filter(tarifa => tarifa.value !== undefined && tarifa.value !== "")
             ?.map(tarifa => <div className='flex gap-12 font-normal text-sm'>
             <h2>{tarifa.name} minutos</h2>
@@ -205,9 +205,9 @@ const Details = ({ id }) => {
       }
 
       {
-        tarifaVirtual[0]?.value || tarifaVirtual[1]?.value || tarifaVirtual[2]?.value ? <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+        tarifaVirtual[0]?.value || tarifaVirtual[1]?.value || tarifaVirtual[2]?.value ? <div className='flex flex-col gap-2 text-slate-500 dark:text-slate-300'>
         <div className='flex flex-col text-xl font-bold'>
-          <h2 className='dark:text-black text-white text-xl font-bold'>Tarifa Virtual</h2> {" "}
+          <h2 className='text-black dark:text-white text-xl font-bold'>Tarifa Virtual</h2> {" "}
           <div className='flex flex-col gap-1 mt-2'>
           {tarifaVirtual?.filter(tarifa => tarifa.value !== undefined && tarifa.value !== "")
             ?.map(tarifa => <div className='flex gap-12 font-normal text-sm'>
@@ -223,7 +223,7 @@ const Details = ({ id }) => {
                </tarifasall>  : "" }
 
                {lugarEncuentro.some(categoria => anuncio?.categorias?.includes(categoria)) ?   <lugarencuentro className='flex flex-col gap-2'>
-   <h1 className='dark:text-black text-white text-xl font-bold'>Lugar de encuentro:</h1> 
+   <h1 className='text-black dark:text-white text-xl font-bold'>Lugar de encuentro:</h1> 
   <div className='text-[12px] sm:text-sm flex flex-wrap gap-2'>
     {
       anuncio?.categorias?.map((c, index) => (
@@ -238,7 +238,7 @@ const Details = ({ id }) => {
 </lugarencuentro> : ""}
 
 {servicios.some(categoria => anuncio?.categorias?.includes(categoria)) ?   <misservicios className='flex flex-col gap-2'>
-               <h1 className='dark:text-black text-white text-xl font-bold'>Mis servicios:</h1>
+               <h1 className='text-black dark:text-white text-xl font-bold'>Mis servicios:</h1>
               <div className='text-[12px] sm:text-sm flex flex-wrap gap-2'>
               {
       anuncio?.categorias?.map((c, index) => (
@@ -253,7 +253,7 @@ const Details = ({ id }) => {
               </misservicios>  : ""}
 
               {serviciosExclusivos.some(categoria => anuncio?.categorias?.includes(categoria)) ? <serviciosexclusivos className='flex flex-col gap-2'>
-               <h1 className='dark:text-black text-white text-xl font-bold'>Servicios exclusivos:</h1> 
+               <h1 className='text-black dark:text-white text-xl font-bold'>Servicios exclusivos:</h1> 
               <div className='text-[12px] sm:text-sm flex flex-wrap gap-2'>
               {
       anuncio?.categorias?.map((c, index) => (
@@ -268,8 +268,8 @@ const Details = ({ id }) => {
               </serviciosexclusivos> : ""}
 
               <adicional className='flex flex-col gap-4'>
-              <h1 className='dark:text-black text-white text-xl font-bold'>Detalles adicionales:</h1>
-              <div className='flex flex-col gap-2 dark:text-slate-500 text-slate-300'>
+              <h1 className='text-black dark:text-white text-xl font-bold'>Detalles adicionales:</h1>
+              <div className='flex flex-col gap-2 text-slate-500 dark:text-slate-300'>
               {/* <h2 className='text-medium font-think text-[16px]'><strong>Categorias de atención:</strong>{" "}
               {anuncio?.categorias?.join(", ") || ""}</h2> */}
               <h2 className='text-medium font-think text-[16px]'><strong>Horario de atención:</strong></h2>
