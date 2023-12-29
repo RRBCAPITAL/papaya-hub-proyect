@@ -246,7 +246,7 @@ const ActivarAnuncio = () => {
           </div>
 
         <whatsapp className='w-full h-full flex flex-col justify-center items-center text-white dark:text-t-dark p-5 border-bor-light border-4 rounded-lg gap-2'>
-          <a href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola%2C%20me%20interesa%20comprar%20un%20plan%20para%20mi%20anuncio%20en%20Papayahub.pe`}
+          <a href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola%2C%20me%20interesa%20comprar%20un%20plan%20para%20mi%20anuncio%20en%20Papayahub.pe`}
         target="_blank"
         rel="noopener noreferrer"
          className='px-10 py-[12px] font-bold text-xl bg-green-500 hover:bg-green-600 duration-200 transition-all ease-linear text-white rounded-lg w-fit'>

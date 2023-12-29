@@ -20,7 +20,7 @@ const VipPage = () => {
 
 
         <whatsapp className='w-full h-full flex flex-col justify-center items-center text-white dark:text-blackt rounded-lg gap-2'>
-          <a href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola,%20me%20gustaría%20pertenecer%20a%20Papayahubvip.`}
+          <a href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola,%20me%20gustaría%20pertenecer%20a%20Papayahubvip.`}
         target="_blank"
         rel="noopener noreferrer"
          className='px-8 py-[10px] font-bold text-xl bg-back-red hover:bg-yellow-600 duration-200 transition-all ease-linear text-white rounded-lg w-fit'>
