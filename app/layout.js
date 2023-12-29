@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
         colorPrimary: "#febd57",
         colorBackground: "#fff9e6",
         colorText: "black",
-        fontFamily: "Nunito"
+        // fontFamily: "Nunito"
       }
     }}
 
