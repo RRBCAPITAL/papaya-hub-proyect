@@ -2,6 +2,9 @@
 
 import { SignIn } from "@clerk/nextjs";
 import { useEffect } from "react";
+import { Poppins } from "next/font/google";
+
+const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
 
 export default function Page() {
 
@@ -10,7 +13,8 @@ export default function Page() {
   }, [])
   
   return (
-    <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center bg-back-light relative">
+    <div className={quick.className}>
+      <div className="w-screen min-h-screen overflow-hidden flex flex-col items-center bg-back-light relative">
       <div className="z-10 mt-20 m-4 bg-[#0000003e] shadow-sm p-[2px] rounded-[20px] relative">
         
         <section className="m-4 p-4 rounded-[20px]">
@@ -25,6 +29,7 @@ export default function Page() {
         alt=""
         className="fixed z-0 top-0 left-0 w-screen min-h-screen overflow-hidden object-cover"
       />
+    </div>
     </div>
   );
 }
