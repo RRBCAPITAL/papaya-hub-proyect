@@ -38,7 +38,6 @@ const Navbar = ({ currentUserR }) => {
 
     const pathname = usePathname()
     const [ show, setShow ] = useState(false)
-    const [, forceUpdate] = useReducer((x) => x + 1, 0);
     const [ changeNabvarF, setChangeNabvarF ] = useState(false)
 
     changeNabvar(changeNabvarF)
@@ -51,15 +50,6 @@ const Navbar = ({ currentUserR }) => {
 
     const { signOut } = useClerk();
     const router = useRouter()
-    console.log(userR);
-
-    useEffect(() => {
-        if(userR?.user){
-          forceUpdate();
-          }
-    }, [userR])
-    
-    console.log(currentUserR);
 
     const openModal = () => {
         setModalIsOpen(true);
