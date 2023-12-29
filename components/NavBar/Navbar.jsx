@@ -6,7 +6,6 @@ import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import { FaUserCheck } from 'react-icons/fa'
 import { UserButton, useUser } from "@clerk/nextjs";
-import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { MdNightlight } from 'react-icons/md'
 import { MdOutlineLightMode } from 'react-icons/md'
