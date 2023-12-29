@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, useReducer } from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import { FaUserCheck } from 'react-icons/fa'
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useUser, UserButton } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
 import { MdNightlight } from 'react-icons/md'
 import { MdOutlineLightMode } from 'react-icons/md'
@@ -48,9 +48,6 @@ const Navbar = ({ currentUserR }) => {
     const userR = useUser()
     const id = currentUserR?.id
 
-    const { signOut } = useClerk();
-    const router = useRouter()
-
     const openModal = () => {
         setModalIsOpen(true);
       };
@@ -63,16 +60,6 @@ const Navbar = ({ currentUserR }) => {
         setShowActive(true)
         openModal()
     }
-
-  const handleLinkClick = () => {
-    
-    // e.preventDefault();
-    setLoading(true);
-
-    setTimeout(() => {
-        setLoading(false)
-    }, 300)
-  };
 
   if (typeof window !== 'undefined'){
     // Recuperar el estado del tema desde el almacenamiento local si está disponible
@@ -182,7 +169,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     </Link>
                 }
 
-               {!currentUserR? 
+               {!currentUserR ? 
                   <Link href={'/sign-in'} className="bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] outline-none
                   rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
                 <nav className="inline-block text-t-red">Iniciar</nav> Sesión
@@ -257,7 +244,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                   <h2 className="py-[0.1rem] px-[1rem] font-bold dark:text-white text-slate-600">¡Hola!</h2>
                   <h2 className="text-sm  py-[0.1rem] px-[1rem] text-slate-600">Regístrate o ingresa para empezar a publicar gratis.</h2>
                   <div className="flex gap-1 items-center justify-center">
-                  <Link href={'/sign-upp'} onClick={handleNavbarPhone} className="w-full text-t-red border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] py-[0.3rem] px-[1rem] outline-none
+                  <Link href={'/sign-up'} onClick={handleNavbarPhone} className="w-full text-t-red border-2 border-bor-red transition-all duration-200 ease-linear flex items-center justify-center gap-[4px] py-[0.3rem] px-[1rem] outline-none
                 rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]">
                 Registrarse
                 </Link>
