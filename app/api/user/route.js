@@ -7,39 +7,76 @@ export async function POST(req) {
   try {
     // Obtener los datos del usuario registrado a través de Clerk
     const body = await req.json();
-    const { clerkId, email, firstname, fullname, image } = body;
+    const { clerkId, email, phone, firstname, username, fullname, image } = body;
 
-    console.log(email);
-    // Buscar si existe un usuario con el mismo correo electrónico en la base de datos
-    const duplicateUser = await prisma?.user?.findFirst({
+    if(email){
+      const duplicateUser = await prisma?.user?.findFirst({
         where: {
-        email: email,
+        email: email && email,
         },
     });
-
+  
     if(duplicateUser){
-        console.log('Usuario antiguo reconocido.');
-        return NextResponse.json({
-            user: duplicateUser
-        })
+      console.log('Usuario antiguo reconocido.');
+      return NextResponse.json({
+          user: duplicateUser
+      })
     }
-
+  
     if(clerkId !== ''){
-        const newUser = await prisma?.user?.create({
-            data: {
-              email: email, // Guardar el correo electrónico del usuario proporcionado por Clerk
-              firstname: firstname || "",
-              // lastname: lastname !== null ? lastname : "",
-              fullname: fullname,
-              image: image || "",
-            },
-          });
-
-          console.log(newUser);
+      const newUser = await prisma?.user?.create({
+          data: {
+            email: email, // Guardar el correo electrónico del usuario proporcionado por Clerk
+            firstname: firstname || "",
+            // lastname: lastname !== null ? lastname : "",
+            phone: phone || "",
+            username: username || "",
+            fullname: fullname,
+            image: image || "",
+          },
+        });
+  
+        console.log(newUser);
+  return NextResponse.json({
+              user: newUser
+            });
+  }
+  }
+  
+  if(phone){
+    
+    const duplicatePhoneUser = await prisma?.user?.findFirst({
+      where: {
+      phone: phone && phone,
+      },
+  });
+  
+  if(duplicatePhoneUser){
+    console.log('Usuario antiguo reconocido.');
     return NextResponse.json({
-                user: newUser
-              });
-    }
+        user: duplicateUser
+    })
+  }
+  
+  if(clerkId !== ''){
+    const newUser = await prisma?.user?.create({
+        data: {
+          email: email, // Guardar el correo electrónico del usuario proporcionado por Clerk
+          firstname: firstname || "",
+          // lastname: lastname !== null ? lastname : "",
+          phone: phone || "",
+          username: username || "",
+          fullname: fullname,
+          image: image || "",
+        },
+      });
+  
+      console.log(newUser);
+  return NextResponse.json({
+            user: newUser
+          });
+  }
+  }
 
   } catch (error) {
     console.error(error);

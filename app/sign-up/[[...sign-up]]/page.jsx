@@ -34,7 +34,7 @@
 
 "use client"
 
-import { SignIn } from "@clerk/nextjs";
+import { SignUp } from "@clerk/nextjs";
 import { useEffect } from "react";
 
 export default function Page() {
@@ -46,7 +46,7 @@ export default function Page() {
         <section className="m-4 p-4 rounded-[20px]">
         <h1 className="text-center text-white font-bold"><strong className="text-t-red">Registrarse</strong> a PapayaHub</h1>
           <div className="flex flex-col sm:flex-row gap-2">
-            <SignIn />
+            <SignUp />
           </div>
         </section>
       </div>

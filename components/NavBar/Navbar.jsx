@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react";
+import { useState, useEffect, useCallback, useReducer } from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import { FaUserCheck } from 'react-icons/fa'
@@ -39,7 +39,7 @@ const Navbar = ({ currentUserR }) => {
 
     const pathname = usePathname()
     const [ show, setShow ] = useState(false)
-
+    const [, forceUpdate] = useReducer((x) => x + 1, 0);
     const [ changeNabvarF, setChangeNabvarF ] = useState(false)
 
     changeNabvar(changeNabvarF)
@@ -54,17 +54,11 @@ const Navbar = ({ currentUserR }) => {
     const router = useRouter()
     console.log(userR);
 
-    // useEffect(() => {
-    //     if(userR?.user){
-          
-    //       axios('/api/user')
-    //       .then(res => {
-    //         const foundUser = res?.data?.find(u => u?.email === userR?.user?.emailAddresses[0]?.emailAddress)
-    //         setCurrentUserR(foundUser)
-    //       })
-    //       .catch(err => console.log(err))
-    //       }
-    // }, [userR])
+    useEffect(() => {
+        if(userR?.user){
+          forceUpdate();
+          }
+    }, [userR])
     
     console.log(currentUserR);
 
