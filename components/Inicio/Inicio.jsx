@@ -1,7 +1,7 @@
 "use client";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import React, { useRef, useState } from "react";
 // Import Swiper React components
@@ -22,78 +22,87 @@ import { useEffect } from "react";
 import Modal18 from "./Modal18";
 
 const Inicio = () => {
-
   const user = useUser();
-  const [textSearch, setTextSearch] = useState()
-  const [modalFilterOpen, setModalFilterOpen] = useState(false)
+  const [textSearch, setTextSearch] = useState();
+  const [modalFilterOpen, setModalFilterOpen] = useState(false);
 
-  const [selectedNacionalidad, setSelectedNacionalidad] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedLugar, setSelectedLugar] = useState('');
-  const [selectedIdioma, setSelectedIdioma] = useState('');
-  const [selectedAtencion, setSelectedAtencion] = useState('');
+  const [selectedNacionalidad, setSelectedNacionalidad] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedLugar, setSelectedLugar] = useState("");
+  const [selectedIdioma, setSelectedIdioma] = useState("");
+  const [selectedAtencion, setSelectedAtencion] = useState("");
   const [filterNothing, setFilterNothing] = useState(false);
-  const [ nothingFound, setNothingFound] = useState(false)
-  const [ resultadosEncontrados, setResultadosEncontrados] = useState(false)
-  const [openModal18, setOpenModal18] = useState(false)
-  
-  const [categoria, setCategoria] = useState("")
-  
+  const [nothingFound, setNothingFound] = useState(false);
+  const [resultadosEncontrados, setResultadosEncontrados] = useState(false);
+  const [openModal18, setOpenModal18] = useState(false);
+
+  const [categoria, setCategoria] = useState("");
+
   const actionFilterNothing = () => {
-    setFilterNothing(false)
-    if(modalFilterOpen){
-      if(nothingFound){
-        setFilterNothing(true)
+    setFilterNothing(false);
+    if (modalFilterOpen) {
+      if (nothingFound) {
+        setFilterNothing(true);
       }
     }
-    
-  }
+  };
 
   useEffect(() => {
-    
-     // Verificar si el modal no se ha abierto antes
-     const hasOpenedBefore = localStorage.getItem("modalOpened");
+    // Verificar si el modal no se ha abierto antes
+    const hasOpenedBefore = localStorage.getItem("modalOpened");
 
-     if (!hasOpenedBefore) {
-
+    if (!hasOpenedBefore) {
       setTimeout(() => {
         // Si no se ha abierto antes, abre el modal
-      setOpenModal18(true);
-       // Marca que el modal se ha abierto
-       localStorage.setItem("modalOpened", "true");
-      }, 1000)
+        setOpenModal18(true);
+        // Marca que el modal se ha abierto
+        localStorage.setItem("modalOpened", "true");
+      }, 1000);
     }
-  }, [])
-  
-  // if(resultadosEncontrados){
-  //   toast.success('Se encontraron chicas.', {
-  //     position: 'top-right',
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     draggable: true,
-  //   });
-  // }
+  }, []);
 
   return (
     <main className="z-20 grid min-h-screen w-screen dark:bg-dark-l bg-[#fff]">
-       <ToastContainer autoClose={5000} theme='colored' newestOnTop={true} />
-    <Banner />
-    <Filtros setCategoria={setCategoria} setTextSearch={setTextSearch} setModalFilterOpen={setModalFilterOpen}  setSelectedNacionalidad={setSelectedNacionalidad}
-    setSelectedRegion={setSelectedRegion} setSelectedLugar={setSelectedLugar} setSelectedIdioma={setSelectedIdioma}
-    />  
-    <Cards categoria={categoria} textSearch={textSearch} setResultadosEncontrados={setResultadosEncontrados} setNothingFound={setNothingFound} setModalFilterOpen={setModalFilterOpen}  selectedNacionalidad={selectedNacionalidad}
-    selectedRegion={selectedRegion} selectedLugar={selectedLugar} selectedIdioma={selectedIdioma} selectedAtencion={selectedAtencion}/>
-
-    {
-      modalFilterOpen && <ModalFilter resultadosEncontrados={resultadosEncontrados} modalFilterOpen={modalFilterOpen} setModalFilterOpen={setModalFilterOpen} setSelectedNacionalidad={setSelectedNacionalidad}
-      setSelectedRegion={setSelectedRegion} setSelectedLugar={setSelectedLugar} setSelectedAtencion={setSelectedAtencion} setSelectedIdioma={setSelectedIdioma} filterNothing={filterNothing}
-      actionFilterNothing={actionFilterNothing} setFilterNothing={setFilterNothing}
+      <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
+      <Banner />
+      <Filtros
+        setCategoria={setCategoria}
+        setTextSearch={setTextSearch}
+        setModalFilterOpen={setModalFilterOpen}
+        setSelectedNacionalidad={setSelectedNacionalidad}
+        setSelectedRegion={setSelectedRegion}
+        setSelectedLugar={setSelectedLugar}
+        setSelectedIdioma={setSelectedIdioma}
       />
-    }
-    {
-    openModal18 && <Modal18 setOpenModal18={setOpenModal18}/>
-    }
+      <Cards
+        categoria={categoria}
+        textSearch={textSearch}
+        setResultadosEncontrados={setResultadosEncontrados}
+        setNothingFound={setNothingFound}
+        setModalFilterOpen={setModalFilterOpen}
+        selectedNacionalidad={selectedNacionalidad}
+        selectedRegion={selectedRegion}
+        selectedLugar={selectedLugar}
+        selectedIdioma={selectedIdioma}
+        selectedAtencion={selectedAtencion}
+      />
+
+      {modalFilterOpen && (
+        <ModalFilter
+          resultadosEncontrados={resultadosEncontrados}
+          modalFilterOpen={modalFilterOpen}
+          setModalFilterOpen={setModalFilterOpen}
+          setSelectedNacionalidad={setSelectedNacionalidad}
+          setSelectedRegion={setSelectedRegion}
+          setSelectedLugar={setSelectedLugar}
+          setSelectedAtencion={setSelectedAtencion}
+          setSelectedIdioma={setSelectedIdioma}
+          filterNothing={filterNothing}
+          actionFilterNothing={actionFilterNothing}
+          setFilterNothing={setFilterNothing}
+        />
+      )}
+      {openModal18 && <Modal18 setOpenModal18={setOpenModal18} />}
     </main>
   );
 };

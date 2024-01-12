@@ -8,6 +8,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import SMSFlotante from "./SMSFlotante";
 import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
+import BannerAnuncios from "../BannerAnuncios/BannerAnuncios";
 // import axios from "axios";
 
 const Access = ({ children }) => {
@@ -31,21 +32,6 @@ const Access = ({ children }) => {
   };
   
   console.log(userCreate.image);
-
-    // useEffect(() => {
-      
-    //     fetch("/api/user", {
-    //       method: "POST",
-    //       body: JSON.stringify(userCreate),
-    //       headers: { "Content-type": "application/json; charset=UTF-8" },
-    //     })
-    //     .then(data => data.json())
-    //     .then(res => console.log(res))
-    //     .catch(error => console.log("Hubo un error: ", error.message))
-
-      
-
-    // }, [user])
 
     useEffect(() => {
       const storedUser = localStorage.getItem("storedUser");
@@ -77,29 +63,6 @@ const Access = ({ children }) => {
     }, [user, userData]);
 
     console.log(userData);
-    
-    
-
-  // useEffect(() => {
-  //   const anuncioStorage = localStorage.getItem('anuncioStorage');
-  //   const LocalUpdatedAnuncio = localStorage.getItem('updatedAnuncio');
-  //   const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
-
-  //   if (parsedUpdatedAnuncio !== updatedAnuncio) {
-  //     setUpdatedAnuncio(parsedUpdatedAnuncio);
-  //   }
-
-  //   console.log(updatedAnuncio);
-
-  //   if (!anuncioStorage || updatedAnuncio) {
-  //     fetch("/api/anuncio")
-  //       .then((data) => data.json())
-  //       .then(({ data }) => {
-  //         localStorage.setItem("anuncioStorage", JSON.stringify(data));
-  //         localStorage.removeItem("updatedAnuncio");
-  //       });
-  //   }
-  // }, [updatedAnuncio]);
 
   return (
     <>
@@ -110,9 +73,14 @@ const Access = ({ children }) => {
       pathname === "/dashboard/users" ||
       pathname === "/demoform" ||
       pathname === '/dashboard/crear-equipo' ||
-      pathname === '/dashboard/equipos'
+      pathname === '/dashboard/equipos' ||
+      pathname === '/dashboard/videos'
         ? ""
-        : <Navbar currentUserR={userData}/>}
+        : <>
+        {/* <BannerAnuncios /> */}
+        <Navbar currentUserR={userData}/>
+        </>
+        }
       {children}
 
       {pathname === "/sign-in" ||
@@ -133,7 +101,8 @@ const Access = ({ children }) => {
       pathname === '/dashboard/crear-equipo' ||
       pathname === '/dashboard/equipos' ||
       pathname === "/soporte" ||
-      pathname === "/vip"
+      pathname === "/vip" ||
+      pathname === '/dashboard/videos'
         ? ""
         : <Footer />}
 

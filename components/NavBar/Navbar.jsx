@@ -22,6 +22,7 @@ import { useClerk } from "@clerk/clerk-react";
 
 import { Poppins } from 'next/font/google'
 import Inicio from "../Inicio/Inicio";
+import BannerAnuncios from "../BannerAnuncios/BannerAnuncios";
 
 const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
 
@@ -107,8 +108,13 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
     return (
     <div className={quick.className}>
-    <header className="z-[100] w-screen fixed  dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
-        <motion.div className=" h-[60px] w-[90%] mx-auto flex items-center justify-between"
+
+    {
+      (pathname === '/' || pathname === '/videos') && <BannerAnuncios />
+    }
+
+    <header className="z-[300] w-screen fixed  dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
+        <motion.div className=" h-[50px] w-[90%] mx-auto flex items-center justify-between"
          variants={fadeIn("left", 0)} initial='hidden' animate="show" exit="hidden"
         >
             
@@ -130,15 +136,19 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 <Link
                     href={'/'}
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}
-                >Servicios</Link>
+                >Mujeres</Link>
                 <Link
+                    href={'/videos'}
+                    className={`my-auto ${pathname === ('/videos') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
+                Videos</Link>
+                {/* <Link
                     href={'/vip'}
                     className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
                 Vip</Link>
                 <Link
                     href={'/soporte'}
                     className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Soporte</Link>
+                Soporte</Link> */}
                 
                 {
 
@@ -161,12 +171,21 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                 {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
-                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
+                   <>
+                   <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
                     rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
                            <h3 className="my-auto text-[#794cff]">Dashboard</h3>
                         <FaUserCheck className="my-auto text-[#794cff]"/>  
                         
                     </Link>
+
+                    <Link href={'/crear-videos'} className={`${pathname === '/crear-videos' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
+                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
+                           <h3 className="my-auto text-[#794cff]">Crear videos</h3>
+                        <FaUserCheck className="my-auto text-[#794cff]"/>  
+                        
+                    </Link>
+                    </>
                 }
 
                {!currentUserR ? 
@@ -273,11 +292,13 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                   <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') ? "text-t-red" : "dark:text-white text-slate-600"} mt-4 my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Servicios</Link>
-                    <Link href={'/vip'} onClick={handleNavbarPhone} className={` ${pathname === ('/vip') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mujeres</Link>
+                     <Link href={'/videos'} onClick={handleNavbarPhone} className={` ${pathname === ('/videos') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Videos</Link>
+                    {/* <Link href={'/vip'} onClick={handleNavbarPhone} className={` ${pathname === ('/vip') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Vip</Link>
                         <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/soporte') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link>
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link> */}
                     <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === `/dashboard-de-usuario/${id}` ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mis anuncios</Link>
                     

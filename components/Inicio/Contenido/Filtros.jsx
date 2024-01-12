@@ -26,10 +26,6 @@ const Filtros = ({
   setSelectedIdioma,
 }) => {
 
-  const containerRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-
   const [active, setActive] = useState("Todas");
 
   const [nombreid, setNombreid] = useState();

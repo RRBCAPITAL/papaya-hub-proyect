@@ -21,7 +21,7 @@ const Footer = () => {
                 <h4 className="text-xl font-extrabold">Enlaces</h4>
                 <ul className="flex flex-col gap-1">
                     <li><Link href={'/inicio'}>Inicio</Link></li>
-                    <li><Link href={'/'}>Chicas</Link></li>
+                    <li><Link href={'/'}>Mujeres</Link></li>
                     <li><Link href={'/sign-in'}>Iniciar sesión</Link></li>
                     <li><Link href={'/crear-anuncio'}>Crear anuncio</Link></li>
                     <li><Link href={'/activar-anuncio'}>Planes de publicación</Link></li>

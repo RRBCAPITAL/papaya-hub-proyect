@@ -12,10 +12,12 @@ import { ImEye } from 'react-icons/im'
 import ModalEdit from "./ModalEdit"
 import useCurrentUser from "@/hooks/customhooks/useCurrentUser";
 import ModalDelete from "./ModalDelete"
+import { usePathname } from "next/navigation"
 
 const AdminDashboard = ({ arrUsers, currentUserOk }) => {
 
   const { user, currentUser } = useCurrentUser()
+  const pathname = usePathname()
 
   const [isEdited, setIsEdited] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -100,21 +102,6 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
   
     }, [anuncios]);
 
-    // useEffect(() => {
-    //   const anuncios = localStorage.getItem("anuncioStorage")
-    //   const data = JSON.parse(anuncios)
-    //    // Ordena los anuncios primero por fecha y luego por hora
-    //    data.sort((a, b) => {
-    //     const dateA = new Date(a.createdAt);
-    //     const dateB = new Date(b.createdAt);
-    //     if (dateA > dateB) return -1; // Fecha A es más reciente
-    //     if (dateA < dateB) return 1; // Fecha B es más reciente
-    //     // Si las fechas son iguales, compara las horas
-    //     return dateB.getTime() - dateA.getTime();
-    //   });
-    //   setAnuncios(data);
-    // }, [])
-
     useEffect(() => {
       if (isEdited || isDeleted) {
         // Realiza una nueva solicitud para obtener la lista de anuncios actualizada.
@@ -170,7 +157,11 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
 
 
         <content className='w-full flex flex-col items-center justify-center'>
-        <Link href={'/'} className="font-bold text-black text-xl mt-4 border-2 border-violet-700 rounded p-2 bg-violet-100 hover:bg-violet-300">Volver al home</Link>
+        <div className="mt-4 flex gap-2">
+        <Link href={'/'} className="font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 hover:bg-orange-300">Volver al home</Link>
+        <Link href={'/dashboard'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 ${pathname === '/dashboard' ? 'bg-orange-300' : 'bg-orange-100'} hover:bg-orange-300`}>Anuncios</Link>
+        <Link href={'/dashboard/videos'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 hover:bg-orange-300`}>Videos</Link>
+        </div>
             {/* <contentchild className='w-5/6 ml-[15%] min-h-screen'> */}
             <contentchild className='w-full mx-20 min-h-screen'>
               <h1 className="text-xl mt-10 mb-1 mx-auto text-center text-violet-900 opacity-60">Bienvenido <strong>{currentUserOk?.role}</strong>, {currentUserOk?.fullname}</h1>
