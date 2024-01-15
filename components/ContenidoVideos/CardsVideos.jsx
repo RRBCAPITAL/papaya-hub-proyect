@@ -97,7 +97,7 @@ const CardsVideos = () => {
             Publicidad
           </h1>
           <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
-            <img src="/assets/publicidad2.jpeg" alt="" />
+            <img src="/assets/publicidadVideo2.jpeg" alt="" />
           </div>
         </div>
       </div>
