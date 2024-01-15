@@ -84,24 +84,26 @@ const CardsVideos = () => {
   };
 
   return (
-   <div className="flex flex-col lg:flex-row justify-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff]">
-     
-     <h1 className="mt-16 text-slate-400 p-1 rounded border-[1px] w-[100px] mx-auto text-center text-sm border-slate-400 block sm:hidden">Publicidad</h1>
-     <div className="sm:mt-20 lg:hidden block h-[160px] sm:h-[300px] lg:h-[500px] w-[96%] lg:w-[250px] mx-auto">
-    <div className="flex gap-1 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-full w-full sm:mx-0 lg:mt-24">
-        <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
-            <img src="/assets/publicidad1.png" alt="" className=""/>
-        </div>
-        <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">Publicidad</h1>
-        <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
+    <div className="flex flex-col lg:flex-row justify-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff]">
+      <h1 className="mt-16 text-slate-400 p-1 rounded border-[1px] w-[100px] mx-auto text-center text-sm border-slate-400 block sm:hidden">
+        Publicidad
+      </h1>
+      <div className="sm:mt-20 lg:hidden block h-[160px] sm:h-[300px] lg:h-[500px] w-[96%] lg:w-[250px] mx-auto">
+        <div className="flex gap-1 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-full w-full sm:mx-0 lg:mt-24">
+          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
+            <img src="/assets/publicidad1.png" alt="" className="" />
+          </div>
+          <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">
+            Publicidad
+          </h1>
+          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
             <img src="/assets/publicidad2.png" alt="" />
+          </div>
         </div>
-    </div>
-    </div>
+      </div>
 
-     <containertotal className="flex overflow-x-hidden lg:mt-24 mx-[12px]">
-      <contain className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-10 w-full lg:[980px] 2xl:w-[1200px]">
-
+      <containertotal className="flex overflow-x-hidden lg:mt-24 mx-[12px]">
+        <contain className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-10 w-full lg:[980px] 2xl:w-[1200px]">
           {filteredVideo?.length > 0
             ? filteredVideo.map((a) => (
                 <CardVideo
@@ -112,26 +114,27 @@ const CardsVideos = () => {
                   nivel={a?.nivel}
                   videoUrl={a?.videoUrl}
                   thumbnailUrl={a?.thumbnailUrl}
+                  views={a?.views}
                 />
               ))
             : ""}
-            
+        </contain>
+      </containertotal>
 
-      </contain>
-    </containertotal>
-
-    <div className="hidden lg:block">
-    <div className="flex gap-2 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-[170px] sm:h-[300px] w-[96%] lg:h-[500px] lg:w-[250px] sm:mx-0 lg:mt-24 mx-auto ">
-        <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
-            <img src="/assets/publicidad1.png" alt="" className=""/>
-        </div>
-        <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">Publicidad</h1>
-        <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
+      <div className="hidden lg:block">
+        <div className="flex gap-2 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-[170px] sm:h-[300px] w-[96%] lg:h-[500px] lg:w-[250px] sm:mx-0 lg:mt-24 mx-auto ">
+          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
+            <img src="/assets/publicidad1.png" alt="" className="" />
+          </div>
+          <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">
+            Publicidad
+          </h1>
+          <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
             <img src="/assets/publicidad2.png" alt="" />
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-   </div>
   );
 };
 

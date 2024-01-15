@@ -75,7 +75,7 @@ const Card = ({
               : nivel === "MOTOMAMI"
               ? "border-blue-500"
               : "border-slate-500"
-          } relative rounded-[16px] w-[300px] sm:w-[400px] sm:h-[600px] h-[300px] xl:h-[400px] 2xl:h-[600px] object-cover border-[2px]`}
+          } relative rounded-[16px] w-[300px] sm:w-[400px] sm:h-[600px] h-[300px] xl:h-[400px] 2xl:h-[500px] object-cover border-[2px]`}
         />
 
         <div

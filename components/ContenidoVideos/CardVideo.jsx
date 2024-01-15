@@ -14,9 +14,11 @@ const CardVideo = ({
   videoUrl,
   thumbnailUrl,
   nivel,
+  views,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const router = useRouter();
 
   console.log(name);
 
@@ -29,8 +31,7 @@ const CardVideo = ({
   };
 
   return (
-    <div
-    >
+    <div>
       <motion.div
         style={{ position: "relative" }}
         className={`mb-2 dark:bg-dark-d bg-white hover:cursor-pointer border-2 dark:border-slate-500 w-fit lg:w-[250px] 2xl:w-[280px] 2xl`}
@@ -39,24 +40,23 @@ const CardVideo = ({
         animate="show"
         exit="hidden"
       >
-
-<  div
-            style={{
-              position: "relative",
-              overflow: "hidden",
-            }}
-
-            className="w-full sm:h-[400px] h-[200px] xl:h-[300px] 2xl:h-[400px]"
-          >
-        {!isClicked ? (
-          <>
-            <img
-              src={thumbnailUrl}
-              onClick={handleClick}
-              alt="Imagen de la anfitriona"
-              onChange={() => toggleHover()}
-              className={`relative w-full h-full object-cover`}
-            />
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+          }}
+          className="w-full sm:h-[400px] h-[200px] xl:h-[300px] 2xl:h-[400px]"
+        >
+          {!isClicked ? (
+            <>
+              <img
+                src={thumbnailUrl}
+                // onClick={handleClick}
+                onClick={() => router.push(`/videos/${name}/${id}`)}
+                alt="Miniatura del video"
+                onChange={() => toggleHover()}
+                className={`relative w-full h-full object-cover`}
+              />
               <div
                 style={{
                   position: "absolute",
@@ -66,26 +66,25 @@ const CardVideo = ({
                 }}
                 className="bg-white rounded-full"
               >
-                <FaCirclePlay onClick={handleClick} className="w-[50px] h-[50px] sm:w-[100px] sm:h-[100px] text-t-red hover:opacity-80 transition-all duration-200 ease-linear"/>
+                <FaCirclePlay
+                  onClick={handleClick}
+                  className="w-[50px] h-[50px] sm:w-[100px] sm:h-[100px] text-t-red hover:opacity-80 transition-all duration-200 ease-linear"
+                />
               </div>
-          </>
-        ) : (
-         
+            </>
+          ) : (
             <video
-            autoPlay
-            controls
-            muted
-            playsInline
-            src={videoUrl}
-            className=" w-full h-full object-contain"
-
-          ></video>
-
-        )}
-            
+              autoPlay
+              controls
+              muted
+              playsInline
+              src={videoUrl}
+              className=" w-full h-full object-contain"
+            ></video>
+          )}
         </div>
         <div
-          className=" dark:text-white text-slate-500 px-1 lg:px-4 py-2 text-sm sm:text-[18px] font-bold leading-5 h-[55px] overflow-hidden"
+          className="flex flex-col gap-2 dark:text-white text-slate-500 px-1 lg:px-4 py-2 text-sm sm:text-[18px] font-bold leading-5 h-[80px] sm:h-[90px] overflow-hidden"
           style={{
             // backgroundColor: 'rgba(0, 0, 0, 0.7)',
             borderRadius: "0 0 18px 18px",
@@ -94,9 +93,22 @@ const CardVideo = ({
             left: 0,
             right: 0,
           }}
+          onClick={() => router.push(`/videos/${name}/${id}`)}
         >
-             {name.length > 45 ? `${name.substring(0, 45)}...` : name}
-       
+          <h1
+            style={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              WebkitLineClamp: 2, // Número de líneas que deseas mostrar
+              whiteSpace: "normal", // Puede ser nowrap si no quieres que se ajuste automáticamente
+              marginBottom: "2px", // Ajuste del espacio entre h1 y h2
+            }}
+          >
+            {name}
+          </h1>
+          <h2 className="text-sm font-light">{views}k vistas</h2>
         </div>
       </motion.div>
     </div>

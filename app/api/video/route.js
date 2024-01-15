@@ -45,7 +45,7 @@ export async function POST(req, {params}){
 export async function GET(req, { params }){
 
     try {
-        const videos = await prisma?.videos?.findMany({
+        const videos = await  prisma?.videos?.findMany({
             include: {
                 user: true
             }

@@ -2,7 +2,7 @@
 .my-masonry-grid {
     display: flex;
     /* margin-left: -16px;  */
-    width: auto;
+    /* width: auto; */
     gap: 1px;
     width: 96%;
   }
@@ -21,9 +21,9 @@
     }
   }
   
-  @media (min-width: 1024px) {
-    /* Estilos para pantallas de 1024px en adelante (dispositivos grandes) */
+  /* @media (min-width: 1024px) {
+
     .my-masonry-grid {
       width: 82%;
     }
-  }
+  } */
