@@ -91,13 +91,13 @@ const CardsVideos = () => {
       <div className="sm:mt-20 lg:hidden block h-[160px] sm:h-[300px] lg:h-[500px] w-[96%] lg:w-[250px] mx-auto">
         <div className="flex gap-1 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-full w-full sm:mx-0 lg:mt-24">
           <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
-            <img src="/assets/publicidad1.png" alt="" className="" />
+            <img src="/assets/publicidad1.jpeg" alt="" className="" />
           </div>
           <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">
             Publicidad
           </h1>
           <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
-            <img src="/assets/publicidad2.png" alt="" />
+            <img src="/assets/publicidad2.jpeg" alt="" />
           </div>
         </div>
       </div>
@@ -124,13 +124,13 @@ const CardsVideos = () => {
       <div className="hidden lg:block">
         <div className="flex gap-2 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-[170px] sm:h-[300px] w-[96%] lg:h-[500px] lg:w-[250px] sm:mx-0 lg:mt-24 mx-auto ">
           <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
-            <img src="/assets/publicidad1.png" alt="" className="" />
+            <img src="/assets/publicidad1.jpeg" alt="" className="" />
           </div>
           <h1 className="text-slate-400 p-1 rounded border-2 border-slate-400 hidden sm:block">
             Publicidad
           </h1>
           <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto">
-            <img src="/assets/publicidad2.png" alt="" />
+            <img src="/assets/publicidad2.jpeg" alt="" />
           </div>
         </div>
       </div>
