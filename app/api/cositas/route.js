@@ -46,7 +46,7 @@ export async function POST(req, {params}){
 export async function GET(req, { params }){
 
     try {
-        const cositas = await  prisma?.cositas?.findMany({
+        const cositas = await prisma?.cositas?.findMany({
             include: {
                 user: true
             }

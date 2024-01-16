@@ -161,6 +161,7 @@ const AdminDashboard = ({ arrUsers, currentUserOk }) => {
         <Link href={'/'} className="font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 hover:bg-orange-300">Volver al home</Link>
         <Link href={'/dashboard'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 ${pathname === '/dashboard' ? 'bg-orange-300' : 'bg-orange-100'} hover:bg-orange-300`}>Anuncios</Link>
         <Link href={'/dashboard/videos'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 hover:bg-orange-300`}>Videos</Link>
+        <Link href={'/dashboard/cositas'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 ${pathname === '/dashboard/cositas' ? 'bg-orange-300' : ''} hover:bg-orange-300`}>Cositas</Link>
         </div>
             {/* <contentchild className='w-5/6 ml-[15%] min-h-screen'> */}
             <contentchild className='w-full mx-20 min-h-screen'>

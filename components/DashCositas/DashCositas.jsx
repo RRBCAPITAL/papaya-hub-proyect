@@ -12,7 +12,7 @@ import ModalEdit from "./ModalEdit"
 import ModalDelete from "./ModalDelete";
 import { usePathname } from "next/navigation";
 
-const DashVideos = () => {
+const DashCositas = () => {
 
   const [isEdited, setIsEdited] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
@@ -91,7 +91,7 @@ const DashVideos = () => {
     
     useEffect(() => {
         // Realiza una nueva solicitud para obtener la lista de anuncios actualizada.
-        fetch('/api/video')
+        fetch('/api/cositas')
           .then(data => data.json())
           .then(({ data }) => {
             // Ordena los anuncios primero por fecha y luego por hora
@@ -114,7 +114,7 @@ const DashVideos = () => {
     useEffect(() => {
       if (isEdited || isDeleted) {
         // Realiza una nueva solicitud para obtener la lista de anuncios actualizada.
-        fetch('api/video')
+        fetch('/api/cositas')
           .then(data => data.json())
           .then(({ data }) => {
             setAnuncios(data);
@@ -168,13 +168,13 @@ const DashVideos = () => {
         <div className="mt-4 flex gap-2">
         <Link href={'/'} className="font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 hover:bg-orange-300">Volver al home</Link>
         <Link href={'/dashboard'} className="font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 hover:bg-orange-300">Anuncios</Link>
-        <Link href={'/dashboard/videos'} className={`font-bold text-black border-2 border-orange-700 rounded p-2  ${pathname === '/dashboard/videos' ? 'bg-orange-300' : ''} hover:bg-orange-300`}>Videos</Link>
-        <Link href={'/dashboard/cositas'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 ${pathname === '/dashboard/cositas' ? 'bg-orange-300' : ''} hover:bg-orange-300`}>Cositas</Link>
+        <Link href={'/dashboard/videos'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 bg-orange-100 ${pathname === '/dashboard/videos' ? 'bg-orange-300' : ''} hover:bg-orange-300`}>Videos</Link>
+        <Link href={'/dashboard/cositas'} className={`font-bold text-black border-2 border-orange-700 rounded p-2 ${pathname === '/dashboard/cositas' ? 'bg-orange-300' : ''} hover:bg-orange-300`}>Cositas</Link>
         </div>
             {/* <contentchild className='w-5/6 ml-[15%] min-h-screen'> */}
             <contentchild className='w-full mx-20 min-h-screen'>
               <h1 className="text-xl mt-10 mb-1 mx-auto text-center text-violet-900 opacity-60">Bienvenido <strong>{currentUser?.role}</strong>, {currentUser?.fullname}</h1>
-            <h1 className="font-extrabold text-2xl sm:text-4xl text-center mb-10 py-1 border-b-4 border-bor-red w-fit mx-auto"><strong className="text-t-red">Videos</strong> Registrados</h1>
+            <h1 className="font-extrabold text-2xl sm:text-4xl text-center mb-10 py-1 border-b-4 border-bor-red w-fit mx-auto"><strong className="text-t-red">Cositas</strong> Registradas</h1>
 
             <form action="" onSubmit={clickSearch} onKeyUp={handleKeyUp} className="flex justify-center gap-2 my-10">
               <input type="text" name="" value={textSearch} onChange={handleSearch} className="outline-none px-4 py-2 w-[70%] border-2 rounded-md border-slate-400 bg-slate-200"/>
@@ -190,7 +190,7 @@ const DashVideos = () => {
             <th class="border px-4 py-2  font-extrabold">ID</th>
             <th class="border px-4 py-2  font-extrabold">Usuario creador</th>
             <th class="border px-4 py-2  font-extrabold">Título</th>
-            <th class="border px-4 py-2  font-extrabold">Suscripción</th>
+            <th class="border px-4 py-2  font-extrabold">Categorías</th>
             <th class="border px-4 py-2  font-extrabold">Estado</th>
             <th class="border px-4 py-2  font-extrabold">Fecha de creación</th>
             <th class="border px-4 py-2  font-extrabold">Acciones</th>
@@ -223,7 +223,7 @@ const DashVideos = () => {
                 
               />  
             </td>
-            <td class="text-center px-4 py-2 font-medium">{arr?.nivel === "NOTHING" ? 'NOTHING' : arr?.nivel === "UNDER" ? 'BAJA' : arr?.nivel === "MID" ? 'MEDIA' : arr?.nivel === "ABOVE" ? 'SUPERIOR' : ''}</td>
+            <td class="text-center px-4 py-2 font-medium">{arr?.nivel}</td>
             <td class="text-center px-4 py-2">{arr?.nivel === "NOTHING" ? <nav className="p-2 rounded-[20px] bg-red-500 text-white font-bold">Inactivo</nav>: <nav className="p-2 rounded-[20px] bg-[#38ff56] font-bold">Activo</nav>}</td>
             <td class="text-center px-4 py-2">{fechaLegible(arr?.createdAt)}</td>
             <td class="text-center px-1 py-2 flex text-sm gap-1 items-center justify-center">
@@ -287,4 +287,4 @@ const DashVideos = () => {
   )
 }
 
-export default DashVideos
+export default DashCositas

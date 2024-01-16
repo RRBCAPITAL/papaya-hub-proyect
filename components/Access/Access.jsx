@@ -74,7 +74,8 @@ const Access = ({ children }) => {
       pathname === "/demoform" ||
       pathname === '/dashboard/crear-equipo' ||
       pathname === '/dashboard/equipos' ||
-      pathname === '/dashboard/videos'
+      pathname === '/dashboard/videos' ||
+      pathname === '/dashboard/cositas'
         ? ""
         : <>
         {/* <BannerAnuncios /> */}
@@ -102,7 +103,8 @@ const Access = ({ children }) => {
       pathname === '/dashboard/equipos' ||
       pathname === "/soporte" ||
       pathname === "/vip" ||
-      pathname === '/dashboard/videos'
+      pathname === '/dashboard/videos' ||
+      pathname === '/dashboard/cositas'
         ? ""
         : <Footer />}
 
