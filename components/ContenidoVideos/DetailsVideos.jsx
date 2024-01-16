@@ -21,6 +21,10 @@ import { FaCirclePlay } from "react-icons/fa6";
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 
+import { Poppins } from "next/font/google";
+
+const dancing = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
+
 const DetailsVideos = ({ id }) => {
   const [video, setVideo] = useState();
   const [AllVideos, setAllVideos] = useState();
@@ -57,10 +61,6 @@ const DetailsVideos = ({ id }) => {
     const anuncioFound = Videos?.find((a) => a?.id === id);
 
     setAllVideos(Videos);
-
-    console.log(Videos);
-    console.log(AllVideos);
-    console.log(anuncioFound);
 
     if (anuncioFound) {
       setVideo(anuncioFound);
@@ -148,7 +148,18 @@ const DetailsVideos = ({ id }) => {
                   </h2>
                 </infodescription>
 
-                <h2>Más videos:</h2>
+                <Link
+          href={"https://t.me/+kRPGKNx2eNZlNmQ5"}
+          target="_blank"
+          className="z-30 border-2 hover:bg-slate-100 hover:dark:bg-slate-700 text-black dark:text-white transition-all duration-300 ease-linear py-2 rounded mt-2 font-normal flex items-center justify-center px-10 text-center w-fit text-[16px] sm:text-[22px] 2xl:text-[20px] leading-[28px] lg:leading-[36px] 2xl:leading-[32px] "
+        >
+          <h1 className={dancing.className}>
+            Únete al club! Novedades y sorteos hot
+          </h1>
+          <img src="/assets/logotelegram.png" alt="" className="h-8 w-8 ml-2" />
+        </Link>
+
+                <h2 className="text-black dark:text-white">Más videos:</h2>
 
                 <div className="grid sm:grid-cols-3 gap-2 items-center justify-center cursor-pointer">
                   {AllVideos?.filter(
@@ -196,7 +207,7 @@ const DetailsVideos = ({ id }) => {
                           {item?.title}
                         </h1>
 
-                        <h2 className="absolute top-1 left-1 text-white bg-slate-800 rounded p-1 text-[10px]">
+                        <h2 className="absolute top-1 left-1 text-white bg-slate-800 rounded p-1 text-[12px]">
                           {item?.views}k vistas
                         </h2>
                       </div>

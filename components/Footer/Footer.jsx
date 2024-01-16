@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { AiFillFacebook, AiFillInstagram, AiFillTiktok } from 'react-icons/ai'
-import { SiTiktok, SiInstagram, SiFacebook } from "react-icons/si";
+import { SiTiktok, SiInstagram, SiFacebook, SiTelegram } from "react-icons/si";
 import { Poppins } from 'next/font/google'
 
 const quick = Poppins({ subsets: ['latin'], weight: ["400", "600"] })
@@ -22,6 +22,8 @@ const Footer = () => {
                 <ul className="flex flex-col gap-1">
                     <li><Link href={'/inicio'}>Inicio</Link></li>
                     <li><Link href={'/'}>Mujeres</Link></li>
+                    <li><Link href={'/videos'}>Videos</Link></li>
+                    <li><Link href={'/cositas'}>Cositas</Link></li>
                     <li><Link href={'/sign-in'}>Iniciar sesión</Link></li>
                     <li><Link href={'/crear-anuncio'}>Crear anuncio</Link></li>
                     <li><Link href={'/activar-anuncio'}>Planes de publicación</Link></li>
@@ -55,10 +57,16 @@ const Footer = () => {
                 </div>
 
                 <h4 className="text-xl font-extrabold">Redes sociales</h4>
-                <ul className="socials flex gap-6">
-                    <li><Link target="_blank" href={'https://www.instagram.com/papayahub_pe/'}><SiInstagram /></Link></li>
-                    {/* <li><Link href={'/'}><SiFacebook /></Link></li> */}
-                    <li><Link target="_blank" href={'https://www.tiktok.com/@papayahub_pe'}><SiTiktok /></Link></li>          
+                <ul className="socials flex gap-2">
+                    <li><Link target="_blank" href={'https://www.instagram.com/papayahub_pe/'} className="flex gap-1">
+                        <h1>IG</h1>
+                        <SiInstagram className="my-auto"/></Link></li>
+                    <li><Link target="_blank" href={'https://t.me/+kRPGKNx2eNZlNmQ5'} className="flex gap-1">
+                        <h1>Telegram</h1>
+                        <SiTelegram className="my-auto"/></Link></li>
+                    <li><Link target="_blank" href={'https://www.tiktok.com/@papayahub_pe'} className="flex gap-1">
+                        <h1>Tik tok</h1>
+                        <SiTiktok className="my-auto"/></Link></li>          
                 </ul>
             </div>
   
