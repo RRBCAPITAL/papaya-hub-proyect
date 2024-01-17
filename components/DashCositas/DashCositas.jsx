@@ -251,7 +251,7 @@ const DashCositas = () => {
             <td class="text-center pt-2 font-medium  w-[200px]">
             <label className="text-center py-2" htmlFor="">{arr?.title}</label>
             </td>
-            <td class="text-center px-4 py-2 font-medium">{arr?.nivel === "NOTHING" ? 'NOTHING' : arr?.nivel === "UNDER" ? 'BAJA' : arr?.nivel === "MID" ? 'MEDIA' : arr?.nivel === "ABOVE" ? 'SUPERIOR' : ''}</td>
+            <td class="text-center px-4 py-2 font-medium">{arr?.nivel}</td>
             <td class="text-center px-4 py-2">{arr?.nivel === "NOTHING" ? <nav className="p-2 rounded-[20px] bg-red-500 text-white font-bold">Inactivo</nav>: <nav className="p-2 rounded-[20px] bg-[#38ff56] font-bold">Activo</nav>}</td>
             <td class="text-center px-4 py-2">{fechaLegible(arr?.createdAt)}</td>
             <td class="text-center px-1 py-2 flex text-sm gap-1 items-center justify-center">

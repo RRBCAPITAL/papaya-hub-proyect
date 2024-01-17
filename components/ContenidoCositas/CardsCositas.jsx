@@ -11,6 +11,7 @@ import Link from "next/link";
 
 import { changeNabvar } from "@/components/NavBar/Navbar";
 import CardCosita from "./CardCosita";
+import ModalCosita from "./ModalCosita";
 
 const CardsCositas = () => {
   const [cosita, setCosita] = useState();
@@ -21,6 +22,14 @@ const CardsCositas = () => {
   const [sexshop, setSexshop] = useState();
   const [audiolibros, setAudiolibros] = useState();
   const [onlyfans, setOnlyfans] = useState();
+
+  const [openModal, setOpenModal] = useState(false)
+  const [data, setData] = useState({
+    id: '',
+    name: '',
+    description: '',
+    imageUrl: ''
+})
 
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
@@ -120,6 +129,8 @@ const CardsCositas = () => {
                   nivel={a?.nivel}
                   imageUrl={a?.imageUrl}
                   views={a?.views}
+                  setOpenModal={setOpenModal}
+                  setData={setData} 
                 />
               ))
             : ""}
@@ -137,6 +148,8 @@ const CardsCositas = () => {
                   nivel={a?.nivel}
                   imageUrl={a?.imageUrl}
                   views={a?.views}
+                  setOpenModal={setOpenModal}
+                  setData={setData} 
                 />
               ))
             : ""}
@@ -154,6 +167,8 @@ const CardsCositas = () => {
                   nivel={a?.nivel}
                   imageUrl={a?.imageUrl}
                   views={a?.views}
+                  setOpenModal={setOpenModal}
+                  setData={setData} 
                 />
               ))
             : ""}
@@ -171,6 +186,8 @@ const CardsCositas = () => {
                   nivel={a?.nivel}
                   imageUrl={a?.imageUrl}
                   views={a?.views}
+                  setOpenModal={setOpenModal}
+                  setData={setData} 
                 />
               ))
             : ""}
@@ -190,6 +207,8 @@ const CardsCositas = () => {
           </div>
         </div>
       </div>
+
+      { openModal && <ModalCosita cosita={cosita} data={data} setOpenModal={setOpenModal}/> }
     </div>
   );
 };

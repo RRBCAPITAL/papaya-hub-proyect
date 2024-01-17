@@ -215,7 +215,7 @@ const FormCositas = () => {
               </inactive>
               <buttons className="flex gap-2 mt-4">
                 <Link
-                  href={"/dashboard/videos"}
+                  href={"/dashboard/cositas"}
                   onClick={() => {
                     clean();
                   }}
@@ -242,7 +242,7 @@ const FormCositas = () => {
         <titulo className="dark:text-whitet text-blackt mt-[100px] font-bold text-3xl border-b-4 border-bor-red">
           <strong className="text-t-red">CREAR</strong> COSITA
         </titulo>
-        <div className="dark:bg-dark-l bg-whitet shadow-2xl p-10 rounded-[10px] w-[500px]">
+        <div className="dark:bg-dark-l bg-whitet shadow-2xl p-10 rounded-[10px] w-fit sm:w-[500px]">
           <form
             onSubmit={handleSubmit}
             encType="multipart/form-data"

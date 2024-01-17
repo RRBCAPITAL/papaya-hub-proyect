@@ -28,7 +28,7 @@ const BannerAnuncios = () => {
   return (
     <div className='w-screen bg-white dark:bg-black'>
     {isVisible &&
-    <div className={`z-[1000] h-fit lg:h-[90px] w-fit lg:w-[980px] mx-auto transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`z-[999] h-fit lg:h-[90px] w-fit lg:w-[980px] mx-auto transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
      {/* <img src="/assets/bann1.png" alt="" className='border-2' />a */}
      <video autoPlay loop muted playsInline src="/assets/videoanuncio.mp4" className=''></video>
   </div>

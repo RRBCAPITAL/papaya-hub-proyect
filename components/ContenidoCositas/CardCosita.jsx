@@ -14,9 +14,12 @@ const CardCosita = ({
   imageUrl,
   nivel,
   views,
+  setOpenModal,
+  setData
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+
   const router = useRouter();
 
   console.log(name);
@@ -38,7 +41,16 @@ const CardCosita = ({
         initial="hidden"
         animate="show"
         exit="hidden"
-        onClick={() => router.push(`/cositas/${name}/${id}`)}
+        // onClick={() => router.push(`/cositas/${name}/${id}`)}
+        onClick={() => {
+            setOpenModal(true),
+            setData({
+                id: id,
+                name: name,
+                description: description,
+                imageUrl: imageUrl
+            })
+        }}
       >
         <div
           style={{

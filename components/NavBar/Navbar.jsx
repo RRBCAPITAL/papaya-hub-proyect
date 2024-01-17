@@ -312,8 +312,18 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     
                     { userR?.isSignedIn &&
                     (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
+                    <>
                     <Link href={`/dashboard`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Dashboard</Link> }
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Dashboard</Link> 
+                    
+                    <Link href={`/crear-videos`} onClick={handleNavbarPhone} className={`${pathname === ('/crear-videos') ? "text-t-red" : "dark:text-white text-slate-600 " } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear videos</Link>
+        
+                    
+                    <Link href={`/crear-cositas`} onClick={handleNavbarPhone} className={`${pathname === ('/crear-cositas') ? "text-t-red" : "dark:text-white text-slate-600 " } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear cositas</Link>
+                    </>
+                    }
                     
                     {
                       currentUserR ?
