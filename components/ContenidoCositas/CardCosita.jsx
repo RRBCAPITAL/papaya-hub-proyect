@@ -18,19 +18,13 @@ const CardCosita = ({
   setData
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
 
   const router = useRouter();
-
-  console.log(name);
 
   const toggleHover = () => {
     setIsHovered(!isHovered);
   };
 
-  const handleClick = () => {
-    setIsClicked(true);
-  };
 
   return (
     <div>
@@ -41,7 +35,6 @@ const CardCosita = ({
         initial="hidden"
         animate="show"
         exit="hidden"
-        // onClick={() => router.push(`/cositas/${name}/${id}`)}
         onClick={() => {
             setOpenModal(true),
             setData({

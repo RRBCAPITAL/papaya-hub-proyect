@@ -31,6 +31,8 @@ const CardsCositas = () => {
     imageUrl: ''
 })
 
+console.log(openModal);
+
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
       localStorage.removeItem("cositaStorage");
