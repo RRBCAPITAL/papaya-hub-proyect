@@ -112,10 +112,10 @@ console.log(openModal);
       <containertotal className="flex flex-col overflow-x-hidden lg:mt-20 mx-[12px]">
       <div className="flex gap-2 items-center">
       <h1 className="font-bold mb-2 text-slate-600 dark:text-slate-400 text-xl mr-4">Adquiérelo en </h1>
-      <Link href={'https://t.me/+kRPGKNx2eNZlNmQ5'} target="_blank">
+      <Link href={'https://t.me/papayahubpe'} target="_blank">
       <img width="48" height="48" src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="telegram-app--v1" className="h-[36px] w-[36px] my-auto mb-2"/>
       </Link>
-      <Link href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola%2C%20me%20interesa%20comprar%20un%20producto%20en%20Papayahub.pe`} target="_blank">
+      <Link href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola%2C%20me%20interesa%20comprar%20un%20producto%20en%20Papayahub.pe`} target="_blank">
       <img width="48" height="48" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp--v1" className="h-10 w-10 my-auto mb-2"/>
       </Link>
       </div>
