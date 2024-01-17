@@ -233,7 +233,7 @@ const DashVideos = () => {
             <button className="px-4 py-2 my-auto rounded-md bg-red-500 hover:bg-red-600 font-extrabold text-white w-fit" onClick={() => handleDelete(arr?.id)}>
               <AiFillDelete className="w-4 h-4" />
             </button>
-              <Link href={`/chicas/${arr?.id}`} className="px-4 my-auto py-2 rounded-md bg-blue-500 hover:bg-blue-600 font-extrabold text-white w-fit">
+              <Link href={`/videos/${arr?.title}/${arr?.id}`} className="px-4 my-auto py-2 rounded-md bg-blue-500 hover:bg-blue-600 font-extrabold text-white w-fit">
               <ImEye className="w-4 h-4"/>
               </Link>
             </td>
@@ -261,7 +261,7 @@ const DashVideos = () => {
             <button className="px-4 py-2 my-auto rounded-md bg-red-500 hover:bg-red-600 font-extrabold text-white w-fit" onClick={() => handleDelete(arr?.id)}>
               <AiFillDelete className="w-4 h-4" />
             </button>
-              <Link href={`/chicas/${arr?.id}`} className="px-4 my-auto py-2 rounded-md bg-blue-500 hover:bg-blue-600 font-extrabold text-white w-fit">
+              <Link href={`/videos/${arr?.title}/${arr?.id}`} className="px-4 my-auto py-2 rounded-md bg-blue-500 hover:bg-blue-600 font-extrabold text-white w-fit">
               <ImEye className="w-4 h-4"/>
               </Link>
             </td>

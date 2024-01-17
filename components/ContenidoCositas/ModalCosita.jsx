@@ -25,7 +25,7 @@ const ModalCosita = ({ data, setOpenModal }) => {
             <h1 className="font-bold mb-2 text-slate-600 dark:text-slate-400 text-xl mr-4">
               Adquiérelo en{" "}
             </h1>
-            <Link href={"https://t.me/+kRPGKNx2eNZlNmQ5"} target="_blank">
+            <Link href={"https://t.me/papayahubpe"} target="_blank">
               <img
                 width="48"
                 height="48"
@@ -35,7 +35,7 @@ const ModalCosita = ({ data, setOpenModal }) => {
               />
             </Link>
             <Link
-              href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola%2C%20me%20interesa%20comprar%20un%20producto%20en%20Papayahub.pe`}
+              href={`https://api.whatsapp.com/send?phone=+51989752208&text=Hola%2C%20me%20interesa%20comprar%20un%20producto%20en%20Papayahub.pe`}
               target="_blank"
             >
               <img
