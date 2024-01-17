@@ -48,6 +48,12 @@ const Cards = ({
           localStorage.setItem("videoStorage", JSON.stringify(data));
           localStorage.removeItem("updatedVideo");
         });
+
+        fetch("/api/cositas")
+        .then((data) => data.json())
+        .then(({ data }) => {
+          localStorage.setItem("cositaStorage", JSON.stringify(data));
+        });
     }, 60000);
   }, [listen]);
 
@@ -67,6 +73,18 @@ const Cards = ({
           setAnuncios(data);
           localStorage.setItem("anuncioStorage", JSON.stringify(data));
           localStorage.removeItem("updatedAnuncio");
+        });
+
+        fetch("/api/video")
+        .then((data) => data.json())
+        .then(({ data }) => {
+          localStorage.setItem("videoStorage", JSON.stringify(data));
+        });
+
+        fetch("/api/cositas")
+        .then((data) => data.json())
+        .then(({ data }) => {
+          localStorage.setItem("cositaStorage", JSON.stringify(data));
         });
     }
 

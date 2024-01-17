@@ -10,6 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { MdNightlight } from 'react-icons/md'
 import { MdOutlineLightMode } from 'react-icons/md'
 import SignOutButton from "./SignOutButton";
+import { MdCreateNewFolder } from "react-icons/md";
 
 import { HiOutlineLogout } from "react-icons/hi";
 
@@ -110,7 +111,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     <div className={quick.className}>
 
     {
-      (pathname === '/' || pathname === '/videos') && <BannerAnuncios />
+      (pathname === '/' || pathname === '/videos' || pathname === '/cositas') && <BannerAnuncios />
     }
 
     <header className="z-[300] w-screen fixed  dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
@@ -141,6 +142,10 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     href={'/videos'}
                     className={`my-auto ${pathname === ('/videos') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
                 Videos</Link>
+                <Link
+                    href={'/cositas'}
+                    className={`my-auto ${pathname === ('/cositas') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
+                Cositas</Link>
                 {/* <Link
                     href={'/vip'}
                     className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
@@ -181,9 +186,14 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                     <Link href={'/crear-videos'} className={`${pathname === '/crear-videos' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
                     rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
-                           <h3 className="my-auto text-[#794cff]">Crear videos</h3>
-                        <FaUserCheck className="my-auto text-[#794cff]"/>  
-                        
+                           <MdCreateNewFolder className="my-auto w-4 h-4 text-[#794cff]"/>  
+                           <h3 className="my-auto text-[#794cff]">Videos</h3>                        
+                    </Link>
+
+                    <Link href={'/crear-cositas'} className={`${pathname === '/crear-cositas' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
+                    rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}>
+                           <MdCreateNewFolder className="my-auto w-4 h-4 text-[#794cff]"/> 
+                           <h3 className="my-auto text-[#794cff]">Cositas</h3>
                     </Link>
                     </>
                 }
@@ -295,10 +305,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mujeres</Link>
                      <Link href={'/videos'} onClick={handleNavbarPhone} className={` ${pathname === ('/videos') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Videos</Link>
-                    {/* <Link href={'/vip'} onClick={handleNavbarPhone} className={` ${pathname === ('/vip') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Vip</Link>
-                        <Link href={'/soporte'} onClick={handleNavbarPhone} className={` ${pathname === ('/soporte') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Soporte</Link> */}
+                    <Link href={'/cositas'} onClick={handleNavbarPhone} className={` ${pathname === ('/cositas') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Cositas</Link>
                     <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === `/dashboard-de-usuario/${id}` ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mis anuncios</Link>
                     
