@@ -110,9 +110,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
     return (
     <div className={quick.className}>
 
-    {
+    {/* {
       (pathname === '/' || pathname === '/videos' || pathname === '/cositas') && <BannerAnuncios />
-    }
+    } */}
 
     <header className="z-[300] w-screen fixed  dark:bg-[#000000] shadow-custom1 bg-white py-0 px-[2rem]">
         <motion.div className=" h-[50px] w-[90%] mx-auto flex items-center justify-between"

@@ -119,7 +119,7 @@ console.log(openModal);
       <img width="48" height="48" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp--v1" className="h-10 w-10 my-auto mb-2"/>
       </Link>
       </div>
-        <h1 className="font-bold mb-2 text-slate-400" style={{letterSpacing: '4px'}}>Suplementos deportivos</h1>
+        <h1 className="font-bold mb-2 text-slate-400" style={{letterSpacing: '4px'}}>Vigorizantes</h1>
         <suplementos className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-4 w-full lg:[980px] 2xl:w-[1200px]">
           {suplementos?.length > 0
             ? suplementos?.slice(0,4)?.map((a) => (
@@ -138,7 +138,7 @@ console.log(openModal);
             : ""}
         </suplementos>
 
-        <h1 className="font-bold mb-2 text-slate-400" style={{letterSpacing: '4px'}}>Audiolibros</h1>
+        <h1 className="font-bold mb-2 text-slate-400" style={{letterSpacing: '4px'}}>Audiolibros para ser un alfa</h1>
         <audiolibros className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-4 w-full lg:[980px] 2xl:w-[1200px]">
           {audiolibros?.length > 0
             ? audiolibros?.slice(0,4)?.map((a) => (
@@ -176,7 +176,7 @@ console.log(openModal);
             : ""}
         </sexshop>
 
-        <h1 className="font-bold mb-2 text-slate-400" style={{letterSpacing: '4px'}}>Onlyfans</h1>
+        <h1 className="font-bold mb-2 text-slate-400" style={{letterSpacing: '4px'}}>Contenido Top Onlyfans</h1>
         <onlyfans className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-1 lg:gap-4 min-h-fit mb-0 lg:mb-4 w-full lg:[980px] 2xl:w-[1200px]">
           {onlyfans?.length > 0
             ? onlyfans?.slice(0,4)?.map((a) => (
