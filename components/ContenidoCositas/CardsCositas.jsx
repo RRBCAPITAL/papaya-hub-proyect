@@ -197,7 +197,7 @@ console.log(openModal);
       </containertotal>
 
       <div className="hidden lg:block">
-        <div className="flex gap-2 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-[170px] sm:h-[300px] w-[96%] lg:h-[500px] lg:w-[250px] sm:mx-0 lg:mt-[154px] mx-auto ">
+        <div className="flex gap-2 lg:flex-col mb-10 lg:mb-2 items-center justify-center h-[170px] sm:h-[300px] w-[96%] lg:h-[600px] lg:w-[250px] sm:mx-0 lg:mt-[124px] mx-auto ">
           <div className="h-[160px] w-[160px] sm:h-[300px] sm:w-[300px] lg:h-[240px] lg:w-[240px] bg-slate-400 mx-auto overflow-hidden">
             <img src="/assets/publicidad1.1.jpeg" alt="" className="" />
           </div>
