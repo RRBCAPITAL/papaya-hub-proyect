@@ -64,9 +64,9 @@ const Footer = () => {
                     <li><Link target="_blank" href={'https://t.me/+kRPGKNx2eNZlNmQ5'} className="flex gap-1">
                         <h1>Telegram</h1>
                         <SiTelegram className="my-auto"/></Link></li>
-                    <li><Link target="_blank" href={'https://www.tiktok.com/@papayahub_pe'} className="flex gap-1">
+                    {/* <li><Link target="_blank" href={'https://www.tiktok.com/@papayahub_pe'} className="flex gap-1">
                         <h1>Tik tok</h1>
-                        <SiTiktok className="my-auto"/></Link></li>          
+                        <SiTiktok className="my-auto"/></Link></li>           */}
                 </ul>
             </div>
   

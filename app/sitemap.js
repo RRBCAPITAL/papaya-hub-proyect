@@ -1,64 +1,37 @@
 export default function sitemap() {
+
+  const currentDate = new Date().toISOString();
+
     return [
       {
         url: 'https://papayahub.pe',
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 1,
-      },
-      {
-        url: 'https://wwww.papayahub.pe',
-        lastModified: new Date(),
-        changeFrequency: 'daily',
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
         priority: 1,
       },
       {
         url: 'https://papayahub.pe/videos',
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 1,
-      },
-      {
-        url: 'https://wwww.papayahub.pe/videos',
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 1,
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
+        priority: 0.5,
       },
       {
         url: 'https://papayahub.pe/cositas',
         lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 1,
-      },
-      {
-        url: 'https://wwww.papayahub.pe/cositas',
-        lastModified: new Date(),
-        changeFrequency: 'daily',
-        priority: 1,
-      },
-      {
-        url: 'https://www.papayahub.pe/inicio',
-        lastModified: new Date(),
         changeFrequency: 'weekly',
-        priority: 0.8,
+        priority: 0.3,
       },
       {
         url: 'https://papayahub.pe/inicio',
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      },
-      {
-        url: 'https://www.tiktok.com/@papayahub_pe',
-        lastModified: new Date(),
+        lastModified: currentDate,
         changeFrequency: 'weekly',
         priority: 0.8,
       },
       {
         url: 'https://www.instagram.com/papayahub_pe',
-        lastModified: new Date(),
+        lastModified: currentDate,
         changeFrequency: 'weekly',
-        priority: 0.8,
+        priority: 0.5,
       },
     ]
   }
