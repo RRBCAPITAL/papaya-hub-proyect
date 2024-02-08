@@ -27,11 +27,5 @@ export default function sitemap() {
         changeFrequency: 'weekly',
         priority: 0.8,
       },
-      {
-        url: 'https://www.instagram.com/papayahub_pe',
-        lastModified: currentDate,
-        changeFrequency: 'weekly',
-        priority: 0.5,
-      },
     ]
   }
