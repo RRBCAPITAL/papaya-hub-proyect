@@ -8,12 +8,41 @@ import { FaUserCheck } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { Quicksand } from "next/font/google";
+import Head from "next/head";
 
 const quick = Quicksand({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Inicio - kinesiólogas en Perú 🥰Papayahub Inicio✅",
+  description:
+    "Videos de kinesiólogas reales en Perú, kinesiólogas chibolas, kinesiólogas venezolanas, colombianas, Kines teens en Lima, Lince, San Borja, Ate, Comas, Villa Maria, Villa el Salvador, Chorrillos, Miraflores",
+  keywords: [
+    "Videos kinesiologas lima",
+    "Videos kinesiologas en trujillo",
+    "Videos los olivos",
+    "Videos kines teens",
+    "Videos kinesiologas chiclayo",
+    "Videos prostitutas lima",
+    "Videos kines surco",
+    "Videos caletas lima",
+    "Videos putas peruanas",
+    "Videos putas extranjeras",
+    "Videos anfitrionas lima",
+    "Videos kines miraflores",
+    "Videos kinesiologas venezolanas y colombianas",
+  ],
+};
 
 const InicioPage = () => {
   return (
     <div className={quick.className}>
+      <Head>
+        <link
+          rel="canonical"
+          href="https://papayahub.pe/inicio"
+          key="canonical"
+        />
+      </Head>
       <div className="overflow-hidden bg-white dark:bg-dark-l flex flex-col gap-0 border-none">
         <HPortada />
 
