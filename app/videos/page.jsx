@@ -21,6 +21,10 @@ export const metadata = {
     "Videos kines miraflores",
     "Videos kinesiologas venezolanas y colombianas",
   ],
+  referrer: 'origin-when-cross-origin',
+  metadataBase: new URL('https://papayahub.com/videos'),
+  authors: [{ name: "RRB CAPITAL" }],
+  publisher: 'RRB CAPITAL',
 };
 
 const VideosPage = () => {

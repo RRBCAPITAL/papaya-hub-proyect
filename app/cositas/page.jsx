@@ -21,6 +21,10 @@ export const metadata = {
     "Cositas kines miraflores",
     "Cositas kinesiologas venezolanas y colombianas",
   ],
+  referrer: 'origin-when-cross-origin',
+  metadataBase: new URL('https://papayahub.pe/cositas'),
+  authors: [{ name: "RRB CAPITAL" }],
+  publisher: 'RRB CAPITAL',
 };
 
 const CositasPage = () => {
