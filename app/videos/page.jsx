@@ -22,7 +22,13 @@ export const metadata = {
     "Videos kinesiologas venezolanas y colombianas",
   ],
   referrer: 'origin-when-cross-origin',
-  metadataBase: new URL('https://papayahub.com/videos'),
+  metadataBase: new URL(
+    "https://papayahub.pe/videos" ||
+      "https://www.papayahub.pe/videos"
+  ),
+  alternates: {
+    canonical: "/",
+  },
   authors: [{ name: "RRB CAPITAL" }],
   publisher: 'RRB CAPITAL',
 };

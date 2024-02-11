@@ -22,7 +22,13 @@ export const metadata = {
     "Cositas kinesiologas venezolanas y colombianas",
   ],
   referrer: 'origin-when-cross-origin',
-  metadataBase: new URL('https://papayahub.pe/cositas'),
+  metadataBase: new URL(
+    "https://papayahub.pe/cositas" ||
+      "https://www.papayahub.pe/cositas"
+  ),
+  alternates: {
+    canonical: "/",
+  },
   authors: [{ name: "RRB CAPITAL" }],
   publisher: 'RRB CAPITAL',
 };

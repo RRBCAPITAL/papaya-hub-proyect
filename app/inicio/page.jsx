@@ -31,24 +31,22 @@ export const metadata = {
     "Videos kines miraflores",
     "Videos kinesiologas venezolanas y colombianas",
   ],
+  metadataBase: new URL(
+    "https://papayahub.pe/crear-anuncio" ||
+      "https://www.papayahub.pe/crear-anuncio"
+  ),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const InicioPage = () => {
   return (
     <div className={quick.className}>
-      <Head>
-        <link
-          rel="canonical"
-          href="https://papayahub.pe/inicio"
-          key="canonical"
-        />
-      </Head>
       <div className="overflow-hidden bg-white dark:bg-dark-l flex flex-col gap-0 border-none">
         <HPortada />
 
         <HBeneficiosP />
-
-        {/* <Slide /> */}
 
         <div className="flex">
           <containerall className="flex flex-col items-center  gap-4 min-h-screen w-screen py-20 dark:bg-dark-l bg-white">
@@ -199,7 +197,6 @@ const InicioPage = () => {
                 className={`shadow-custom1 border-bor-red border-[10px] w-[280px] sm:w-[360px] rounded-[28px] relative transition-opacity bg-opacity-100 duration-[3s] ease`}
               >
                 <div className="flex flex-col gap-2 px-5 py-2 bg-slate-200 shadow-2xl rounded-t-[20px]">
-                  
                   <div className="flex flex-col gap-1">
                     <p className="text-sm mx-4">Modo</p>
                     <nav
