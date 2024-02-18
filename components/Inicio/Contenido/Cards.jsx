@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Masonry from "react-masonry-css";
 import "./stylecards.css";
 
+import { anuncios } from "@/Data/dataAnuncios";
+
 import { changeNabvar } from "@/components/NavBar/Navbar";
 
 const Cards = ({
@@ -24,81 +26,81 @@ const Cards = ({
   selectedLugar,
   selectedIdioma,
 }) => {
-  const [anuncios, setAnuncios] = useState();
+  // const [anuncios, setAnuncios] = useState();
   const [filteredAnuncios, setFilteredAnuncios] = useState([]);
   const [updatedAnuncio, setUpdatedAnuncio] = useState(false);
   const [listen, setListen] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setListen(!listen);
-      localStorage.removeItem("anuncioStorage");
-      localStorage.removeItem("videoStorage");
-      fetch("/api/anuncio")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          setAnuncios(data);
-          localStorage.setItem("anuncioStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedAnuncio");
-        });
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setListen(!listen);
+  //     localStorage.removeItem("anuncioStorage");
+  //     localStorage.removeItem("videoStorage");
+  //     fetch("/api/anuncio")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         setAnuncios(data);
+  //         localStorage.setItem("anuncioStorage", JSON.stringify(data));
+  //         localStorage.removeItem("updatedAnuncio");
+  //       });
 
-      fetch("/api/video")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("videoStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedVideo");
-        });
+  //     fetch("/api/video")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         localStorage.setItem("videoStorage", JSON.stringify(data));
+  //         localStorage.removeItem("updatedVideo");
+  //       });
 
-        fetch("/api/cositas")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("cositaStorage", JSON.stringify(data));
-        });
-    }, 60000);
-  }, [listen]);
+  //       fetch("/api/cositas")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         localStorage.setItem("cositaStorage", JSON.stringify(data));
+  //       });
+  //   }, 60000);
+  // }, [listen]);
 
-  useEffect(() => {
-    const anuncioStorage = localStorage.getItem("anuncioStorage");
-    const LocalUpdatedAnuncio = localStorage.getItem("updatedAnuncio");
-    const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
+  // useEffect(() => {
+  //   const anuncioStorage = localStorage.getItem("anuncioStorage");
+  //   const LocalUpdatedAnuncio = localStorage.getItem("updatedAnuncio");
+  //   const parsedUpdatedAnuncio = JSON.parse(LocalUpdatedAnuncio);
 
-    if (parsedUpdatedAnuncio !== updatedAnuncio) {
-      setUpdatedAnuncio(parsedUpdatedAnuncio);
-    }
+  //   if (parsedUpdatedAnuncio !== updatedAnuncio) {
+  //     setUpdatedAnuncio(parsedUpdatedAnuncio);
+  //   }
 
-    if (!anuncioStorage || updatedAnuncio) {
-      fetch("/api/anuncio")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          setAnuncios(data);
-          localStorage.setItem("anuncioStorage", JSON.stringify(data));
-          localStorage.removeItem("updatedAnuncio");
-        });
+  //   if (!anuncioStorage || updatedAnuncio) {
+  //     fetch("/api/anuncio")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         setAnuncios(data);
+  //         localStorage.setItem("anuncioStorage", JSON.stringify(data));
+  //         localStorage.removeItem("updatedAnuncio");
+  //       });
 
-        fetch("/api/video")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("videoStorage", JSON.stringify(data));
-        });
+  //       fetch("/api/video")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         localStorage.setItem("videoStorage", JSON.stringify(data));
+  //       });
 
-        fetch("/api/cositas")
-        .then((data) => data.json())
-        .then(({ data }) => {
-          localStorage.setItem("cositaStorage", JSON.stringify(data));
-        });
-    }
+  //       fetch("/api/cositas")
+  //       .then((data) => data.json())
+  //       .then(({ data }) => {
+  //         localStorage.setItem("cositaStorage", JSON.stringify(data));
+  //       });
+  //   }
 
-    if (!anuncios) {
-      const anunciosS = JSON.parse(anuncioStorage);
-      setAnuncios(anunciosS);
-    }
-  }, [updatedAnuncio]);
+  //   if (!anuncios) {
+  //     const anunciosS = JSON.parse(anuncioStorage);
+  //     setAnuncios(anunciosS);
+  //   }
+  // }, [updatedAnuncio]);
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", () => {
-      localStorage.removeItem("anuncioStorage");
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("beforeunload", () => {
+  //     localStorage.removeItem("anuncioStorage");
+  //   });
+  // }, []);
 
   console.log(anuncios);
 
@@ -185,7 +187,7 @@ const Cards = ({
   };
 
   return (
-    <containertotal className="flex flex-col lg:flex-row justify-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[200px] mb-10">
+    <containertotal className="flex flex-col lg:flex-row justify-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[120px] sm:mt-[200px] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
       <h1 className="text-slate-400 p-1 rounded border-[1px] w-[100px] mx-auto text-center text-sm border-slate-400 block sm:hidden">

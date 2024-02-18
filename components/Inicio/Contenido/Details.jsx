@@ -25,13 +25,12 @@ import "./GaleriaVIDEO/styles.css";
 import { Pagination, Navigation } from "swiper/modules";
 
 import { lugarEncuentro, servicios, serviciosExclusivos } from "@/Data/data";
+import { anuncios } from "@/Data/dataAnuncios";
 
 const Details = ({ id }) => {
-  const [anuncio, setAnuncio] = useState();
+  const [anuncio, setAnuncio] = useState()
   const [tarifaPresencial, setTarifaPresencial] = useState([]);
   const [tarifaVirtual, setTarifaVirtual] = useState([]);
-
-  const [encuentro, setEncuentro] = useState(false);
 
   const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -93,31 +92,30 @@ const Details = ({ id }) => {
   );
 
   useEffect(() => {
-    const data = localStorage.getItem("anuncioStorage");
-    const Anuncios = JSON.parse(data);
-    const anuncioFound = Anuncios?.find((a) => a?.id === id);
+    // const data = localStorage.getItem("anuncioStorage");
+    // const Anuncios = JSON.parse(data);
+    const anuncioFound = anuncios?.find((a) => a?.id === id);
     if (anuncioFound) {
       setAnuncio(anuncioFound);
-    } else {
-      axios
-        .get(`/api/anuncio/${id}`)
-        .then((res) => setAnuncio(res.data))
-        .catch((err) => console.log(err));
-    }
+    } 
+    // else {
+    //   axios
+    //     .get(`/api/anuncio/${id}`)
+    //     .then((res) => setAnuncio(res.data))
+    //     .catch((err) => console.log(err));
+    // }
   }, []);
-
-  const shortID = anuncio?.id?.substring(0, 7);
 
   useEffect(() => {
     if (anuncio?.tarifaPresencial) {
-      const tarifaPresencial = JSON.parse(anuncio?.tarifaPresencial);
-      console.log(tarifaPresencial);
-      setTarifaPresencial(tarifaPresencial);
+      // const tarifaPresencial = JSON.parse(anuncio?.tarifaPresencial);
+      // console.log(tarifaPresencial);
+      setTarifaPresencial(anuncio?.tarifaPresencial);
     }
     if (anuncio?.tarifaVirtual) {
-      const tarifaVirtual = JSON.parse(anuncio?.tarifaVirtual);
-      console.log(tarifaVirtual);
-      setTarifaVirtual(tarifaVirtual);
+      // const tarifaVirtual = JSON.parse(anuncio?.tarifaVirtual);
+      // console.log(tarifaVirtual);
+      setTarifaVirtual(anuncio?.tarifaVirtual);
     }
   }, [anuncio?.tarifaVirtual, anuncio?.tarifaPresencial]);
 
@@ -128,9 +126,6 @@ const Details = ({ id }) => {
   const handleLlamarClick = () => {
     window.location.href = `tel:${numeroTelefono}`;
   };
-
-  console.log(tarifaPresencial);
-  console.log(tarifaVirtual);
 
   return (
     <div className="flex">

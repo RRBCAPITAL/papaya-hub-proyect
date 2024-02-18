@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { changeIn } from "@/utils/motionTransitions";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Card = ({
   id,
@@ -29,21 +30,21 @@ const Card = ({
     setIsHovered(!isHovered);
   };
 
-  useEffect(() => {
-    if (anuncioTarifaPresencial) {
-      const tarifaPresencial = JSON.parse(anuncioTarifaPresencial);
-      console.log(tarifaPresencial);
-      setTarifaPresencial(tarifaPresencial);
-    }
-    if (anuncioTarifaVirtual) {
-      const tarifaVirtual = JSON.parse(anuncioTarifaVirtual);
-      console.log(tarifaVirtual);
-      setTarifaVirtual(tarifaVirtual);
-    }
-  }, [anuncioTarifaVirtual, anuncioTarifaPresencial]);
+  // useEffect(() => {
+  //   if (anuncioTarifaPresencial) {
+  //     const tarifaPresencial = JSON.parse(anuncioTarifaPresencial);
+  //     console.log(tarifaPresencial);
+  //     setTarifaPresencial(tarifaPresencial);
+  //   }
+  //   if (anuncioTarifaVirtual) {
+  //     const tarifaVirtual = JSON.parse(anuncioTarifaVirtual);
+  //     console.log(tarifaVirtual);
+  //     setTarifaVirtual(tarifaVirtual);
+  //   }
+  // }, [anuncioTarifaVirtual, anuncioTarifaPresencial]);
 
-  console.log(tarifaPresencial);
-  console.log(tarifaVirtual);
+  // console.log(tarifaPresencial);
+  // console.log(tarifaVirtual);
 
   return (
     <div
@@ -66,8 +67,10 @@ const Card = ({
         animate="show"
         exit="hidden"
       >
-        <img
+        <Image
           src={imagenPrincipal}
+          width={200}
+          height={200}
           alt="Imagen de la anfitriona"
           className={`${
             nivel === "BICHOTA"

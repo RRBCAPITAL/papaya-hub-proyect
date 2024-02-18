@@ -16,30 +16,6 @@ export default function sitemap() {
         priority: 1,
       },
       {
-        url: 'https://papayahub.pe/videos',
-        lastModified: currentDate,
-        changeFrequency: 'weekly',
-        priority: 0.9,
-      },
-      {
-        url: 'https://wwww.papayahub.pe/videos',
-        lastModified: currentDate,
-        changeFrequency: 'weekly',
-        priority: 0.9,
-      },
-      {
-        url: 'https://papayahub.pe/cositas',
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      },
-      {
-        url: 'https://www.papayahub.pe/cositas',
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      },
-      {
         url: 'https://papayahub.pe/inicio',
         lastModified: currentDate,
         changeFrequency: 'weekly',
@@ -50,18 +26,6 @@ export default function sitemap() {
         lastModified: currentDate,
         changeFrequency: 'weekly',
         priority: 0.7,
-      },
-      {
-        url: 'https://papayahub.pe/crear-anuncio',
-        lastModified: currentDate,
-        changeFrequency: 'monthly',
-        priority: 0.6,
-      },
-      {
-        url: 'https://www.papayahub.pe/crear-anuncio',
-        lastModified: currentDate,
-        changeFrequency: 'monthly',
-        priority: 0.6,
       },
       {
         url: 'https://papayahub.pe/activar-anuncio',

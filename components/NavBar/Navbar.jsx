@@ -36,7 +36,7 @@ export const changeNabvar = (changeNabvarF) => {
   return changeNabvarF
 }
 
-const Navbar = ({ currentUserR }) => {
+const Navbar = () => {
 
     const pathname = usePathname()
     const [ show, setShow ] = useState(false)
@@ -44,11 +44,11 @@ const Navbar = ({ currentUserR }) => {
 
     changeNabvar(changeNabvarF)
 
-
     // const [ currentUserR, setCurrentUserR] = useState()
 
-    const userR = useUser()
-    const id = currentUserR?.id
+    const currentUserR = useUser()
+    console.log(currentUserR);
+    // const id = currentUserR?.id
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -137,15 +137,15 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 <Link
                     href={'/'}
                     className={`my-auto ${pathname === ('/') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}
-                >Mujeres</Link>
-                <Link
+                >Kinesiologas</Link>
+                {/* <Link
                     href={'/videos'}
                     className={`my-auto ${pathname === ('/videos') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Videos</Link>
-                <Link
+                Videos</Link> */}
+                {/* <Link
                     href={'/cositas'}
                     className={`my-auto ${pathname === ('/cositas') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
-                Cositas</Link>
+                Cositas</Link> */}
                 {/* <Link
                     href={'/vip'}
                     className={`my-auto ${pathname === ('/vip') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
@@ -154,10 +154,6 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     href={'/soporte'}
                     className={`my-auto ${pathname === ('/soporte') ? "font-extrabold  text-t-red transition-all duration-300 ease-in-out" : "transition-all duration-300 ease-in-out dark:text-white text-slate-800"}`}>
                 Soporte</Link> */}
-                
-                {
-
-                }
                 </ul>
             </div>
             </menu>
@@ -165,16 +161,16 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             <div className="hidden lg:block">
                 <div className="flex gap-[0.8rem]">
                 
-               <Link 
+               {/* <Link 
       href={`/dashboard-de-usuario/${id}`} 
       className={`${pathname === `/dashboard-de-usuario/${id}` && "bg-back-red-l"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-bor-red  text-white py-[0.3rem] px-[0.8rem]
                     rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1] ease`}
     >
       <h3 className="my-auto text-t-red">Mis anuncios</h3>  
       <FaUserCheck className="my-auto text-t-red"/>       
-    </Link>
+    </Link> */}
 
-                {
+                {/* {
                    currentUserR && (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                    <>
                    <Link href={'/dashboard'} className={`${pathname === '/dashboard' && "bg-[#dcd7ff]"} transition-all duration-200 ease-linear flex gap-[4px] border-2 border-[#794cff]  text-white py-[0.3rem] px-[0.8rem]
@@ -196,7 +192,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                            <h3 className="my-auto text-[#794cff]">Cositas</h3>
                     </Link>
                     </>
-                }
+                } */}
 
                {!currentUserR ? 
                   <Link href={'/sign-in'} className="bg-back-red-l border-2 border-bor-red transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] outline-none
@@ -211,7 +207,8 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
 
                 {
                   currentUserR ? <Link
-                  href={'/crear-anuncio'}
+                  target="_blank"
+                    href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola,%20quiero%20crear%20un%20anuncio%20en%20Papayahub.pe`}
                   className={`bg-back-red shadow-p4 hover:shadow transition-all duration-200 ease-linear flex gap-[4px] text-[#fff7d3] py-[0.3rem] px-[0.8rem] border-none outline-none
                   rounded-[20px] text-[14px] font-bold cursor-pointer hover:scale-[1.05] active:scale-[0.95] scale-[1]`}
                   
@@ -283,9 +280,9 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 Ingresar
                 </Link>
                 </div>
-                </div> :
+                </div> :  
                 <>
-                <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem]" >Hola {currentUserR?.firstname} <UserButton afterSignOutUrl="/sign-in"/> </div>
+                <div className="flex gap-2 dark:text-white text-slate-600 py-[0.1rem] px-[1rem]" >Hola {currentUserR?.user?.firstName} <UserButton afterSignOutUrl="/sign-in"/> </div>
                 <div className="flex flex-col gap-1 dark:text-slate-400 text-slate-600">
                   <h2 className="text-sm  py-[0.1rem] px-[1rem]">Publica gratis y empieza a recibir mensajes.</h2>
                 <Link href={'/crear-anuncio'} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') && "bg-[#361e09]" } w-[90%] flex mx-4 items-center justify-center gap-2 text-white bg-back-red py-[0.3rem] px-[0.5rem] border-2 border-bor-red outline-none
@@ -302,15 +299,15 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                   <Link href={'/inicio'} onClick={handleNavbarPhone} className={` ${pathname === ('/inicio') ? "text-t-red" : "dark:text-white text-slate-600"} mt-4 my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Inicio</Link>
                         <Link href={'/'} onClick={handleNavbarPhone} className={` ${pathname === ('/') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mujeres</Link>
-                     <Link href={'/videos'} onClick={handleNavbarPhone} className={` ${pathname === ('/videos') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Kinesiologas</Link>
+                     {/* <Link href={'/videos'} onClick={handleNavbarPhone} className={` ${pathname === ('/videos') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Videos</Link>
                     <Link href={'/cositas'} onClick={handleNavbarPhone} className={` ${pathname === ('/cositas') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Cositas</Link>
                     <Link href={`/dashboard-de-usuario/${id}`} onClick={handleNavbarPhone} className={` ${pathname === `/dashboard-de-usuario/${id}` ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Mis anuncios</Link>
-                    
-                    { userR?.isSignedIn &&
+                     */}
+                    {/* { userR?.isSignedIn &&
                     (currentUserR?.role === 'ADMIN' || currentUserR?.role === 'SUPER_ADMIN') && 
                     <>
                     <Link href={`/dashboard`} onClick={handleNavbarPhone} className={` ${pathname === ('/dashboard') ? "text-t-red" : "dark:text-white text-slate-600"} my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
@@ -323,12 +320,14 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                     <Link href={`/crear-cositas`} onClick={handleNavbarPhone} className={`${pathname === ('/crear-cositas') ? "text-t-red" : "dark:text-white text-slate-600 " } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear cositas</Link>
                     </>
-                    }
+                    } */}
                     
                     {
                       currentUserR ?
-                    <Link href={`/crear-anuncio`} onClick={handleNavbarPhone} className={`${pathname === ('/crear-anuncio') ? "text-t-red" : "dark:text-white text-slate-600 " } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
-                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear anuncio</Link> :
+                    <Link target="_blank"
+                    href={`https://api.whatsapp.com/send?phone=+51931550980&text=Hola,%20quiero%20crear%20un%20anuncio%20en%20Papayahub.pe`} onClick={handleNavbarPhone} className={`${pathname === ('/crear-anuncio') ? "text-t-red" : "dark:text-white text-slate-600 " } my-auto text-xl w-full flex gap-2 py-[0.1rem] px-[1rem] outline-none
+                    rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear anuncio</Link> 
+                    :
                     <Link href={`/sign-in`} onClick={handleNavbarPhone} className={` ${pathname === ('/crear-anuncio') ? "text-t-red" : "dark:text-white text-slate-600 "} my-auto text-xl w-full flex gap-2  py-[0.1rem] px-[1rem] outline-none
                     rounded-[20px] text-[16px] cursor-pointer hover:scale-[1.05] active:scale-[0.95] transition-all scale-[1] ease`}>Crear anuncio</Link>
                     }
@@ -348,9 +347,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
             </button>  
             </div>
             }
-
                     </ul>
-    
             {
               currentUserR && <SignOutButton handleNavbarPhone={handleNavbarPhone}/>  
             }
@@ -358,10 +355,7 @@ const [isLoadingAnuncio, setIsLoadingAnuncio] = useState(false);
                 </div>
                     </motion.div> : ""
         }
-
     </header>
-
-        {/* <ModalConfirmLogin showActive={showActive} modalIsOpen={modalIsOpen} onClose={closeModal}/> */}
     </div>
   )
 }

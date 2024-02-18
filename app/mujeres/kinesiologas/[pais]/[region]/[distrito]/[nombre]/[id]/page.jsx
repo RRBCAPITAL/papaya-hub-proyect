@@ -8,8 +8,6 @@ const detailsID = () => {
 
     const { id } = useParams()
 
-    console.log(id);
-
   return (
     <>
         <Details id={id}/>
