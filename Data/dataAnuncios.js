@@ -38,8 +38,8 @@ export const anuncios = [
     updatedAt: '2023-12-19T21:25:27.000Z'
     },
     {
-        id: "abc49uxm00001vci0xrybhcfl",
-        idFrontend: "B123",
+        id: "zxy49uxm00001vci0xrybhcxt",
+        idFrontend: "H678",
         tarifaxhr: 200,
         tarifaxmr: 100,
         tarifaPresencial: [
@@ -75,4 +75,78 @@ export const anuncios = [
         atencion: ['Departamento propio', 'Hotel'],
         updatedAt: '2023-12-19T21:25:27.000Z'
         },
+        {
+        id: "aer49uxm00001vci0xrybhcfl",
+        idFrontend: "B123",
+        tarifaxhr: 100,
+        tarifaxmr: 100,
+        tarifaPresencial: [
+          { name: "60", value: "100" },
+          { name: "30", value: "100" },
+        ],
+        tarifaVirtual: [
+          { name: "60", value: "40" },
+          { name: "30", value: "30" },
+          { name: "15", value: "25" },
+        ],
+        name: "Nicol",
+        description:
+          "Hola mi amor, me llamo Nicol y soy una sensual kinesióloga de 19 años. Me destaco por ser una preciosa universitaria con cuerpo espectacular, la mejor personalidad y muy traviesa en la cama. Tendremos un momento completo y lleno de placer, sin apuros y con muchos besitos, abrazos y caricias. Hago un rico oral natural profundo y mutuo, vaginal con ricas posiciones como el 69, desnudo total, ducha juntos, también hago videollamada, pack y videos masturbándome mientras digo tu nombre. Hago salidas todo SJL. Si quieres conocerme solo tienes que hospedarte en el distrito de Santa Anita, Lima Metropolitana, atiendo en todos los hoteles. Trabajo independiente, espero tu llamada al 966398687",
+        whatsapp: '966398687',
+        region: 'Lima Metropolitana',
+        lugar: 'Lurigancho',
+        nacionalidad: 'Peruana',
+        diasAtencion: 'Todos los días',
+        horarioInicio: '11:00 AM',
+        horarioFin: '10:00 PM',
+        edad: 19,
+        idioma: ["Español"],
+        categorias: ["Escort", "Anal", "Masajes", "Packs fotos y videos","Videollamada hot"],
+        altura: 1.64,
+        peso: 60,
+        createdAt: '',
+        imagenPrincipal: '/assets/scorts/nicol4.png',
+        galeriaFotos: ['/assets/scorts/nicol1.png', '/assets/scorts/nicol2.png', '/assets/scorts/nicol3.png', '/assets/scorts/nicol4.png'],
+        galeriaVideos: [],
+        nivel: 'MOTOMAMI',
+        questionEnd: 'fb',
+        atencion: ['Hotel'],
+        updatedAt: ''
+        },
+        {
+          id: "sss49uxm00001vci0xrybhccc",
+        idFrontend: "F126",
+        tarifaxhr: 130,
+        tarifaxmr: 130,
+        tarifaPresencial: [
+          { name: "60", value: "130" },
+          { name: "30", value: "130" },
+        ],
+        tarifaVirtual: [],
+        name: "Roxana",
+        description:
+          "Hola mi amor, bienvenido a mi anuncio. Soy Roxana y me destaco por ser una bellisima kinesióloga venezolana recién llegadita a tu país. Vine especialmente para mostrarte el verdadero placer en la cama y para deleitarte con mi maravillosa figura de modelo. Animate a conocerme y veras como ambos llegamos a un orgasmo muy intenso e inolvidable. Escribeme por whatsap al 902563125 para coordinar nuestra cita, te espero por San Juan de Miraflores ",
+        whatsapp: '902563125',
+        region: 'Lima Metropolitana',
+        lugar: 'San Juan de Miraflores',
+        nacionalidad: 'Peruana',
+        diasAtencion: 'Todos los días',
+        horarioInicio: '11:00 AM',
+        horarioFin: '10:00 PM',
+        edad: 19,
+        idioma: ["Español"],
+        categorias: ["Escort",],
+        altura: 1.60,
+        peso: 60,
+        createdAt: '',
+        imagenPrincipal: '/assets/scorts/roxana2.png',
+        galeriaFotos: ['/assets/scorts/roxana1.png', '/assets/scorts/roxana2.png', '/assets/scorts/roxana3.png', '/assets/scorts/roxana4.png'],
+        galeriaVideos: [],
+        nivel: 'MOTOMAMI',
+        questionEnd: 'fb',
+        atencion: ['Hotel'],
+        updatedAt: ''
+        },
+
+
 ];
