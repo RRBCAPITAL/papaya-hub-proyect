@@ -190,7 +190,7 @@ const Cards = ({
     <containertotal className="flex flex-col lg:flex-row justify-center gap-4 w-screen min-h-screen lg:min-h-fit dark:bg-dark-l bg-[#fff] mt-[120px] sm:mt-[200px] mb-10">
       <ToastContainer autoClose={5000} theme="colored" newestOnTop={true} />
 
-      <h1 className="text-slate-400 p-1 rounded border-[1px] w-[100px] mx-auto text-center text-sm border-slate-400 block sm:hidden">
+      <h1 className="text-slate-400 p-1 mt-16 lg:mt-0 rounded border-[1px] w-[100px] mx-auto text-center text-sm border-slate-400 block sm:hidden">
         Publicidad
       </h1>
       <div className=" lg:hidden block h-[160px] sm:h-[300px] lg:h-[500px] w-[96%] lg:w-[250px] mx-auto">
